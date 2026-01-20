@@ -1,0 +1,416 @@
+/* =======================
+   RESET & BASE
+======================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.8;
+  color: #2e2e2e;
+  background: url("images/background.png") center center / cover no-repeat fixed;
+  overflow-x: hidden;
+  min-width: 320px;
+}
+
+/* =======================
+   CONTAINER
+======================= */
+.container {
+  width: min(92%, 1200px);
+  margin: auto;
+}
+
+/* =======================
+   SECTIONS
+======================= */
+.section {
+  background: rgba(250, 248, 242, 0.92);
+  backdrop-filter: blur(5px);
+  padding: 5rem 0;
+  margin: 3rem auto;
+  border-radius: 2rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  animation: fadeUp 0.8s ease both;
+}
+
+.section:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =======================
+   TYPOGRAPHY
+======================= */
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 0.05em;
+}
+
+.section h2 {
+  font-size: 2.6rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #2E3A26;
+}
+
+.section h2::after {
+  content: '';
+  width: 6rem;
+  height: 3px;
+  background: #D4AF37;
+  display: block;
+  margin: 1rem auto 0;
+  border-radius: 2px;
+}
+
+/* =======================
+   HEADER
+======================= */
+header {
+  background: linear-gradient(90deg, #2F3A25, #3F4A33);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 1rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+.header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.logo img {
+  height: 5.5rem;
+}
+
+/* =======================
+   HEADER RIGHT
+======================= */
+.header-right {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+/* =======================
+   LANGUAGE SWITCHER
+======================= */
+.language-switcher {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.language-switcher img {
+  width: 2rem;
+  height: auto;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.language-switcher img:hover {
+  transform: scale(1.12);
+  opacity: 0.85;
+}
+
+/* =======================
+   NAVIGATION
+======================= */
+.header-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.header-nav a {
+  color: #FAF9F6;
+  text-decoration: none;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.header-nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: #D4AF37;
+  transition: width 0.3s ease;
+}
+
+.header-nav a:hover {
+  color: #D4AF37;
+}
+
+.header-nav a:hover::after {
+  width: 100%;
+}
+
+/* =======================
+   ABOUT
+======================= */
+.about-section p {
+  max-width: 45rem;
+  margin: auto;
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* =======================
+   MENU GRID
+======================= */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+  gap: 2.5rem;
+}
+
+.menu-item {
+  background: #fffdf8;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.menu-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+}
+
+.menu-item img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+.menu-item h3 {
+  font-size: 1.4rem;
+  color: #2E3A26;
+  margin-bottom: 0.5rem;
+}
+
+.menu-item p {
+  font-size: 0.95rem;
+}
+
+/* =======================
+   MENU LIST (menu.html)
+======================= */
+.menu-category {
+  margin-bottom: 4rem;
+}
+
+.menu-category h3 {
+  font-size: 1.6rem;
+  color: #2E3A26;
+  border-bottom: 2px solid #D4AF37;
+  display: inline-block;
+  margin-bottom: 1.2rem;
+}
+
+.menu-items {
+  list-style: none;
+}
+
+.menu-items li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px dotted #ccc;
+  font-size: 1rem;
+}
+
+.menu-items .price {
+  color: #D4AF37;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* =======================
+   CONTACT
+======================= */
+.contact-section p {
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* =======================
+   FOOTER
+======================= */
+footer {
+  background: #2F3A25;
+  color: #FAF9F6;
+  padding: 2rem 0;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+/* =======================
+   DESKTOP FIXES
+======================= */
+@media (min-width: 769px) {
+  .header-container {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .header-right {
+    position: absolute;
+    right: 1.5rem;
+    top: 1rem;
+    align-items: flex-end;
+  }
+}
+
+/* =======================
+   REDUCED MOTION
+======================= */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+
+@media (max-width: 800px) and (min-width: 500px) {
+  .menu-grid {
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: 1.8rem;
+  }
+
+  .menu-item {
+    padding: 1.2rem;
+  }
+
+  .menu-item h3 {
+    font-size: 1.2rem;
+  }
+
+  .menu-item p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .section {
+    padding: 2rem 1rem;
+    margin: 1rem auto;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .menu-item {
+    padding: 1rem;
+  }
+
+  .menu-item h3 {
+    font-size: 1rem;
+  }
+
+  .menu-item p {
+    font-size: 0.85rem;
+  }
+}
+
+@media (min-width: 322px) and (max-width: 368px) {
+  .container {
+    width: 95%;
+  }
+
+  .section {
+    padding: 2.5rem 1rem;
+    margin: 1.5rem auto;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .menu-item {
+    padding: 1.2rem;
+  }
+
+  .menu-item h3 {
+    font-size: 1.1rem;
+  }
+
+  .menu-item p {
+    font-size: 0.9rem;
+  }
+}
+
+
+/* =======================
+   CUSTOM SCROLLBAR
+======================= */
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 1px;              /* πλάτος scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(250, 248, 242, 0.8); /* χρώμα background της ράγας */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D4AF37;      /* χρυσό χρώμα thumb */
+  border-radius: 10px;
+  border: 3px solid rgba(250, 248, 242, 0.8); /* padding γύρω από thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b5891f;      /* πιο σκούρο χρυσό στο hover */
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #D4AF37 rgba(250, 248, 242, 0.8);
+}
