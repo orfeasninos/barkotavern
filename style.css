@@ -137,7 +137,7 @@ header {
 
 .language-switcher img:hover {
   transform: scale(1.12);
-  opacity: 0.85;
+  filter: brightness(1.05);
 }
 
 /* =======================
