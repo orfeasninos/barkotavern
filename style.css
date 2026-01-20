@@ -447,3 +447,8 @@ footer {
   position: relative;
   z-index: 1;
 }
+
+.language-switcher img {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
