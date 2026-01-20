@@ -439,16 +439,9 @@ footer {
   filter: none;
 }
 
-.language-switcher {
-  isolation: isolate;
+@supports (-webkit-touch-callout: none) {
+  .language-switcher img {
+    filter: saturate(1.1) contrast(1.05);
+  }
 }
 
-.language-switcher img {
-  position: relative;
-  z-index: 1;
-}
-
-.language-switcher img {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
