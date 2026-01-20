@@ -4,146 +4,141 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Barko Tavern</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./style.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <!-- HEADER -->
-<header>
-  <div class="header-container">
-    
-    <!-- Logo στο κέντρο -->
-    <div class="logo">
-      <a href="index.html"><img src="images/logo.png" alt="Barko Tavern Logo" draggable="false"></a>
-    </div>
+  <header>
+    <div class="header-container">
 
-    <!-- Δεξιά: σημαίες πάνω, links κάτω -->
-    <div class="header-right">
-      <div class="language-switcher">
-        <a href="menu.html"><img src="images/gr.jpg" alt="Ελληνικά" draggable="false"></a>
-        <a href="en/menu-en.html"><img src="images/en.jpg" alt="English" draggable="false"></a>
-        <a href="it/menu-it.html"><img src="images/it.jpg" alt="Italiano" draggable="false"></a>
-        <a href="fr/menu-fr.html"><img src="images/fr.jpg" alt="Français" draggable="false"></a>
+      <!-- Logo στο κέντρο -->
+      <div class="logo">
+        <a href="./index.html"><img src="./images/logo.png" alt="Barko Tavern Logo" draggable="false"></a>
       </div>
 
-      <nav class="header-nav">
-        <ul>
-          <li><a href="menu.html">Μενού</a></li>
-          <li><a href="#contact">Επικοινωνία</a></li>
-          <li><a href="#view">Βλέπουμε</a></li>
+      <!-- Δεξιά: σημαίες πάνω, links κάτω -->
+      <div class="header-right">
+        <div class="language-switcher">
+          <a href="./menu.html"><img src="./images/gr.jpg" alt="Ελληνικά" draggable="false"></a>
+          <a href="./en/menu-en.html"><img src="../en/images/en.jpg" alt="English" draggable="false"></a>
+          <a href="./it/menu-it.html"><img src="../it/images/it.jpg" alt="Italiano" draggable="false"></a>
+          <a href="./fr/menu-fr.html"><img src="../fr/images/fr.jpg" alt="Français" draggable="false"></a>
+        </div>
+
+        <nav class="header-nav">
+          <ul>
+            <li><a href="./menu.html">Μενού</a></li>
+            <li><a href="#contact">Επικοινωνία</a></li>
+            <li><a href="#view">Βλέπουμε</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- MENU SECTION -->
+  <section class="menu-section section">
+    <div class="container">
+      <h2>Μενού</h2>
+
+      <!-- Μαγειρευτά -->
+      <div class="menu-category">
+        <h3>Μαγειρευτά</h3>
+        <ul class="menu-items">
+          <li><span class="dish">Αρνί λεμονάτο στον φούρνο με πατάτες</span> <span class="price">16,80€</span></li>
+          <li><span class="dish">Κατσίκι στιφάδο</span> <span class="price">17,60€</span></li>
+          <li><span class="dish">Κόκορας κρασάτος με χειροποίητες χυλοπίτες</span> <span class="price">14,80€</span></li>
+          <li><span class="dish">Μουσακάς</span> <span class="price">13,00€</span></li>
+          <li><span class="dish">Γεμιστά</span> <span class="price">11,00€</span></li>
+          <li><span class="dish">Ιμάμ μελιτζάνα</span> <span class="price">10,50€</span></li>
+          <li><span class="dish">Παραδοσιακά Σκορδολάζανα Μήλου</span> <span class="price">13,00€</span></li>
+          <li><span class="dish">Μακαρόνια με κιμά</span> <span class="price">10,50€</span></li>
         </ul>
-      </nav>
+      </div>
+
+      <!-- Της ώρας -->
+      <div class="menu-category">
+        <h3>Της ώρας</h3>
+        <ul class="menu-items">
+          <li><span class="dish">Χοιρινή μπριζόλα</span> <span class="price">13,50€</span></li>
+          <li><span class="dish">Κοτόπουλο σουβλάκι</span> <span class="price">13,00€</span></li>
+          <li><span class="dish">Αρνίσια παιδάκια</span> <span class="price">16,00€ (μερίδα) / 21,00€ (500g) / 42,00€ (1Kg)</span></li>
+          <li><span class="dish">Μπιφτέκια μοσχαρίσια</span> <span class="price">12,50€</span></li>
+          <li><span class="dish">Πανσέτα ψητή</span> <span class="price">13,00€</span></li>
+          <li><span class="dish">Λουκάνικο ψητό</span> <span class="price">12,00€</span></li>
+        </ul>
+      </div>
+
+      <!-- Θαλασσινά -->
+      <div class="menu-category">
+        <h3>Θαλασσινά</h3>
+        <ul class="menu-items">
+          <li><span class="dish">Χταπόδι ψητό</span> <span class="price">17,00€</span></li>
+          <li><span class="dish">Καλαμάρι τηγανητό</span> <span class="price">13,50€</span></li>
+          <li><span class="dish">Γαύρος τηγανητός</span> <span class="price">10,00€</span></li>
+          <li><span class="dish">Γαρίδες ψητές</span> <span class="price">16,80€</span></li>
+          <li><span class="dish">Γαρίδες σαγανάκι</span> <span class="price">15,80€</span></li>
+          <li><span class="dish">Γαριδομακαρονάδα</span> <span class="price">18,00€</span></li>
+          <li><span class="dish">Σαρδέλες ψητές</span> <span class="price">11,00€</span></li>
+          <li><span class="dish">Σουπιές με το μελάνι τους με ρύζι</span> <span class="price">13,50€</span></li>
+          <li><span class="dish">Μπακαλιάρος με σκορδαλιά</span> <span class="price">12,50€</span></li>
+        </ul>
+      </div>
+
+      <!-- Ορεκτικά & Ψωμί -->
+      <div class="menu-category">
+        <h3>Ορεκτικά & Ψωμί</h3>
+        <ul class="menu-items">
+          <li><span class="dish">Ψωμί (ανά άτομο)</span> <span class="price">1,20€</span></li>
+          <li><span class="dish">Πίτα</span> <span class="price">1,50€</span></li>
+          <li><span class="dish">Τζατζίκι με πίτα</span> <span class="price">5,50€</span></li>
+          <li><span class="dish">Ταραμοσαλάτα</span> <span class="price">6,50€</span></li>
+          <li><span class="dish">Φάβα με λιαστή ντομάτα, κάπαρη και κρεμμύδι</span> <span class="price">7,50€</span></li>
+          <li><span class="dish">Παραδοσιακά πιταράκια Μήλου</span> <span class="price">8,00€</span></li>
+          <li><span class="dish">Κολοκυθοκεφτέδες με τζατζίκι</span> <span class="price">7,50€</span></li>
+          <li><span class="dish">Ρεβυθοκεφτέδες</span> <span class="price">7,00€</span></li>
+          <li><span class="dish">Μελιτζάνες τηγανητές με σάλτσα και τυρί</span> <span class="price">7,90€</span></li>
+          <li><span class="dish">Πατάτες τηγανητές</span> <span class="price">5,50€</span></li>
+          <li><span class="dish">Σαγανάκι τυρί</span> <span class="price">7,60€</span></li>
+          <li><span class="dish">Φέτα τηγανητή σε φύλλο κρούστας με σουσάμι και μέλι</span> <span class="price">8,50€</span></li>
+          <li><span class="dish">Χειροποίητα ντολμαδάκια</span> <span class="price">7,80€</span></li>
+        </ul>
+      </div>
+
+      <!-- Σαλάτες -->
+      <div class="menu-category">
+        <h3>Σαλάτες</h3>
+        <ul class="menu-items">
+          <li><span class="dish">Χωριάτικη σαλάτα</span> <span class="price">9,50€</span></li>
+          <li><span class="dish">Αγγουροντομάτα</span> <span class="price">7,00€</span></li>
+          <li><span class="dish">Νησιώτικη σαλάτα</span> <span class="price">10,80€</span></li>
+          <li><span class="dish">Ντάκος</span> <span class="price">8,50€</span></li>
+          <li><span class="dish">Πράσινη σαλάτα</span> <span class="price">8,00€</span></li>
+          <li><span class="dish">Μιξ βραστών λαχανικών</span> <span class="price">11,00€</span></li>
+          <li><span class="dish">Χόρτα</span> <span class="price">7,00€</span></li>
+          <li><span class="dish">Παντζάρια με ρόκα και ντόπιο τυρί</span> <span class="price">7,50€</span></li>
+          <li><span class="dish">Αμπελοφάσουλα με σκορδαλιά</span> <span class="price">8,00€</span></li>
+        </ul>
+      </div>
+
+      <!-- Αναψυκτικά & Ποτά -->
+      <div class="menu-category">
+        <h3>Αναψυκτικά & Ποτά</h3>
+        <ul class="menu-items">
+          <li><span class="dish">Μεταλλικό νερό 1L</span> <span class="price">1,80€</span></li>
+          <li><span class="dish">Πορτοκαλάδα 330ml</span> <span class="price">2,50€</span></li>
+          <li><span class="dish">Τόνικ 330ml</span> <span class="price">2,50€</span></li>
+          <li><span class="dish">Ούζο 100ml</span> <span class="price">5,00€</span></li>
+          <li><span class="dish">Τσίπουρο 100ml</span> <span class="price">5,00€</span></li>
+          <li><span class="dish">Μπύρες 500ml</span> <span class="price">4,30€</span></li>
+          <li><span class="dish">Κρασί ποτήρι</span> <span class="price">4,00€ έως 5,00€</span></li>
+        </ul>
+      </div>
+
     </div>
-  </div>
-</header>
-
-
-<section class="menu-section section">
-  <div class="container">
-    <h2>Μενού</h2>
-
-    <!-- Μαγειρευτά -->
-    <div class="menu-category">
-      <h3>Μαγειρευτά</h3>
-      <ul class="menu-items">
-        <li><span class="dish">Αρνί λεμονάτο στον φούρνο με πατάτες</span> <span class="price">16,80€</span></li>
-        <li><span class="dish">Κατσίκι στιφάδο</span> <span class="price">17,60€</span></li>
-        <li><span class="dish">Κόκορας κρασάτος με χειροποίητες χυλοπίτες</span> <span class="price">14,80€</span></li>
-        <li><span class="dish">Μουσακάς</span> <span class="price">13,00€</span></li>
-        <li><span class="dish">Γεμιστά</span> <span class="price">11,00€</span></li>
-        <li><span class="dish">Ιμάμ μελιτζάνα</span> <span class="price">10,50€</span></li>
-        <li><span class="dish">Παραδοσιακά Σκορδολάζανα Μήλου</span> <span class="price">13,00€</span></li>
-        <li><span class="dish">Μακαρόνια με κιμά</span> <span class="price">10,50€</span></li>
-      </ul>
-    </div>
-
-    <!-- Της ώρας -->
-    <div class="menu-category">
-      <h3>Της ώρας</h3>
-      <ul class="menu-items">
-        <li><span class="dish">Χοιρινή μπριζόλα</span> <span class="price">13,50€</span></li>
-        <li><span class="dish">Κοτόπουλο σουβλάκι</span> <span class="price">13,00€</span></li>
-        <li><span class="dish">Αρνίσια παιδάκια</span> <span class="price">16,00€ (μερίδα) / 21,00€ (500g) / 42,00€ (1Kg)</span></li>
-        <li><span class="dish">Μπιφτέκια μοσχαρίσια</span> <span class="price">12,50€</span></li>
-        <li><span class="dish">Πανσέτα ψητή</span> <span class="price">13,00€</span></li>
-        <li><span class="dish">Λουκάνικο ψητό</span> <span class="price">12,00€</span></li>
-      </ul>
-    </div>
-
-    <!-- Θαλασσινά -->
-    <div class="menu-category">
-      <h3>Θαλασσινά</h3>
-      <ul class="menu-items">
-        <li><span class="dish">Χταπόδι ψητό</span> <span class="price">17,00€</span></li>
-        <li><span class="dish">Καλαμάρι τηγανητό</span> <span class="price">13,50€</span></li>
-        <li><span class="dish">Γαύρος τηγανητός</span> <span class="price">10,00€</span></li>
-        <li><span class="dish">Γαρίδες ψητές</span> <span class="price">16,80€</span></li>
-        <li><span class="dish">Γαρίδες σαγανάκι</span> <span class="price">15,80€</span></li>
-        <li><span class="dish">Γαριδομακαρονάδα</span> <span class="price">18,00€</span></li>
-        <li><span class="dish">Σαρδέλες ψητές</span> <span class="price">11,00€</span></li>
-        <li><span class="dish">Σουπιές με το μελάνι τους με ρύζι</span> <span class="price">13,50€</span></li>
-        <li><span class="dish">Μπακαλιάρος με σκορδαλιά</span> <span class="price">12,50€</span></li>
-      </ul>
-    </div>
-
-    <!-- Ορεκτικά & Ψωμί -->
-    <div class="menu-category">
-      <h3>Ορεκτικά & Ψωμί</h3>
-      <ul class="menu-items">
-        <li><span class="dish">Ψωμί (ανά άτομο)</span> <span class="price">1,20€</span></li>
-        <li><span class="dish">Πίτα</span> <span class="price">1,50€</span></li>
-        <li><span class="dish">Τζατζίκι με πίτα</span> <span class="price">5,50€</span></li>
-        <li><span class="dish">Ταραμοσαλάτα</span> <span class="price">6,50€</span></li>
-        <li><span class="dish">Φάβα με λιαστή ντομάτα, κάπαρη και κρεμμύδι</span> <span class="price">7,50€</span></li>
-        <li><span class="dish">Παραδοσιακά πιταράκια Μήλου</span> <span class="price">8,00€</span></li>
-        <li><span class="dish">Κολοκυθοκεφτέδες με τζατζίκι</span> <span class="price">7,50€</span></li>
-        <li><span class="dish">Ρεβυθοκεφτέδες</span> <span class="price">7,00€</span></li>
-        <li><span class="dish">Μελιτζάνες τηγανητές με σάλτσα και τυρί</span> <span class="price">7,90€</span></li>
-        <li><span class="dish">Πατάτες τηγανητές</span> <span class="price">5,50€</span></li>
-        <li><span class="dish">Σαγανάκι τυρί</span> <span class="price">7,60€</span></li>
-        <li><span class="dish">Φέτα τηγανητή σε φύλλο κρούστας με σουσάμι και μέλι</span> <span class="price">8,50€</span></li>
-        <li><span class="dish">Χειροποίητα ντολμαδάκια</span> <span class="price">7,80€</span></li>
-      </ul>
-    </div>
-
-    <!-- Σαλάτες -->
-    <div class="menu-category">
-      <h3>Σαλάτες</h3>
-      <ul class="menu-items">
-        <li><span class="dish">Χωριάτικη σαλάτα</span> <span class="price">9,50€</span></li>
-        <li><span class="dish">Αγγουροντομάτα</span> <span class="price">7,00€</span></li>
-        <li><span class="dish">Νησιώτικη σαλάτα</span> <span class="price">10,80€</span></li>
-        <li><span class="dish">Ντάκος</span> <span class="price">8,50€</span></li>
-        <li><span class="dish">Πράσινη σαλάτα</span> <span class="price">8,00€</span></li>
-        <li><span class="dish">Μιξ βραστών λαχανικών</span> <span class="price">11,00€</span></li>
-        <li><span class="dish">Χόρτα</span> <span class="price">7,00€</span></li>
-        <li><span class="dish">Παντζάρια με ρόκα και ντόπιο τυρί</span> <span class="price">7,50€</span></li>
-        <li><span class="dish">Αμπελοφάσουλα με σκορδαλιά</span> <span class="price">8,00€</span></li>
-      </ul>
-    </div>
-
-    <!-- Αναψυκτικά & Ποτά -->
-    <div class="menu-category">
-      <h3>Αναψυκτικά & Ποτά</h3>
-      <ul class="menu-items">
-        <li><span class="dish">Μεταλλικό νερό 1L</span> <span class="price">1,80€</span></li>
-        <li><span class="dish">Πορτοκαλάδα 330ml</span> <span class="price">2,50€</span></li>
-        <li><span class="dish">Τόνικ 330ml</span> <span class="price">2,50€</span></li>
-        <li><span class="dish">Ούζο 100ml</span> <span class="price">5,00€</span></li>
-        <li><span class="dish">Τσίπουρο 100ml</span> <span class="price">5,00€</span></li>
-        <li><span class="dish">Μπύρες 500ml</span> <span class="price">4,30€</span></li>
-        <li><span class="dish">Κρασί ποτήρι</span> <span class="price">4,00€ έως 5,00€</span></li>
-      </ul>
-    </div>
-
-  </div>
-</section>
-
-
-
-
-
+  </section>
 
   <!-- FOOTER -->
   <footer>
