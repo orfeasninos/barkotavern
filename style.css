@@ -438,10 +438,3 @@ footer {
   transform: scale(1.15);
   filter: none;
 }
-
-@supports (-webkit-touch-callout: none) {
-  .language-switcher img {
-    filter: saturate(1.1) contrast(1.05);
-  }
-}
-
