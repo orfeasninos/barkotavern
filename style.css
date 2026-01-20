@@ -195,7 +195,7 @@ header {
 ======================= */
 .menu-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
   gap: 2.5rem;
 }
 
@@ -413,4 +413,28 @@ footer {
 * {
   scrollbar-width: thin;
   scrollbar-color: #D4AF37 rgba(250, 248, 242, 0.8);
+}
+
+.language-switcher img {
+  width: 2rem;
+  background: #fff;
+  padding: 2px;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* hover */
+.language-switcher img:hover {
+  transform: scale(1.12);
+  filter: brightness(1.05);
+}
+
+/* ACTIVE LANGUAGE */
+.language-switcher img.active {
+  border: 2px solid #D4AF37;
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.35);
+  transform: scale(1.15);
+  filter: none;
 }
