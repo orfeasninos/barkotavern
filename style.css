@@ -34,8 +34,8 @@ body {
    SECTIONS
 ======================= */
 .section {
-  background: rgba(250, 248, 242, 0.92);
-  backdrop-filter: blur(5px);
+  background: rgba(250, 248, 242, 0.77);
+  backdrop-filter: blur(3px);
   padding: 5rem 0;
   margin: 3rem auto;
   border-radius: 2rem;
@@ -437,4 +437,51 @@ footer {
   box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.35);
   transform: scale(1.15);
   filter: none;
+}
+
+
+
+
+
+
+
+/* =========================
+   JS EFFECTS
+========================= */
+.section-hidden {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.section-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.9s ease;
+}
+
+.header-small {
+  padding: 8px 20px;
+}
+
+.header-nav a.active {
+  color: #D4AF37;
+}
+
+.scroll-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: none;
+  background: #D4AF37;
+  color: #2F3A25;
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  z-index: 999;
 }
