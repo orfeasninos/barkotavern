@@ -42,30 +42,29 @@ document.addEventListener("DOMContentLoaded", () => {
     revealObserver.observe(section);
   });
 
-/* =========================
-   ACTIVE NAV LINK (FIXED)
-========================= */
-const navLinks = document.querySelectorAll(".header-nav a");
-const sectionsWithId = document.querySelectorAll("section[id]");
+  /* =========================
+     ACTIVE NAV LINK (FIXED)
+  ========================= */
+  const navLinks = document.querySelectorAll(".header-nav a");
+  const sectionsWithId = document.querySelectorAll("section[id]");
 
-window.addEventListener("scroll", () => {
-  let current = "";
+  window.addEventListener("scroll", () => {
+    let current = "";
 
-  sectionsWithId.forEach(section => {
-    const sectionTop = section.offsetTop - 150;
-    if (window.scrollY >= sectionTop) {
-      current = section.getAttribute("id");
-    }
+    sectionsWithId.forEach(section => {
+      const sectionTop = section.offsetTop - 150;
+      if (window.scrollY >= sectionTop) {
+        current = section.getAttribute("id");
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove("active");
+      if (link.getAttribute("href") === `#${current}`) {
+        link.classList.add("active");
+      }
+    });
   });
-
-  navLinks.forEach(link => {
-    link.classList.remove("active");
-    if (link.getAttribute("href") === `#${current}`) {
-      link.classList.add("active");
-    }
-  });
-});
-
 
   /* =========================
      HEADER SHRINK ON SCROLL
@@ -99,58 +98,43 @@ window.addEventListener("scroll", () => {
     topBtn.style.display = window.scrollY > 400 ? "flex" : "none";
   });
 
-});
-/* =========================
-   LANGUAGE DROPDOWN
-========================= */
-const langSwitcher = document.querySelector(".language-switcher");
-const langCurrent = document.querySelector(".lang-current");
-
-if (langSwitcher && langCurrent) {
-  langCurrent.addEventListener("click", e => {
-    e.stopPropagation();
-    langSwitcher.classList.toggle("open");
-  });
-
-  document.addEventListener("click", () => {
-    langSwitcher.classList.remove("open");
-  });
-}
-
-
-document.addEventListener("DOMContentLoaded", () => {
-
-  // Burger menu toggle
+  /* =========================
+     BURGER MENU TOGGLE
+  ========================= */
   const burger = document.getElementById("burger-menu");
   const mobileNav = document.getElementById("mobile-nav");
 
-  burger.addEventListener("click", e => {
-    e.stopPropagation();
-    mobileNav.classList.toggle("open");
+  if (burger && mobileNav) {
+    burger.addEventListener("click", e => {
+      e.stopPropagation();
+      mobileNav.classList.toggle("open");
+    });
+
+    document.addEventListener("click", () => {
+      mobileNav.classList.remove("open");
+    });
+  }
+
+  /* =========================
+     LANGUAGE DROPDOWN
+  ========================= */
+  document.querySelectorAll(".language-switcher").forEach(langSwitcher => {
+    const langCurrent = langSwitcher.querySelector(".lang-current");
+    const langOptions = langSwitcher.querySelector(".lang-options");
+
+    if (!langCurrent || !langOptions) return;
+
+    langCurrent.addEventListener("click", e => {
+      e.stopPropagation();
+      langSwitcher.classList.toggle("open");
+    });
   });
 
+  // Κλείσιμο dropdown αν κάνεις click εκτός
   document.addEventListener("click", () => {
-    mobileNav.classList.remove("open");
-  });
-
-  // Language dropdown toggle
-  const langSwitcher = document.querySelector(".language-switcher");
-  const langCurrent = langSwitcher.querySelector(".lang-current");
-  const langOptions = langSwitcher.querySelector(".lang-options");
-
-  langCurrent.addEventListener("click", e => {
-    e.stopPropagation();
-    // αν το nav είναι κλειστό, πρώτα ανοίγει nav
-    if(!mobileNav.classList.contains("open")){
-      mobileNav.classList.add("open");
-    }
-    // μετά toggle dropdown
-    langSwitcher.classList.toggle("open");
-  });
-
-  document.addEventListener("click", () => {
-    langSwitcher.classList.remove("open");
+    document.querySelectorAll(".language-switcher").forEach(ls => {
+      ls.classList.remove("open");
+    });
   });
 
 });
-
