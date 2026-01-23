@@ -89,7 +89,7 @@ h1, h2, h3 {
    HEADER
 ======================= */
 header {
-  background: linear-gradient(90deg, #2F3A25, #3F4A33);
+  background: linear-gradient(180deg, #2F3A25 0%, #34402C 100%);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -484,4 +484,56 @@ footer {
   justify-content: center;
   box-shadow: 0 10px 25px rgba(0,0,0,0.25);
   z-index: 999;
+}
+
+
+
+
+/* =========================
+   LANGUAGE DROPDOWN
+========================= */
+.language-switcher {
+  position: relative;
+}
+
+.lang-current {
+  cursor: pointer;
+}
+
+.lang-current img {
+  width: 30px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.lang-options {
+  position: absolute;
+  top: 28px;
+  right: 0;
+  background: rgba(47, 58, 37, 0.95);
+  border-radius: 8px;
+  padding: 8px;
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  z-index: 1001;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+.lang-options img {
+  width: 28px;
+  height: 18px;
+  border-radius: 4px;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.lang-options img:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+.language-switcher.open .lang-options {
+  display: flex;
 }

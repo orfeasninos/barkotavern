@@ -42,31 +42,30 @@ document.addEventListener("DOMContentLoaded", () => {
     revealObserver.observe(section);
   });
 
-  /* =========================
-     ACTIVE NAV LINK
-  ========================= */
-  const navLinks = document.querySelectorAll(".header-nav a");
+/* =========================
+   ACTIVE NAV LINK (FIXED)
+========================= */
+const navLinks = document.querySelectorAll(".header-nav a");
+const sectionsWithId = document.querySelectorAll("section[id]");
 
-  const navObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      const id = entry.target.getAttribute("id");
-      if (!id) return;
+window.addEventListener("scroll", () => {
+  let current = "";
 
-      const activeLink = document.querySelector(`.header-nav a[href="#${id}"]`);
-      if (!activeLink) return;
-
-      if (entry.isIntersecting) {
-        navLinks.forEach(link => link.classList.remove("active"));
-        activeLink.classList.add("active");
-      }
-    });
-  }, {
-    threshold: 0.6
+  sectionsWithId.forEach(section => {
+    const sectionTop = section.offsetTop - 150;
+    if (window.scrollY >= sectionTop) {
+      current = section.getAttribute("id");
+    }
   });
 
-  document.querySelectorAll("section[id]").forEach(section => {
-    navObserver.observe(section);
+  navLinks.forEach(link => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === `#${current}`) {
+      link.classList.add("active");
+    }
   });
+});
+
 
   /* =========================
      HEADER SHRINK ON SCROLL
@@ -101,3 +100,19 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+/* =========================
+   LANGUAGE DROPDOWN
+========================= */
+const langSwitcher = document.querySelector(".language-switcher");
+const langCurrent = document.querySelector(".lang-current");
+
+if (langSwitcher && langCurrent) {
+  langCurrent.addEventListener("click", e => {
+    e.stopPropagation();
+    langSwitcher.classList.toggle("open");
+  });
+
+  document.addEventListener("click", () => {
+    langSwitcher.classList.remove("open");
+  });
+}
