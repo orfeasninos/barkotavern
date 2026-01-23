@@ -116,3 +116,41 @@ if (langSwitcher && langCurrent) {
     langSwitcher.classList.remove("open");
   });
 }
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  // Burger menu toggle
+  const burger = document.getElementById("burger-menu");
+  const mobileNav = document.getElementById("mobile-nav");
+
+  burger.addEventListener("click", e => {
+    e.stopPropagation();
+    mobileNav.classList.toggle("open");
+  });
+
+  document.addEventListener("click", () => {
+    mobileNav.classList.remove("open");
+  });
+
+  // Language dropdown toggle
+  const langSwitcher = document.querySelector(".language-switcher");
+  const langCurrent = langSwitcher.querySelector(".lang-current");
+  const langOptions = langSwitcher.querySelector(".lang-options");
+
+  langCurrent.addEventListener("click", e => {
+    e.stopPropagation();
+    // αν το nav είναι κλειστό, πρώτα ανοίγει nav
+    if(!mobileNav.classList.contains("open")){
+      mobileNav.classList.add("open");
+    }
+    // μετά toggle dropdown
+    langSwitcher.classList.toggle("open");
+  });
+
+  document.addEventListener("click", () => {
+    langSwitcher.classList.remove("open");
+  });
+
+});
+

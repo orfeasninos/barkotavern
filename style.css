@@ -416,85 +416,139 @@ header.header-small {
 }
 
 /* =========================
-   MOBILE MENU GRID ADJUSTMENTS
+   MOBILE HEADER & NAV
 ========================= */
-@media (max-width: 800px) and (min-width: 500px) {
-  .menu-grid {
-    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-    gap: 1.8rem;
+@media (max-width: 768px) {
+
+  /* Container layout */
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    position: relative;
   }
 
-  .menu-item {
-    padding: 1.2rem;
+  /* BURGER MENU – πάνω αριστερά */
+  .burger-menu {
+    order: 0; /* πρώτο στοιχείο */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 1100;
   }
 
-  .menu-item h3 {
-    font-size: 1.2rem;
+  .burger-menu span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: #D4AF37;
+    border-radius: 2px;
+    transition: all 0.3s ease;
   }
 
-  .menu-item p {
-    font-size: 0.9rem;
-  }
-}
-
-@media (max-width: 320px) {
-  .section {
-    padding: 2rem 1rem;
-    margin: 1rem auto;
+  /* LOGO – δεξιά του burger */
+  .logo {
+    order: 1;
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: flex-start;
   }
 
-  .menu-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+  .logo img {
+    height: 60px;
   }
 
-  .menu-item {
-    padding: 1rem;
+  /* HEADER RIGHT – nav + language */
+  .header-right {
+    order: 2;
+    display: flex;
+    align-items: center;
+    gap: 20px;
   }
 
-  .menu-item h3 {
+  /* NAV HIDDEN BY DEFAULT */
+  .header-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(47,58,37,0.95);
+    border-radius: 0 0 10px 10px;
+    padding: 1rem 0;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 1000;
+  }
+
+  .header-nav.open {
+    display: flex;
+  }
+
+  .header-nav ul {
+    flex-direction: column;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0 1rem;
+  }
+
+  .header-nav ul li a {
+    display: block;
+    color: #FAF9F6;
+    text-decoration: none;
     font-size: 1rem;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    transition: 0.3s;
   }
 
-  .menu-item p {
-    font-size: 0.85rem;
+  .header-nav ul li a:hover,
+  .header-nav ul li a.active {
+    color: #D4AF37;
   }
+
+  /* LANGUAGE DROPDOWN */
+  .language-switcher {
+    position: relative;
+  }
+
+  .lang-current {
+    cursor: pointer;
+  }
+
+  .lang-options {
+    display: none;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    background: rgba(47,58,37,0.95);
+    border-radius: 8px;
+    padding: 0.5rem;
+    flex-direction: column;
+    gap: 5px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+  }
+
+  .lang-options img {
+    width: 28px;
+    height: 18px;
+    border-radius: 4px;
+    transition: transform 0.2s;
+  }
+
+  .lang-options img:hover {
+    transform: scale(1.1);
+  }
+
+  .language-switcher.open .lang-options {
+    display: flex;
+  }
+
 }
 
-@media (min-width: 322px) and (max-width: 368px) {
-  .container {
-    width: 95%;
-  }
 
-  .section {
-    padding: 2.5rem 1rem;
-    margin: 1.5rem auto;
-  }
-
-  .menu-grid {
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
-  }
-
-  .menu-item {
-    padding: 1.2rem;
-  }
-
-  .menu-item h3 {
-    font-size: 1.1rem;
-  }
-
-  .menu-item p {
-    font-size: 0.9rem;
-  }
-}
-
-/* =======================
-   REDUCED MOTION
-======================= */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
-}
