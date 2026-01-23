@@ -7,6 +7,8 @@
   padding: 0;
   user-select: none;
   -webkit-user-drag: none;
+  scrollbar-width: thin;
+  scrollbar-color: #D4AF37 rgba(250, 248, 242, 0.8);
 }
 
 html {
@@ -36,7 +38,7 @@ body {
 .section {
   background: rgba(250, 248, 242, 0.77);
   backdrop-filter: blur(3px);
-  padding: 5rem 0;
+  padding: 5rem 2rem;
   margin: 3rem auto;
   border-radius: 2rem;
   box-shadow: 0 20px 40px rgba(0,0,0,0.1);
@@ -58,6 +60,18 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Section reveal */
+.section-hidden {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.section-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.9s ease;
 }
 
 /* =======================
@@ -83,6 +97,10 @@ h1, h2, h3 {
   display: block;
   margin: 1rem auto 0;
   border-radius: 2px;
+}
+
+p {
+  font-size: 1rem;
 }
 
 /* =======================
@@ -125,48 +143,21 @@ h1, h2, h3 {
 
 .menu-item p {
   font-size: 0.95rem;
+  color: #4a4a4a;
 }
 
 /* =======================
-   MENU LIST (menu.html)
-======================= */
-.menu-category {
-  margin-bottom: 4rem;
-}
-
-.menu-category h3 {
-  font-size: 1.6rem;
-  color: #2E3A26;
-  border-bottom: 2px solid #D4AF37;
-  display: inline-block;
-  margin-bottom: 1.2rem;
-}
-
-.menu-items {
-  list-style: none;
-}
-
-.menu-items li {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.8rem 0;
-  border-bottom: 1px dotted #ccc;
-  font-size: 1rem;
-}
-
-.menu-items .price {
-  color: #D4AF37;
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-/* =======================
-   CONTACT
+   CONTACT SECTION
 ======================= */
 .contact-section p {
   text-align: center;
-  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.map-container {
+  margin-top: 1rem;
+  border-radius: 1rem;
+  overflow: hidden;
 }
 
 /* =======================
@@ -181,46 +172,8 @@ footer {
 }
 
 /* =======================
-   CUSTOM SCROLLBAR
+   SCROLL TO TOP BUTTON
 ======================= */
-::-webkit-scrollbar {
-  width: 1px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(250, 248, 242, 0.8);
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #D4AF37;
-  border-radius: 10px;
-  border: 3px solid rgba(250, 248, 242, 0.8);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #b5891f;
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #D4AF37 rgba(250, 248, 242, 0.8);
-}
-
-/* =========================
-   JS EFFECTS
-========================= */
-.section-hidden {
-  opacity: 0;
-  transform: translateY(40px);
-}
-
-.section-visible {
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 0.9s ease;
-}
-
 .scroll-top {
   position: fixed;
   bottom: 25px;
@@ -240,9 +193,9 @@ footer {
   z-index: 999;
 }
 
-/* =========================
-   HEADER – FULL CLEAN
-========================= */
+/* =======================
+   HEADER
+======================= */
 header {
   background: linear-gradient(180deg, #2F3A25 0%, #34402C 100%);
   position: sticky;
@@ -254,19 +207,18 @@ header {
   transition: all 0.3s ease;
 }
 
+header.header-small {
+  padding: 8px 20px;
+  background: rgba(47, 58, 37, 0.95);
+  backdrop-filter: blur(6px);
+}
+
 .header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   position: relative;
-}
-
-.logo {
-  flex: 0 0 auto;
-  display: flex;
-  justify-content: flex-start;
-  margin-bottom: 0;
 }
 
 .logo img {
@@ -319,50 +271,40 @@ header {
   width: 100%;
 }
 
-/* =========================
+/* =======================
    LANGUAGE DROPDOWN
-========================= */
-.nav-lang {
-  display: flex;
-  align-items: center;
-}
-
-.nav-lang .language-switcher {
-  margin-left: 6px;
+======================= */
+.language-switcher {
   position: relative;
-}
-
-.lang-current {
   cursor: pointer;
-}
-
-.lang-current img {
-  width: 30px;
-  height: 20px;
-  border-radius: 4px;
-  transform: translateY(1px);
 }
 
 .lang-options {
   position: absolute;
-  top: 28px;
-  right: 50%;
-  transform: translateX(50%);
-  background: rgba(47, 58, 37, 0.95);
+  top: 30px;
+  right:-10px;
+  background: rgba(47,58,37,0.95);
   border-radius: 8px;
-  padding: 8px;
+  padding: 0.5rem;
   display: none;
   flex-direction: column;
-  gap: 8px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  gap: 5px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
   z-index: 1001;
 }
 
+.language-switcher.open .lang-options {
+  display: flex;
+}
+
+.lang-current img,
 .lang-options img {
   width: 28px;
   height: 18px;
   border-radius: 4px;
-  transition: transform 0.2s, opacity 0.2s;
+  transition: transform 0.15s ease;
+  transform: translateY(1px);
+
 }
 
 .lang-options img:hover {
@@ -370,107 +312,47 @@ header {
   opacity: 0.9;
 }
 
-.language-switcher.open .lang-options {
-  display: flex;
+/* =======================
+   BURGER MENU
+======================= */
+.burger-menu {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 1100;
 }
 
-/* =========================
-   HEADER SHRINK
-========================= */
-header.header-small {
-  padding: 8px 20px;
-  background: rgba(47, 58, 37, 0.95);
-  backdrop-filter: blur(6px);
+.burger-menu span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: #D4AF37;
+  border-radius: 2px;
+  transition: all 0.3s ease;
 }
 
-/* =========================
+/* =======================
    RESPONSIVE
-========================= */
-@media (max-width: 768px) {
-  .header-container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .header-right {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    gap: 10px;
-  }
-
-  .header-nav ul {
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 10px;
-  }
-
-  .logo img {
-    height: 70px;
-  }
-
-  .lang-current img {
-    width: 25px;
-    height: 17px;
-  }
-}
-
-/* =========================
-   MOBILE HEADER & NAV
-========================= */
+======================= */
 @media (max-width: 768px) {
 
-  /* Container layout */
-  .header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.8rem 1rem;
-    position: relative;
-  }
-
-  /* BURGER MENU – πάνω αριστερά */
   .burger-menu {
-    order: 0; /* πρώτο στοιχείο */
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 28px;
-    height: 20px;
-    cursor: pointer;
-    z-index: 1100;
-  }
-
-  .burger-menu span {
-    display: block;
-    height: 3px;
-    width: 100%;
-    background: #D4AF37;
-    border-radius: 2px;
-    transition: all 0.3s ease;
-  }
-
-  /* LOGO – δεξιά του burger */
-  .logo {
-    order: 1;
-    flex: 0 0 auto;
-    display: flex;
-    justify-content: flex-start;
   }
 
   .logo img {
     height: 60px;
   }
 
-  /* HEADER RIGHT – nav + language */
   .header-right {
-    order: 2;
-    display: flex;
-    align-items: center;
-    gap: 20px;
+    flex-direction: row;
+    gap: 10px;
   }
 
-  /* NAV HIDDEN BY DEFAULT */
+  /* Hide nav by default */
   .header-nav {
     display: none;
     position: absolute;
@@ -492,61 +374,38 @@ header.header-small {
   .header-nav ul {
     flex-direction: column;
     gap: 0.5rem;
-    list-style: none;
-    margin: 0;
     padding: 0 1rem;
   }
 
   .header-nav ul li a {
-    display: block;
-    color: #FAF9F6;
-    text-decoration: none;
     font-size: 1rem;
-    font-weight: 500;
     padding: 0.5rem 0;
-    transition: 0.3s;
   }
 
-  .header-nav ul li a:hover,
-  .header-nav ul li a.active {
-    color: #D4AF37;
+  .lang-current img {
+    width: 25px;
+    height: 17px;
   }
+}
 
-  /* LANGUAGE DROPDOWN */
-  .language-switcher {
-    position: relative;
-  }
+/* =======================
+   CUSTOM SCROLLBAR
+======================= */
+::-webkit-scrollbar {
+  width: 8px;
+}
 
-  .lang-current {
-    cursor: pointer;
-  }
+::-webkit-scrollbar-track {
+  background: rgba(250, 248, 242, 0.8);
+  border-radius: 10px;
+}
 
-  .lang-options {
-    display: none;
-    position: absolute;
-    top: 30px;
-    left: 0;
-    background: rgba(47,58,37,0.95);
-    border-radius: 8px;
-    padding: 0.5rem;
-    flex-direction: column;
-    gap: 5px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.25);
-  }
+::-webkit-scrollbar-thumb {
+  background: #D4AF37;
+  border-radius: 10px;
+  border: 3px solid rgba(250, 248, 242, 0.8);
+}
 
-  .lang-options img {
-    width: 28px;
-    height: 18px;
-    border-radius: 4px;
-    transition: transform 0.2s;
-  }
-
-  .lang-options img:hover {
-    transform: scale(1.1);
-  }
-
-  .language-switcher.open .lang-options {
-    display: flex;
-  }
-
+::-webkit-scrollbar-thumb:hover {
+  background: #b5891f;
 }
