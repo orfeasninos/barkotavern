@@ -138,3 +138,25 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
+  /* =========================
+     LANGUAGE DETECTION
+  ========================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const userLang = navigator.language || navigator.userLanguage;
+  const langCode = userLang.slice(0, 2).toLowerCase();
+
+  const pages = {
+    'el': 'index.html',
+    'en': 'en/index-en.html',
+    'it': 'it/index-it.html',
+    'fr': 'fr/index-fr.html'
+  };
+
+  // Αντί να ξαναδηλώσεις με const, απλά κάνουμε assign
+  let currentPath = window.location.pathname; // ή απλά χρήση χωρίς const
+
+  if (pages[langCode] && !currentPath.includes(pages[langCode])) {
+    window.location.href = pages[langCode];
+  }
+});

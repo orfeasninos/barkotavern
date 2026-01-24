@@ -46,10 +46,6 @@ body {
   animation: fadeUp 0.8s ease both;
 }
 
-.section:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 30px 60px rgba(0,0,0,0.15);
-}
 
 @keyframes fadeUp {
   from {
@@ -164,11 +160,55 @@ p {
    FOOTER
 ======================= */
 footer {
-  background: #2F3A25;
+  position: relative;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(40, 48, 32, 1) 0%,
+      rgba(47, 58, 37, 0.96) 60%,
+      rgba(52, 64, 44, 0.92) 100%
+    ),
+    radial-gradient(
+      circle at bottom center,
+      rgba(212, 175, 55, 0.12),
+      transparent 65%
+    );
+
   color: #FAF9F6;
-  padding: 2rem 0;
+  padding: 3rem 1rem 2rem;
   text-align: center;
   font-size: 0.85rem;
+  letter-spacing: 0.04em;
+
+  box-shadow:
+    0 -8px 30px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(212,175,55,0.25);
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #D4AF37,
+    transparent
+  );
+}
+
+footer p {
+  margin: 0;
+  opacity: 0.85;
+}
+
+footer p strong {
+  color: #D4AF37;
+  font-weight: 600;
 }
 
 /* =======================
@@ -241,8 +281,17 @@ header.header-small {
   position: relative;
 }
 
+.logo {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center; /* κεντράρει εικόνα */
+  margin: 0; 
+}
+
+/* Αν το logo έχει εικόνα */
 .logo img {
-  height: 80px;
+  height: 80px; /* ό,τι είχες πριν */
+  display: block;
 }
 
 .header-right {
@@ -301,36 +350,97 @@ header.header-small {
 /* =======================
    MENU LIST (menu.html)
 ======================= */
+.menu-section {
+  background: rgba(250, 248, 242, 0.85);
+  backdrop-filter: blur(5px);
+  padding: 4rem 2rem;
+  border-radius: 2rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.menu-section h2 {
+  font-size: 2.8rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #2E3A26;
+}
+
 .menu-category {
   margin-bottom: 4rem;
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  background: #fffdf8;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-category:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 35px rgba(0,0,0,0.15);
 }
 
 .menu-category h3 {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   color: #2E3A26;
+  margin-bottom: 1.5rem;
   border-bottom: 2px solid #D4AF37;
   display: inline-block;
-  margin-bottom: 1.2rem;
+  padding-bottom: 0.3rem;
 }
 
 .menu-items {
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
 }
 
 .menu-items li {
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
-  padding: 0.8rem 0;
-  border-bottom: 1px dotted #ccc;
-  font-size: 1rem;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-radius: 1rem;
+  transition: background 0.3s ease, transform 0.25s ease;
+  cursor: default;
+}
+
+.menu-items li:hover {
+  background: rgba(212,175,55,0.08);
+  transform: translateX(5px);
+}
+
+.menu-items .dish {
+  font-size: 1.05rem;
+  color: #2E3A26;
+  font-weight: 500;
+  max-width: 75%;
 }
 
 .menu-items .price {
-  color: #D4AF37;
   font-weight: 600;
+  color: #D4AF37;
+  text-align: right;
   white-space: nowrap;
+  font-size: 1rem;
 }
+
+@media (max-width: 768px) {
+  .menu-items li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+
+  .menu-items .price {
+    text-align: left;
+  }
+
+  .menu-category h3 {
+    font-size: 1.5rem;
+  }
+}
+
 
 /* =======================
    CONTACT
@@ -503,8 +613,6 @@ header.header-small {
 .lang-current:hover .lang-arrow {
   color: #fff;
 }
-
-
 
 
 
