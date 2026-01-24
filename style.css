@@ -272,17 +272,65 @@ header.header-small {
 }
 
 /* =======================
-   LANGUAGE DROPDOWN
+   LANGUAGE SWITCHER
 ======================= */
 .language-switcher {
   position: relative;
   cursor: pointer;
 }
+/* =======================
+   MENU LIST (menu.html)
+======================= */
+.menu-category {
+  margin-bottom: 4rem;
+}
+
+.menu-category h3 {
+  font-size: 1.6rem;
+  color: #2E3A26;
+  border-bottom: 2px solid #D4AF37;
+  display: inline-block;
+  margin-bottom: 1.2rem;
+}
+
+.menu-items {
+  list-style: none;
+}
+
+.menu-items li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px dotted #ccc;
+  font-size: 1rem;
+}
+
+.menu-items .price {
+  color: #D4AF37;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* =======================
+   CONTACT
+======================= */
+.contact-section p {
+  text-align: center;
+  font-size: 1rem;
+}
+
+.lang-current img {
+  width: 28px;
+  height: 18px;
+  border-radius: 4px;
+  transform: translateY(1px);
+}
 
 .lang-options {
   position: absolute;
-  top: 30px;
-  right:-10px;
+  top: 100%;      /* κάτω από το current */
+  right: 8px;   /* ακριβής ευθυγράμμιση */
   background: rgba(47,58,37,0.95);
   border-radius: 8px;
   padding: 0.5rem;
@@ -291,24 +339,22 @@ header.header-small {
   gap: 5px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.25);
   z-index: 1001;
+  min-width: 100%;
 }
 
 .language-switcher.open .lang-options {
   display: flex;
 }
 
-.lang-current img,
 .lang-options img {
   width: 28px;
   height: 18px;
   border-radius: 4px;
   transition: transform 0.15s ease;
-  transform: translateY(1px);
-
 }
 
 .lang-options img:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
   opacity: 0.9;
 }
 
@@ -381,10 +427,15 @@ header.header-small {
     font-size: 1rem;
     padding: 0.5rem 0;
   }
-
-  .lang-current img {
-    width: 25px;
-    height: 17px;
+  
+  .lang-options {
+    flex-direction: row;   /* Οριζόντια εμφάνιση */
+    gap: 8px;              /* Απόσταση μεταξύ των flags */
+    top: 100%;             /* κάτω από το current flag */
+    right: -30px;              /* ευθυγράμμιση δεξιά */
+    left: auto;            /* ακύρωση τυχόν left */
+    min-width: auto;       /* όχι υποχρεωτικά ίδιο πλάτος με current */
+    padding: 0.5rem;
   }
 }
 
@@ -408,4 +459,27 @@ header.header-small {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #b5891f;
+}
+
+
+
+.lang-current {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lang-arrow {
+  font-size: 30px;
+  color: #D4AF37;
+  transition: transform 0.3s ease;
+  transform: translateY(1px);
+}
+
+/* όταν ανοίγει το dropdown */
+.language-switcher.open .lang-arrow {
+  transform: rotate(180deg);
+}
+.lang-current:hover .lang-arrow {
+  color: #fff;
 }
