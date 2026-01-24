@@ -347,6 +347,12 @@ header.header-small {
   position: relative;
   cursor: pointer;
 }
+
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 /* =======================
    MENU LIST (menu.html)
 ======================= */
@@ -425,23 +431,6 @@ header.header-small {
   font-size: 1rem;
 }
 
-@media (max-width: 768px) {
-  .menu-items li {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.3rem;
-  }
-
-  .menu-items .price {
-    text-align: left;
-  }
-
-  .menu-category h3 {
-    font-size: 1.5rem;
-  }
-}
-
-
 /* =======================
    CONTACT
 ======================= */
@@ -511,6 +500,149 @@ header.header-small {
 }
 
 /* =======================
+   CUSTOM SCROLLBAR
+======================= */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(250, 248, 242, 0.8);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D4AF37;
+  border-radius: 10px;
+  border: 3px solid rgba(250, 248, 242, 0.8);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b5891f;
+}
+
+
+
+.lang-current {
+  display: flex;
+  align-items: center;
+  gap: 0px;
+}
+
+.lang-arrow {
+  font-size: 20px;
+  color: #D4AF37;
+  transition: transform 0.3s ease;
+  transform: translateY(1px);
+}
+
+/* όταν ανοίγει το dropdown */
+.language-switcher.open .lang-arrow {
+  transform: rotate(180deg);
+}
+.lang-current:hover .lang-arrow {
+  color: #fff;
+}
+
+
+
+
+
+/* =======================
+   DARK MODE
+======================= */
+body.dark {
+  background: #121212;
+  color: #eaeaea;
+}
+
+/* Sections */
+body.dark .section {
+  background: rgba(30, 30, 30, 0.85);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+/* Titles */
+body.dark .section h2 {
+  color: #E6E6E6;
+}
+
+body.dark .section h2::after {
+  background: #D4AF37;
+}
+
+/* Menu cards */
+body.dark .menu-item {
+  background: #1e1e1e;
+}
+
+body.dark .menu-item h3 {
+  color: #D4AF37;
+}
+
+body.dark .menu-item p {
+  color: #ccc;
+}
+
+/* Menu list (menu.html) */
+body.dark .menu-category h3 {
+  color: #D4AF37;
+}
+
+body.dark .menu-items li {
+  border-bottom: 1px dotted #444;
+}
+
+/* Header */
+body.dark header {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(20, 20, 20, 0.95),
+      rgba(30, 30, 30, 0.98)
+    );
+}
+
+/* Footer */
+body.dark footer {
+  background:
+    linear-gradient(
+      180deg,
+      #111,
+      #1b1b1b
+    );
+}
+
+/* Toggle button */
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #D4AF37;
+  transition: transform 0.25s ease;
+}
+
+.theme-toggle:hover {
+  transform: rotate(20deg) scale(1.1);
+}
+
+
+
+
+
+
+.open-status {
+  position:absolute;
+  top:0px;
+  right:0px;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: #9be37a;
+  white-space: nowrap;
+}
+
+/* =======================
    RESPONSIVE
 ======================= */
 @media (max-width: 768px) {
@@ -567,54 +699,39 @@ header.header-small {
     min-width: auto;       /* όχι υποχρεωτικά ίδιο πλάτος με current */
     padding: 0.5rem;
   }
+  .header-right {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  /* Πρώτα τα controls (μέσα στο nav) */
+  .header-nav {
+    order: 1;
+  }
+
+  /* Μετά το burger */
+  #burger-menu {
+    order: 2;
+  }
+
+  .open-status {
+    position:static;
+    top:auto;
+    right: auto;
+  }
+
+  .menu-items li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+
+  .menu-items .price {
+    text-align: left;
+  }
+
+  .menu-category h3 {
+    font-size: 1.5rem;
+  }
 }
-
-/* =======================
-   CUSTOM SCROLLBAR
-======================= */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(250, 248, 242, 0.8);
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #D4AF37;
-  border-radius: 10px;
-  border: 3px solid rgba(250, 248, 242, 0.8);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #b5891f;
-}
-
-
-
-.lang-current {
-  display: flex;
-  align-items: center;
-  gap: 0px;
-}
-
-.lang-arrow {
-  font-size: 20px;
-  color: #D4AF37;
-  transition: transform 0.3s ease;
-  transform: translateY(1px);
-}
-
-/* όταν ανοίγει το dropdown */
-.language-switcher.open .lang-arrow {
-  transform: rotate(180deg);
-}
-.lang-current:hover .lang-arrow {
-  color: #fff;
-}
-
-
-
-
-

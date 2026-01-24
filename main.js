@@ -153,10 +153,48 @@ document.addEventListener("DOMContentLoaded", () => {
     'fr': 'fr/index-fr.html'
   };
 
-  // Αντί να ξαναδηλώσεις με const, απλά κάνουμε assign
-  let currentPath = window.location.pathname; // ή απλά χρήση χωρίς const
+  let currentPath = window.location.pathname;
 
   if (pages[langCode] && !currentPath.includes(pages[langCode])) {
-    window.location.href = pages[langCode];
+    System.out.println()
+    //window.location.href = pages[langCode];
   }
 });
+
+/* =========================
+   DARK MODE TOGGLE
+========================= */
+const toggleBtn = document.getElementById("theme-toggle");
+
+if (toggleBtn) {
+  // φόρτωσε προηγούμενη επιλογή
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+    toggleBtn.textContent = "☀️";
+  }
+
+  toggleBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+
+    const isDark = document.body.classList.contains("dark");
+    toggleBtn.textContent = isDark ? "☀️" : "🌙";
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  });
+}
+
+
+/* =========================
+   OPEN STATUS
+========================= */
+const statusEl = document.getElementById("open-status");
+
+if (statusEl) {
+  const now = new Date();
+  const hour = now.getHours();
+
+  // π.χ. 12:00 – 23:30
+  const isOpen = hour >= 12 && hour < 23;
+
+  statusEl.textContent = isOpen ? "🟢 Ανοιχτό τώρα" : "🔴 Κλειστό";
+  statusEl.style.color = isOpen ? "#9be37a" : "#e36f6f";
+}
