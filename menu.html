@@ -11,7 +11,6 @@
   <!-- HEADER -->
 <header>
   <div class="header-container">
-
     <!-- LOGO -->
     <div class="logo">
       <a href="index.html">
@@ -35,6 +34,7 @@
           <li><a href="menu.html">Μενού</a></li>
           <li><a href="#contact">Επικοινωνία</a></li>
           <li><a href="#view">Βλέπουμε</a></li>
+          <li><span class="open-status" id="open-status">🟢 Ανοιχτό</span></li>
           <li class="nav-controls">
             <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
             <div class="language-switcher">
@@ -48,21 +48,47 @@
                 <a href="fr/menu-fr.html"><img src="images/fr.jpg" alt="Français"></a>
               </div>
             </div>
-          </li>
         </ul>
       </nav>
     </div>
-    <span class="open-status" id="open-status">🟢 Ανοιχτό</span>
   </div>
 </header>
 
-  <!-- MENU SECTION -->
-  <section class="menu-section section">
-    <div class="container">
-      <h2>Μενού</h2>
+<!-- MENU SECTION -->
+<section class="menu-section section">
+  <div class="container menu-grid-wrapper">
+    <!-- SIDEBAR CATEGORIES -->
+    <aside class="menu-sidebar">
+      <h2>Κατηγορίες</h2>
+      <ul class="menu-links-list">
+        <li><a href="#cooked">Μαγειρευτά</a></li>
+        <li><a href="#hour">Της ώρας</a></li>
+        <li><a href="#seafood">Θαλασσινά</a></li>
+        <li><a href="#starters">Ορεκτικά & Ψωμί</a></li>
+        <li><a href="#salads">Σαλάτες</a></li>
+        <li><a href="#drinks">Αναψυκτικά & Ποτά</a></li>
+      </ul>
+    </aside>
 
+    <!-- MAIN MENU ITEMS -->
+    <div class="menu-main">
       <!-- Μαγειρευτά -->
-      <div class="menu-category">
+      <div class="menu-category" id="cooked">
+        <h3>Μαγειρευτά</h3>
+        <ul class="menu-items">
+          <li><span class="dish">Αρνί λεμονάτο στον φούρνο με πατάτες</span> <span class="price">16,80€</span></li>
+          <li><span class="dish">Κατσίκι στιφάδο</span> <span class="price">17,60€</span></li>
+          <li><span class="dish">Κόκορας κρασάτος με χειροποίητες χυλοπίτες</span> <span class="price">14,80€</span></li>
+          <li><span class="dish">Μουσακάς</span> <span class="price">13,00€</span></li>
+          <li><span class="dish">Γεμιστά</span> <span class="price">11,00€</span></li>
+          <li><span class="dish">Ιμάμ μελιτζάνα</span> <span class="price">10,50€</span></li>
+          <li><span class="dish">Παραδοσιακά Σκορδολάζανα Μήλου</span> <span class="price">13,00€</span></li>
+          <li><span class="dish">Μακαρόνια με κιμά</span> <span class="price">10,50€</span></li>
+        </ul>
+      </div>
+
+       <!-- Μαγειρευτά -->
+      <div class="menu-category" id="coocked">
         <h3>Μαγειρευτά</h3>
         <ul class="menu-items">
           <li><span class="dish">Αρνί λεμονάτο στον φούρνο με πατάτες</span> <span class="price">16,80€</span></li>
@@ -77,7 +103,7 @@
       </div>
 
       <!-- Της ώρας -->
-      <div class="menu-category">
+      <div class="menu-category" id="hour">
         <h3>Της ώρας</h3>
         <ul class="menu-items">
           <li><span class="dish">Χοιρινή μπριζόλα</span> <span class="price">13,50€</span></li>
@@ -90,7 +116,7 @@
       </div>
 
       <!-- Θαλασσινά -->
-      <div class="menu-category">
+      <div class="menu-category" id="seafood">
         <h3>Θαλασσινά</h3>
         <ul class="menu-items">
           <li><span class="dish">Χταπόδι ψητό</span> <span class="price">17,00€</span></li>
@@ -106,7 +132,7 @@
       </div>
 
       <!-- Ορεκτικά & Ψωμί -->
-      <div class="menu-category">
+      <div class="menu-category" id=starters>
         <h3>Ορεκτικά & Ψωμί</h3>
         <ul class="menu-items">
           <li><span class="dish">Ψωμί (ανά άτομο)</span> <span class="price">1,20€</span></li>
@@ -126,7 +152,7 @@
       </div>
 
       <!-- Σαλάτες -->
-      <div class="menu-category">
+      <div class="menu-category" id="salads">
         <h3>Σαλάτες</h3>
         <ul class="menu-items">
           <li><span class="dish">Χωριάτικη σαλάτα</span> <span class="price">9000€</span></li>
@@ -142,7 +168,7 @@
       </div>
 
       <!-- Αναψυκτικά & Ποτά -->
-      <div class="menu-category">
+      <div class="menu-category" id="drinks">
         <h3>Αναψυκτικά & Ποτά</h3>
         <ul class="menu-items">
           <li><span class="dish">Μεταλλικό νερό 1L</span> <span class="price">1,80€</span></li>
@@ -156,12 +182,15 @@
       </div>
 
     </div>
-  </section>
+  </div>
+</section>
+
+
 
   <!-- FOOTER -->
   <footer>
     <div class="container">
-      <p>© 2026 Barko Tavern. Όλα τα δικαιώματα διατηρούνται.</p>
+      <p>© 2026 Barko Tavern. Όλα τα δικαιώματα διατηρούνται2026 Barko Tavern. Όλα τα δικαιώματα διατηρούνται2026 Barko Tavern. Όλα τα δικαιώματα διατηρούνται2026 Barko Tavern. Όλα τα δικαιώματα διατηρούνται2026 Barko Tavern. Όλα τα δικαιώματα διατηρούνται2026 Barko Tavern. Όλα τα δικαιώματα διατηρούνται2026 Barko Tavern. Όλα τα δικαιώματα διατηρούνται2026 Barko Tavern. Όλα τα δικαιώματα διατηρούνται2026 Barko Tavern. Όλα τα δικαιώματα διατηρούνται2026 Barko Tavern. Όλα τα δικαιώματα διατηρούνται2026 Barko Tavern. Όλα τα δικαιώματα διατηρούνται2026 Barko Tavern. Όλα τα δικαιώματα διατηρούνται2026 Barko Tavern. Όλα τα δικαιώματα διατηρούνται2026 Barko Tavern. Όλα τα δικαιώματα διατηρούνται2026 Barko Tavern. Όλα τα δικαιώματα διατηρούνται2026 Barko Tavern. Όλα τα δικαιώματα διατηρούνται2026 Barko Tavern. Όλα τα δικαιώματα διατηρούνται2026 Barko Tavern. Όλα τα δικαιώματα διατηρούνται2026 Barko Tavern. Όλα τα δικαιώματα διατηρούνται2026 Barko Tavern. Όλα τα δικαιώματα διατηρούνται2026 Barko Tavern. Όλα τα δικαιώματα διατηρούνται2026 Barko Tavern. Όλα τα δικαιώματα διατηρούνται2026 Barko Tavern. Όλα τα δικαιώματα διατηρούνται2026 Barko Tavern. Όλα τα δικαιώματα διατηρούνται2026 Barko Tavern. Όλα τα δικαιώματα διατηρούνται2026 Barko Tavern. Όλα τα δικαιώματα διατηρούνται2026 Barko Tavern. Όλα τα δικαιώματα διατηρούνται2026 Barko Tavern. Όλα τα δικαιώματα διατηρούνται2026 Barko Tavern. Όλα τα δικαιώματα διατηρούνται.</p>
     </div>
   </footer>
 <script src="main.js"></script>
