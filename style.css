@@ -627,19 +627,29 @@ body.dark footer {
   transform: rotate(20deg) scale(1.1);
 }
 
-
-
-
-
-
 .open-status {
   position:absolute;
   top:0px;
   right:0px;
   font-size: 0.7rem;
   letter-spacing: 0.04em;
-  color: #9be37a;
+  color: #308309;
   white-space: nowrap;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  animation: pulse 3s infinite;
+  background: linear-gradient(45deg, #D4AF37, #FFC700);
+  font-weight: bold;
+  padding: 0.01rem 0.3rem;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
 }
 
 /* =======================
@@ -691,12 +701,12 @@ body.dark footer {
   }
   
   .lang-options {
-    flex-direction: row;   /* Οριζόντια εμφάνιση */
-    gap: 8px;              /* Απόσταση μεταξύ των flags */
-    top: 100%;             /* κάτω από το current flag */
-    right: -30px;              /* ευθυγράμμιση δεξιά */
-    left: auto;            /* ακύρωση τυχόν left */
-    min-width: auto;       /* όχι υποχρεωτικά ίδιο πλάτος με current */
+    flex-direction: row;  
+    gap: 8px;       
+    top: 100%;            
+    right: -30px;     
+    left: auto;           
+    min-width: auto;
     padding: 0.5rem;
   }
   .header-right {
@@ -814,3 +824,8 @@ body.dark footer {
   background: #D4AF37;
   color: #fff;
 }
+
+
+
+
+

@@ -197,9 +197,8 @@ if (statusEl) {
   const now = new Date();
   const hour = now.getHours();
 
-  // π.χ. 12:00 – 23:30
   const isOpen = hour >= 12 && hour < 23;
 
   statusEl.textContent = isOpen ? "🟢 Ανοιχτό τώρα" : "🔴 Κλειστό";
-  statusEl.style.color = isOpen ? "#9be37a" : "#e36f6f";
+  statusEl.style.color = isOpen ? "#308309" : "#e36f6f";
 }
