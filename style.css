@@ -197,7 +197,6 @@ footer {
    HEADER
 ======================= */
 header {
-  background: linear-gradient(180deg, #2F3A25 0%, #34402C 100%);
   position: sticky;
   top: 0;
   width: 100%;
@@ -205,12 +204,33 @@ header {
   padding: 16px 20px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.25);
   transition: all 0.3s ease;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(47, 58, 37, 0.92) 0%,
+      rgba(52, 64, 44, 0.96) 60%,
+      rgba(40, 48, 32, 1) 100%
+    ),
+    radial-gradient(
+      circle at top center,
+      rgba(212, 175, 55, 0.12),
+      transparent 60%
+    );
+  backdrop-filter: blur(4px);
+  box-shadow:
+    0 6px 18px rgba(0,0,0,0.25),
+    inset 0 -1px 0 rgba(212,175,55,0.25);
 }
 
 header.header-small {
   padding: 8px 20px;
-  background: rgba(47, 58, 37, 0.95);
   backdrop-filter: blur(6px);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(47, 58, 37, 0.85),
+      rgba(47, 58, 37, 0.95)
+    );
 }
 
 .header-container {
@@ -466,11 +486,11 @@ header.header-small {
 .lang-current {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 0px;
 }
 
 .lang-arrow {
-  font-size: 30px;
+  font-size: 20px;
   color: #D4AF37;
   transition: transform 0.3s ease;
   transform: translateY(1px);
@@ -483,3 +503,10 @@ header.header-small {
 .lang-current:hover .lang-arrow {
   color: #fff;
 }
+
+
+
+
+
+
+
