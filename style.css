@@ -952,8 +952,7 @@ p a:hover::after {
 ======================= */
 
 /* Mobile & small screens */
-@media (max-width: 1024px) {
-
+@media (max-width: 768px) {
   /* Menu grid wrapper – sidebar γίνεται πάνω από το κύριο περιεχόμενο */
   .menu-grid-wrapper {
     display: flex;
@@ -1109,5 +1108,66 @@ body {
     font-size: 1.2rem;
     margin-bottom: 0.6rem;
     text-align: center;
+  }
+  :hover {
+    transform: none !important;
+}
+
+
+
+
+
+/* =======================
+   MOBILE: NEUTRALIZE HOVER COMPLETELY
+======================= */
+@media (max-width: 768px) {
+
+  /* menu cards */
+  .menu-item,
+  .menu-item:hover {
+    transform: none !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08) !important;
+  }
+
+  /* menu categories */
+  .menu-category,
+  .menu-category:hover {
+    transform: none !important;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08) !important;
+  }
+
+  /* menu list rows */
+  .menu-items li,
+  .menu-items li:hover {
+    background: transparent !important;
+    transform: none !important;
+  }
+
+  /* sidebar links */
+  .menu-links-list a,
+  .menu-links-list a:hover {
+    background: transparent !important;
+    color: #2E3A26 !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+
+  /* header links */
+  .header-nav ul li a,
+  .header-nav ul li a:hover {
+    color: #FAF9F6 !important;
+    transform: none !important;
+    text-shadow: none !important;
+  }
+
+  .header-nav ul li a::after,
+  .header-nav ul li a:hover::after {
+    width: 0 !important;
+  }
+
+  /* buttons / icons */
+  .theme-toggle,
+  .theme-toggle:hover {
+    transform: none !important;
   }
 }
