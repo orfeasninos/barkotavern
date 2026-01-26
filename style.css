@@ -1166,3 +1166,34 @@ body {
     transform: none !important;
   }
 }
+
+/* =======================
+   MENU LINKS MOBILE ARROWS
+======================= */
+@media (max-width: 768px) {
+  .menu-links-list a {
+    position: relative;
+    padding-left: 1.2rem;  /* χώρο για το αριστερό βελάκι */
+    padding-right: 1.2rem; /* χώρο για το δεξί βελάκι */
+  }
+
+  .menu-links-list a::before {
+    content: "◀"; /* αριστερό βελάκι */
+    position: absolute;
+    left: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+    color: #D4AF37;
+  }
+
+  .menu-links-list a::after {
+    content: "▶"; /* δεξί βελάκι */
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+    color: #D4AF37;
+  }
+}
