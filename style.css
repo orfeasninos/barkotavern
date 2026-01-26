@@ -698,7 +698,6 @@ body.dark .menu-links-list a {
   display: grid;
   grid-template-columns: 220px 1fr; /* Sidebar σταθερό, κύριο περιεχόμενο επεκτεινόμενο */
   gap: 2rem;
-  position:sticky;
   top:150px;
   left:50px;
   width: calc(100% - 100px);
@@ -707,11 +706,8 @@ body.dark .menu-links-list a {
 .menu-sidebar {
   background: #fffdf8;
   border-radius: 1.5rem;
-  padding: 2rem 1rem;
   box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-  position: sticky;
-  top: 100px; /* μένει visible όταν scrollάρει */
-  height: fit-content;
+  height:10rem;
 }
 
 .menu-sidebar h2 {
@@ -1073,11 +1069,12 @@ body {
 
   /* Sidebar sticky κάτω από header */
   .menu-sidebar {
-    position: sticky;
-    top: 1px; /* ύψος header */
     z-index: 900;
     padding: 0.8rem;
     border-radius: 1rem;
+    position: sticky;
+    top: -0px; /* ίσο ή λίγο μεγαλύτερο από το ύψος του header */
+    align-self: start;
   }
 
   /* Οριζόντιο menu categories */
@@ -1086,7 +1083,9 @@ body {
     overflow-x:scroll;
     gap: 0.6rem;
     padding-bottom: 0.5rem;
-    scrollbar-width: none;
+    scrollbar-width:thin;
+    position: sticky;
+    top:1px;
   }
 
   .menu-links-list::-webkit-scrollbar {
@@ -1164,31 +1163,5 @@ body {
   .theme-toggle,
   .theme-toggle:hover {
     transform: none !important;
-  }
-}
-@media (max-width: 768px) {
-
-
-  /* Αριστερό βελάκι */
-  .menu-sidebar::before {
-    content: "◀";
-    position: relative;
-    top: 8rem;
-    transform: translateY(-50%);
-    font-size: 1.2rem;
-    color: #D4AF37;
-    pointer-events: none; /* να μην εμποδίζει το scroll */
-  }
-
-  /* Δεξί βελάκι */
-  .menu-sidebar::after {
-    content: "▶";
-    position: absolute;
-    right: 5px;
-    top: 10rem;
-    transform: translateY(-50%);
-    font-size: 1.2rem;
-    color: #D4AF37;
-    pointer-events: none;
   }
 }
