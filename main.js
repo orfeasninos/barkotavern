@@ -197,21 +197,46 @@ if (toggleBtn) {
   });
 }
 
-
 /* =========================
-   OPEN STATUS
+   OPEN STATUS – MULTILANG
 ========================= */
 const statusEl = document.getElementById("open-status");
 
 if (statusEl) {
   const now = new Date();
   const hour = now.getHours();
-
   const isOpen = hour >= 12 && hour < 23;
 
-  statusEl.textContent = isOpen ? "🟢 Ανοιχτό " : "🔴 Κλειστό";
+  // γλώσσα από <html lang="">
+  const lang = document.documentElement.lang || "el";
+
+  const translations = {
+    el: {
+      open: "🟢 Ανοιχτό",
+      closed: "🔴 Κλειστό"
+    },
+    en: {
+      open: "🟢 Open",
+      closed: "🔴 Closed"
+    },
+    it: {
+      open: "🟢 Aperto",
+      closed: "🔴 Chiuso"
+    },
+    fr: {
+      open: "🟢 Ouvert",
+      closed: "🔴 Fermé"
+    }
+  };
+
+  const text =
+    translations[lang]?.[isOpen ? "open" : "closed"] ||
+    translations.el[isOpen ? "open" : "closed"];
+
+  statusEl.textContent = text;
   statusEl.style.color = isOpen ? "#308309" : "#e36f6f";
 }
+
 
 
 

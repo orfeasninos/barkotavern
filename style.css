@@ -180,7 +180,6 @@ footer {
   text-align: center;
   font-size: 0.85rem;
   letter-spacing: 0.04em;
-
   box-shadow:
     0 -8px 30px rgba(0,0,0,0.35),
     inset 0 1px 0 rgba(212,175,55,0.25);
@@ -494,6 +493,17 @@ header.header-small {
   transition: all 0.3s ease;
 }
 
+
+
+.menu-links-list a:hover {
+  background: linear-gradient(130deg, #D4AF37, #f5f5f5);
+  transform: translateY(-3px);
+  color:black;
+  box-shadow: 0 8px 15px rgba(201, 162, 36, 0.7);
+  
+}
+
+
 /* =======================
    CUSTOM SCROLLBAR
 ======================= */
@@ -605,9 +615,10 @@ body.dark .menu-items .dish {
   color: #e0e0e0;
 }
 
-body.dark .menu-links-list a:hover {
-  background-color: #b5891f;
-  color: black;
+body.dark .menu-links-list a.active {
+  background: #D4AF37;
+  border:2px dashed;
+  color: #000;
 }
 
 /* Sidebar menu links (αν θέλουμε επιπλέον ξεχωριστό στυλ) */
@@ -619,13 +630,10 @@ body.dark .menu-links-list a {
   transition: all 0.3s ease;
 }
 
-.menu-links-list a:hover {
-  background: linear-gradient(350deg, #D4AF37, #faf2d0);
-  color: #000000;
-  transform: translateY(-3px);
-  box-shadow: 0 8px 15px rgba(212,175,55,0.3);
+body.dark .menu-links-list a:hover {
+  background-color: #9b7723;
+  color: black;
 }
-
 
 /* Toggle button */
 .theme-toggle {
@@ -639,11 +647,6 @@ body.dark .menu-links-list a {
 
 .theme-toggle:hover {
   transform: rotate(20deg) scale(1.1);
-}
-
-body.dark .menu-links-list a.active {
-  background: #b5891f;
-  color: #000;
 }
 
 .open-status {
@@ -742,13 +745,6 @@ body.dark .menu-links-list a.active {
   display: block;
   transition: all 0.3s ease;
 }
-
-.menu-links-list a:hover {
-  background: #D4AF37;
-  color: #fff;
-}
-
-
 
 /* =======================
    ABOUT SECTION*/
