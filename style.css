@@ -1113,20 +1113,15 @@ body {
     transform: none !important;
 }
 
-
-
-
-
 /* =======================
    MOBILE: NEUTRALIZE HOVER COMPLETELY
 ======================= */
-@media (max-width: 768px) {
 
   /* menu cards */
   .menu-item,
   .menu-item:hover {
     transform: none !important;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08) !important;
+    text-shadow: none !important;
   }
 
   /* menu categories */
@@ -1147,7 +1142,7 @@ body {
   .menu-links-list a,
   .menu-links-list a:hover {
     background: transparent !important;
-    color: #2E3A26 !important;
+    color: #D4AF37 !important;
     box-shadow: none !important;
     transform: none !important;
   }
