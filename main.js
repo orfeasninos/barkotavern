@@ -3,11 +3,16 @@
    Clean & Grace UX
 ========================= */
 // Αυτόματο dark mode αν το σύστημα είναι dark και δεν υπάρχει αποθηκευμένη επιλογή
-if (!localStorage.getItem("theme") && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    document.body.classList.add("dark");
-    const toggleBtn = document.getElementById("theme-toggle");
-    if (toggleBtn) toggleBtn.textContent = "☀️";
-}
+document.addEventListener("DOMContentLoaded", () => {
+    // Αυτόματο dark mode αν δεν υπάρχει αποθηκευμένη επιλογή
+    if (localStorage.getItem("theme") && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.body.classList.add("dark");
+        const toggleBtn = document.getElementById("theme-toggle");
+        if (toggleBtn) toggleBtn.textContent = "☀️";
+        console.log("Dark mode applied automatically");
+    }
+});
+
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -168,7 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentPath = window.location.pathname;
 
   if (pages[langCode] && !currentPath.includes(pages[langCode])) {
-    System.out.println()
+    console.log(langCode)
     //window.location.href = pages[langCode];
   }
 });
