@@ -4,12 +4,10 @@
 ========================= */
 // Αυτόματο dark mode αν το σύστημα είναι dark και δεν υπάρχει αποθηκευμένη επιλογή
 document.addEventListener("DOMContentLoaded", () => {
-    // Αυτόματο dark mode αν δεν υπάρχει αποθηκευμένη επιλογή
-    if (localStorage.getItem("theme") && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    if (!localStorage.getItem("theme") && window.matchMedia("(prefers-color-scheme: dark)").matches) {
         document.body.classList.add("dark");
         const toggleBtn = document.getElementById("theme-toggle");
         if (toggleBtn) toggleBtn.textContent = "☀️";
-        console.log("Dark mode applied automatically");
     }
 });
 
