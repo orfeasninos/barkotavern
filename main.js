@@ -202,3 +202,12 @@ if (statusEl) {
   statusEl.textContent = isOpen ? "🟢 Ανοιχτό " : "🔴 Κλειστό";
   statusEl.style.color = isOpen ? "#308309" : "#e36f6f";
 }
+
+
+
+
+
+
+
+
+

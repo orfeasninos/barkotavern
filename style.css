@@ -666,102 +666,6 @@ body.dark .menu-links-list a {
   }
 }
 
-/* =======================
-   RESPONSIVE
-======================= */
-@media (max-width: 768px) {
-
-  .burger-menu {
-    display: flex;
-  }
-
-  .logo img {
-    height: 60px;
-  }
-
-  .header-right {
-    flex-direction: row;
-    gap: 10px;
-  }
-
-  /* Hide nav by default */
-  .header-nav {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: rgba(47,58,37,0.95);
-    border-radius: 0 0 10px 10px;
-    padding: 1rem 0;
-    flex-direction: column;
-    gap: 0.5rem;
-    z-index: 1000;
-  }
-
-  .header-nav.open {
-    display: flex;
-  }
-
-  .header-nav ul {
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 0 1rem;
-  }
-
-  .header-nav ul li a {
-    font-size: 1rem;
-    padding: 0.5rem 0;
-  }
-  
-  .lang-options {
-    flex-direction: row;  
-    gap: 8px;       
-    top: 100%;            
-    right: -30px;     
-    left: auto;           
-    min-width: auto;
-    padding: 0.5rem;
-  }
-  .header-right {
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 8px;
-  }
-
-  /* Πρώτα τα controls (μέσα στο nav) */
-  .header-nav {
-    order: 1;
-  }
-
-  /* Μετά το burger */
-  #burger-menu {
-    order: 2;
-  }
-
-  .open-status {
-    position:static;
-    top:auto;
-    right: auto;
-  }
-
-  .menu-items li {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.3rem;
-  }
-
-  .menu-items .price {
-    text-align: left;
-  }
-
-  .menu-category h3 {
-    font-size: 1.5rem;
-  }
-  
-}
-
-
 .menu-links-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
@@ -948,3 +852,262 @@ p a:hover::after {
   width: 100%;
 }
 
+
+/* =======================
+   RESPONSIVE
+======================= */
+@media (max-width: 768px) {
+
+  .burger-menu {
+    display: flex;
+  }
+
+  .logo img {
+    height: 60px;
+  }
+
+  .header-right {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  /* Hide nav by default */
+  .header-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(47,58,37,0.95);
+    border-radius: 0 0 10px 10px;
+    padding: 1rem 0;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .header-nav.open {
+    display: flex;
+  }
+
+  .header-nav ul {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0 1rem;
+  }
+
+  .header-nav ul li a {
+    font-size: 1rem;
+    padding: 0.5rem 0;
+  }
+  
+  .lang-options {
+    flex-direction: row;  
+    gap: 8px;       
+    top: 100%;            
+    right: -30px;     
+    left: auto;           
+    min-width: auto;
+    padding: 0.5rem;
+  }
+  .header-right {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  /* Πρώτα τα controls (μέσα στο nav) */
+  .header-nav {
+    order: 1;
+  }
+
+  /* Μετά το burger */
+  #burger-menu {
+    order: 2;
+  }
+
+  .open-status {
+    position:static;
+    top:auto;
+    right: auto;
+  }
+
+  .menu-items li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+
+  .menu-items .price {
+    text-align: left;
+  }
+
+  .menu-category h3 {
+    font-size: 1.5rem;
+  }
+  
+}
+
+/* =======================
+   RESPONSIVE IMPROVEMENTS
+======================= */
+
+/* Mobile & small screens */
+@media (max-width: 1024px) {
+
+  /* Menu grid wrapper – sidebar γίνεται πάνω από το κύριο περιεχόμενο */
+  .menu-grid-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    top: auto;
+    left: auto;
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .menu-sidebar {
+    position: relative;
+    top: auto;
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .menu-main {
+    width: 100%;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 768px) {
+
+  .menu-grid-wrapper {
+    padding: 0 0.5rem;
+  }
+
+  .menu-sidebar h2,
+  .menu-category h3 {
+    font-size: 1.3rem;
+  }
+
+  .menu-items li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .menu-items .price {
+    text-align: left;
+  }
+
+  .menu-links-list {
+    gap: 0.5rem;
+  }
+
+  .menu-links-list a {
+    font-size: 0.95rem;
+  }
+
+  .menu-category {
+    padding: 1rem;
+  }
+
+  /* About section responsive */
+  .about-section {
+    padding: 3rem 1rem;
+  }
+
+  .about-section p {
+    font-size: 1rem;
+  }
+
+  .section {
+    padding: 3rem 1rem;
+    margin: 2rem auto;
+  }
+}
+
+/* Ensure header and footer backgrounds remain in dark mode */
+body.dark header,
+body.dark footer {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Keep background images responsive */
+body {
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* Adjust menu images for small screens */
+.menu-item img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: cover;
+}
+
+/* Make scroll-to-top button smaller on mobile */
+@media (max-width: 480px) {
+  .scroll-top {
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+  }
+}
+
+
+
+/* =======================
+   STICKY MENU SIDEBAR – MOBILE
+======================= */
+@media (max-width: 768px) {
+
+  /* Grid γίνεται κάθετο */
+  .menu-grid-wrapper {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    position: static;
+    width: 100%;
+  }
+
+  /* Sidebar sticky κάτω από header */
+  .menu-sidebar {
+    position: sticky;
+    top: 1px; /* ύψος header */
+    z-index: 900;
+    padding: 0.8rem;
+    border-radius: 1rem;
+  }
+
+  /* Οριζόντιο menu categories */
+  .menu-links-list {
+    flex-direction: row;
+    overflow-x:scroll;
+    gap: 0.6rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+  }
+
+  .menu-links-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .menu-links-list li {
+    flex: 0 0 auto;
+  }
+
+  .menu-links-list a {
+    white-space: nowrap;
+    font-size: 0.9rem;
+    padding: 0.45rem 0.9rem;
+  }
+
+  /* Τίτλος sidebar πιο compact */
+  .menu-sidebar h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.6rem;
+    text-align: center;
+  }
+}
