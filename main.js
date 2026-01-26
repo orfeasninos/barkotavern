@@ -216,4 +216,41 @@ if (statusEl) {
 
 
 
+/* =========================
+   MENU SIDEBAR ACTIVE CATEGORY
+========================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const menuSections = document.querySelectorAll(".menu-category");
+  const menuLinks = document.querySelectorAll(".menu-links-list a");
 
+  if (!menuSections.length || !menuLinks.length) return;
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute("id");
+
+          menuLinks.forEach(link => {
+            const isActive = link.getAttribute("href") === `#${id}`;
+            link.classList.toggle("active", isActive);
+          if (isActive && window.innerWidth <= 768) {
+            link.scrollIntoView({
+              behavior: "smooth",
+              inline: "center",
+              block: "nearest"
+    });
+  }
+});
+
+        }
+      });
+    },
+    {
+      rootMargin: "-40% 0px -50% 0px",
+      threshold: 0
+    }
+  );
+
+  menuSections.forEach(section => observer.observe(section));
+});
