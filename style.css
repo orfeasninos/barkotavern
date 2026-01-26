@@ -707,7 +707,11 @@ body.dark .menu-links-list a {
   background: #fffdf8;
   border-radius: 1.5rem;
   box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-  height:10rem;
+  height:fit-content;    
+  position: sticky;
+  top: 100px;
+  align-self: start;
+  width: 100%;
 }
 
 .menu-sidebar h2 {
@@ -960,13 +964,6 @@ p a:hover::after {
     padding: 0 1rem;
   }
 
-  .menu-sidebar {
-    position: relative;
-    top: auto;
-    width: 100%;
-    padding: 1rem;
-  }
-
   .menu-main {
     width: 100%;
   }
@@ -1073,8 +1070,9 @@ body {
     padding: 0.8rem;
     border-radius: 1rem;
     position: sticky;
-    top: -0px; /* ίσο ή λίγο μεγαλύτερο από το ύψος του header */
+    top: 0px;
     align-self: start;
+    width: 100%;
   }
 
   /* Οριζόντιο menu categories */
@@ -1084,7 +1082,6 @@ body {
     gap: 0.6rem;
     padding-bottom: 0.5rem;
     scrollbar-width:thin;
-    position: sticky;
     top:1px;
   }
 
