@@ -1169,3 +1169,24 @@ body {
   box-shadow: 0 6px 15px rgba(212,175,55,0.35);
 }
 }
+
+
+.menu-items li {
+  display: grid;
+  grid-template-columns: 1fr auto; /* πιάτο | τιμή */
+  align-items: center;
+  gap: 1rem;
+}
+
+.menu-items .dish {
+  font-size: 1.05rem;
+  color: #2E3A26;
+  font-weight: 500;
+}
+
+.menu-items .price {
+  font-weight: 700;
+  color: #D4AF37;
+  white-space: nowrap;
+  text-align: right;
+}
