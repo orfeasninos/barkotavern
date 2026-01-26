@@ -641,6 +641,11 @@ body.dark .menu-links-list a {
   transform: rotate(20deg) scale(1.1);
 }
 
+body.dark .menu-links-list a.active {
+  background: #b5891f;
+  color: #000;
+}
+
 .open-status {
   position:absolute;
   top:0px;
@@ -1161,4 +1166,10 @@ body {
   .theme-toggle:hover {
     transform: none !important;
   }
+  .menu-links-list a.active {
+  background: #D4AF37;
+  font-size: large;
+  background-color: #b5891f;
+  box-shadow: 0 6px 15px rgba(212,175,55,0.35);
+}
 }
