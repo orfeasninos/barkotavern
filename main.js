@@ -2,6 +2,13 @@
    Barko Tavern – main.js
    Clean & Grace UX
 ========================= */
+// Αυτόματο dark mode αν το σύστημα είναι dark και δεν υπάρχει αποθηκευμένη επιλογή
+if (!localStorage.getItem("theme") && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    document.body.classList.add("dark");
+    const toggleBtn = document.getElementById("theme-toggle");
+    if (toggleBtn) toggleBtn.textContent = "☀️";
+}
+
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -202,10 +209,6 @@ if (statusEl) {
   statusEl.textContent = isOpen ? "🟢 Ανοιχτό " : "🔴 Κλειστό";
   statusEl.style.color = isOpen ? "#308309" : "#e36f6f";
 }
-
-
-
-
 
 
 
