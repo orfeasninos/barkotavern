@@ -22,6 +22,7 @@ body {
   background: url("images/background.png") center center / cover no-repeat fixed;
   overflow-x: hidden;
   min-width: 320px;
+  padding-bottom: 2.5rem;
 }
 
 /* =======================
@@ -1189,4 +1190,234 @@ body {
   color: #D4AF37;
   white-space: nowrap;
   text-align: right;
+}
+
+/* =======================
+   PREMIUM WOW FOOTER
+======================= */
+.premium-footer {
+  position: relative;
+  overflow: hidden;
+  background: rgba(40,48,32,0.9);
+  color: #FAF9F6;
+  padding: 5rem 1.5rem 3rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.03em;
+  backdrop-filter: blur(6px);
+  border-top: 2px solid rgba(212,175,55,0.3);
+}
+
+.premium-footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: auto;
+  opacity: 0;
+  animation: fadeInFooter 1.2s forwards 0.3s;
+}
+
+/* Fade in animation */
+@keyframes fadeInFooter {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Headings shimmer */
+.premium-footer h4 {
+  color: #D4AF37;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+
+.premium-footer h4::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(90deg, #D4AF37, #F5E28D, #D4AF37);
+  border-radius: 2px;
+  animation: shimmer 2.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Brand */
+.footer-brand img {
+  width: 130px;
+  margin-bottom: 1rem;
+  animation: floatLogo 4s ease-in-out infinite;
+}
+@keyframes floatLogo {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.footer-brand p {
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+/* Links hover */
+.footer-links a,
+.footer-contact a {
+  display: block;
+  color: #FAF9F6;
+  margin-bottom: 0.6rem;
+  text-decoration: none;
+  transition: 0.3s ease;
+  position: relative;
+}
+
+.footer-links a::after,
+.footer-contact a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg,#D4AF37,#F5E28D);
+  border-radius: 1px;
+  transition: width 0.35s ease;
+}
+
+.footer-links a:hover::after,
+.footer-contact a:hover::after {
+  width: 100%;
+}
+
+.footer-links a:hover,
+.footer-contact a:hover {
+  transform: translateX(4px);
+  text-shadow: 0 0 8px #D4AF37;
+}
+
+/* Social icons */
+.footer-social-newsletter .social-icons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  justify-content: flex-start;
+}
+
+.footer-social-newsletter .social-icons a {
+  font-size: 1.6rem;
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+  display: inline-block;
+}
+
+.footer-social-newsletter .social-icons a:hover {
+  transform: scale(1.4) rotate(-5deg);
+  text-shadow: 0 0 12px #D4AF37, 0 0 18px #F5E28D;
+}
+
+/* Newsletter */
+.footer-newsletter {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.footer-newsletter input {
+  flex: 1;
+  padding: 0.6rem 0.8rem;
+  border-radius: 1.5rem;
+  border: none;
+  outline: none;
+  font-size: 0.85rem;
+}
+
+.footer-newsletter button {
+  background: #D4AF37;
+  border: none;
+  border-radius: 1.5rem;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  animation: pulseButton 2s infinite;
+}
+
+.footer-newsletter button:hover {
+  background: #b5891f;
+  transform: scale(1.2);
+  text-shadow: 0 0 6px #fff;
+}
+
+@keyframes pulseButton {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+/* Footer bottom */
+.footer-bottom {
+  margin-top: 3rem;
+  text-align: center;
+  font-size: 0.8rem;
+  opacity: 0.7;
+  border-top: 1px solid rgba(212,175,55,0.25);
+  padding-top: 1.2rem;
+}
+
+/* Shimmer overlay */
+.footer-shimmer {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(212,175,55,0.05), transparent 70%);
+  animation: shimmerOverlay 6s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmerOverlay {
+  0% { transform: rotate(0deg) translate(0,0); }
+  50% { transform: rotate(180deg) translate(20px,20px); }
+  100% { transform: rotate(360deg) translate(0,0); }
+}
+
+/* Responsive */
+@media (max-width:768px){
+  .premium-footer-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .footer-social-newsletter .social-icons { justify-content: center; }
+  .footer-newsletter { flex-direction: column; gap:0.5rem; }
+  .footer-newsletter button { width: 100%; }
+}
+
+/* =========================
+   MENU SERVE ANIMATION
+========================= */
+
+/* αρχική κατάσταση */
+.menu-items li {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* δεξιά για ζυγά στοιχεία */
+.menu-items li.from-right {
+  transform: translateX(40px);
+}
+
+/* όταν εμφανιστεί */
+.menu-items li.show {
+  opacity: 1;
+  transform: translateX(0);
 }

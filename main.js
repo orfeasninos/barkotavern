@@ -279,3 +279,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
   menuSections.forEach(section => observer.observe(section));
 });
+
+/* =========================
+   MENU ITEMS SERVE ANIMATION
+========================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const items = document.querySelectorAll(".menu-items li");
+
+  // εναλλάξ από αριστερά / δεξιά
+  items.forEach((item, index) => {
+    if (index % 2 !== 0) {
+      item.classList.add("from-right");
+    }
+  });
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          observer.unobserve(entry.target); // μία φορά μόνο
+        }
+      });
+    },
+    {
+      threshold: 0.5
+    }
+  );
+
+  items.forEach(item => observer.observe(item));
+});

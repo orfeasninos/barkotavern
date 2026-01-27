@@ -78,24 +78,10 @@
       <div class="menu-category" id="cooked">
         <h3>Μαγειρευτά</h3>
         <ul class="menu-items">
-          <li><span class="dish">Αρνί λεμονάτο στον φούρνο με πατάτες</span> <span class="price">16,80€</span></li>
+          <li class="menu-item-preview">
+            <span class="dish">Αρνί λεμονάτο στον φούρνο με πατάτες</span><span class="price">16,80€</span></li>
           <li><span class="dish">Κατσίκι στιφάδο</span> <span class="price">17,60€</span></li>
-          <li><span class="dish">Κόκορας κρασάτος με χειροποίητες χυλοπίτες</span> <span class="price">14,80€</span></li>
-          <li><span class="dish">Μουσακάς</span> <span class="price">13,00€</span></li>
-          <li><span class="dish">Γεμιστά</span> <span class="price">11,00€</span></li>
-          <li><span class="dish">Ιμάμ μελιτζάνα</span> <span class="price">10,50€</span></li>
-          <li><span class="dish">Παραδοσιακά Σκορδολάζανα Μήλου</span> <span class="price">13,00€</span></li>
-          <li><span class="dish">Μακαρόνια με κιμά</span> <span class="price">10,50€</span></li>
-        </ul>
-      </div>
-
-       <!-- Μαγειρευτά -->
-      <div class="menu-category" id="coocked">
-        <h3>Μαγειρευτά</h3>
-        <ul class="menu-items">
-          <li><span class="dish">Αρνί λεμονάτο στον φούρνο με πατάτες</span> <span class="price">16,80€</span></li>
-          <li><span class="dish">Κατσίκι στιφάδο</span> <span class="price">17,60€</span></li>
-          <li><span class="dish">Κόκορας κρασάτος με χειροποίητες χυλοπίτες</span> <span class="price">14,80€</span></li>
+          <li><span class="dish">Κόκορας κρασάτος με χειροποίητες χυλοπίτες</span><span class="price">14,80€</span></li>
           <li><span class="dish">Μουσακάς</span> <span class="price">13,00€</span></li>
           <li><span class="dish">Γεμιστά</span> <span class="price">11,00€</span></li>
           <li><span class="dish">Ιμάμ μελιτζάνα</span> <span class="price">10,50€</span></li>
@@ -110,7 +96,7 @@
         <ul class="menu-items">
           <li><span class="dish">Χοιρινή μπριζόλα</span> <span class="price">13,50€</span></li>
           <li><span class="dish">Κοτόπουλο σουβλάκι</span> <span class="price">13,00€</span></li>
-          <li><span class="dish">Αρνίσια παιδάκια</span> <span class="price">16,00€ (μερίδα) / 21,00€ (500g) / 42,00€ (1Kg)</span></li>
+          <li><span class="dish">Αρνίσια παιδάκια</span> <span class="price">42,00€/Kg</span></li>
           <li><span class="dish">Μπιφτέκια μοσχαρίσια</span> <span class="price">12,50€</span></li>
           <li><span class="dish">Πανσέτα ψητή</span> <span class="price">13,00€</span></li>
           <li><span class="dish">Λουκάνικο ψητό</span> <span class="price">12,00€</span></li>
@@ -190,11 +176,59 @@
 
 
   <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <p>© 2026 Barko Tavern. Όλα τα δικαιώματααι.</p>
+<footer class="premium-footer">
+  <div class="premium-footer-container">
+
+    <!-- Brand & slogan -->
+    <div class="footer-brand">
+      <img src="images/logo.png" alt="Barko Tavern Logo">
+      <p>Σπιτικό φαγητό • Παραδοσιακές συνταγές • Μήλος</p>
     </div>
-  </footer>
+
+    <!-- Quick links -->
+    <div class="footer-links">
+      <h4>Πλοήγηση</h4>
+      <a href="index.html">Αρχική</a>
+      <a href="menu.html">Μενού</a>
+      <a href="#about">Σχετικά</a>
+      <a href="#contact">Επικοινωνία</a>
+    </div>
+
+    <!-- Contact info -->
+    <div class="footer-contact">
+      <h4>Επικοινωνία</h4>
+      <p>📍 Αδάμαντας, Μήλος</p>
+      <p>📞 <a href="tel:+302287022660">+30 22870 22660</a></p>
+      <p>📧 <a href="mailto:barkomilos@gmail.com">barkomilos@gmail.com</a></p>
+      <p>⏰ 13:00 – 23:00</p>
+    </div>
+
+    <!-- Social & Newsletter -->
+    <div class="footer-social-newsletter">
+      <h4>Ακολουθήστε μας</h4>
+      <div class="social-icons">
+        <a href="#" aria-label="Instagram">📸</a>
+        <a href="#" aria-label="Facebook">📘</a>
+        <a href="#" aria-label="TikTok">🎵</a>
+      </div>
+
+      <h4>Εγγραφή Newsletter</h4>
+      <form class="footer-newsletter">
+        <input type="email" placeholder="Το email σας" required>
+        <button type="submit">📩</button>
+      </form>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 <strong>Barko Tavern</strong> • Όλα τα δικαιώματα διατηρούνται
+  </div>
+
+  <!-- Shimmer Overlay -->
+  <div class="footer-shimmer"></div>
+</footer>
+
 <script src="main.js"></script>
 </body>
 </html>
