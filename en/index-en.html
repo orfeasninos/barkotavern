@@ -12,26 +12,44 @@
   <!-- HEADER -->
 <header>
   <div class="header-container">
-    
-    <!-- Logo in the center -->
+    <!-- LOGO -->
     <div class="logo">
-      <a href="index-en.html"><img src="../images/logo.png" alt="Barko Tavern Logo" draggable="false"></a>
+      <a href="index-en.html">
+        <img src="../images/logo.png" alt="Barko Tavern Logo">
+      </a>
     </div>
 
-    <!-- Right side: flags on top, links below -->
+    <!-- BURGER MENU & NAV -->
     <div class="header-right">
-      <div class="language-switcher">
-        <a href="../index.html"><img src="../images/gr.jpg" alt="Ελληνικά" draggable="false"></a>
-        <a href="../en/index-en.html"><img src="../images/en.jpg" alt="English" draggable="false" class="active"></a>
-        <a href="../it/index-it.html"><img src="../images/it.jpg" alt="Italiano" draggable="false"></a>
-        <a href="../fr/index-fr.html"><img src="../images/fr.jpg" alt="Français" draggable="false"></a>
+
+      <!-- Burger button -->
+      <div class="burger-menu" id="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
 
-      <nav class="header-nav">
+      <!-- Nav links + language -->
+      <nav class="header-nav" id="mobile-nav">
         <ul>
+          <li><a href="index-en.html">Home</a></li>
           <li><a href="menu-en.html">Menu</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="#view">View</a></li>
+          <li><a href="index-en.html#contact">Contact</a></li>
+          <li><a href="">Gallery</a></li>
+          <li><span class="open-status" id="open-status">🟢 Open</span></li>
+          <li class="nav-controls">
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+            <div class="language-switcher">
+              <div class="lang-current">
+                <img src="../images/en.jpg" alt="English">
+                <span class="lang-arrow">▾</span>
+              </div>
+              <div class="lang-options">
+                <a href="../menu.html"><img src="../images/gr.jpg" alt="Ελληνικά"></a>
+                <a href="it/menu-it.html"><img src="../images/it.jpg" alt="Italian"></a>
+                <a href="fr/menu-fr.html"><img src="../images/fr.jpg" alt="French"></a>
+              </div>
+            </div>
         </ul>
       </nav>
     </div>
@@ -104,6 +122,6 @@
       <p>© 2026 Barko Tavern. All rights reserved.</p>
     </div>
   </footer>
-
+<script src="../main.js"></script>
 </body>
 </html>
