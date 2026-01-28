@@ -1237,3 +1237,19 @@ body.dark .menu-items .price{
     filter: saturate(1.06);
   }
 }
+
+/* =========================
+   FIX: Sticky works (menu section parent must allow overflow)
+========================= */
+@media (max-width: 768px){
+  .menu-section.section{
+    overflow: visible !important;
+  }
+
+  /* keep your chips bar sticky */
+  .menu-sidebar.menu-sidebar--mobile{
+    position: sticky;
+    top: 88px;          /* άλλαξέ το αν θες πιο κάτω/πάνω */
+    z-index: 60000;
+  }
+}
