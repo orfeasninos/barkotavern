@@ -5,6 +5,9 @@
 ========================= */
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Mobile detection (used to avoid jank on Android Chrome/Brave)
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
   /* =========================
      AUTO DARK MODE (SYSTEM)
   ========================= */
@@ -57,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const offset = header ? header.offsetHeight : 0;
       const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
 
-      window.scrollTo({ top: y, behavior: "smooth" });
+      window.scrollTo({ top: y, behavior: isMobile ? "auto" : "smooth" });
     });
   });
 
@@ -67,6 +70,10 @@ document.addEventListener("DOMContentLoaded", () => {
 const sections = document.querySelectorAll(".section");
 
 if (sections.length) {
+  // Mobile: reveal immediately (no observers/animations)
+  if (isMobile) {
+    sections.forEach((sec) => sec.classList.add("section-visible"));
+  } else {
   // Αν δεν υποστηρίζεται IntersectionObserver, δείξε τα πάντα.
   if (!("IntersectionObserver" in window)) {
     sections.forEach(sec => sec.classList.add("section-visible"));
@@ -95,6 +102,7 @@ if (sections.length) {
     // άλλο ένα fail-safe μετά το πρώτο paint
     requestAnimationFrame(() => sections.forEach(revealNowIfInView));
     setTimeout(() => sections.forEach(revealNowIfInView), 250);
+  }
   }
 }
 
@@ -244,9 +252,6 @@ if (!isMobile && menuSections.length && menuLinks.length && linksContainer) {
       linkEl.offsetLeft -
       linksContainer.clientWidth / 2 +
       linkEl.clientWidth / 2;
-
-    // ✅ Mobile: instant (no smooth) to avoid scroll-jitter loops
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
     linksContainer.scrollTo({
       left,
       behavior: isMobile ? "auto" : "smooth",
@@ -296,7 +301,7 @@ if (!isMobile && menuSections.length && menuLinks.length && linksContainer) {
      MENU ITEMS ANIMATION
   ========================= */
   const items = document.querySelectorAll(".menu-items li");
-  if (items.length) {
+  if (!isMobile && items.length) {
     items.forEach((item, i) => {
       if (i % 2 !== 0) item.classList.add("from-right");
     });
