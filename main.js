@@ -5,6 +5,9 @@
 ========================= */
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Mobile performance guard (Chrome/Brave Android can jitter with heavy effects)
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
   /* =========================
      AUTO DARK MODE (SYSTEM)
   ========================= */
@@ -57,7 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const offset = header ? header.offsetHeight : 0;
       const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
 
-      window.scrollTo({ top: y, behavior: "smooth" });
+      // On mobile, prefer instant scroll to avoid scroll-jank loops
+      window.scrollTo({ top: y, behavior: isMobile ? "auto" : "smooth" });
     });
   });
 
@@ -67,8 +71,12 @@ document.addEventListener("DOMContentLoaded", () => {
 const sections = document.querySelectorAll(".section");
 
 if (sections.length) {
+  // Mobile: keep it simple (no reveal observers/animations)
+  if (isMobile) {
+    sections.forEach(sec => sec.classList.add("section-visible"));
+  }
   // Αν δεν υποστηρίζεται IntersectionObserver, δείξε τα πάντα.
-  if (!("IntersectionObserver" in window)) {
+  else if (!("IntersectionObserver" in window)) {
     sections.forEach(sec => sec.classList.add("section-visible"));
   } else {
     const revealNowIfInView = (el) => {
@@ -296,7 +304,8 @@ if (menuSections.length && menuLinks.length && linksContainer) {
      MENU ITEMS ANIMATION
   ========================= */
   const items = document.querySelectorAll(".menu-items li");
-  if (items.length) {
+  // Mobile: skip per-item reveal animations (smoother scroll)
+  if (items.length && !isMobile) {
     items.forEach((item, i) => {
       if (i % 2 !== 0) item.classList.add("from-right");
     });

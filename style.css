@@ -69,6 +69,9 @@ body{
   line-height: 1.65;
   color: var(--leaf);
   background:
+    radial-gradient(1200px 800px at 15% 10%, rgba(212,175,55,0.14), transparent 55%),
+    radial-gradient(900px 700px at 85% 0%, rgba(15,107,111,0.12), transparent 58%),
+    radial-gradient(1000px 900px at 50% 100%, rgba(51,105,45,0.10), transparent 60%),
     url("images/background.png") center/cover no-repeat fixed;
   overflow-x: hidden;
   min-width: 320px;
@@ -1044,6 +1047,13 @@ body.dark .menu-items .price{
 
 /* Mobile header */
 @media (max-width: 768px){
+  /* Mobile perf: avoid smooth scrolling + expensive backdrop blurs */
+  html{ scroll-behavior: auto; }
+  *{
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
     body{
     background-attachment: scroll !important;
   }
