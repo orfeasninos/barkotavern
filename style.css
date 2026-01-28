@@ -1381,7 +1381,7 @@ footer p a{
   display: flex;
   align-items: flex-start;
   gap: 1rem;
-  background: #fffdf8;
+  background: #f1ffec8f;
   padding: 0.75rem 1rem;
   border-radius: 1rem;
   box-shadow: 0 6px 18px rgba(0,0,0,0.08);
@@ -1490,6 +1490,10 @@ footer p a{
 
 
 
+.container h2 {
 
+  margin-bottom: 3rem;
+  color: #2E3A26;
+}
 
 
