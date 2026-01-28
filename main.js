@@ -61,28 +61,43 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* =========================
-     SECTION REVEAL
-  ========================= */
-  const sections = document.querySelectorAll(".section");
-  if (sections.length) {
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("section-visible");
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
+/* =========================
+   SECTION REVEAL (FAIL-SAFE)
+========================= */
+const sections = document.querySelectorAll(".section");
 
-    sections.forEach((sec) => {
+if (sections.length) {
+  // Αν δεν υποστηρίζεται IntersectionObserver, δείξε τα πάντα.
+  if (!("IntersectionObserver" in window)) {
+    sections.forEach(sec => sec.classList.add("section-visible"));
+  } else {
+    const revealNowIfInView = (el) => {
+      const r = el.getBoundingClientRect();
+      // αν είναι ήδη “στο περίπου” μέσα στο viewport στο load, δείξ' το άμεσα
+      if (r.top < window.innerHeight * 0.92) el.classList.add("section-visible");
+    };
+
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("section-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: "0px 0px -10% 0px" });
+
+    sections.forEach(sec => {
       sec.classList.add("section-hidden");
+      revealNowIfInView(sec);      // ✅ fail-safe για refresh
       revealObserver.observe(sec);
     });
+
+    // άλλο ένα fail-safe μετά το πρώτο paint
+    requestAnimationFrame(() => sections.forEach(revealNowIfInView));
+    setTimeout(() => sections.forEach(revealNowIfInView), 250);
   }
+}
+
 
   /* =========================
      ACTIVE NAV LINK (one-page sections)

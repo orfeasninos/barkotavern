@@ -130,7 +130,6 @@ header{
   isolation: isolate;
   backdrop-filter: var(--blur);
   -webkit-backdrop-filter: var(--blur);
-
   background:
     linear-gradient(180deg,
       rgba(47,58,37,0.92) 0%,
