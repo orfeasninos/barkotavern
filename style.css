@@ -159,10 +159,13 @@ p {
 }
 
 /* =======================
-   FOOTER
+   FOOTER – POLISHED PRO
 ======================= */
 footer {
   position: relative;
+  isolation: isolate; /* για σωστά overlays */
+  overflow: hidden;
+
   background:
     linear-gradient(
       180deg,
@@ -172,44 +175,138 @@ footer {
     ),
     radial-gradient(
       circle at bottom center,
-      rgba(212, 175, 55, 0.12),
+      rgba(212, 175, 55, 0.14),
       transparent 65%
     );
 
   color: #FAF9F6;
-  padding: 3rem 1rem 2rem;
+  padding: 3.5rem 1rem 2.25rem;
   text-align: center;
-  font-size: 0.85rem;
+
+  font-size: 0.88rem;
   letter-spacing: 0.04em;
+  line-height: 1.7;
+
   box-shadow:
-    0 -8px 30px rgba(0,0,0,0.35),
+    0 -10px 40px rgba(0,0,0,0.45),
     inset 0 1px 0 rgba(212,175,55,0.25);
 }
 
+/* λεπτή χρυσή γραμμή πάνω */
 footer::before {
   content: "";
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 120px;
+  width: min(520px, 80vw);
   height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    #D4AF37,
-    transparent
-  );
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+  opacity: 0.9;
 }
 
+/* subtle “gold glow” χαμηλά */
+footer::after {
+  content: "";
+  position: absolute;
+  inset: -40% -30%;
+  background:
+    radial-gradient(circle at 50% 85%, rgba(212,175,55,0.10), transparent 55%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Κεντράρισμα περιεχομένου (αν έχεις div.container) */
+footer .container {
+  max-width: 1200px;
+}
+
+/* Καλύτερη τυπογραφία */
 footer p {
-  margin: 0;
-  opacity: 0.85;
+  margin: 0.35rem 0;
+  opacity: 0.88;
 }
 
 footer p strong {
   color: #D4AF37;
+  font-weight: 700;
+}
+
+/* LINKS στο footer – premium hover */
+footer a {
+  color: #FAF9F6;
+  text-decoration: none;
   font-weight: 600;
+  position: relative;
+  opacity: 0.92;
+  transition: transform 0.25s ease, opacity 0.25s ease, color 0.25s ease;
+}
+
+footer a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #D4AF37, #F5E28D);
+  transition: width 0.3s ease;
+}
+
+footer a:hover {
+  color: #D4AF37;
+  opacity: 1;
+  transform: translateY(-1px);
+  text-shadow: 0 0 8px rgba(212,175,55,0.35);
+}
+
+footer a:hover::after {
+  width: 100%;
+}
+
+/* PERFECT ICON + TEXT ALIGNMENT */
+.footer-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;  /* για να είναι σωστό στο center footer */
+  gap: 0.65rem;
+  margin-bottom: 0.45rem;
+}
+
+.footer-line .icon {
+  font-size: 1.02rem;
+  line-height: 1;
+  transform: translateY(1px);
+  filter: drop-shadow(0 0 6px rgba(212,175,55,0.15));
+}
+
+/* text sizing consistent */
+.footer-line a,
+.footer-line span {
+  font-size: 0.92rem;
+  color: #FAF9F6;
+}
+
+/* μικρό “διαχωριστικό” (αν έχεις bottom row/copyright) */
+.footer-bottom {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(212,175,55,0.22);
+  opacity: 0.75;
+  font-size: 0.82rem;
+}
+
+/* Mobile polish */
+@media (max-width: 768px) {
+  footer {
+    padding: 3rem 1rem 2rem;
+  }
+
+  .footer-line {
+    justify-content: flex-start; /* πιο φυσικό σε μικρή οθόνη */
+  }
 }
 
 /* =======================
@@ -389,43 +486,6 @@ header.header-small {
   padding-bottom: 0.3rem;
 }
 
-.menu-items {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.menu-items li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.75rem 1rem;
-  border-radius: 1rem;
-  transition: background 0.3s ease, transform 0.25s ease;
-  cursor: default;
-}
-
-.menu-items li:hover {
-  background: rgba(212,175,55,0.08);
-  transform: translateX(5px);
-}
-
-.menu-items .dish {
-  font-size: 1.05rem;
-  color: #2E3A26;
-  font-weight: 500;
-  max-width: 75%;
-}
-
-.menu-items .price {
-  font-weight: 600;
-  color: #D4AF37;
-  text-align: right;
-  white-space: nowrap;
-  font-size: 1rem;
-}
-
 /* =======================
    CONTACT
 ======================= */
@@ -497,11 +557,8 @@ header.header-small {
 
 
 .menu-links-list a:hover {
-  background: linear-gradient(130deg, #D4AF37, #f5f5f5);
   transform: translateY(-3px);
-  color:black;
-  box-shadow: 0 8px 15px rgba(201, 162, 36, 0.7);
-  
+  box-shadow: 0 8px 15px #284d16;
 }
 
 
@@ -560,7 +617,7 @@ header.header-small {
 
 /* Sections – σκοτεινιάζουμε τα cards και sections */
 body.dark .section {
-  background: rgba(30, 30, 30, 0.75); /* ημιδιάφανο για να φαίνεται η εικόνα */
+  background: rgba(0, 0, 0, 0.85); /* ημιδιάφανο για να φαίνεται η εικόνα */
   box-shadow: 0 20px 40px rgba(0,0,0,0.6);
 }
 
@@ -575,7 +632,7 @@ body.dark .section h2::after {
 
 /* Menu cards */
 body.dark .menu-item {
-  background: rgba(30, 30, 30, 0.9);
+  background: rgb(0, 0, 0);
 }
 
 body.dark .menu-item h3 {
@@ -592,18 +649,18 @@ body.dark .menu-category h3 {
 }
 
 body.dark .menu-items li {
-  border-bottom: 1px dotted #444;
+  border-bottom: 1px dotted #000000;
 }
 
 /* Dark mode for menu.html */
 
 
 body.dark .menu-category {
-  background: #1e1e1e;
+  background: rgba(0, 0, 0, 0.65);
 }
 
 body.dark .menu-sidebar {
-  background: #1e1e1e;
+  background: #000000;
 }
 
 body.dark .menu-category h3,
@@ -617,19 +674,13 @@ body.dark .menu-items .dish {
 }
 
 body.dark .menu-links-list a.active {
-  background: #D4AF37;
-  border:2px dashed;
+  border:none;
   color: #000;
 }
-
-/* Sidebar menu links (αν θέλουμε επιπλέον ξεχωριστό στυλ) */
-body.dark .menu-links-list a {
-  background: #0c0c0c;
-  padding: 0.5rem 1rem;
-  border-radius: 1rem;
-  display: block;
-  transition: all 0.3s ease;
+body.dark .menu-items li {
+  background-color: #1818188f;
 }
+
 
 body.dark .menu-links-list a:hover {
   background-color: #9b7723;
@@ -730,21 +781,11 @@ body.dark .menu-links-list a:hover {
   border-bottom: 2px solid #D4AF37;
   padding-bottom: 0.5rem;
 }
-
 .menu-links-list {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-}
-
-.menu-links-list a {
-  text-decoration: none;
-  color: #2E3A26;
-  padding: 0.5rem 1rem;
-  border-radius: 1rem;
-  display: block;
-  transition: all 0.3s ease;
 }
 
 /* =======================
@@ -1110,86 +1151,6 @@ body {
   :hover {
     transform: none !important;
 }
-
-/* =======================
-   MOBILE: NEUTRALIZE HOVER COMPLETELY
-======================= */
-
-  /* menu cards */
-  .menu-item,
-  .menu-item:hover {
-    transform: none !important;
-    text-shadow: none !important;
-  }
-
-  /* menu categories */
-  .menu-category,
-  .menu-category:hover {
-    transform: none !important;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08) !important;
-  }
-
-  /* menu list rows */
-  .menu-items li,
-  .menu-items li:hover {
-    background: transparent !important;
-    transform: none !important;
-  }
-
-  /* sidebar links */
-  .menu-links-list a,
-  .menu-links-list a:hover {
-    background: transparent !important;
-    color: #D4AF37 !important;
-    box-shadow: none !important;
-    transform: none !important;
-  }
-
-  /* header links */
-  .header-nav ul li a,
-  .header-nav ul li a:hover {
-    color: #FAF9F6 !important;
-    transform: none !important;
-    text-shadow: none !important;
-  }
-
-  .header-nav ul li a::after,
-  .header-nav ul li a:hover::after {
-    width: 0 !important;
-  }
-
-  /* buttons / icons */
-  .theme-toggle,
-  .theme-toggle:hover {
-    transform: none !important;
-  }
-  .menu-links-list a.active {
-  background: #D4AF37;
-  font-size: large;
-  background-color: #b5891f;
-  box-shadow: 0 6px 15px rgba(212,175,55,0.35);
-}
-}
-
-
-.menu-items li {
-  display: grid;
-  grid-template-columns: 1fr auto; /* πιάτο | τιμή */
-  align-items: center;
-  gap: 1rem;
-}
-
-.menu-items .dish {
-  font-size: 1.05rem;
-  color: #2E3A26;
-  font-weight: 500;
-}
-
-.menu-items .price {
-  font-weight: 700;
-  color: #D4AF37;
-  white-space: nowrap;
-  text-align: right;
 }
 
 /* =======================
@@ -1369,6 +1330,10 @@ body {
   padding-top: 1.2rem;
 }
 
+footer p a{
+  display: inline-block;
+}
+
 /* Shimmer overlay */
 .footer-shimmer {
   position: absolute;
@@ -1398,26 +1363,133 @@ body {
   .footer-newsletter button { width: 100%; }
 }
 
-/* =========================
-   MENU SERVE ANIMATION
-========================= */
+/* =======================
+   MENU ITEMS – grid (όσα χωράνε) + σωστό δεξιά title/price
+======================= */
 
-/* αρχική κατάσταση */
-.menu-items li {
-  opacity: 0;
-  transform: translateX(-40px);
-  transition:
-    opacity 0.6s ease,
-    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+/* Όσα χωράνε ανά γραμμή */
+.menu-items{
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); /* ↑ πιο φαρδύ για τίτλους */
+  gap: 1rem;
+  padding: 0.5rem 0;
 }
 
-/* δεξιά για ζυγά στοιχεία */
-.menu-items li.from-right {
-  transform: translateX(40px);
+/* Το κάθε item */
+.menu-items li{
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: #fffdf8;
+  padding: 0.75rem 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* όταν εμφανιστεί */
-.menu-items li.show {
-  opacity: 1;
-  transform: translateX(0);
+/* Hover */
+.menu-items li:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
 }
+
+/* Εικόνα αριστερά */
+.menu-items li > img{
+  width: 92px;
+  height: 92px;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  flex: 0 0 auto;
+}
+
+/* Δεξιά στήλη: τίτλος πάνω δεξιά, τιμή κάτω δεξιά */
+.menu-items .dish-price-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;  /* δεξιά */
+  flex: 1;
+  min-width: 0;           /* ΠΟΛΥ σημαντικό για να “σπάει” σωστά το κείμενο */
+}
+
+/* Τίτλος (πάνω δεξιά) */
+.menu-items .dish{
+  font-weight: 600;
+  color: #2E3A26;
+  line-height: 1.25;
+  overflow-wrap: anywhere; /* για πολύ μεγάλα ονόματα */
+}
+
+/* Τιμή (κάτω δεξιά) */
+.menu-items .price{
+  margin-top: auto;
+  font-weight: 700;
+  text-align: right;
+  white-space: nowrap;
+  padding-top: 0.35rem;
+}
+.image-categories {
+  gap: 1rem;
+}
+
+.category-card {
+  position: relative;
+  height: 70px;
+  border-radius: 1rem;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.category-card span {
+  position: relative;
+  z-index: 1;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.category-card {
+  position: relative;
+  height: 70px;
+  border-radius: 1rem;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;     /* ⬇️ κάτω */
+  justify-content: flex-end; /* ➡️ δεξιά */
+  text-decoration: none;
+  overflow: hidden;
+  padding: 0.5rem 0.7rem;   /* απόσταση από άκρες */
+}
+
+/* TEXT */
+.category-card span {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  text-align: right;
+}
+.category-card span {
+  background: rgba(0, 0, 0, 0.616);
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+
+
+
+
+
+
