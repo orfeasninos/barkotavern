@@ -1047,6 +1047,9 @@ body.dark .menu-items .price{
 
 /* Mobile header */
 @media (max-width: 768px){
+    body{
+    background-attachment: scroll !important;
+  }
   .burger-menu{ display:flex; }
 
   .logo img{ height: 60px; }
@@ -1054,6 +1057,17 @@ body.dark .menu-items .price{
 
   .header-right{ gap: 10px; }
 
+  .menu-sidebar{
+    position: relative;
+    top: auto;
+  }
+
+  header,
+  .section,
+  .menu-category{
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
   /* Mobile nav */
   .header-nav{
     display:none;
