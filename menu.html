@@ -8,404 +8,308 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="images/logo.png">
 </head>
+
 <body>
   <!-- HEADER -->
-<header>
-  <div class="header-container">
-    <!-- LOGO -->
-    <div class="logo">
-      <a href="index.html">
-        <img src="images/logo.png" alt="Barko Tavern Logo">
-      </a>
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/logo.png" alt="Barko Tavern Logo">
+        </a>
+      </div>
+
+      <div class="header-right">
+        <div class="burger-menu" id="burger-menu">
+          <span></span><span></span><span></span>
+        </div>
+
+        <nav class="header-nav" id="mobile-nav">
+          <ul>
+            <li><a href="index.html">Αρχική</a></li>
+            <li><a href="restaurant.html">Το εστιατόριο</a></li>
+            <li><a href="menu.html">Μενού</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="index.html#contact">Επικοινωνία</a></li>
+
+            <li class="nav-controls">
+              <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+
+              <div class="language-switcher">
+                <div class="lang-current">
+                  <img src="images/gr.jpg" alt="Ελληνικά">
+                  <span class="lang-arrow">▾</span>
+                </div>
+
+                <div class="lang-options">
+                  <a href="en/menu-en.html"><img src="images/en.jpg" alt="English"></a>
+                  <a href="it/menu-it.html"><img src="images/it.jpg" alt="Italiano"></a>
+                  <a href="fr/menu-fr.html"><img src="images/fr.jpg" alt="Français"></a>
+                </div>
+              </div> <!-- /language-switcher -->
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
+  </header>
 
-    <!-- BURGER MENU & NAV -->
-    <div class="header-right">
+  <!-- MENU SECTION -->
+  <section class="menu-section section">
+    <div class="container menu-grid-wrapper">
 
-      <!-- Burger button -->
-      <div class="burger-menu" id="burger-menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+      <!-- SIDEBAR CATEGORIES -->
+      <aside class="menu-sidebar">
+        <h2>Κατηγορίες</h2>
+        <ul class="menu-links-list image-categories">
 
-      <!-- Nav links + language -->
-      <nav class="header-nav" id="mobile-nav">
-        <ul>
-          <li><a href="index.html">Αρχική</a></li>
-          <li><a href="menu.html">Μενού</a></li>
-          <li><a href="index.html#contact">Επικοινωνία</a></li>
-          <li><a href="">Βλέπουμε</a></li>
-          <li><span class="open-status" id="open-status">🟢 Ανοιχτό</span></li>
-          <li class="nav-controls">
-            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
-            <div class="language-switcher">
-              <div class="lang-current">
-                <img src="images/gr.jpg" alt="Ελληνικά">
-                <span class="lang-arrow">▾</span>
-              </div>
-              <div class="lang-options">
-                <a href="en/menu-en.html"><img src="images/en.jpg" alt="English"></a>
-                <a href="it/menu-it.html"><img src="images/it.jpg" alt="Italiano"></a>
-                <a href="fr/menu-fr.html"><img src="images/fr.jpg" alt="Français"></a>
-              </div>
-            </div>
-        </ul>
-      </nav>
-    </div>
-  </div>
-</header>
-
-<!-- MENU SECTION -->
-<section class="menu-section section">
-  <div class="container menu-grid-wrapper">
-    <!-- SIDEBAR CATEGORIES -->
-<aside class="menu-sidebar">
-  <h2>Κατηγορίες</h2>
-  <ul class="menu-links-list image-categories">
-
-    <li>
-      <a href="#cooked" class="category-card" style="background-image:url('images/mousakas.jpg')">
-        <span>Μαγειρευτά</span>
-      </a>
-    </li>
-
-    <li>
-      <a href="#hour" class="category-card" style="background-image:url('images/xoriatiki.webp')">
-        <span>Της ώρας</span>
-      </a>
-    </li>
-
-    <li>
-      <a href="#seafood" class="category-card" style="background-image:url('images/souvlaki.jpg')">
-        <span>Θαλασσινά</span>
-      </a>
-    </li>
-
-    <li>
-      <a href="#starters" class="category-card" style="background-image:url('images/mousakas.jpg')">
-        <span>Ορεκτικά</span>
-      </a>
-    </li>
-
-    <li>
-      <a href="#salads" class="category-card" style="background-image:url('images/xoriatiki.webp')">
-        <span>Σαλάτες</span>
-      </a>
-    </li>
-
-    <li>
-      <a href="#drinks" class="category-card" style="background-image:url('images/souvlaki.jpg')">
-        <span>Ποτά</span>
-      </a>
-    </li>
-
-  </ul>
-</aside>
-
-
-    <!-- MAIN MENU ITEMS -->
-    <div class="menu-main">
-      <!-- Μαγειρευτά -->
-      <div class="menu-category" id="cooked">
-        <h3>Μαγειρευτά</h3>
-        <ul class="menu-items">
           <li>
-              <img src="images/mousakas.jpg" alt="Μουσακάς">
-              <span class="dish"> Αρνί λεμονάτο στον φούρνο με πατάτες</span>
-              <span class="price">16,80€</span>
+            <a href="#cooked" class="category-card" style="background-image:url('images/mousakas.jpg')">
+              <span>Μαγειρευτά</span>
+            </a>
           </li>
+
           <li>
+            <a href="#hour" class="category-card" style="background-image:url('images/xoriatiki.webp')">
+              <span>Της ώρας</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#seafood" class="category-card" style="background-image:url('images/souvlaki.jpg')">
+              <span>Θαλασσινά</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#starters" class="category-card" style="background-image:url('images/mousakas.jpg')">
+              <span>Ορεκτικά</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#salads" class="category-card" style="background-image:url('images/xoriatiki.webp')">
+              <span>Σαλάτες</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#drinks" class="category-card" style="background-image:url('images/souvlaki.jpg')">
+              <span>Ποτά</span>
+            </a>
+          </li>
+
+        </ul>
+      </aside>
+
+      <!-- MAIN MENU ITEMS -->
+      <div class="menu-main">
+
+        <!-- Μαγειρευτά -->
+        <div class="menu-category" id="cooked">
+          <h3>Μαγειρευτά</h3>
+          <ul class="menu-items">
+            <li>
+              <img src="images/mousakas.jpg" alt="Μουσακάς">
+              <span class="dish">Αρνί λεμονάτο στον φούρνο με πατάτες</span>
+              <span class="price">16,80€</span>
+            </li>
+            <li>
               <img src="images/souvlaki.jpg" alt="Σουβλάκι">
               <span class="dish">Γιουβέτσι με μοσχαράκι ή κοτόπουλο</span>
               <span class="price">14,50€</span>
-          </li>
-          <li>
+            </li>
+            <li>
               <img src="images/mousakas.jpg" alt="Παστίτσιο">
               <span class="dish">Κοκκινιστό με μακαρόνια ή ρύζι</span>
               <span class="price">13,50€</span>
-          </li>
-          <li>
+            </li>
+            <li>
               <img src="images/mousakas.jpg" alt="Στιφάδο">
               <span class="dish">Στιφάδο μοσχαράκι ή κουνέλι</span>
               <span class="price">14,80€</span>
-          </li>
-          <li>
+            </li>
+            <li>
               <img src="images/xoriatiki.webp" alt="Μπριάμ">
               <span class="dish">Μπριάμ φούρνου με πατάτες, κολοκύθια, μελιτζάνες και πιπεριές</span>
               <span class="price">11,50€</span>
-          </li>
-          <li>
-              <img src="images/xoriatiki.webp" alt="Μπριάμ">
-              <span class="dish">Μπριάμ φούρνου με πατάτες, κολοκύθια, μελιτζάνες και πιπεριές</span>
-              <span class="price">11,50€</span>
-          </li>
-          <li>
-              <img src="images/xoriatiki.webp" alt="Μπριάμ">
-              <span class="dish">Μπριάμ φούρνου με πατάτες, κολοκύθια, μελιτζάνες και πιπεριές</span>
-              <span class="price">11,50€</span>
-          </li>
-          <li>
-              <img src="images/xoriatiki.webp" alt="Μπριάμ">
-              <span class="dish">Μπριάμ φούρνου με πατάτες, κολοκύθια, μελιτζάνες και πιπεριές</span>
-              <span class="price">11,50€</span>
-          </li>
-          
-        </ul>
-      </div>
+            </li>
+          </ul>
+        </div>
 
-      <!-- Της ώρας -->
-      <div class="menu-category" id="hour">
-        <h3>Της ώρας</h3>
-        <ul class="menu-items">
-          <li>
+        <!-- Της ώρας -->
+        <div class="menu-category" id="hour">
+          <h3>Της ώρας</h3>
+          <ul class="menu-items">
+            <li>
               <img src="images/mousakas.jpg" alt="Μουσακάς">
-              <span class="dish"> Αρνί λεμονάτο στον φούρνο με πατάτες</span>
+              <span class="dish">Αρνί λεμονάτο στον φούρνο με πατάτες</span>
               <span class="price">16,80€</span>
-          </li>
-          <li>
+            </li>
+            <li>
               <img src="images/souvlaki.jpg" alt="Σουβλάκι">
               <span class="dish">Γιουβέτσι με μοσχαράκι ή κοτόπουλο</span>
               <span class="price">14,50€</span>
-          </li>
-          <li>
+            </li>
+            <li>
               <img src="images/mousakas.jpg" alt="Παστίτσιο">
               <span class="dish">Κοκκινιστό με μακαρόνια ή ρύζι</span>
               <span class="price">13,50€</span>
-          </li>
-          <li>
+            </li>
+            <li>
               <img src="images/mousakas.jpg" alt="Στιφάδο">
               <span class="dish">Στιφάδο μοσχαράκι ή κουνέλι</span>
               <span class="price">14,80€</span>
-          </li>
-          <li>
+            </li>
+            <li>
               <img src="images/xoriatiki.webp" alt="Μπριάμ">
               <span class="dish">Μπριάμ φούρνου με πατάτες, κολοκύθια, μελιτζάνες και πιπεριές</span>
               <span class="price">11,50€</span>
-          </li>
-          <li>
-              <img src="images/xoriatiki.webp" alt="Μπριάμ">
-              <span class="dish">Μπριάμ φούρνου με πατάτες, κολοκύθια, μελιτζάνες και πιπεριές</span>
-              <span class="price">11,50€</span>
-          </li>
-          <li>
-              <img src="images/xoriatiki.webp" alt="Μπριάμ">
-              <span class="dish">Μπριάμ φούρνου με πατάτες, κολοκύθια, μελιτζάνες και πιπεριές</span>
-              <span class="price">11,50€</span>
-          </li>
-          <li>
-              <img src="images/xoriatiki.webp" alt="Μπριάμ">
-              <span class="dish">Μπριάμ φούρνου με πατάτες, κολοκύθια, μελιτζάνες και πιπεριές</span>
-              <span class="price">11,50€</span>
-          </li>
-          
-        </ul>
-      </div>
+            </li>
+          </ul>
+        </div>
 
-      <!-- Θαλασσινά -->
-      <div class="menu-category" id="seafood">
-        <h3>Θαλασσινά</h3>
-        <ul class="menu-items">
-          <li>
+        <!-- Θαλασσινά -->
+        <div class="menu-category" id="seafood">
+          <h3>Θαλασσινά</h3>
+          <ul class="menu-items">
+            <li>
               <img src="images/mousakas.jpg" alt="Μουσακάς">
-              <span class="dish"> Αρνί λεμονάτο στον φούρνο με πατάτες</span>
+              <span class="dish">Αρνί λεμονάτο στον φούρνο με πατάτες</span>
               <span class="price">16,80€</span>
-          </li>
-          <li>
+            </li>
+            <li>
               <img src="images/souvlaki.jpg" alt="Σουβλάκι">
               <span class="dish">Γιουβέτσι με μοσχαράκι ή κοτόπουλο</span>
               <span class="price">14,50€</span>
-          </li>
-          <li>
+            </li>
+            <li>
               <img src="images/mousakas.jpg" alt="Παστίτσιο">
               <span class="dish">Κοκκινιστό με μακαρόνια ή ρύζι</span>
               <span class="price">13,50€</span>
-          </li>
-          <li>
+            </li>
+            <li>
               <img src="images/mousakas.jpg" alt="Στιφάδο">
               <span class="dish">Στιφάδο μοσχαράκι ή κουνέλι</span>
               <span class="price">14,80€</span>
-          </li>
-          <li>
+            </li>
+            <li>
               <img src="images/xoriatiki.webp" alt="Μπριάμ">
               <span class="dish">Μπριάμ φούρνου με πατάτες, κολοκύθια, μελιτζάνες και πιπεριές</span>
               <span class="price">11,50€</span>
-          </li>
-          <li>
-              <img src="images/xoriatiki.webp" alt="Μπριάμ">
-              <span class="dish">Μπριάμ φούρνου με πατάτες, κολοκύθια, μελιτζάνες και πιπεριές</span>
-              <span class="price">11,50€</span>
-          </li>
-          <li>
-              <img src="images/xoriatiki.webp" alt="Μπριάμ">
-              <span class="dish">Μπριάμ φούρνου με πατάτες, κολοκύθια, μελιτζάνες και πιπεριές</span>
-              <span class="price">11,50€</span>
-          </li>
-          <li>
-              <img src="images/xoriatiki.webp" alt="Μπριάμ">
-              <span class="dish">Μπριάμ φούρνου με πατάτες, κολοκύθια, μελιτζάνες και πιπεριές</span>
-              <span class="price">11,50€</span>
-          </li>
-          
-        </ul>
-      </div>
+            </li>
+          </ul>
+        </div>
 
-      <!-- Ορεκτικά & Ψωμί -->
-      <div class="menu-category" id=starters>
-        <h3>Ορεκτικά & Ψωμί</h3>
-        <ul class="menu-items">
-          <li>
+        <!-- Ορεκτικά & Ψωμί -->
+        <div class="menu-category" id="starters">
+          <h3>Ορεκτικά & Ψωμί</h3>
+          <ul class="menu-items">
+            <li>
               <img src="images/mousakas.jpg" alt="Μουσακάς">
-              <span class="dish"> Αρνί λεμονάτο στον φούρνο με πατάτες</span>
+              <span class="dish">Αρνί λεμονάτο στον φούρνο με πατάτες</span>
               <span class="price">16,80€</span>
-          </li>
-          <li>
+            </li>
+            <li>
               <img src="images/souvlaki.jpg" alt="Σουβλάκι">
               <span class="dish">Γιουβέτσι με μοσχαράκι ή κοτόπουλο</span>
               <span class="price">14,50€</span>
-          </li>
-          <li>
+            </li>
+            <li>
               <img src="images/mousakas.jpg" alt="Παστίτσιο">
               <span class="dish">Κοκκινιστό με μακαρόνια ή ρύζι</span>
               <span class="price">13,50€</span>
-          </li>
-          <li>
+            </li>
+            <li>
               <img src="images/mousakas.jpg" alt="Στιφάδο">
               <span class="dish">Στιφάδο μοσχαράκι ή κουνέλι</span>
               <span class="price">14,80€</span>
-          </li>
-          <li>
+            </li>
+            <li>
               <img src="images/xoriatiki.webp" alt="Μπριάμ">
               <span class="dish">Μπριάμ φούρνου με πατάτες, κολοκύθια, μελιτζάνες και πιπεριές</span>
               <span class="price">11,50€</span>
-          </li>
-          <li>
-              <img src="images/xoriatiki.webp" alt="Μπριάμ">
-              <span class="dish">Μπριάμ φούρνου με πατάτες, κολοκύθια, μελιτζάνες και πιπεριές</span>
-              <span class="price">11,50€</span>
-          </li>
-          <li>
-              <img src="images/xoriatiki.webp" alt="Μπριάμ">
-              <span class="dish">Μπριάμ φούρνου με πατάτες, κολοκύθια, μελιτζάνες και πιπεριές</span>
-              <span class="price">11,50€</span>
-          </li>
-          <li>
-              <img src="images/xoriatiki.webp" alt="Μπριάμ">
-              <span class="dish">Μπριάμ φούρνου με πατάτες, κολοκύθια, μελιτζάνες και πιπεριές</span>
-              <span class="price">11,50€</span>
-          </li>
-          
-        </ul>
-      </div>
+            </li>
+          </ul>
+        </div>
 
-      <!-- Σαλάτες -->
-      <div class="menu-category" id="salads">
-        <h3>Σαλάτες</h3>
-        <ul class="menu-items">
-          <li>
+        <!-- Σαλάτες -->
+        <div class="menu-category" id="salads">
+          <h3>Σαλάτες</h3>
+          <ul class="menu-items">
+            <li>
               <img src="images/mousakas.jpg" alt="Μουσακάς">
-              <span class="dish"> Αρνί λεμονάτο στον φούρνο με πατάτες</span>
+              <span class="dish">Αρνί λεμονάτο στον φούρνο με πατάτες</span>
               <span class="price">16,80€</span>
-          </li>
-          <li>
+            </li>
+            <li>
               <img src="images/souvlaki.jpg" alt="Σουβλάκι">
               <span class="dish">Γιουβέτσι με μοσχαράκι ή κοτόπουλο</span>
               <span class="price">14,50€</span>
-          </li>
-          <li>
+            </li>
+            <li>
               <img src="images/mousakas.jpg" alt="Παστίτσιο">
               <span class="dish">Κοκκινιστό με μακαρόνια ή ρύζι</span>
               <span class="price">13,50€</span>
-          </li>
-          <li>
+            </li>
+            <li>
               <img src="images/mousakas.jpg" alt="Στιφάδο">
               <span class="dish">Στιφάδο μοσχαράκι ή κουνέλι</span>
               <span class="price">14,80€</span>
-          </li>
-          <li>
+            </li>
+            <li>
               <img src="images/xoriatiki.webp" alt="Μπριάμ">
               <span class="dish">Μπριάμ φούρνου με πατάτες, κολοκύθια, μελιτζάνες και πιπεριές</span>
               <span class="price">11,50€</span>
-          </li>
-          <li>
-              <img src="images/xoriatiki.webp" alt="Μπριάμ">
-              <span class="dish">Μπριάμ φούρνου με πατάτες, κολοκύθια, μελιτζάνες και πιπεριές</span>
-              <span class="price">11,50€</span>
-          </li>
-          <li>
-              <img src="images/xoriatiki.webp" alt="Μπριάμ">
-              <span class="dish">Μπριάμ φούρνου με πατάτες, κολοκύθια, μελιτζάνες και πιπεριές</span>
-              <span class="price">11,50€</span>
-          </li>
-          <li>
-              <img src="images/xoriatiki.webp" alt="Μπριάμ">
-              <span class="dish">Μπριάμ φούρνου με πατάτες, κολοκύθια, μελιτζάνες και πιπεριές</span>
-              <span class="price">11,50€</span>
-          </li>
-          
-        </ul>
-      </div>
+            </li>
+          </ul>
+        </div>
 
-      <!-- Αναψυκτικά & Ποτά -->
-      <div class="menu-category" id="drinks">
-        <h3>Αναψυκτικά & Ποτά</h3>
-        <ul class="menu-items">
-          <li>
+        <!-- Αναψυκτικά & Ποτά -->
+        <div class="menu-category" id="drinks">
+          <h3>Αναψυκτικά & Ποτά</h3>
+          <ul class="menu-items">
+            <li>
               <img src="images/mousakas.jpg" alt="Μουσακάς">
-              <span class="dish"> Αρνί λεμονάτο στον φούρνο με πατάτες</span>
+              <span class="dish">Αρνί λεμονάτο στον φούρνο με πατάτες</span>
               <span class="price">16,80€</span>
-          </li>
-          <li>
+            </li>
+            <li>
               <img src="images/souvlaki.jpg" alt="Σουβλάκι">
               <span class="dish">Γιουβέτσι με μοσχαράκι ή κοτόπουλο</span>
               <span class="price">14,50€</span>
-          </li>
-          <li>
+            </li>
+            <li>
               <img src="images/mousakas.jpg" alt="Παστίτσιο">
               <span class="dish">Κοκκινιστό με μακαρόνια ή ρύζι</span>
               <span class="price">13,50€</span>
-          </li>
-          <li>
+            </li>
+            <li>
               <img src="images/mousakas.jpg" alt="Στιφάδο">
               <span class="dish">Στιφάδο μοσχαράκι ή κουνέλι</span>
               <span class="price">14,80€</span>
-          </li>
-          <li>
+            </li>
+            <li>
               <img src="images/xoriatiki.webp" alt="Μπριάμ">
               <span class="dish">Μπριάμ φούρνου με πατάτες, κολοκύθια, μελιτζάνες και πιπεριές</span>
               <span class="price">11,50€</span>
-          </li>
-          <li>
-              <img src="images/xoriatiki.webp" alt="Μπριάμ">
-              <span class="dish">Μπριάμ φούρνου με πατάτες, κολοκύθια, μελιτζάνες και πιπεριές</span>
-              <span class="price">11,50€</span>
-          </li>
-          <li>
-              <img src="images/xoriatiki.webp" alt="Μπριάμ">
-              <span class="dish">Μπριάμ φούρνου με πατάτες, κολοκύθια, μελιτζάνες και πιπεριές</span>
-              <span class="price">11,50€</span>
-          </li>
-          <li>
-              <img src="images/xoriatiki.webp" alt="Μπριάμ">
-              <span class="dish">Μπριάμ φούρνου με πατάτες, κολοκύθια, μελιτζάνες και πιπεριές</span>
-              <span class="price">11,50€</span>
-          </li>
-          
-        </ul>
-      </div>
-</section>
+            </li>
+          </ul>
+        </div>
+
+      </div> <!-- /menu-main -->
+    </div> <!-- /container.menu-grid-wrapper -->
+  </section>
 
   <!-- FOOTER -->
   <footer class="premium-footer">
     <div class="premium-footer-container">
 
-      <!-- Brand & slogan -->
       <div class="footer-brand">
         <img src="images/logo.png" alt="Barko Tavern Logo">
         <p>Σπιτικό φαγητό • Παραδοσιακές συνταγές • Μήλος</p>
       </div>
 
-      <!-- Quick links -->
       <div class="footer-links">
         <h4>Πλοήγηση</h4>
         <a href="index.html">Αρχική</a>
@@ -416,26 +320,10 @@
 
       <div class="footer-contact">
         <h4>Επικοινωνία</h4>
-
-        <p class="footer-line">
-          <span class="icon">📍</span>
-          <span>Αδάμαντας, Μήλος</span>
-        </p>
-
-        <p class="footer-line">
-          <span class="icon">📞</span>
-          <a href="tel:+302287022660">+30 22870 22660</a>
-        </p>
-
-        <p class="footer-line">
-          <span class="icon">📧</span>
-          <a href="mailto:barkomilos@gmail.com">barkomilos@gmail.com</a>
-        </p>
-
-        <p class="footer-line">
-          <span class="icon">⏰</span>
-          <span>13:00 – 23:00</span>
-        </p>
+        <p class="footer-line"><span class="icon">📍</span><span>Αδάμαντας, Μήλος</span></p>
+        <p class="footer-line"><span class="icon">📞</span><a href="tel:+302287022660">+30 22870 22660</a></p>
+        <p class="footer-line"><span class="icon">📧</span><a href="mailto:barkomilos@gmail.com">barkomilos@gmail.com</a></p>
+        <p class="footer-line"><span class="icon">⏰</span><span>13:00 – 23:00</span></p>
       </div>
 
     </div>
@@ -443,11 +331,9 @@
     <div class="footer-bottom">
       © 2026 <strong>Barko Tavern</strong> • Όλα τα δικαιώματα διατηρούνται
     </div>
-
-    <!-- Shimmer Overlay -->
     <div class="footer-shimmer"></div>
   </footer>
 
-<script src="main.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>

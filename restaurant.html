@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barko Tavern</title>
+  <link rel="stylesheet" href="./style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <style>
+    /* Optional additional styles for content images */
+    .container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 1rem;
+    }
+    .dish-gallery {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+    .dish-gallery img {
+      width: calc(33% - 1rem);
+      min-width: 150px;
+      flex: 1;
+      border-radius: 1rem;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <!-- LOGO -->
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/logo.png" alt="Barko Tavern Logo">
+        </a>
+      </div>
+
+      <!-- BURGER MENU & NAV -->
+      <div class="header-right">
+        <!-- Burger button -->
+        <div class="burger-menu" id="burger-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <!-- Nav links + language -->
+        <nav class="header-nav" id="mobile-nav">
+          <ul>
+            <li><a href="index.html">Αρχική</a></li>
+            <li><a href="restaurant.html">Το εστιατόριο</a></li>
+            <li><a href="menu.html">Μενού</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="index.html#contact">Επικοινωνία</a></li>
+            <li><span class="open-status" id="open-status">🟢 Ανοιχτό</span></li>
+            <li class="nav-controls">
+              <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+              <div class="language-switcher">
+                <div class="lang-current">
+                  <img src="images/gr.jpg" alt="Ελληνικά">
+                  <span class="lang-arrow">▾</span>
+                </div>
+                <div class="lang-options">
+                  <a href="en/restaurant-en.html"><img src="images/en.jpg" alt="English"></a>
+                  <a href="it/restaurant-it.html"><img src="images/it.jpg" alt="Italiano"></a>
+                  <a href="fr/restaurant-fr.html"><img src="images/fr.jpg" alt="Français"></a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Ιστορία & Παράδοση -->
+  <section id="history" class="section history-section">
+    <div class="container">
+      <h2>Ιστορία &amp; Παράδοση</h2>
+      <p>Το Barko Tavern ξεκίνησε ως μια μικρή οικογενειακή ταβέρνα, όπου η παράδοση συναντά το μεράκι. Μέχρι και σήμερα, η οικογένεια Βαμβούνη μαγειρεύει με την ίδια αγάπη, σε έναν χώρο που θυμίζει σπίτι:contentReference[oaicite:0]{index=0}. Κάθε συνταγή βασίζεται σε παραδοσιακές γεύσεις της Μήλου και αγνά υλικά, τιμώντας την ιστορία και τη γαστρονομική κληρονομιά του νησιού.</p>
+      <p>Η ταβέρνα μας είναι γνωστή για τις «παλιές καλές» συνταγές που περνούν από γενιά σε γενιά:contentReference[oaicite:1]{index=1}. Από τα πρώτα χρόνια λειτουργίας της, έχει γίνει σημείο αναφοράς για την τοπική κουζίνα, προσφέροντας μια αυθεντική εμπειρία φαγητού που ταξιδεύει τους επισκέπτες πίσω στον χρόνο, στις γεύσεις και στις μνήμες μιας άλλης εποχής.</p>
+    </div>
+  </section>
+
+  <!-- Τοποθεσία & Ατμόσφαιρα -->
+  <section id="location" class="section location-section">
+    <div class="container">
+      <h2>Τοποθεσία &amp; Ατμόσφαιρα</h2>
+      <p>Θα μας βρείτε λίγα μόλις μέτρα από το λιμάνι, στον κεντρικό δρόμο Αδάμαντα – Τριοβασάλου:contentReference[oaicite:2]{index=2}. Παρότι βρισκόμαστε κοντά στην καρδιά του Αδάμαντα, το σημείο μας είναι ήσυχο και ιδανικό για όσους θέλουν να ξεφύγουν από την πολυκοσμία της προκυμαίας. Το Barko Tavern είναι πραγματικά ένας μικρός κρυμμένος θησαυρός, μακριά από τις τουριστικές παγίδες, που περιμένει να τον ανακαλύψετε.</p>
+      <p>Η ατμόσφαιρα της ταβέρνας μας ξεχωρίζει: μια καταπράσινη αυλή με παλιά λεμονιά και κληματαριές προσφέρει φυσική δροσιά και σκιά:contentReference[oaicite:3]{index=3}. Τα τραπέζια είναι διασκορπισμένα κάτω από την πέργκολα, δημιουργώντας την αίσθηση ότι βρίσκεστε σε μια αυθεντική ελληνική αυλή. Το βράδυ, ο χώρος φωτίζεται ζεστά, ενισχύοντας το φιλόξενο κλίμα και προσκαλώντας σας να χαλαρώσετε και να απολαύσετε το γεύμα σας σε ένα περιβάλλον γεμάτο παράδοση και θαλπωρή.</p>
+    </div>
+  </section>
+
+  <!-- Κουζίνα & Σπεσιαλιτέ -->
+  <section id="cuisine" class="section cuisine-section">
+    <div class="container">
+      <h2>Κουζίνα &amp; Σπεσιαλιτέ</h2>
+      <p>Στην κουζίνα του Barko Tavern κυριαρχεί η ελληνική παραδοσιακή μαγειρική, με έμφαση στις τοπικές συνταγές της Μήλου. Προσφέρουμε σπιτικό φαγητό, νόστιμους ντόπιους μεζέδες και πάντα φρέσκα θαλασσινά, σε πιάτα που ετοιμάζονται καθημερινά με μεράκι:contentReference[oaicite:4]{index=4}. Οι μερίδες μας είναι γενναιόδωρες και οι τιμές μας φιλικές, ώστε να απολαύσετε ποιοτικό φαγητό χωρίς να επιβαρύνεστε:contentReference[oaicite:5]{index=5}. Όλα τα υλικά είναι επιλεγμένα με προσοχή – πολλά λαχανικά μάλιστα προέρχονται από τον κήπο μας – και τίποτα δεν περισσεύει για την επόμενη μέρα, εξασφαλίζοντας φρεσκάδα σε κάθε πιάτο:contentReference[oaicite:6]{index=6}.</p>
+      <p>Το μενού μας περιλαμβάνει μια μεγάλη ποικιλία από παραδοσιακές γεύσεις. Δοκιμάστε τις σπεσιαλιτέ μας, όπως τους περίφημους μηλέικους ρεβιθοκεφτέδες, τη φημισμένη σκορδομακαρονάδα με λιαστή ντομάτα και σκόρδο, ζουμερά αρνίσια παϊδάκια στα κάρβουνα ή φρέσκο ψάρι ημέρας. Φυσικά, δεν λείπουν τα κλασικά ελληνικά αγαπημένα: πλούσιος μουσακάς, τραγανά πιταράκια Μήλου, χωριάτικη σαλάτα με φέτα και ελαιόλαδο, καθώς και πολλά άλλα πιάτα που κρατούν την αυθεντική γεύση της ελληνικής κουζίνας. Ολοκληρώστε το γεύμα σας με ένα χειροποίητο γλυκό, όπως την δροσιστική πορτοκαλόπιτα ή ένα παραδοσιακό γλυκό του κουταλιού, για ένα πραγματικά ολοκληρωμένο γαστρονομικό ταξίδι.</p>
+      <div class="dish-gallery">
+        <img src="images/mousakas.jpg" alt="Μουσακάς (παραδοσιακό ελληνικό πιάτο)">
+        <img src="images/souvlaki.jpg" alt="Σουβλάκι στα κάρβουνα">
+        <img src="images/xoriatiki.webp" alt="Χωριάτικη σαλάτα">
+      </div>
+    </div>
+  </section>
+
+  <!-- Φιλοξενία & Εξυπηρέτηση -->
+  <section id="hospitality" class="section hospitality-section">
+    <div class="container">
+      <h2>Φιλοξενία &amp; Εξυπηρέτηση</h2>
+      <p>Η αυθεντική ελληνική φιλοξενία είναι τρόπος ζωής στο Barko Tavern. Ο ιδιοκτήτης και η οικογένειά του βρίσκονται πάντοτε στον χώρο, φροντίζοντας προσωπικά για κάθε επισκέπτη. Με το που θα καθίσετε, θα σας καλωσορίσουν με χαμόγελο και θα σας κάνουν να νιώσετε σαν στο σπίτι σας. Το προσωπικό μας είναι ζεστό και φιλικό, πρόθυμο να εξηγήσει το μενού και να προτείνει πιάτα, κάνοντας την εμπειρία του φαγητού ακόμα πιο ευχάριστη:contentReference[oaicite:7]{index=7}.</p>
+      <p>Επειδή είμαστε οικογενειακή επιχείρηση, δίνουμε σημασία στη λεπτομέρεια και στην προσωπική επαφή. Ακόμα και τις πιο πολυάσχολες νύχτες του καλοκαιριού, καταφέρνουμε να διατηρούμε την εξυπηρέτηση γρήγορη και αποτελεσματική, χωρίς όμως να χάνουμε τη χαλαρή, νησιώτικη διάθεση. Πολλοί από τους πελάτες μας εκπλήσσονται ευχάριστα όταν στο τέλος του γεύματος τούς προσφέρουμε ένα μικρό κέρασμα – ίσως ένα παραδοσιακό γλυκάκι ή ένα λικέρ – ως ένδειξη ευγνωμοσύνης για την επίσκεψή τους:contentReference[oaicite:8]{index=8}. Αυτές οι μικρές χειρονομίες, σε συνδυασμό με το φιλικό μας ύφος, κάνουν τους επισκέπτες να μας θυμούνται και να ανυπομονούν να ξανάρθουν.</p>
+    </div>
+  </section>
+
+  <!-- Κριτικές -->
+  <section id="reviews" class="section reviews-section">
+    <div class="container">
+      <h2>Κριτικές</h2>
+      <p><em>“Πολύ νόστιμα όλα όσα δοκιμάσαμε! Μείναμε πολύ ευχαριστημένοι και από την ποιότητα και από τις τιμές. Όμορφος χώρος με ωραία βλάστηση κι ένα αμπέλι!”</em><br>– Tripadvisor:contentReference[oaicite:9]{index=9}</p>
+      <p><em>“Πολύ καλό σε όλα. Καλές τιμές. Το σέρβις πολύ φιλικό. Τα υλικά πολύ καλά. Πολύ νόστιμο φαγητό. Το περιβάλλον πολύ δροσερό.”</em><br>– Tripadvisor:contentReference[oaicite:10]{index=10}</p>
+      <p><em>“Φάγαμε τους καλύτερους ρεβιθοκεφτέδες και φρέσκο ψαράκι... Στο τέλος μας κέρασαν ένα γλυκό ψυγείου. Υπέροχα φτηνό, τίμιο μαγαζί που προσφέρει πολλά παραπάνω από όσα χρεώνει!”</em><br>– Tripadvisor:contentReference[oaicite:11]{index=11}</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="premium-footer">
+    <div class="premium-footer-container">
+      <!-- Brand & slogan -->
+      <div class="footer-brand">
+        <img src="images/logo.png" alt="Barko Tavern Logo">
+        <p>Σπιτικό φαγητό • Παραδοσιακές συνταγές • Μήλος</p>
+      </div>
+      <!-- Quick links -->
+      <div class="footer-links">
+        <h4>Πλοήγηση</h4>
+        <a href="index.html">Αρχική</a>
+        <a href="menu.html">Μενού</a>
+        <a href="index.html#about">Σχετικά</a>
+        <a href="index.html#contact">Επικοινωνία</a>
+      </div>
+      <!-- Contact info -->
+      <div class="footer-contact">
+        <h4>Επικοινωνία</h4>
+        <p class="footer-line">
+          <span class="icon">📍</span>
+          <span>Αδάμαντας, Μήλος</span>
+        </p>
+        <p class="footer-line">
+          <span class="icon">📞</span>
+          <a href="tel:+302287022660">+30 22870 22660</a>
+        </p>
+        <p class="footer-line">
+          <span class="icon">📧</span>
+          <a href="mailto:barkomilos@gmail.com">barkomilos@gmail.com</a>
+        </p>
+        <p class="footer-line">
+          <span class="icon">⏰</span>
+          <span>13:00 – 23:00</span>
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 <strong>Barko Tavern</strong> • Όλα τα δικαιώματα διατηρούνται
+    </div>
+    <!-- Shimmer Overlay -->
+    <div class="footer-shimmer"></div>
+  </footer>
+
+  <script src="./main.js"></script>
+</body>
+</html>

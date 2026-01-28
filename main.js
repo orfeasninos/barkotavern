@@ -1,311 +1,275 @@
 /* =========================
    Barko Tavern – main.js
-   Clean & Grace UX
+   Mobile-safe & Smooth UX
+   (single init; menu mobile chips + active centering)
 ========================= */
-// Αυτόματο dark mode αν το σύστημα είναι dark και δεν υπάρχει αποθηκευμένη επιλογή
-document.addEventListener("DOMContentLoaded", () => {
-    if (!localStorage.getItem("theme") && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        document.body.classList.add("dark");
-        const toggleBtn = document.getElementById("theme-toggle");
-        if (toggleBtn) toggleBtn.textContent = "☀️";
-    }
-});
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
+  /* =========================
+     AUTO DARK MODE (SYSTEM)
+  ========================= */
+  const themeToggle = document.getElementById("theme-toggle");
+
+  if (
+    !localStorage.getItem("theme") &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+  ) {
+    document.body.classList.add("dark");
+    if (themeToggle) themeToggle.textContent = "☀️";
+  }
 
   /* =========================
-     SMOOTH SCROLL
+     DARK MODE TOGGLE
   ========================= */
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener("click", e => {
-      const target = document.querySelector(link.getAttribute("href"));
+  if (themeToggle) {
+    if (localStorage.getItem("theme") === "dark") {
+      document.body.classList.add("dark");
+      themeToggle.textContent = "☀️";
+    }
+
+    themeToggle.addEventListener("click", () => {
+      // keep scroll position stable on mobile
+      const y = window.scrollY;
+
+      document.body.classList.toggle("dark");
+      const isDark = document.body.classList.contains("dark");
+      themeToggle.textContent = isDark ? "☀️" : "🌙";
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+
+      requestAnimationFrame(() => window.scrollTo(0, y));
+    });
+  }
+
+  /* =========================
+     SMOOTH SCROLL (ANCHORS)
+  ========================= */
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const href = link.getAttribute("href");
+      if (!href || href === "#") return;
+
+      const target = document.querySelector(href);
       if (!target) return;
 
       e.preventDefault();
-      const headerOffset = document.querySelector('header').offsetHeight;
-      const elementPosition = target.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-});
+      const header = document.querySelector("header");
+      const offset = header ? header.offsetHeight : 0;
+      const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
 
+      window.scrollTo({ top: y, behavior: "smooth" });
     });
   });
 
   /* =========================
-     SECTION REVEAL ON SCROLL
+     SECTION REVEAL
   ========================= */
   const sections = document.querySelectorAll(".section");
+  if (sections.length) {
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("section-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
 
-  const revealObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("section-visible");
-        revealObserver.unobserve(entry.target);
-      }
+    sections.forEach((sec) => {
+      sec.classList.add("section-hidden");
+      revealObserver.observe(sec);
     });
-  }, {
-    threshold: 0.15
-  });
-
-  sections.forEach(section => {
-    section.classList.add("section-hidden");
-    revealObserver.observe(section);
-  });
+  }
 
   /* =========================
-     ACTIVE NAV LINK (FIXED)
+     ACTIVE NAV LINK (one-page sections)
   ========================= */
   const navLinks = document.querySelectorAll(".header-nav a");
   const sectionsWithId = document.querySelectorAll("section[id]");
 
-  window.addEventListener("scroll", () => {
-    let current = "";
+  if (navLinks.length && sectionsWithId.length) {
+    window.addEventListener(
+      "scroll",
+      () => {
+        let current = "";
+        const y = window.scrollY;
 
-    sectionsWithId.forEach(section => {
-      const sectionTop = section.offsetTop - 150;
-      if (window.scrollY >= sectionTop) {
-        current = section.getAttribute("id");
-      }
-    });
+        sectionsWithId.forEach((section) => {
+          if (y >= section.offsetTop - 150) current = section.id;
+        });
 
-    navLinks.forEach(link => {
-      link.classList.remove("active");
-      if (link.getAttribute("href") === `#${current}`) {
-        link.classList.add("active");
-      }
-    });
-  });
+        navLinks.forEach((link) => {
+          link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
+        });
+      },
+      { passive: true }
+    );
+  }
 
   /* =========================
-     HEADER SHRINK ON SCROLL
+     HEADER SHRINK
   ========================= */
   const header = document.querySelector("header");
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 80) {
-      header.classList.add("header-small");
-    } else {
-      header.classList.remove("header-small");
-    }
-  });
+  if (header) {
+    window.addEventListener(
+      "scroll",
+      () => {
+        header.classList.toggle("header-small", window.scrollY > 80);
+      },
+      { passive: true }
+    );
+  }
 
   /* =========================
-     SCROLL TO TOP BUTTON
+     SCROLL TO TOP
   ========================= */
   const topBtn = document.createElement("button");
-  topBtn.innerHTML = "↑";
   topBtn.className = "scroll-top";
+  topBtn.type = "button";
+  topBtn.textContent = "↑";
   document.body.appendChild(topBtn);
 
   topBtn.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
-  window.addEventListener("scroll", () => {
-    topBtn.style.display = window.scrollY > 400 ? "flex" : "none";
-  });
+  window.addEventListener(
+    "scroll",
+    () => {
+      topBtn.style.display = window.scrollY > 400 ? "flex" : "none";
+    },
+    { passive: true }
+  );
 
   /* =========================
-     BURGER MENU TOGGLE
+     BURGER MENU
   ========================= */
   const burger = document.getElementById("burger-menu");
   const mobileNav = document.getElementById("mobile-nav");
 
   if (burger && mobileNav) {
-    burger.addEventListener("click", e => {
+    burger.addEventListener("click", (e) => {
       e.stopPropagation();
       mobileNav.classList.toggle("open");
     });
 
-    document.addEventListener("click", () => {
-      mobileNav.classList.remove("open");
-    });
+    mobileNav.addEventListener("click", (e) => e.stopPropagation());
+
+    document.addEventListener(
+      "click",
+      (e) => {
+        if (!mobileNav.contains(e.target) && !burger.contains(e.target)) {
+          mobileNav.classList.remove("open");
+        }
+      },
+      { passive: true }
+    );
   }
 
   /* =========================
      LANGUAGE DROPDOWN
   ========================= */
-  document.querySelectorAll(".language-switcher").forEach(langSwitcher => {
-    const langCurrent = langSwitcher.querySelector(".lang-current");
-    const langOptions = langSwitcher.querySelector(".lang-options");
+  document.querySelectorAll(".language-switcher").forEach((ls) => {
+    const current = ls.querySelector(".lang-current");
+    if (!current) return;
 
-    if (!langCurrent || !langOptions) return;
-
-    langCurrent.addEventListener("click", e => {
+    current.addEventListener("click", (e) => {
       e.stopPropagation();
-      langSwitcher.classList.toggle("open");
+      ls.classList.toggle("open");
     });
   });
 
-  // Κλείσιμο dropdown αν κάνεις click εκτός
   document.addEventListener("click", () => {
-    document.querySelectorAll(".language-switcher").forEach(ls => {
-      ls.classList.remove("open");
-    });
+    document.querySelectorAll(".language-switcher").forEach((ls) => ls.classList.remove("open"));
   });
 
-});
+  /* =========================================================
+     MENU PAGE: MOBILE SIDEBAR TRANSFORM + ACTIVE (NO JUMP)
+  ========================================================= */
+  const wrapper = document.querySelector(".menu-grid-wrapper");
+  const sidebar = document.querySelector(".menu-sidebar");
+  const main = document.querySelector(".menu-main");
 
-  /* =========================
-     LANGUAGE DETECTION
-  ========================= */
-document.addEventListener("DOMContentLoaded", () => {
-  const userLang = navigator.language || navigator.userLanguage;
-  const langCode = userLang.slice(0, 2).toLowerCase();
-
-  const pages = {
-    'el': 'index.html',
-    'en': 'en/index-en.html',
-    'it': 'it/index-it.html',
-    'fr': 'fr/index-fr.html'
-  };
-
-  let currentPath = window.location.pathname;
-
-  if (pages[langCode] && !currentPath.includes(pages[langCode])) {
-    console.log(langCode)
-    //window.location.href = pages[langCode];
-  }
-});
-
-/* =========================
-   DARK MODE TOGGLE
-========================= */
-const toggleBtn = document.getElementById("theme-toggle");
-
-if (toggleBtn) {
-  // φόρτωσε προηγούμενη επιλογή
-  if (localStorage.getItem("theme") === "dark") {
-    document.body.classList.add("dark");
-    toggleBtn.textContent = "☀️";
-  }
-
-  toggleBtn.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-
-    const isDark = document.body.classList.contains("dark");
-    toggleBtn.textContent = isDark ? "☀️" : "🌙";
-    localStorage.setItem("theme", isDark ? "dark" : "light");
-  });
-}
-
-/* =========================
-   OPEN STATUS – MULTILANG
-========================= */
-const statusEl = document.getElementById("open-status");
-
-if (statusEl) {
-  const now = new Date();
-  const hour = now.getHours();
-  const isOpen = hour >= 12 && hour < 23;
-
-  // γλώσσα από <html lang="">
-  const lang = document.documentElement.lang || "el";
-
-  const translations = {
-    el: {
-      open: "🟢 Ανοιχτό",
-      closed: "🔴 Κλειστό"
-    },
-    en: {
-      open: "🟢 Open",
-      closed: "🔴 Closed"
-    },
-    it: {
-      open: "🟢 Aperto",
-      closed: "🔴 Chiuso"
-    },
-    fr: {
-      open: "🟢 Ouvert",
-      closed: "🔴 Fermé"
-    }
-  };
-
-  const text =
-    translations[lang]?.[isOpen ? "open" : "closed"] ||
-    translations.el[isOpen ? "open" : "closed"];
-
-  statusEl.textContent = text;
-  statusEl.style.color = isOpen ? "#308309" : "#e36f6f";
-}
-
-
-
-
-
-/* =========================
-   MENU SIDEBAR ACTIVE CATEGORY
-========================= */
-document.addEventListener("DOMContentLoaded", () => {
   const menuSections = document.querySelectorAll(".menu-category");
   const menuLinks = document.querySelectorAll(".menu-links-list a");
+  const linksContainer = document.querySelector(".menu-links-list");
 
-  if (!menuSections.length || !menuLinks.length) return;
+  // On mobile: move sidebar above menu and mark it for mobile styling
+  const makeMobileSidebar = () => {
+    if (!wrapper || !sidebar || !main) return;
 
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute("id");
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
-          menuLinks.forEach(link => {
+    if (isMobile) {
+      sidebar.classList.add("menu-sidebar--mobile");
+      if (sidebar.parentElement === wrapper && wrapper.firstElementChild !== sidebar) {
+        wrapper.insertBefore(sidebar, main);
+      }
+    } else {
+      sidebar.classList.remove("menu-sidebar--mobile");
+      if (sidebar.parentElement === wrapper && wrapper.firstElementChild !== sidebar) {
+        wrapper.insertBefore(sidebar, main);
+      }
+    }
+  };
+
+  makeMobileSidebar();
+  window.addEventListener("resize", makeMobileSidebar, { passive: true });
+
+  // Highlight active category; on mobile, auto-center active chip
+  if (menuSections.length && menuLinks.length && linksContainer) {
+    const menuObserver = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+
+          const id = entry.target.id;
+          if (!id) continue;
+
+          menuLinks.forEach((link) => {
             const isActive = link.getAttribute("href") === `#${id}`;
             link.classList.toggle("active", isActive);
-          if (isActive && window.innerWidth <= 768) {
-            link.scrollIntoView({
-              behavior: "smooth",
-              inline: "center",
-              block: "nearest"
-    });
+
+            if (isActive && window.matchMedia("(max-width: 768px)").matches) {
+              const left = link.offsetLeft - linksContainer.clientWidth / 2 + link.clientWidth / 2;
+              linksContainer.scrollTo({ left, behavior: "smooth" });
+            }
+          });
+        }
+      },
+      {
+        rootMargin: "-40% 0px -50% 0px",
+        threshold: 0.01,
+      }
+    );
+
+    menuSections.forEach((sec) => menuObserver.observe(sec));
   }
-});
 
-        }
-      });
-    },
-    {
-      rootMargin: "-40% 0px -50% 0px",
-      threshold: 0
-    }
-  );
-
-  menuSections.forEach(section => observer.observe(section));
-});
-
-/* =========================
-   MENU ITEMS SERVE ANIMATION
-========================= */
-document.addEventListener("DOMContentLoaded", () => {
+  /* =========================
+     MENU ITEMS ANIMATION
+  ========================= */
   const items = document.querySelectorAll(".menu-items li");
+  if (items.length) {
+    items.forEach((item, i) => {
+      if (i % 2 !== 0) item.classList.add("from-right");
+    });
 
-  // εναλλάξ από αριστερά / δεξιά
-  items.forEach((item, index) => {
-    if (index % 2 !== 0) {
-      item.classList.add("from-right");
-    }
-  });
+    const itemsObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+            itemsObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
 
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show");
-          observer.unobserve(entry.target); // μία φορά μόνο
-        }
-      });
-    },
-    {
-      threshold: 0.5
-    }
-  );
-
-  items.forEach(item => observer.observe(item));
+    items.forEach((item) => itemsObserver.observe(item));
+  }
 });
