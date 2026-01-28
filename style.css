@@ -1282,3 +1282,166 @@ img, video, iframe, canvas, svg{
 .section, .menu-grid-wrapper, .menu-category, .menu-sidebar, .menu-item{
   max-width: 100%;
 }
+/* =======================
+   RESPONSIVE
+======================= */
+@media (max-width: 768px) {
+
+  .burger-menu {
+    display: flex;
+  }
+
+  .logo img {
+    height: 60px;
+  }
+
+  .header-right {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  /* Hide nav by default */
+  .header-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(47,58,37,0.95);
+    border-radius: 0 0 10px 10px;
+    padding: 1rem 0;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .header-nav.open {
+    display: flex;
+  }
+
+  .header-nav ul {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0 1rem;
+  }
+
+  .header-nav ul li a {
+    font-size: 1rem;
+    padding: 0.5rem 0;
+  }
+  
+  .lang-options {
+    flex-direction: row;  
+    gap: 8px;       
+    top: 100%;            
+    right: -30px;     
+    left: auto;           
+    min-width: auto;
+    padding: 0.5rem;
+  }
+  .header-right {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  /* Πρώτα τα controls (μέσα στο nav) */
+  .header-nav {
+    order: 1;
+  }
+
+  /* Μετά το burger */
+  #burger-menu {
+    order: 2;
+  }
+
+  .open-status {
+    position:static;
+    top:auto;
+    right: auto;
+  }
+
+  .menu-items li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+
+  .menu-items .price {
+    text-align: left;
+  }
+
+  .menu-category h3 {
+    font-size: 1.5rem;
+  }
+  
+}
+
+/* =======================
+   RESPONSIVE IMPROVEMENTS
+======================= */
+
+/* Mobile & small screens */
+@media (max-width: 768px) {
+  /* Menu grid wrapper – sidebar γίνεται πάνω από το κύριο περιεχόμενο */
+  .menu-grid-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    top: auto;
+    left: auto;
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .menu-main {
+    width: 100%;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 768px) {
+
+  .menu-grid-wrapper {
+    padding: 0 0.5rem;
+  }
+
+  .menu-sidebar h2,
+  .menu-category h3 {
+    font-size: 1.3rem;
+  }
+
+  .menu-items li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .menu-items .price {
+    text-align: left;
+  }
+
+  .menu-links-list {
+    gap: 0.5rem;
+  }
+
+  .menu-links-list a {
+    font-size: 0.95rem;
+  }
+
+  .menu-category {
+    padding: 1rem;
+  }
+
+  /* About section responsive */
+  .about-section {
+    padding: 3rem 1rem;
+  }
+
+  .about-section p {
+    font-size: 1rem;
+  }
+
+  .section {
+    padding: 3rem 1rem;
+    margin: 2rem auto;
+  }
+}
