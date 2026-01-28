@@ -1309,3 +1309,47 @@ header{
     align-self: start;
   }
 }
+
+/* =========================
+   MOBILE STICKY FIX (MENU)
+   paste at END of style.css
+========================= */
+@media (max-width: 768px){
+
+  /* το sticky χαλάει αν ancestor έχει overflow hidden/clip ή transform */
+  .menu-section.section{
+    overflow: visible !important;
+    transform: none !important;
+  }
+
+  .menu-section.section::before,
+  .menu-section.section::after{
+    display: none !important;
+    content: none !important;
+  }
+
+  .menu-section.section .container,
+  .menu-grid-wrapper,
+  .menu-main{
+    overflow: visible !important;
+    transform: none !important;
+    filter: none !important;
+    contain: none !important;
+  }
+
+  /* ΚΑΝΕ το aside sticky */
+  .menu-sidebar{
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 88px !important;   /* αν αλλάξει το header ύψος, παίξε εδώ */
+    z-index: 60000 !important;
+    align-self: start !important;
+  }
+
+  /* προαιρετικά: το backdrop-filter στο mobile μπορεί να χαλάσει sticky σε κάποιες συσκευές */
+  .menu-sidebar.menu-sidebar--mobile{
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
