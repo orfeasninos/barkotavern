@@ -1459,18 +1459,3 @@ img, video, iframe, canvas, svg{
   opacity: 1 !important;
   transform: none !important;
 }
-/* Desktop only animations */
-@media (hover:hover) and (min-width: 769px){
-  .menu-items li{
-    opacity: 0;
-    transform: translateX(-40px);
-    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .menu-items li.from-right{ transform: translateX(40px); }
-  .menu-items li.show{ opacity: 1; transform: translateX(0); }
-}
-
-/* Mobile: always visible */
-@media (max-width: 768px){
-  .menu-items li{ opacity: 1 !important; transform: none !important; }
-}
