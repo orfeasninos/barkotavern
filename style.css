@@ -1273,3 +1273,78 @@ body.dark .menu-items .price{
     z-index: 60000;
   }
 }
+
+/* =========================================================
+   MOBILE PERFORMANCE OVERRIDES (Chrome/Brave Android)
+   Στόχος: λιγότερα paint/repaint στο scroll
+   ========================================================= */
+@media (max-width: 768px){
+
+  /* 1) Μικρότερα shadows (πολύ ακριβά σε scroll) */
+  :root{
+    --shadow-xl: 0 18px 40px rgba(0,0,0,0.28);
+    --shadow-lg: 0 14px 28px rgba(0,0,0,0.20);
+    --shadow-md: 0 10px 20px rgba(0,0,0,0.16);
+    --shadow-sm: 0 6px 14px rgba(0,0,0,0.12);
+  }
+
+  /* 2) Κόψε animations/transitions που τρέχουν συνεχώς */
+  *, *::before, *::after{
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* 3) Πιο "light" background στο mobile (το fixed ήδη απενεργοποιείται πιο πάνω) */
+  body{
+    background:
+      radial-gradient(900px 700px at 20% 0%, rgba(212,175,55,0.10), transparent 60%),
+      radial-gradient(900px 700px at 80% 10%, rgba(15,107,111,0.08), transparent 65%),
+      url("images/background.png") center/cover no-repeat;
+  }
+
+  /* 4) Μην σχεδιάζεις pseudo “grain / shimmer / glow” layers */
+  header::before,
+  .section::after,
+  .section::before,
+  .premium-footer::before,
+  .footer-shimmer,
+  .menu-sidebar::before,
+  .menu-items li::before,
+  .menu-item::before{
+    content: none !important;
+    display: none !important;
+  }
+
+  /* 5) Απλούστερο header (λιγότερο blur/shine) */
+  header{
+    box-shadow: 0 10px 28px rgba(0,0,0,0.25) !important;
+  }
+
+  /* 6) Mobile menu chips: βγάλε mandatory snap (μειώνει micro-jank) */
+  .menu-sidebar.menu-sidebar--mobile .menu-links-list{
+    scroll-snap-type: none;
+  }
+
+  /* 7) Cards/sections: πιο light shadows */
+  .section,
+  .menu-category,
+  .menu-sidebar,
+  .premium-footer,
+  .menu-items li,
+  .menu-item{
+    box-shadow: var(--shadow-lg) !important;
+  }
+
+  /* 8) Εικόνες στα menu items: λιγότερα effects */
+  .menu-items li > img,
+  .menu-item img,
+  .dish-gallery img{
+    box-shadow: var(--shadow-md) !important;
+    filter: none !important;
+  }
+
+  /* 9) Footer: απλούστερο fade-in (ή καθόλου) */
+  .premium-footer-container{
+    opacity: 1 !important;
+  }
+}
