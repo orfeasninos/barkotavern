@@ -243,58 +243,70 @@ if (sections.length) {
   window.addEventListener("resize", makeMobileSidebar, { passive: true });
 
 // Highlight active category; on mobile, auto-center active chip (NO JUMP / NO LOOP)
-if (!isMobile && menuSections.length && menuLinks.length && linksContainer) {
+// Highlight active category (desktop + mobile). On mobile: center active chip.
+if (menuSections.length && menuLinks.length) {
   let lastActiveId = null;
   let rafPending = false;
 
-  const centerActiveChip = (linkEl) => {
-    const left =
-      linkEl.offsetLeft -
-      linksContainer.clientWidth / 2 +
-      linkEl.clientWidth / 2;
-    linksContainer.scrollTo({
-      left,
-      behavior: isMobile ? "auto" : "smooth",
+  const setActive = (id) => {
+    menuLinks.forEach((link) => {
+      const isActive = link.getAttribute("href") === `#${id}`;
+      link.classList.toggle("active", isActive);
+
+      // center only on mobile (chips)
+      if (isActive) {
+        const mobileNow =
+          window.matchMedia("(max-width: 768px)").matches ||
+          sidebar?.classList.contains("menu-sidebar--mobile");
+
+        if (mobileNow && linksContainer && !rafPending) {
+          rafPending = true;
+          requestAnimationFrame(() => {
+            rafPending = false;
+            const left =
+              link.offsetLeft -
+              linksContainer.clientWidth / 2 +
+              link.clientWidth / 2;
+
+            linksContainer.scrollTo({ left, behavior: "smooth" });
+          });
+        }
+      }
     });
   };
 
   const menuObserver = new IntersectionObserver(
     (entries) => {
-      // βρες το πρώτο intersecting (συνήθως 1)
-      const hit = entries.find((e) => e.isIntersecting);
-      if (!hit) return;
+      // πάρε το πιο “κεντρικό” intersecting entry
+      const hits = entries.filter((e) => e.isIntersecting);
+      if (!hits.length) return;
 
-      const id = hit.target.id;
-      if (!id) return;
+      // διαλέγουμε αυτό με το μεγαλύτερο intersection ratio
+      hits.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+      const id = hits[0].target.id;
+      if (!id || id === lastActiveId) return;
 
-      // ✅ Αν δεν άλλαξε κατηγορία, μην ξανα-κεντράρεις (σταματάει το loop)
-      if (id === lastActiveId) return;
       lastActiveId = id;
-
-      menuLinks.forEach((link) => {
-        const isActive = link.getAttribute("href") === `#${id}`;
-        link.classList.toggle("active", isActive);
-
-        if (isActive) {
-          // ✅ Throttle σε 1 φορά ανά frame (πιο smooth, λιγότερο “σπρώξιμο”)
-          if (!rafPending) {
-            rafPending = true;
-            requestAnimationFrame(() => {
-              rafPending = false;
-              centerActiveChip(link);
-            });
-          }
-        }
-      });
+      setActive(id);
     },
     {
-      rootMargin: "-40% 0px -50% 0px",
-      threshold: 0.01,
+      // πιο “φυσικό” για sticky sidebar + header
+      rootMargin: "-35% 0px -55% 0px",
+      threshold: [0.01, 0.08, 0.15],
     }
   );
 
   menuSections.forEach((sec) => menuObserver.observe(sec));
+
+  // initial state (σε refresh στη μέση της σελίδας)
+  const initial = [...menuSections]
+    .map((s) => ({ s, top: s.getBoundingClientRect().top }))
+    .filter((x) => x.top < window.innerHeight * 0.55)
+    .sort((a, b) => b.top - a.top)[0];
+
+  if (initial?.s?.id) setActive(initial.s.id);
 }
+
 
 
   /* =========================

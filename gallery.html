@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barko Tavern</title>
+  <link rel="stylesheet" href="./style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/logo.png">
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <!-- LOGO -->
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/logo.png" alt="Barko Tavern Logo">
+        </a>
+      </div>
+
+      <!-- BURGER MENU & NAV -->
+      <div class="header-right">
+        <!-- Burger button -->
+        <div class="burger-menu" id="burger-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <!-- Nav links + language -->
+        <nav class="header-nav" id="mobile-nav">
+          <ul>
+            <li><a href="index.html">Αρχική</a></li>
+            <li><a href="restaurant.html">Το εστιατόριο</a></li>
+            <li><a href="menu.html">Μενού</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="index.html#contact">Επικοινωνία</a></li>
+            <li class="nav-controls">
+              <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+              <div class="language-switcher">
+                <div class="lang-current">
+                  <img src="images/gr.jpg" alt="Ελληνικά">
+                  <span class="lang-arrow">▾</span>
+                </div>
+                <div class="lang-options">
+                  <a href="en/restaurant-en.html"><img src="images/en.jpg" alt="English"></a>
+                  <a href="it/restaurant-it.html"><img src="images/it.jpg" alt="Italiano"></a>
+                  <a href="fr/restaurant-fr.html"><img src="images/fr.jpg" alt="Français"></a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+
+
+  <!-- FOOTER -->
+  <footer class="premium-footer">
+    <div class="premium-footer-container">
+      <!-- Brand & slogan -->
+      <div class="footer-brand">
+        <img src="images/logo.png" alt="Barko Tavern Logo">
+        <p>Σπιτικό φαγητό • Παραδοσιακές συνταγές • Μήλος</p>
+      </div>
+      <!-- Quick links -->
+      <div class="footer-links">
+        <h4>Πλοήγηση</h4>
+        <a href="index.html">Αρχική</a>
+        <a href="menu.html">Μενού</a>
+        <a href="index.html#about">Σχετικά</a>
+        <a href="index.html#contact">Επικοινωνία</a>
+      </div>
+      <!-- Contact info -->
+      <div class="footer-contact">
+        <h4>Επικοινωνία</h4>
+        <p class="footer-line">
+          <span class="icon">📍</span>
+          <span>Αδάμαντας, Μήλος</span>
+        </p>
+        <p class="footer-line">
+          <span class="icon">📞</span>
+          <a href="tel:+302287022660">+30 22870 22660</a>
+        </p>
+        <p class="footer-line">
+          <span class="icon">📧</span>
+          <a href="mailto:barkomilos@gmail.com">barkomilos@gmail.com</a>
+        </p>
+        <p class="footer-line">
+          <span class="icon">⏰</span>
+          <span>13:00 – 23:00</span>
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 <strong>Barko Tavern</strong> • Όλα τα δικαιώματα διατηρούνται
+    </div>
+    <!-- Shimmer Overlay -->
+    <div class="footer-shimmer"></div>
+  </footer>
+
+  <script src="./main.js"></script>
+</body>
+</html>
