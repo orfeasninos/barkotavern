@@ -1241,3 +1241,44 @@ header{ position: sticky; top: 0; z-index: 99999; }
 @media (max-width: 480px){
   .scroll-top{ width: 40px; height: 40px; font-size: 18px; }
 }
+/* =========================================================
+   BACKGROUND MOBILE FIX + NO SIDE-SCROLL
+   Paste at END of style.css (after your mobile patch)
+========================================================= */
+
+/* 1) Hard stop στο οριζόντιο “πήγαινε-δεξιά” */
+html, body{
+  width: 100%;
+  overflow-x: clip; /* καλύτερο από hidden (αν δεν το υποστηρίζει, θα πέσει στο hidden παρακάτω) */
+}
+@supports not (overflow: clip){
+  html, body{ overflow-x: hidden; }
+}
+
+/* 2) Κάνε το background να “κάθεται” σωστά στο mobile */
+@media (max-width: 768px){
+  body{
+    /* Σημαντικό: βγάζουμε το fixed (το είχαμε ήδη) + βάζουμε πιο “safe” background layers */
+    background:
+      radial-gradient(900px 600px at 20% 0%, rgba(212,175,55,0.12), transparent 58%),
+      radial-gradient(800px 600px at 80% 0%, rgba(15,107,111,0.10), transparent 60%),
+      radial-gradient(900px 700px at 50% 100%, rgba(51,105,45,0.10), transparent 62%),
+      url("images/background.png");
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+    background-attachment: scroll;
+
+    /* μικρή “ασφάλεια” για να μην κάνει micro-shift σε iOS */
+    background-color: #0b120d;
+  }
+}
+
+/* 3) Extra guard: τίποτα να μην ξεπερνάει το viewport */
+img, video, iframe, canvas, svg{
+  max-width: 100%;
+  height: auto;
+}
+.section, .menu-grid-wrapper, .menu-category, .menu-sidebar, .menu-item{
+  max-width: 100%;
+}
