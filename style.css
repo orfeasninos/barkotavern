@@ -1270,3 +1270,42 @@ body.dark .menu-items .price{
     z-index: 60000;
   }
 }
+/* =========================
+   FIX: Sticky on mobile (Menu sidebar + header)
+========================= */
+
+header{
+  position: sticky;
+  top: 0;
+  z-index: 99999;
+}
+
+/* Sticky FAILS if any ancestor has overflow != visible (or transform/filter) */
+@media (max-width: 768px){
+
+  /* 1) Allow sticky to work (NO overflow clipping on ancestors) */
+  .menu-section.section,
+  .menu-section.section .container,
+  .menu-grid-wrapper,
+  .menu-main{
+    overflow: visible !important;
+  }
+
+  /* 2) Make sure no transform/filter is applied on parents (kills sticky in mobile) */
+  .menu-section.section,
+  .menu-grid-wrapper,
+  .menu-main{
+    transform: none !important;
+    filter: none !important;
+    contain: none !important;
+  }
+
+  /* 3) The actual sticky sidebar */
+  .menu-sidebar{
+    position: -webkit-sticky !important; /* iOS */
+    position: sticky !important;
+    top: 88px !important;               /* βάλε όσο είναι περίπου το header στο mobile */
+    z-index: 60000;
+    align-self: start;
+  }
+}
