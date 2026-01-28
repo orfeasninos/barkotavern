@@ -148,7 +148,7 @@ if (sections.length) {
   document.body.appendChild(topBtn);
 
   topBtn.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: isMobile ? "auto" : "smooth" });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
   window.addEventListener(
@@ -234,63 +234,35 @@ if (sections.length) {
   makeMobileSidebar();
   window.addEventListener("resize", makeMobileSidebar, { passive: true });
 
-// Highlight active category; on mobile, auto-center active chip (NO JUMP / NO LOOP)
-if (!isMobile && menuSections.length && menuLinks.length && linksContainer) {
-  let lastActiveId = null;
-  let rafPending = false;
+  // Highlight active category; on mobile, auto-center active chip
+  if (menuSections.length && menuLinks.length && linksContainer) {
+    const menuObserver = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
 
-  const centerActiveChip = (linkEl) => {
-    const left =
-      linkEl.offsetLeft -
-      linksContainer.clientWidth / 2 +
-      linkEl.clientWidth / 2;
+          const id = entry.target.id;
+          if (!id) continue;
 
-    // ✅ Mobile: instant (no smooth) to avoid scroll-jitter loops
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    linksContainer.scrollTo({
-      left,
-      behavior: isMobile ? "auto" : "smooth",
-    });
-  };
+          menuLinks.forEach((link) => {
+            const isActive = link.getAttribute("href") === `#${id}`;
+            link.classList.toggle("active", isActive);
 
-  const menuObserver = new IntersectionObserver(
-    (entries) => {
-      // βρες το πρώτο intersecting (συνήθως 1)
-      const hit = entries.find((e) => e.isIntersecting);
-      if (!hit) return;
-
-      const id = hit.target.id;
-      if (!id) return;
-
-      // ✅ Αν δεν άλλαξε κατηγορία, μην ξανα-κεντράρεις (σταματάει το loop)
-      if (id === lastActiveId) return;
-      lastActiveId = id;
-
-      menuLinks.forEach((link) => {
-        const isActive = link.getAttribute("href") === `#${id}`;
-        link.classList.toggle("active", isActive);
-
-        if (isActive) {
-          // ✅ Throttle σε 1 φορά ανά frame (πιο smooth, λιγότερο “σπρώξιμο”)
-          if (!rafPending) {
-            rafPending = true;
-            requestAnimationFrame(() => {
-              rafPending = false;
-              centerActiveChip(link);
-            });
-          }
+            if (isActive && window.matchMedia("(max-width: 768px)").matches) {
+              const left = link.offsetLeft - linksContainer.clientWidth / 2 + link.clientWidth / 2;
+              linksContainer.scrollTo({ left, behavior: "smooth" });
+            }
+          });
         }
-      });
-    },
-    {
-      rootMargin: "-40% 0px -50% 0px",
-      threshold: 0.01,
-    }
-  );
+      },
+      {
+        rootMargin: "-40% 0px -50% 0px",
+        threshold: 0.01,
+      }
+    );
 
-  menuSections.forEach((sec) => menuObserver.observe(sec));
-}
-
+    menuSections.forEach((sec) => menuObserver.observe(sec));
+  }
 
   /* =========================
      MENU ITEMS ANIMATION
