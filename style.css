@@ -1038,41 +1038,94 @@ body.dark .menu-items .price{
 }
 
 /* =========================================================
-   RESPONSIVE — mobile nav + layout fixes
-   ========================================================= */
-@media (max-width: 960px){
-  .menu-grid-wrapper{ grid-template-columns: 1fr; }
-  /* Keep aside sticky even on tablet sizes */
-  .menu-sidebar{ position: sticky; top: 110px; align-self: start; }
+   MOBILE PERFORMANCE PATCH (RESPONSIVE + STICKY + NO LAG)
+   Paste at END of style.css
+========================================================= */
+
+/* 1) Sticky fixes (menu.html): sticky breaks if a parent has overflow:hidden */
+.menu-section.section{ overflow: visible !important; } /* critical for sticky sidebar */
+.menu-grid-wrapper{ overflow: visible !important; }     /* extra safety */
+
+/* Header already sticky in your CSS, keep it explicit */
+header{ position: sticky; top: 0; z-index: 99999; }
+
+/* Sidebar sticky (desktop) */
+.menu-sidebar{
+  position: sticky;
+  top: 110px;     /* header height offset */
+  align-self: start;
 }
 
-/* Mobile header */
+/* 2) RESPONSIVE layout */
+@media (max-width: 960px){
+  .menu-grid-wrapper{ grid-template-columns: 1fr; gap: 1.2rem; }
+  .menu-sidebar{ top: 0; } /* not needed but keeps it safe when stacked */
+}
+
+/* 3) MOBILE: disable ALL animations/transitions/hover effects + heavy FX */
 @media (max-width: 768px){
-    body{
-    background-attachment: scroll !important;
-  }
-  .burger-menu{ display:flex; }
 
-  .logo img{ height: 60px; }
-  header.header-small .logo img{ height: 56px; }
+  /* Kill smooth scrolling on mobile (can feel “laggy”) */
+  html{ scroll-behavior: auto !important; }
 
-  .header-right{ gap: 10px; }
-
-  /* Keep aside sticky on mobile as well (chips bar stays visible) */
-  .menu-sidebar{
-    position: sticky;
-    top: 88px;
-    z-index: 60000;
-    align-self: start;
+  /* Disable ALL animations/transitions everywhere */
+  *, *::before, *::after{
+    animation: none !important;
+    transition: none !important;
   }
 
+  /* Disable hover-only effects (even if :hover gets “stuck” on touch) */
+  a:hover, button:hover, .section:hover, .menu-item:hover,
+  .menu-category:hover, .menu-items li:hover, .category-card:hover,
+  .theme-toggle:hover, .lang-current:hover,
+  .footer-links a:hover, .footer-contact a:hover{
+    transform: none !important;
+    filter: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Remove the big animated overlays that cost GPU */
+  header::before,
+  .section::after,
+  .premium-footer-container,
+  .footer-shimmer,
+  .footer-brand img{
+    animation: none !important;
+  }
+
+  /* Remove backdrop-filter on mobile (expensive on many devices) */
   header,
   .section,
-  .menu-category{
+  .menu-category,
+  .menu-sidebar{
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
   }
-  /* Mobile nav */
+
+  /* Background fixed is heavy on mobile */
+  body{ background-attachment: scroll !important; }
+
+  /* Reduce extra heavy shadows/filters that cause jank */
+  .logo img,
+  .menu-item img,
+  .menu-items li > img{
+    filter: none !important;
+  }
+  header,
+  .section,
+  .menu-category,
+  .menu-sidebar,
+  .menu-item,
+  .menu-items li{
+    box-shadow: 0 10px 24px rgba(0,0,0,0.18) !important; /* lighter */
+  }
+
+  /* Header: smaller + cleaner */
+  .burger-menu{ display:flex; }
+  .logo img{ height: 58px !important; }
+  header.header-small .logo img{ height: 54px !important; }
+
+  /* Mobile nav dropdown */
   .header-nav{
     display:none;
     position:absolute;
@@ -1081,9 +1134,7 @@ body.dark .menu-items .price{
     width: 100%;
     padding: 12px;
   }
-
   .header-nav.open{ display:block; }
-
   .header-nav ul{
     flex-direction: column;
     gap: 10px;
@@ -1091,47 +1142,22 @@ body.dark .menu-items .price{
     border-radius: 18px;
     background: rgba(25, 30, 22, 0.92);
     border: 1px solid rgba(212,175,55,0.22);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    box-shadow: var(--shadow-xl);
+    box-shadow: 0 18px 50px rgba(0,0,0,0.28);
   }
-
   .header-nav ul li{ width: 100%; }
   .header-nav ul li a{
     width: 100%;
     text-align: center;
-    padding: 12px 12px;
+    padding: 12px;
     font-size: 0.98rem;
     letter-spacing: 0.08em;
   }
 
-  /* open status becomes normal */
-  .open-status{
-    position: static;
-    margin-top: 6px;
-  }
-
-  /* Language options become row */
-  .lang-options{
-    right: 0;
-    flex-direction: row;
-    gap: 10px;
-  }
-
-  /* Sections tighter */
-  .section{
-    padding: 3.4rem 1.1rem;
-    margin: 2.1rem auto;
-    border-radius: 1.6rem;
-  }
-
-  /* Menu items stack */
-  .menu-items{
-    grid-template-columns: 1fr;
-  }
+  /* MENU items: stack nicely */
+  .menu-items{ grid-template-columns: 1fr !important; }
   .menu-items li{
     flex-direction: column;
-    align-items:flex-start;
+    align-items: flex-start;
   }
   .menu-items li > img{
     width: 100%;
@@ -1143,43 +1169,14 @@ body.dark .menu-items .price{
     margin-top: .5rem;
   }
 
-  /* Footer align */
-  .premium-footer-container{
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-  .footer-line{ justify-content: center; }
-}
-
-/* Extra small */
-@media (max-width: 480px){
-  .scroll-top{ width: 40px; height: 40px; font-size: 18px; }
-  .dish-gallery img{ min-width: 140px; }
-}
-
-/* =========================================================
-   Motion Accessibility
-   ========================================================= */
-@media (prefers-reduced-motion: reduce){
-  *{ animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-}
-
-/* =========================================================
-   MENU (mobile) — sidebar becomes horizontal photo chips
-   Desktop untouched (scoped to .menu-sidebar--mobile)
-========================================================= */
-@media (max-width: 768px){
-
-  /* Sidebar container */
+  /* 4) menu.html: sticky “chips” sidebar (horizontal) — fast & touch-friendly */
   .menu-sidebar.menu-sidebar--mobile{
-    position: sticky;
-    top: 88px;
+    position: sticky !important;
+    top: 88px;          /* κάτω από header */
     z-index: 60000;
     padding: .7rem .7rem .55rem;
     border-radius: 1.2rem;
     background: rgba(255,255,255,0.82);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     overflow: hidden;
   }
   body.dark .menu-sidebar.menu-sidebar--mobile{
@@ -1188,7 +1185,6 @@ body.dark .menu-items .price{
   }
   .menu-sidebar.menu-sidebar--mobile h2{ display:none; }
 
-  /* Horizontal scroller */
   .menu-sidebar.menu-sidebar--mobile .menu-links-list{
     flex-direction: row;
     align-items: center;
@@ -1204,7 +1200,6 @@ body.dark .menu-items .price{
     scroll-snap-align: start;
   }
 
-  /* Photo chip (keeps your existing background-image photos!) */
   .menu-sidebar.menu-sidebar--mobile .menu-links-list a.category-card{
     width: 128px;
     height: 68px;
@@ -1214,18 +1209,8 @@ body.dark .menu-items .price{
     overflow: hidden;
     background-size: cover;
     background-position: center;
-    box-shadow: 0 14px 32px rgba(0,0,0,0.22);
     border: 1px solid rgba(255,255,255,0.35);
-    transform: none;
   }
-
-  /* Stronger overlay for readability on small chips */
-  .menu-sidebar.menu-sidebar--mobile .menu-links-list a.category-card::before{
-    display:block;
-    background: linear-gradient(180deg, rgba(0,0,0,0.10), rgba(0,0,0,0.72));
-  }
-
-  /* Center label */
   .menu-sidebar.menu-sidebar--mobile .menu-links-list a.category-card span{
     position: absolute;
     inset: 0;
@@ -1235,121 +1220,24 @@ body.dark .menu-items .price{
     text-align:center;
     font-size: .68rem;
     letter-spacing: .10em;
-    border: 0;
-    border-radius: 0;
     background: transparent;
-    box-shadow: none;
     padding: 0 .6rem;
     text-shadow: 0 2px 8px rgba(0,0,0,0.65);
   }
 
-  /* Active */
+  /* Active state without animation */
   .menu-sidebar.menu-sidebar--mobile .menu-links-list a.category-card.active{
-    box-shadow: 0 0 0 4px rgba(212,175,55,0.30), 0 14px 32px rgba(0,0,0,0.22);
-    border-color: rgba(212,175,55,0.60);
+    box-shadow: 0 0 0 4px rgba(212,175,55,0.30) !important;
+    border-color: rgba(212,175,55,0.60) !important;
   }
 
-  /* Tap feedback */
+  /* Tap feedback only (no hover) */
   .menu-sidebar.menu-sidebar--mobile .menu-links-list a.category-card:active{
-    filter: saturate(1.06);
+    filter: saturate(1.04);
   }
 }
 
-/* =========================
-   FIX: Sticky works (menu section parent must allow overflow)
-========================= */
-@media (max-width: 768px){
-  .menu-section.section{
-    overflow: visible !important;
-  }
-
-  /* keep your chips bar sticky */
-  .menu-sidebar.menu-sidebar--mobile{
-    position: sticky;
-    top: 88px;          /* άλλαξέ το αν θες πιο κάτω/πάνω */
-    z-index: 60000;
-  }
+/* 5) Extra-small tweaks */
+@media (max-width: 480px){
+  .scroll-top{ width: 40px; height: 40px; font-size: 18px; }
 }
-/* =========================
-   FIX: Sticky on mobile (Menu sidebar + header)
-========================= */
-
-header{
-  position: sticky;
-  top: 0;
-  z-index: 99999;
-}
-
-/* Sticky FAILS if any ancestor has overflow != visible (or transform/filter) */
-@media (max-width: 768px){
-
-  /* 1) Allow sticky to work (NO overflow clipping on ancestors) */
-  .menu-section.section,
-  .menu-section.section .container,
-  .menu-grid-wrapper,
-  .menu-main{
-    overflow: visible !important;
-  }
-
-  /* 2) Make sure no transform/filter is applied on parents (kills sticky in mobile) */
-  .menu-section.section,
-  .menu-grid-wrapper,
-  .menu-main{
-    transform: none !important;
-    filter: none !important;
-    contain: none !important;
-  }
-
-  /* 3) The actual sticky sidebar */
-  .menu-sidebar{
-    position: -webkit-sticky !important; /* iOS */
-    position: sticky !important;
-    top: 88px !important;               /* βάλε όσο είναι περίπου το header στο mobile */
-    z-index: 60000;
-    align-self: start;
-  }
-}
-
-/* =========================
-   MOBILE STICKY FIX (MENU)
-   paste at END of style.css
-========================= */
-@media (max-width: 768px){
-
-  /* το sticky χαλάει αν ancestor έχει overflow hidden/clip ή transform */
-  .menu-section.section{
-    overflow: visible !important;
-    transform: none !important;
-  }
-
-  .menu-section.section::before,
-  .menu-section.section::after{
-    display: none !important;
-    content: none !important;
-  }
-
-  .menu-section.section .container,
-  .menu-grid-wrapper,
-  .menu-main{
-    overflow: visible !important;
-    transform: none !important;
-    filter: none !important;
-    contain: none !important;
-  }
-
-  /* ΚΑΝΕ το aside sticky */
-  .menu-sidebar{
-    position: -webkit-sticky !important;
-    position: sticky !important;
-    top: 88px !important;   /* αν αλλάξει το header ύψος, παίξε εδώ */
-    z-index: 60000 !important;
-    align-self: start !important;
-  }
-
-  /* προαιρετικά: το backdrop-filter στο mobile μπορεί να χαλάσει sticky σε κάποιες συσκευές */
-  .menu-sidebar.menu-sidebar--mobile{
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-  }
-}
-
