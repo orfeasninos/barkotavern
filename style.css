@@ -34,7 +34,7 @@ body {
   font-family: 'Roboto', sans-serif;
   line-height: 1.6;
   color: #33692d;
-  background: url("images/background.png") center center / cover no-repeat fixed;
+  background: url("images/background.webp") center center / cover no-repeat fixed;
   overflow-x: hidden;
   padding-bottom: 2.5rem;
   overflow-x: hidden;
