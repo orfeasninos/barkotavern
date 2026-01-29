@@ -165,12 +165,6 @@ p {
   color: #4a4a4a;
 }
 
-.menu-items .dish {
-  font-size: 1.05rem;
-  color: #2E3A26;
-  font-weight: 500;
-}
-
 /* =======================
    CONTACT SECTION
 ======================= */
@@ -616,25 +610,17 @@ header.header-small .logo img{ height: 70px; }
 }
 
 /* dish + price layout (works even without wrapper) */
-.menu-items .dish{
-  flex: 1;
-  min-width: 0;
-  font-weight: 800;
-  color: #1f2c1d;
-  line-height: 1.25;
-  overflow-wrap: anywhere;
-  padding-top: .1rem;
+.menu-items .dish {
+  font-size: 1.05rem;
+  color: #2E3A26;
+  display: flex;
+  align-items: flex-start; /* ⬅ όλα ξεκινάνε από πάνω */
+  font-weight: 600;
 }
 .menu-items .price{
-  font-weight: 900;
-  color: #102014;
-  white-space: nowrap;
-  margin-left: .5rem;
-  padding: .35rem .7rem;
-  border-radius: 999px;
-  background: linear-gradient(90deg, rgba(212,175,55,0.18), rgba(243,231,165,0.14));
-  border: 1px solid rgba(212,175,55,0.22);
-  box-shadow: 0 12px 26px rgba(0,0,0,0.12);
+  position: absolute;
+  right: 5px;
+  bottom: 0px;
 }
 
 /* Optional animation hooks from JS (if you add classes) */
