@@ -333,3 +333,28 @@ if (menuSections.length && menuLinks.length) {
     items.forEach((item) => itemsObserver.observe(item));
   }
 });
+
+/* =========================
+   DISH MODAL (INDEX)
+========================= */
+const modal = document.getElementById("dishModal");
+const modalImg = document.getElementById("modalImg");
+const modalTitle = document.getElementById("modalTitle");
+const modalText = document.getElementById("modalText");
+
+document.querySelectorAll(".menu-item").forEach(item => {
+  item.addEventListener("click", () => {
+    modalImg.src = item.dataset.img;
+    modalTitle.textContent = item.dataset.title;
+    modalText.textContent = item.dataset.text;
+    modal.classList.add("open");
+  });
+});
+
+// close
+modal.addEventListener("click", (e) => {
+  if (e.target.classList.contains("dish-modal") ||
+      e.target.classList.contains("modal-close")) {
+    modal.classList.remove("open");
+  }
+});

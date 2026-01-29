@@ -181,67 +181,94 @@ p {
 }
 
 /* =========================================================
-   HEADER — cinematic glass + premium nav
-   ========================================================= */
+   HEADER — STABLE HEIGHT (NO REFLOW, NO GLITCH)
+========================================================= */
+
 header{
   position: sticky;
   top: 0;
   z-index: 99999;
-  padding: 18px 20px;
+
+  /* ⬇️ ΣΤΑΘΕΡΟ ΥΨΟΣ */
+  height: 120px;
+
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+
   isolation: isolate;
   backdrop-filter: var(--blur);
   -webkit-backdrop-filter: var(--blur);
+
   background:
     linear-gradient(180deg,
       rgba(47,58,37,0.92) 0%,
       rgba(40,48,32,0.86) 55%,
       rgba(20,25,18,0.82) 100%
     );
+
   border-bottom: 1px solid rgba(212,175,55,0.22);
   box-shadow:
     0 18px 60px rgba(0,0,0,0.35),
     inset 0 1px 0 rgba(255,255,255,0.10);
-  
 }
 
-
-
-/* shrink */
+/* όταν γίνεται "small" — ΔΕΝ αλλάζει layout */
 header.header-small{
-  padding: 10px 20px;
+  /* κρατάμε ίδιο height & padding */
   backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(212,175,55,0.28);
 }
 
+/* container */
 .header-container{
+  width: 100%;
   display:flex;
   justify-content: space-between;
   align-items: center;
   gap: 18px;
 }
 
-/* Logo */
+/* =========================================================
+   LOGO — shrink ΜΟΝΟ με transform (GPU)
+========================================================= */
+
 .logo{
   display:flex;
   align-items:center;
 }
+
 .logo a{
   display:flex;
   align-items:center;
   gap:.75rem;
 }
+
 .logo img{
-  height: 92px;
+  height: 92px;            /* ΜΕΝΕΙ ΣΤΑΘΕΡΟ */
   width: auto;
-  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.35));
+
   transform-origin: center;
-  transition: transform var(--dur-2) var(--ease), filter var(--dur-2) var(--ease);
+  transition:
+    transform 600ms var(--ease),
+    filter 600ms var(--ease);
+
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.35));
 }
-header.header-small .logo img{ height: 70px; }
+
+/* shrink effect */
+header.header-small .logo img{
+  transform: scale(0.76);
+}
+
 .logo a:hover img{
-  transform: translateY(-2px) scale(1.02);
+  transform: scale(0.8) translateY(-2px);
   filter: drop-shadow(0 14px 28px rgba(0,0,0,0.45));
 }
+
+/* =========================================================
+   RIGHT SIDE
+========================================================= */
 
 .header-right{
   display:flex;
@@ -249,7 +276,10 @@ header.header-small .logo img{ height: 70px; }
   gap: 16px;
 }
 
-/* Nav */
+/* =========================================================
+   NAV
+========================================================= */
+
 .header-nav ul{
   list-style:none;
   display:flex;
@@ -257,7 +287,9 @@ header.header-small .logo img{ height: 70px; }
   gap: 18px;
 }
 
-.header-nav ul li{ position: relative; }
+.header-nav ul li{
+  position: relative;
+}
 
 .header-nav ul li a{
   color: rgba(255,255,255,0.92);
@@ -267,10 +299,9 @@ header.header-small .logo img{ height: 70px; }
   font-weight: 600;
   padding: 10px 10px;
   border-radius: 999px;
-
 }
 
-/* premium underline shimmer */
+/* underline shimmer */
 .header-nav ul li a::after{
   content:"";
   position:absolute;
@@ -279,7 +310,14 @@ header.header-small .logo img{ height: 70px; }
   bottom: 6px;
   height: 2px;
   border-radius: 999px;
-  background: linear-gradient(90deg, transparent, var(--gold), var(--gold-2), var(--gold), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold),
+    var(--gold-2),
+    var(--gold),
+    transparent
+  );
   transform: scaleX(0);
   transform-origin: center;
   transition: transform var(--dur-2) var(--ease);
@@ -290,12 +328,38 @@ header.header-small .logo img{ height: 70px; }
 .header-nav ul li a.active{
   color: #fff;
   background: rgba(212,175,55,0.16);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.12);
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.12);
   transform: translateY(-1px);
 }
+
 .header-nav ul li a:hover::after,
 .header-nav ul li a.active::after{
   transform: scaleX(1);
+}
+
+/* =========================================================
+   BURGER MENU
+========================================================= */
+
+.burger-menu{
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+.burger-menu span{
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: var(--gold);
+  border-radius: 2px;
+  transition: all 0.3s ease;
 }
 
 /* =======================
@@ -745,6 +809,7 @@ header.header-small .logo img{ height: 70px; }
   align-items: center;
   gap: 10px;
 }
+
 /* =======================
    BURGER MENU
 ======================= */
@@ -766,45 +831,6 @@ header.header-small .logo img{ height: 70px; }
   border-radius: 2px;
   transition: all 0.3s ease;
 }
-
-
-
-.menu-links-list a:hover {
-  background: linear-gradient(130deg, var(--gold), #f5f5f5);
-  transform: translateY(-3px);
-  color:black;
-  box-shadow: 0 8px 15px rgba(201, 162, 36, 0.7);
-  
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* =======================
    BEAUTIFUL LINKS OUTSIDE HEADER
@@ -930,19 +956,6 @@ p a:hover::after {
   }
   
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* =======================
    RESPONSIVE
@@ -1257,3 +1270,719 @@ body {
 }
 
 
+/* =========================================================
+   MENU.HTML — GAMATO RESPONSIVE PACK (paste at END)
+   - sticky horizontal category chips on mobile
+   - clean grid on desktop
+   - fixes price/dish layout + no overlap
+   - works with main.js menu-sidebar--mobile behavior
+========================================================= */
+
+:root{
+  --header-safe: 92px; /* fallback */
+}
+
+/* Keep sidebar sticky under header on desktop */
+.menu-grid-wrapper{
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.menu-sidebar{
+  position: sticky;
+  top: calc(var(--header-safe) + 18px);
+  align-self: start;
+}
+
+/* Make menu section breathe */
+.menu-section.section{
+  padding-inline: clamp(1rem, 3vw, 2rem);
+}
+
+.menu-main{
+  min-width: 0; /* prevents overflow on long text */
+}
+
+/* ===== Category cards: make them consistent & clickable ===== */
+.menu-links-list{
+  list-style: none;
+  margin: 0;
+  padding: 0.9rem;
+  border-radius: 2rem;
+  overflow: hidden;
+  background: rgba(255,255,255,0.40);
+  border: 1px solid rgba(212,175,55,0.18);
+}
+
+.menu-links-list li{ min-width: 0; }
+
+.category-card{
+  width: 100%;
+  will-change: transform;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.menu-links-list a.active .category-card,
+.menu-links-list a.active{
+  box-shadow: 0 0 0 2px rgba(212,175,55,0.55), 0 18px 40px rgba(0,0,0,0.18);
+}
+
+/* ===== Menu items: robust layout (dish + price) ===== */
+.menu-items{
+  list-style: none;
+  margin: 0;
+  padding: 0.9rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  gap: 1.1rem;
+}
+
+@media (min-width: 1200px){
+  .menu-items{
+    grid-template-columns: repeat(2, minmax(360px, 1fr));
+  }
+}
+
+.menu-items li{
+  position: relative;
+  display: grid;
+  grid-template-columns: 92px 1fr auto;
+  grid-template-areas: "img dish price";
+  align-items: center;
+  column-gap: 1rem;
+  row-gap: 0.35rem;
+  padding: 1rem 1.05rem;
+}
+
+/* image */
+.menu-items li > img{
+  grid-area: img;
+}
+
+/* dish text */
+.menu-items .dish{
+  grid-area: dish;
+  font-size: 1.05rem;
+  line-height: 1.35;
+  font-weight: 700;
+  padding-right: 0.35rem;
+}
+
+/* price */
+.menu-items .price{
+  grid-area: price;
+  white-space: nowrap;
+  padding: 0.45rem 0.7rem;
+  right: 0px;
+  bottom: 0px;
+}
+
+/* =========================
+   GALLERY (gallery.html)
+========================= */
+
+.gallery-grid{
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+/* default: 4 ανά σειρά σε desktop */
+.gallery-item{
+  grid-column: span 4;
+  border-radius: 1.4rem;
+  overflow: hidden;
+  position: relative;
+  background: rgba(255,255,255,0.55);
+  border: 1px solid rgba(212,175,55,0.18);
+  box-shadow: 0 18px 45px rgba(0,0,0,0.16);
+  transform: translateZ(0);
+}
+
+/* glossy overlay */
+.gallery-item::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(212,175,55,0.18), transparent 55%),
+    linear-gradient(180deg, rgba(255,255,255,0.10), transparent 60%);
+  opacity: .65;
+  pointer-events:none;
+}
+
+.gallery-item img{
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.01);
+  transition: transform 700ms var(--ease-2), filter 700ms var(--ease-2);
+  filter: saturate(1.05) contrast(1.03);
+}
+
+/* premium hover */
+@media (hover:hover){
+  .gallery-item{
+    transition: transform 700ms var(--ease-2), box-shadow 700ms var(--ease-2);
+  }
+  .gallery-item:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 28px 70px rgba(0,0,0,0.22);
+  }
+  .gallery-item:hover img{
+    transform: scale(1.08);
+    filter: saturate(1.15) contrast(1.08);
+  }
+}
+
+/* optional “caption” look if later βάλεις title */
+.gallery-item .cap{
+  position:absolute;
+  left: 12px;
+  bottom: 12px;
+  z-index: 2;
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-size: .78rem;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(212,175,55,0.22);
+  box-shadow: 0 12px 26px rgba(0,0,0,0.22);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+/* laptop: 3 ανά σειρά */
+@media (max-width: 1024px){
+  .gallery-item{ grid-column: span 6; }
+  .gallery-item img{ height: 240px; }
+}
+
+/* mobile: 1 ανά σειρά */
+@media (max-width: 768px){
+  .gallery-grid{
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .gallery-item{
+    grid-column: auto;
+    border-radius: 1.2rem;
+  }
+  .gallery-item img{ height: 220px; }
+}
+
+/* extra small */
+@media (max-width: 420px){
+  .gallery-item img{ height: 200px; }
+}
+
+
+
+
+
+
+
+
+
+/* =======================
+   DISH MODAL
+======================= */
+.dish-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(6px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999;
+}
+
+.dish-modal.open {
+  display: flex;
+}
+
+.dish-modal-content {
+  background: #fffdf8;
+  border-radius: 1.8rem;
+  padding: 2rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+  animation: modalPop 0.4s ease;
+}
+
+@keyframes modalPop {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.dish-modal-content img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.dish-modal-content h3 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #333;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===== MOBILE: sidebar becomes sticky chips bar ===== */
+@media (max-width: 768px){
+
+  /* One column layout */
+  .menu-grid-wrapper{
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+  }
+
+  /* Sidebar becomes “chips” bar - works with JS adding .menu-sidebar--mobile */
+  .menu-sidebar{
+    position: sticky;
+    top: 30px;                  /* sticks under header since header is sticky */
+    z-index: 950;
+    padding: 0.85rem 0.8rem;
+    border-radius: 1.25rem;
+  }
+
+  .menu-sidebar h2{
+    font-size: 1.15rem;
+    margin-bottom: 0.55rem;
+    text-align: center;
+  }
+
+  /* Horizontal scroll chips */
+  .menu-links-list{
+    display: flex;
+    flex-direction: row;
+    gap: 0.65rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 0.7rem;
+    border-radius: 1.25rem;
+  }
+
+  .menu-links-list::-webkit-scrollbar{ display: none; }
+
+  .menu-links-list li{
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+  }
+
+  /* Turn category-card into compact “chip cards” */
+  .category-card{
+    height: 58px;
+    width: 160px;
+    border-radius: 1rem;
+  }
+
+  .category-card span{
+    font-size: 0.72rem;
+    letter-spacing: 0.09em;
+    padding: 4px 8px;
+  }
+
+  /* Menu items go single column on mobile */
+  .menu-items{
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
+
+  .menu-items li{
+    grid-template-columns: 80px 1fr;
+    grid-template-areas:
+      "img dish"
+      "img price";
+    align-items: start;
+  }
+
+  .menu-items li > img{
+    width: 80px;
+    height: 80px;
+  }
+
+  .menu-items .dish{
+    font-size: 1.02rem;
+  }
+
+  .menu-items .price{
+    justify-self: start;
+    margin-top: 0.2rem;
+  }
+
+  /* Kill hover transforms on touch to avoid “jank” */
+  .menu-items li:hover,
+  .menu-category:hover,
+  .category-card:hover{
+    transform: none !important;
+  }
+}
+
+/* ===== EXTRA SMALL ===== */
+@media (max-width: 420px){
+  .category-card{ width: 145px; }
+  .menu-items li{ padding: 0.9rem; }
+}
+
+/* =========================================================
+   RESTAURANT PAGE (restaurant.html) — Premium Storytelling
+   Works with: .history-section .location-section .cuisine-section
+               .hospitality-section .reviews-section + .dish-gallery
+   ========================================================= */
+:root{
+  --rest-ink: #1f2c1d;
+  --rest-soft-ink: rgba(31,44,29,.78);
+  --rest-card: rgba(255,255,255,.72);
+  --rest-card-2: rgba(241,255,236,.62);
+  --rest-border: rgba(212,175,55,.18);
+  --rest-shadow: 0 22px 60px rgba(0,0,0,.12);
+  --rest-shadow-2: 0 18px 45px rgba(0,0,0,.18);
+}
+
+/* λίγο πιο “editorial” spacing μόνο για restaurant */
+.history-section,
+.location-section,
+.cuisine-section,
+.hospitality-section,
+.reviews-section{
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--rest-border);
+  box-shadow: var(--rest-shadow);
+}
+
+/* cinematic ambient highlights (gold + sea tint) */
+.history-section::before,
+.location-section::before,
+.cuisine-section::before,
+.hospitality-section::before,
+.reviews-section::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background:
+    radial-gradient(circle at 12% 12%, rgba(212,175,55,.16), transparent 52%),
+    radial-gradient(circle at 100% 70%, rgba(15,107,111,.12), transparent 58%),
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0));
+  pointer-events:none;
+  opacity: .95;
+}
+
+/* “premium border shimmer” */
+.history-section::after,
+.location-section::after,
+.cuisine-section::after,
+.hospitality-section::after,
+.reviews-section::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(120deg,
+    rgba(212,175,55,.00),
+    rgba(212,175,55,.35),
+    rgba(243,231,165,.22),
+    rgba(212,175,55,.12),
+    rgba(212,175,55,.00)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events:none;
+  opacity:.75;
+}
+
+/* Typography polish */
+.history-section h2,
+.location-section h2,
+.cuisine-section h2,
+.hospitality-section h2,
+.reviews-section h2{
+  font-size: clamp(2.15rem, 2.8vw, 3rem);
+  margin-bottom: 2.2rem;
+}
+
+.history-section p,
+.location-section p,
+.cuisine-section p,
+.hospitality-section p,
+.reviews-section p{
+  color: var(--rest-soft-ink);
+  font-size: 1.05rem;
+  line-height: 1.85;
+  max-width: 74ch;
+  margin: 0 auto 1.1rem;
+}
+
+/* “drop-cap” feel on first paragraph κάθε section */
+.history-section p:first-of-type::first-letter,
+.location-section p:first-of-type::first-letter,
+.cuisine-section p:first-of-type::first-letter,
+.hospitality-section p:first-of-type::first-letter{
+  float: left;
+  font-family: var(--font-title);
+  font-size: 3.1rem;
+  line-height: .95;
+  margin: .12rem .6rem 0 0;
+  color: var(--gold);
+  text-shadow: 0 10px 28px rgba(0,0,0,.18);
+}
+
+/* subtle divider between paragraphs */
+.history-section p + p,
+.location-section p + p,
+.cuisine-section p + p,
+.hospitality-section p + p{
+  padding-top: .9rem;
+  margin-top: .9rem;
+  border-top: 1px solid rgba(212,175,55,.14);
+}
+
+/* Section-specific vibe tweaks */
+.location-section{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.70), rgba(255,255,255,.50)),
+    radial-gradient(circle at 80% 18%, rgba(15,107,111,.14), transparent 55%),
+    radial-gradient(circle at 10% 85%, rgba(212,175,55,.12), transparent 58%);
+}
+
+.cuisine-section{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.70), rgba(255,255,255,.50)),
+    radial-gradient(circle at 18% 20%, rgba(212,175,55,.18), transparent 56%),
+    radial-gradient(circle at 92% 80%, rgba(156,94,48,.10), transparent 58%);
+}
+
+.reviews-section{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,.52)),
+    radial-gradient(circle at 20% 10%, rgba(212,175,55,.14), transparent 58%),
+    radial-gradient(circle at 100% 80%, rgba(15,107,111,.10), transparent 60%);
+}
+
+/* =========================================================
+   Dish gallery — magazine grid + hover luxury
+   ========================================================= */
+.dish-gallery{
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+  margin: 2.2rem auto 0;
+  max-width: 1100px;
+}
+
+.dish-gallery img{
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 1.35rem;
+  border: 1px solid rgba(255,255,255,.35);
+  box-shadow: var(--rest-shadow-2);
+  filter: saturate(1.05) contrast(1.03);
+  transform: translateZ(0);
+  transition:
+    transform var(--dur-2) var(--ease),
+    filter var(--dur-2) var(--ease),
+    box-shadow var(--dur-2) var(--ease);
+}
+
+/* asymmetric layout (3 images) */
+.dish-gallery img:nth-child(1){ grid-column: 1 / span 5; }
+.dish-gallery img:nth-child(2){ grid-column: 6 / span 4; }
+.dish-gallery img:nth-child(3){ grid-column: 10 / span 3; }
+
+@media (hover:hover){
+  .dish-gallery img:hover{
+    transform: translateY(-6px) scale(1.01);
+    filter: saturate(1.12) contrast(1.06);
+    box-shadow: 0 30px 70px rgba(0,0,0,.22);
+  }
+}
+
+/* Mobile: stacked cards, no weird crops */
+@media (max-width: 768px){
+  .history-section,
+  .location-section,
+  .cuisine-section,
+  .hospitality-section,
+  .reviews-section{
+    padding: 3.2rem 1.2rem;
+  }
+
+  .history-section p,
+  .location-section p,
+  .cuisine-section p,
+  .hospitality-section p,
+  .reviews-section p{
+    font-size: 1.02rem;
+  }
+
+  .dish-gallery{
+    grid-template-columns: 1fr;
+    gap: .9rem;
+  }
+  .dish-gallery img{
+    height: 210px;
+  }
+  .dish-gallery img:nth-child(1),
+  .dish-gallery img:nth-child(2),
+  .dish-gallery img:nth-child(3){
+    grid-column: auto;
+  }
+}
+
+/* =========================================================
+   Reviews — transform quotes into premium “cards”
+   Your HTML is <p><em>“...”</em><br>– Tripadvisor</p>
+   ========================================================= */
+.reviews-section .container > p{
+  position: relative;
+  background: linear-gradient(180deg, var(--rest-card), rgba(255,255,255,.55));
+  border: 1px solid rgba(212,175,55,.16);
+  border-radius: 1.35rem;
+  padding: 1.25rem 1.25rem 1.1rem;
+  margin: 0 auto 1rem;
+  max-width: 78ch;
+  box-shadow: 0 16px 45px rgba(0,0,0,.10);
+  overflow: hidden;
+}
+
+.reviews-section .container > p::before{
+  content:"“";
+  position:absolute;
+  left: .9rem;
+  top: .25rem;
+  font-family: var(--font-title);
+  font-size: 3.4rem;
+  color: rgba(212,175,55,.35);
+  line-height: 1;
+}
+
+.reviews-section em{
+  font-style: italic;
+  color: rgba(31,44,29,.86);
+}
+
+.reviews-section .container > p br + *{
+  display: inline-block;
+  margin-top: .6rem;
+  font-weight: 800;
+  letter-spacing: .03em;
+  color: rgba(31,44,29,.78);
+}
+
+/* little “shine” */
+.reviews-section .container > p::after{
+  content:"";
+  position:absolute;
+  inset:-40% -60%;
+  background: radial-gradient(circle at center, rgba(212,175,55,.08), transparent 60%);
+  transform: rotate(18deg);
+  pointer-events:none;
+}
+
+/* =========================================================
+   Small UX: allow selection in text areas (your global reset disables selection)
+   ========================================================= */
+.history-section p,
+.location-section p,
+.cuisine-section p,
+.hospitality-section p,
+.reviews-section p,
+.reviews-section em{
+  user-select: text;
+}
