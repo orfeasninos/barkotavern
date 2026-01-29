@@ -506,6 +506,11 @@ header.header-small .logo img{
   opacity: 0.8;
 }
 
+#footer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
 /* =======================
    SCROLL TO TOP BUTTON
