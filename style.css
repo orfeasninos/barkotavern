@@ -147,7 +147,7 @@ p {
 
 .menu-item img {
   width: 100%;
-  height: auto;
+  height: 150px;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 1rem;
@@ -1127,14 +1127,6 @@ body {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-}
-
-/* Adjust menu images for small screens */
-.menu-item img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: auto;
-  object-fit: cover;
 }
 
 /* Make scroll-to-top button smaller on mobile */
