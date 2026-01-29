@@ -628,6 +628,15 @@ header.header-small .logo img{ transform: scale(0.76); }
 /* =========================================================
    MENU PAGE (menu.html) — matches your HTML structure
 ========================================================= */
+.menu-section {
+  padding: 5rem 2rem;
+  margin: 3rem auto;
+  border-radius: 2rem;
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  animation: fadeUp 0.8s ease both;
+}
+
 .menu-section h2{
   font-size: clamp(2.1rem, 2.8vw, 3.2rem);
 }
@@ -999,10 +1008,6 @@ header.header-small .logo img{ transform: scale(0.76); }
   content:"";
   position:absolute;
   inset:-2px;
-  background:
-    radial-gradient(circle at 12% 12%, rgba(212,175,55,.16), transparent 52%),
-    radial-gradient(circle at 100% 70%, rgba(15,107,111,.12), transparent 58%),
-    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0));
   pointer-events:none;
   opacity: .95;
 }
@@ -1350,7 +1355,15 @@ header.header-small .logo img{ transform: scale(0.76); }
   .menu-items li{ padding: 0.9rem; }
 }
 
-
-
-
-
+.welcome-section {
+  text-align: center;
+  margin: 25rem;
+  font-size: 24px;
+  color:#000000;
+  background:#1d490cb2;
+  border-radius: 25px;
+}
+.welcome-section h1 {
+  background: #223614cb;
+  border-radius: 25px;
+}
