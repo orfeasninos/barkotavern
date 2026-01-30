@@ -71,7 +71,7 @@ body{
 a{ text-decoration: none; color: inherit; }
 
 /* Allow selecting real content text (SEO/UX friendly) */
-body, p, h1, h2, h3, li, span, em, strong, a{ user-select: text; }
+body, p, h1, h2, h3, li, span, strong, a{ user-select: text; }
 
 /* Prevent selection only on UI bits */
 button, .burger-menu, .theme-toggle, .lang-current, .category-card, .menu-item img, .logo img{
@@ -594,6 +594,23 @@ header.header-small .logo img{ transform: scale(0.76); }
   background: radial-gradient(circle at center, rgba(212,175,55,0.05), transparent 70%);
   animation: shimmerOverlay 6s linear infinite;
   pointer-events: none;
+}
+
+.footer-credit{
+  margin-top: 0.6rem;
+  font-size: 0.7rem;
+  opacity: 0.45;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.footer-credit a{
+  color: inherit;
+  font-weight: 600;
+}
+
+.footer-credit a:hover{
+  opacity: 0.85;
 }
 
 @keyframes shimmerOverlay{
@@ -1204,52 +1221,6 @@ header.header-small .logo img{ transform: scale(0.76); }
   }
 }
 
-/* reviews cards */
-.reviews-section .container > p{
-  position: relative;
-  background: linear-gradient(180deg, var(--rest-card), rgba(255,255,255,.55));
-  border: 1px solid rgba(212,175,55,.16);
-  border-radius: 1.35rem;
-  padding: 1.25rem 1.25rem 1.1rem;
-  margin: 0 auto 1rem;
-  max-width: 78ch;
-  box-shadow: 0 16px 45px rgba(0,0,0,.10);
-  overflow: hidden;
-}
-
-.reviews-section .container > p::before{
-  content:"“";
-  position:absolute;
-  left: .9rem;
-  top: .25rem;
-  font-family: var(--font-title);
-  font-size: 3.4rem;
-  color: rgba(212,175,55,.35);
-  line-height: 1;
-}
-
-.reviews-section em{
-  font-style: italic;
-  color: rgba(31,44,29,.86);
-}
-
-.reviews-section .container > p br + *{
-  display: inline-block;
-  margin-top: .6rem;
-  font-weight: 800;
-  letter-spacing: .03em;
-  color: rgba(31,44,29,.78);
-}
-
-.reviews-section .container > p::after{
-  content:"";
-  position:absolute;
-  inset:-40% -60%;
-  background: radial-gradient(circle at center, rgba(212,175,55,.08), transparent 60%);
-  transform: rotate(18deg);
-  pointer-events:none;
-}
-
 /* =========================================================
    RESPONSIVE — SINGLE MOBILE BLOCK (768px)
 ========================================================= */
@@ -1260,7 +1231,6 @@ header.header-small .logo img{ transform: scale(0.76); }
 }
 
 @media (max-width: 768px){
-
   /* performance: fixed background can jank on mobile */
   body{ background-attachment: scroll; }
 
