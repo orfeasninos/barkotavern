@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Barko Tavern – Gallery</title>
   <link rel="stylesheet" href="./style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="images/logo.png">
 </head>
@@ -17,7 +19,12 @@
   <div class="header-container">
     <div class="logo">
       <a href="index.html">
-        <img src="images/logo.png" alt="Barko Tavern Logo">
+        <img src="images/logo-512.webp"
+               srcset="images/logo-256.webp 256w, images/logo-512.webp 512w, images/logo-1024.webp 1024w"
+               sizes="(max-width: 600px) 140px, 220px"
+               width="512" height="341"
+               alt="Barko Tavern Logo"
+               decoding="async" fetchpriority="high">
       </a>
     </div>
 
@@ -39,13 +46,13 @@
 
             <div class="language-switcher">
               <div class="lang-current">
-                <img src="images/gr.jpg" alt="Ελληνικά">
+                <img src="images/gr.jpg" alt="Ελληνικά" decoding="async" loading="lazy">
                 <span class="lang-arrow">▾</span>
               </div>
               <div class="lang-options">
-                <a href="en/gallery-en.html"><img src="images/en.jpg" alt="English"></a>
-                <a href="it/gallery-it.html"><img src="images/it.jpg" alt="Italiano"></a>
-                <a href="fr/gallery-fr.html"><img src="images/fr.jpg" alt="Français"></a>
+                <a href="en/gallery-en.html"><img src="images/en.jpg" alt="English" decoding="async" loading="lazy"></a>
+                <a href="it/gallery-it.html"><img src="images/it.jpg" alt="Italiano" decoding="async" loading="lazy"></a>
+                <a href="fr/gallery-fr.html"><img src="images/fr.jpg" alt="Français" decoding="async" loading="lazy"></a>
               </div>
             </div>
           </li>
@@ -63,22 +70,22 @@
     <div class="gallery-grid">
       <!-- Ενδεικτικές φωτογραφίες -->
       <div class="gallery-item">
-        <img src="images/mousakas.jpg" alt="Μουσακάς">
+        <img src="images/mousakas.jpg" alt="Μουσακάς" decoding="async" loading="lazy">
       </div>
       <div class="gallery-item">
-        <img src="images/mousakas.jpg" alt="Μουσακάς">
+        <img src="images/mousakas.jpg" alt="Μουσακάς" decoding="async" loading="lazy">
       </div>
       <div class="gallery-item">
-        <img src="images/mousakas.jpg" alt="Μουσακάς">
+        <img src="images/mousakas.jpg" alt="Μουσακάς" decoding="async" loading="lazy">
       </div>
       <div class="gallery-item">
-        <img src="images/mousakas.jpg" alt="Μουσακάς">
+        <img src="images/mousakas.jpg" alt="Μουσακάς" decoding="async" loading="lazy">
       </div>
       <div class="gallery-item">
-        <img src="images/mousakas.jpg" alt="Μουσακάς">
+        <img src="images/mousakas.jpg" alt="Μουσακάς" decoding="async" loading="lazy">
       </div>
       <div class="gallery-item">
-        <img src="images/mousakas.jpg" alt="Μουσακάς">
+        <img src="images/mousakas.jpg" alt="Μουσακάς" decoding="async" loading="lazy">
       </div>
     </div>
   </div>
@@ -89,7 +96,7 @@
   <div class="premium-footer-container">
 
     <div class="footer-brand">
-      <img src="images/logo.png" alt="Barko Tavern Logo">
+      <img src="images/logo.png" alt="Barko Tavern Logo" decoding="async" loading="lazy">
       <p>Σπιτικό φαγητό • Παραδοσιακές συνταγές • Μήλος</p>
     </div>
 
@@ -118,6 +125,6 @@
   <div class="footer-shimmer"></div>
 </footer>
 
-<script src="./main.js"></script>
+<script src="./main.js" defer></script>
 </body>
 </html>
