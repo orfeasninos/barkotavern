@@ -1693,3 +1693,22 @@ body.dark .scroll-top{
 @media (max-width: 768px){
   body.dark{ background-attachment: scroll; }
 }
+/* ✅ Android/reduced-motion safe: μην “κρύβεις” το footer περιεχόμενο */
+.premium-footer-container{
+  opacity: 1;              /* fallback always visible */
+  transform: none;
+}
+
+/* Αν θες να κρατήσεις το fade μόνο όταν επιτρέπονται animations */
+@media (prefers-reduced-motion: no-preference){
+  .premium-footer-container{
+    opacity: 0;
+    animation: fadeInFooter 1.2s forwards 0.3s;
+  }
+}
+
+/* Επίσης: σε reduced-motion, κλείσε τα effects αλλά κράτα ορατό το footer */
+@media (prefers-reduced-motion: reduce){
+  .footer-shimmer{ display: none; }
+  .footer-brand img{ animation: none !important; }
+}
