@@ -49,7 +49,7 @@ if (forceFull) {
     if (effectiveType.includes("2g")) score += 3;
 
     // Hardware signals (medium)
-    if (mem && mem <= 2) score += 3;
+    if (mem && mem < 1) score += 2;
     else if (mem && mem <= 4) score += 1;
 
     if (cores && cores <= 2) score += 3;
