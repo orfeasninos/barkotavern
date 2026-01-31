@@ -1503,3 +1503,64 @@ body.dark .menu-items .dish{
 body.dark .menu-items .price{
   color: rgba(255,255,255,0.85);
 }
+
+
+/* =========================================================
+   LOW-END MODE (old/cheap phones) — performance first
+   Enabled by body.low-end (set in main.js)
+========================================================= */
+body.low-end{
+  /* fixed backgrounds + heavy paint = jank */
+  background-attachment: scroll !important;
+}
+
+body.low-end.dark{
+  /* dark mode currently uses fixed background too */
+  background-attachment: scroll !important;
+}
+
+/* Kill expensive blur */
+body.low-end header{
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+body.low-end .section,
+body.low-end .menu-item,
+body.low-end .menu-category,
+body.low-end .menu-items li,
+body.low-end .menu-sidebar,
+body.low-end .gallery-item{
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+
+  /* reduce heavy shadows (big GPU/paint cost) */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.10) !important;
+}
+
+/* Disable animations/transitions that cause scroll stutter */
+body.low-end *{
+  animation: none !important;
+  transition: none !important;
+}
+
+/* Remove shimmer overlay (continuous animation) */
+body.low-end .footer-shimmer{ display: none !important; }
+
+/* Float logo animation off */
+body.low-end .footer-brand img{ animation: none !important; }
+
+/* Gallery / hover transforms off (some mobiles still “simulate” hover) */
+body.low-end .gallery-item,
+body.low-end .gallery-item img,
+body.low-end .menu-item,
+body.low-end .category-card{
+  transform: none !important;
+  filter: none !important;
+}
+
+/* Section reveal: make sure content is visible even if classes exist */
+body.low-end .section-hidden{
+  opacity: 1 !important;
+  transform: none !important;
+}

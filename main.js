@@ -7,6 +7,22 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Mobile detection (used to avoid jank on Android Chrome/Brave)
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    // Low-end device hint (old/cheap phones): reduce effects
+  const mem = navigator.deviceMemory || 0; // in GB (Chrome/Android)
+  const cores = navigator.hardwareConcurrency || 0;
+  const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  const saveData = !!(conn && conn.saveData);
+  const effectiveType = (conn && conn.effectiveType) ? conn.effectiveType : "";
+
+  const isLowEnd =
+    isMobile && (
+      saveData ||
+      effectiveType.includes("2g") ||
+      (mem && mem <= 2) ||
+      (cores && cores <= 4)
+    );
+
+  if (isLowEnd) document.body.classList.add("low-end");
 
   /* =========================
      AUTO DARK MODE (SYSTEM)
