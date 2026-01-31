@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // 2) score
     score = 0;
-    if (isMobile) score += 5;
+    if (isMobile) score += 1;
     if (saveData) score += 3;
     if (effectiveType.includes("2g")) score += 3;
 
@@ -409,8 +409,6 @@ if (menuSections.length && menuLinks.length) {
 
   if (initial?.s?.id) setActive(initial.s.id);
 }
-
-
 
   /* =========================
      MENU ITEMS ANIMATION
