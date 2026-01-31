@@ -6,23 +6,138 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   // Mobile detection (used to avoid jank on Android Chrome/Brave)
-  const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    // Low-end device hint (old/cheap phones): reduce effects
-  const mem = navigator.deviceMemory || 0; // in GB (Chrome/Android)
-  const cores = navigator.hardwareConcurrency || 0;
-  const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-  const saveData = !!(conn && conn.saveData);
-  const effectiveType = (conn && conn.effectiveType) ? conn.effectiveType : "";
+const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
-  const isLowEnd =
-    isMobile && (
-      saveData ||
-      effectiveType.includes("2g") ||
-      (mem && mem <= 2) ||
-      (cores && cores <= 4)
-    );
+// ===== Low-end detection (more accurate) =====
+const params = new URLSearchParams(location.search);
+const debugOn = params.has("debug");
+const forceLite = params.has("lite");
+const forceFull = params.has("full"); // optional override: ?full
 
-  if (isLowEnd) document.body.classList.add("low-end");
+const prefersReducedMotion =
+  !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+
+const mem = navigator.deviceMemory || 0; // GB (not supported everywhere)
+const cores = navigator.hardwareConcurrency || 0;
+const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+const saveData = !!(conn && conn.saveData);
+const effectiveType = (conn && conn.effectiveType) ? conn.effectiveType : "";
+let score = null;
+let shouldBenchmark = false;
+let frames = null;
+let longFrames = null;
+
+// If user forces full, never enable low-end
+if (forceFull) {
+  document.body.classList.remove("low-end");
+  sessionStorage.setItem("barko_low_end", "0");
+} else if (forceLite) {
+  document.body.classList.add("low-end");
+  sessionStorage.setItem("barko_low_end", "1");
+} else {
+  // 1) Use cached decision if we have it (avoid reruns)
+  const cached = sessionStorage.getItem("barko_low_end");
+  if (cached === "1") document.body.classList.add("low-end");
+  if (cached === "0") document.body.classList.remove("low-end");
+
+  if (cached === null) {
+    // 2) Score-based heuristic (more precise than OR)
+    score = 0;
+
+    // Strong signals
+    if (saveData) score += 3;
+    if (effectiveType.includes("2g")) score += 3;
+
+    // Hardware signals (medium)
+    if (mem && mem <= 2) score += 3;
+    else if (mem && mem <= 4) score += 1;
+
+    if (cores && cores <= 2) score += 3;
+    else if (cores && cores <= 4) score += 1;
+
+    // Preference signal (not always performance, so lighter weight)
+    if (prefersReducedMotion) score += 1;
+
+    // If score is already high, decide immediately
+    let isLowEnd = score >= 4;
+
+    // 3) Runtime smoothness test only when uncertain
+    // (score 2–3: borderline cases where truth matters)
+    shouldBenchmark = !isLowEnd && score >= 2 && score <= 3;
+
+    const finish = (finalLowEnd, reason) => {
+      if (finalLowEnd) document.body.classList.add("low-end");
+      sessionStorage.setItem("barko_low_end", finalLowEnd ? "1" : "0");
+
+      if (debugOn) {
+        console.group("%c[Barko] Low-end decision", "color:#d4af37;font-weight:bold;");
+        console.log("memGB:", mem || "n/a", "cores:", cores || "n/a");
+        console.log("effectiveType:", effectiveType || "n/a", "saveData:", saveData);
+        console.log("prefersReducedMotion:", prefersReducedMotion);
+        console.log("score:", score);
+        console.log("benchmarkUsed:", shouldBenchmark);
+        console.log("result low-end:", finalLowEnd, "reason:", reason);
+        console.groupEnd();
+      }
+    };
+
+    if (!shouldBenchmark) {
+      finish(isLowEnd, isLowEnd ? "score>=4" : "score<4");
+    } else {
+      // Small rAF benchmark: measures frame pacing for ~900ms
+      // If device can't keep up (few frames / long frames) → low-end
+      const start = performance.now();
+      let frames = 0;
+      let longFrames = 0;
+      let last = start;
+
+      const tick = (t) => {
+        frames++;
+        const dt = t - last;
+        if (dt > 34) longFrames++; // > ~2 frames at 60Hz
+        last = t;
+
+        if (t - start < 900) {
+          requestAnimationFrame(tick);
+        } else {
+          // Expect ~55–60 frames per second. Over 0.9s => ~50+ frames.
+          // Long frames > 6 indicates stutter on many weak devices.
+          const lowByFrames = frames < 45;       // too few frames
+          const lowByLongs = longFrames > 6;     // too many stutters
+          const finalLowEnd = lowByFrames || lowByLongs;
+
+          finish(finalLowEnd, `benchmark(frames=${frames}, long=${longFrames})`);
+        }
+      };
+
+      requestAnimationFrame(tick);
+    }
+  }
+}
+
+  console.group("%c[Barko] Low-end decision", "color:#d4af37;font-weight:bold;");
+
+  console.log("forceLite (?lite):", forceLite);
+  console.log("forceFull (?full):", forceFull);
+
+  console.log("prefersReducedMotion:", prefersReducedMotion);
+  console.log("saveData:", saveData);
+  console.log("effectiveType:", effectiveType || "n/a");
+
+  console.log("deviceMemory (GB):", mem || "n/a");
+  console.log("hardwareConcurrency (cores):", cores || "n/a");
+
+  console.log("score:", score);
+  console.log("benchmarkUsed:", shouldBenchmark);
+
+  if (shouldBenchmark) {
+    console.log("benchmark frames:", frames);
+    console.log("benchmark long frames:", longFrames);
+  }
+
+  console.log("➡️ body.low-end class:", document.body.classList.contains("low-end"));
+
+  console.groupEnd();
 
   /* =========================
      AUTO DARK MODE (SYSTEM)
@@ -358,19 +473,25 @@ const modalImg = document.getElementById("modalImg");
 const modalTitle = document.getElementById("modalTitle");
 const modalText = document.getElementById("modalText");
 
-document.querySelectorAll(".menu-item").forEach(item => {
-  item.addEventListener("click", () => {
-    modalImg.src = item.dataset.img;
-    modalTitle.textContent = item.dataset.title;
-    modalText.textContent = item.dataset.text;
-    modal.classList.add("open");
-  });
-});
+if (modal && modalImg && modalTitle && modalText) {
 
-// close
-modal.addEventListener("click", (e) => {
-  if (e.target.classList.contains("dish-modal") ||
-      e.target.classList.contains("modal-close")) {
-    modal.classList.remove("open");
-  }
-});
+  document.querySelectorAll(".menu-item").forEach(item => {
+    item.addEventListener("click", () => {
+      modalImg.src = item.dataset.img || "";
+      modalTitle.textContent = item.dataset.title || "";
+      modalText.textContent = item.dataset.text || "";
+      modal.classList.add("open");
+    });
+  });
+
+  modal.addEventListener("click", (e) => {
+    if (
+      e.target.classList.contains("dish-modal") ||
+      e.target.classList.contains("modal-close")
+    ) {
+      modal.classList.remove("open");
+    }
+  });
+
+}
+

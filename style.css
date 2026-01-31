@@ -89,12 +89,6 @@ button:focus-visible,
   border-radius: 12px;
 }
 
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce){
-  html{ scroll-behavior: auto; }
-  *{ animation: none !important; transition: none !important; }
-}
-
 /* =======================
    CONTAINER
 ======================= */
@@ -493,7 +487,7 @@ header.header-small .logo img{ transform: scale(0.76); }
   gap: 2.5rem;
   max-width: 1200px;
   margin: auto;
-  opacity: 0;
+  opacity: 1;
   animation: fadeInFooter 1.2s forwards 0.3s;
 }
 
@@ -1168,27 +1162,6 @@ header.header-small .logo img{ transform: scale(0.76); }
   border-top: 1px solid rgba(212,175,55,.14);
 }
 
-.location-section{
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.70), rgba(255,255,255,.50)),
-    radial-gradient(circle at 80% 18%, rgba(15,107,111,.14), transparent 55%),
-    radial-gradient(circle at 10% 85%, rgba(212,175,55,.12), transparent 58%);
-}
-
-.cuisine-section{
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.70), rgba(255,255,255,.50)),
-    radial-gradient(circle at 18% 20%, rgba(212,175,55,.18), transparent 56%),
-    radial-gradient(circle at 92% 80%, rgba(156,94,48,.10), transparent 58%);
-}
-
-.reviews-section{
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,.52)),
-    radial-gradient(circle at 20% 10%, rgba(212,175,55,.14), transparent 58%),
-    radial-gradient(circle at 100% 80%, rgba(15,107,111,.10), transparent 60%);
-}
-
 .dish-gallery{
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -1232,7 +1205,9 @@ header.header-small .logo img{ transform: scale(0.76); }
 
 @media (max-width: 768px){
   /* performance: fixed background can jank on mobile */
-  body{ background-attachment: scroll; }
+  body{ 
+    background-attachment: scroll; 
+  }
 
   /* section spacing */
   .section{
@@ -1397,20 +1372,6 @@ header.header-small .logo img{ transform: scale(0.76); }
     opacity: 1;              /* fallback always visible */
     transform: none;
 }
-
-/* Αν θες να κρατήσεις το fade μόνο όταν επιτρέπονται animations */
-  @media (prefers-reduced-motion: no-preference){
-    .premium-footer-container{
-      opacity: 0;
-      animation: fadeInFooter 1.2s forwards 0.3s;
-  }
-}
-
-/* Επίσης: σε reduced-motion, κλείσε τα effects αλλά κράτα ορατό το footer */
-  @media (prefers-reduced-motion: reduce){
-    .footer-shimmer{ display: none; }
-    .footer-brand img{ animation: none !important; }
-  }
 }
 
 @media (max-width: 480px){
@@ -1525,6 +1486,10 @@ body.low-end header{
   -webkit-backdrop-filter: none !important;
 }
 
+body.low-end .premium-footer-container{
+  opacity: 1 !important;
+}
+
 body.low-end .section,
 body.low-end .menu-item,
 body.low-end .menu-category,
@@ -1563,4 +1528,30 @@ body.low-end .category-card{
 body.low-end .section-hidden{
   opacity: 1 !important;
   transform: none !important;
+}
+
+/* =========================================================
+   Reduced motion support (universal, good for old devices too)
+========================================================= */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+  *{ animation: none !important; transition: none !important; }
+
+  /* Kill heavy continuous effects */
+  .footer-shimmer{ display: none !important; }
+  .footer-brand img{ animation: none !important; }
+
+  /* Optional: remove blur for smoother scrolling */
+  header{
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
+/* Keep the premium fade ONLY when animations are allowed */
+@media (prefers-reduced-motion: no-preference){
+  .premium-footer-container{
+    opacity: 0;
+    animation: fadeInFooter 1.2s forwards 0.3s;
+  }
 }
