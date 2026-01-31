@@ -1,156 +1,116 @@
-/* =========================
-   Barko Tavern – main.js
-   Mobile-safe & Smooth UX
-   (single init; menu mobile chips + active centering)
-========================= */
-
-document.addEventListener("DOMContentLoaded", () => {
-  // Mobile detection (used to avoid jank on Android Chrome/Brave)
+document.addEventListener("DOMContentLoaded", async () => {
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
-  // ===== Low-end detection (more accurate) =====
+  // ===== Low-end detection =====
   const params = new URLSearchParams(location.search);
   const debugOn = params.has("debug");
   const forceLite = params.has("lite");
-  const forceFull = params.has("full"); // optional override: ?full
+  const forceFull = params.has("full");
 
   const prefersReducedMotion =
     !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
 
-  const mem = navigator.deviceMemory || 0; // GB (not supported everywhere)
+  const mem = navigator.deviceMemory || 0;
   const cores = navigator.hardwareConcurrency || 0;
   const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
   const saveData = !!(conn && conn.saveData);
   const effectiveType = (conn && conn.effectiveType) ? conn.effectiveType : "";
 
-  let score = null;
-  let shouldBenchmark = false;
-  let frames = null;
-  let longFrames = null;
+  let score = 0;
 
-  const finish = (finalLowEnd, reason) => {
-    // toggle ensures footer/sections don't get stuck in a previous state
-    document.body.classList.toggle("low-end", finalLowEnd);
-    sessionStorage.setItem("barko_low_end", finalLowEnd ? "1" : "0");
-
-    if (debugOn) {
-      console.group("%c[Barko] Low-end decision", "color:#d4af37;font-weight:bold;");
-      console.log("isMobile:", isMobile);
-      console.log("memGB:", mem || "n/a", "cores:", cores || "n/a");
-      console.log("effectiveType:", effectiveType || "n/a", "saveData:", saveData);
-      console.log("prefersReducedMotion:", prefersReducedMotion);
-      console.log("score:", score);
-      console.log("benchmarkUsed:", shouldBenchmark);
-
-      if (shouldBenchmark && typeof frames === "number" && typeof longFrames === "number") {
-        console.log("benchmark frames:", frames);
-        console.log("benchmark longFrames:", longFrames);
-      }
-
-      console.log("➡️ FINAL low-end:", finalLowEnd);
-      console.log("reason:", reason);
-      console.groupEnd();
-    }
+  const logDecision = (finalLowEnd, reason, extra = {}) => {
+    if (!debugOn) return;
+    console.group("%c[Barko] Low-end decision", "color:#d4af37;font-weight:bold;");
+    console.log("isMobile:", isMobile);
+    console.log("memGB:", mem || "n/a", "cores:", cores || "n/a");
+    console.log("effectiveType:", effectiveType || "n/a", "saveData:", saveData);
+    console.log("prefersReducedMotion:", prefersReducedMotion);
+    console.log("score:", score);
+    Object.entries(extra).forEach(([k, v]) => console.log(k + ":", v));
+    console.log("➡️ FINAL low-end:", finalLowEnd);
+    console.log("reason:", reason);
+    console.groupEnd();
   };
 
-  // If user forces full, never enable low-end
-  if (forceFull) {
-    finish(false, "forceFull(?full)");
-    return;
-  }
+  const decideLowEnd = () => {
+    // 0) forced
+    if (forceFull) return { lowEnd: false, reason: "forceFull(?full)" };
+    if (forceLite) return { lowEnd: true, reason: "forceLite(?lite)" };
 
-  // Manual override (super useful for testing)
-  if (forceLite) {
-    finish(true, "forceLite(?lite)");
-    return;
-  }
+    // 1) cached (IMPORTANT: no return from DOMContentLoaded!)
+    const cached = sessionStorage.getItem("barko_low_end");
+    if (cached === "1") return { lowEnd: true, reason: "cached=1" };
+    if (cached === "0") return { lowEnd: false, reason: "cached=0" };
 
-  // 1) Use cached decision if we have it (avoid reruns)
-  const cached = sessionStorage.getItem("barko_low_end");
-  if (cached === "1") {
-    document.body.classList.add("low-end");
-    if (debugOn) console.log("[Barko] cached: low-end ON");
-    return;
-  }
-  if (cached === "0") {
-    document.body.classList.remove("low-end");
-    if (debugOn) console.log("[Barko] cached: low-end OFF");
-    return;
-  }
+    // 2) score
+    score = 0;
+    if (isMobile) score += 1;
+    if (saveData) score += 3;
+    if (effectiveType.includes("2g")) score += 3;
 
-  // 2) Score-based heuristic (more precise than OR)
-  score = 0;
+    if (mem && mem < 1) score += 2;
+    else if (mem && mem <= 4) score += 1;
 
-  // Strong signals
-  if (isMobile) score += 1;
-  if (saveData) score += 3;
-  if (effectiveType.includes("2g")) score += 3;
+    if (cores && cores <= 2) score += 3;
+    else if (cores && cores <= 4) score += 1;
 
-  // HardwareF: deviceMemory is often capped/lying on Android. Keep it conservative.
-  // NOTE: deviceMemory typically returns 0.5/1/2/4/8. "mem < 1" targets 0.5 only.
-  if (mem && mem < 1) score += 2;       // 0.5GB class
-  else if (mem && mem <= 4) score += 1; // 1–4GB class (light weight)
+    if (prefersReducedMotion) score += 1;
 
-  if (cores && cores <= 2) score += 3;
-  else if (cores && cores <= 4) score += 1;
+    const isLowEndByScore = score >= 4;
+    const shouldBenchmark = !isLowEndByScore && score >= 2 && score <= 3;
 
-  // Preference signal (not always performance, so lighter weight)
-  if (prefersReducedMotion) score += 1;
+    if (!shouldBenchmark) return { lowEnd: isLowEndByScore, reason: isLowEndByScore ? "score>=4" : "score<4" };
 
-  // If score is already high, decide immediately
-  const isLowEndByScore = score >= 4;
-
-  // 3) Runtime smoothness test only when uncertain (score 2–3)
-  shouldBenchmark = !isLowEndByScore && score >= 2 && score <= 3;
-
-  if (!shouldBenchmark) {
-    finish(isLowEndByScore, isLowEndByScore ? "score>=4" : "score<4");
-    return;
-  }
-
- // Benchmark branch (only if page is visible + focused)
-if (document.visibilityState !== "visible" || !document.hasFocus()) {
-  finish(false, "benchmark-skipped(not visible/focused)");
-  return;
-}
-
-// Give the page a moment to settle (fonts/layout)
-setTimeout(() => {
-  const start = performance.now();
-  frames = 0;
-  longFrames = 0;
-  let last = start;
-
-  const tick = (t) => {
-    frames++;
-    const dt = t - last;
-    if (dt > 34) longFrames++;
-    last = t;
-
-    if (t - start < 900) {
-      requestAnimationFrame(tick);
-      return;
+    // 3) benchmark only if visible+focused
+    if (document.visibilityState !== "visible" || !document.hasFocus()) {
+      return { lowEnd: false, reason: "benchmark-skipped(not visible/focused)" };
     }
 
-    // If frames are extremely low, benchmark was likely throttled -> invalid
-    // (e.g., tab not truly active, power saver throttling, etc.)
-    if (frames < 30) {
-      // fall back to score decision instead of forcing low-end
-      finish(false, `benchmark-invalid(frames=${frames}, long=${longFrames})`);
-      return;
-    }
+    // return a promise result
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const start = performance.now();
+        let frames = 0;
+        let longFrames = 0;
+        let last = start;
 
-    const lowByFrames = frames < 45;
-    const lowByLongs = longFrames > 6;
-    const finalLowEnd = lowByFrames || lowByLongs;
+        const tick = (t) => {
+          frames++;
+          const dt = t - last;
+          if (dt > 34) longFrames++;
+          last = t;
 
-    finish(finalLowEnd, `benchmark(frames=${frames}, long=${longFrames})`);
+          if (t - start < 900) {
+            requestAnimationFrame(tick);
+            return;
+          }
+
+          if (frames < 30) {
+            resolve({ lowEnd: false, reason: `benchmark-invalid(frames=${frames}, long=${longFrames})`, extra: { frames, longFrames } });
+            return;
+          }
+
+          const lowByFrames = frames < 45;
+          const lowByLongs = longFrames > 6;
+          const finalLowEnd = lowByFrames || lowByLongs;
+
+          resolve({ lowEnd: finalLowEnd, reason: `benchmark(frames=${frames}, long=${longFrames})`, extra: { frames, longFrames } });
+        };
+
+        requestAnimationFrame(tick);
+      }, 250);
+    });
   };
 
-  requestAnimationFrame(tick);
-}, 250);
+  const result = await decideLowEnd();
+  const finalLowEnd = result.lowEnd;
 
+  document.body.classList.toggle("low-end", finalLowEnd);
+  sessionStorage.setItem("barko_low_end", finalLowEnd ? "1" : "0");
+  logDecision(finalLowEnd, result.reason, result.extra || {});
 
+  // ✅ Από εδώ και κάτω τρέχουν ΟΛΑ κανονικά (dark mode, scroll, burger, κλπ)
+  // ...
   /* =========================
      AUTO DARK MODE (SYSTEM)
   ========================= */
@@ -480,14 +440,16 @@ if (menuSections.length && menuLinks.length) {
 /* =========================
    DISH MODAL (INDEX)
 ========================= */
-const modal = document.getElementById("dishModal");
-const modalImg = document.getElementById("modalImg");
-const modalTitle = document.getElementById("modalTitle");
-const modalText = document.getElementById("modalText");
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("dishModal");
+  const modalImg = document.getElementById("modalImg");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalText = document.getElementById("modalText");
 
-if (modal && modalImg && modalTitle && modalText) {
+  // ✅ αν δεν είμαστε στο index (ή λείπουν στοιχεία), μην κάνεις τίποτα
+  if (!modal || !modalImg || !modalTitle || !modalText) return;
 
-  document.querySelectorAll(".menu-item").forEach(item => {
+  document.querySelectorAll(".menu-item").forEach((item) => {
     item.addEventListener("click", () => {
       modalImg.src = item.dataset.img || "";
       modalTitle.textContent = item.dataset.title || "";
@@ -497,15 +459,10 @@ if (modal && modalImg && modalTitle && modalText) {
   });
 
   modal.addEventListener("click", (e) => {
-    if (
-      e.target.classList.contains("dish-modal") ||
-      e.target.classList.contains("modal-close")
-    ) {
+    if (e.target.classList.contains("dish-modal") || e.target.classList.contains("modal-close")) {
       modal.classList.remove("open");
     }
   });
-
-}
-
+});
 
 
