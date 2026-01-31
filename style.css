@@ -916,8 +916,8 @@ header.header-small .logo img{ transform: scale(0.76); }
 }
 
 /* Hover polish (only on real hover devices) */
-@media (hover:hover){
-  .menu-items li:hover{
+@media (hover:hover) and (pointer:fine) {
+  .menu-items li:hover {
     transform: translateY(-2px);
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.76), rgba(241, 255, 236, 0.56));
     box-shadow: 0 20px 45px rgba(0,0,0,0.16);

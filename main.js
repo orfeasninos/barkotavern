@@ -44,7 +44,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // 2) score
     score = 0;
-    if (isMobile) score += 1;
     if (saveData) score += 3;
     if (effectiveType.includes("2g")) score += 3;
 
@@ -55,7 +54,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     else if (cores && cores <= 4) score += 1;
 
     if (prefersReducedMotion) score += 1;
-
+    if (isMobile && score > 0) score += 1;
     const isLowEndByScore = score >= 4;
     const shouldBenchmark = !isLowEndByScore && score >= 2 && score <= 3;
 
