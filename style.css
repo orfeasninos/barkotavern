@@ -1195,6 +1195,174 @@ header.header-small .logo img{ transform: scale(0.76); }
 }
 
 /* =========================================================
+   DARK MODE — Soft / Same as Light (Night Version)
+   Philosophy:
+   - ίδιο background με light
+   - ίδια gradients / υφές
+   - απλά πιο σκοτεινό φίλτρο
+========================================================= */
+
+body.dark{
+  color: rgba(255,255,255,0.92);
+
+  /* ίδιο background, απλά νύχτα */
+  background:
+    linear-gradient(
+      rgba(0,0,0,0.45),
+      rgba(0,0,0,0.55)
+    ),
+    url("images/background.webp") center center / cover no-repeat fixed;
+}
+
+/* =========================================================
+   SECTIONS — same paper, darker
+========================================================= */
+body.dark .section{
+  background:
+    linear-gradient(180deg, rgba(20,20,20,0.65), rgba(20,20,20,0.55)),
+    radial-gradient(circle at 20% 0%, rgba(212,175,55,0.10), transparent 55%),
+    radial-gradient(circle at 100% 70%, rgba(15,107,111,0.10), transparent 60%);
+  border: 1px solid rgba(212,175,55,0.14);
+}
+
+/* headings */
+body.dark .section h2{
+  color: #33692d;
+  background-color: #2424243d;
+}
+
+body.dark .menu-category h3 {
+  color: #33692d;
+  background-color: #2424243d;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+body.dark .menu-links-list {
+  background:#2424243d;
+  border: 1px solid rgba(212,175,55,0.14);
+}
+
+/* =========================================================
+   CARDS / MENU / SIDEBAR — translucent, όχι μαύρα
+========================================================= */
+body.dark .menu-item,
+body.dark .menu-category,
+body.dark .menu-items li,
+body.dark .menu-sidebar,
+body.dark .gallery-item{
+  background: #2424243d;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(212,175,55,0.14);
+}
+body.dark .menu-item h3 {
+  color: #33692d;
+}
+
+body.dark .menu-item p {
+  color:#fff;  
+}
+/* menu text */
+body.dark .menu-items .dish{
+  color: rgba(255,255,255,0.92);
+}
+
+body.dark .menu-items .price{
+  color: rgba(255,255,255,0.85);
+}
+
+
+/* =========================================================
+   LOW-END MODE (old/cheap phones) — performance first
+   Enabled by body.low-end (set in main.js)
+========================================================= */
+body.low-end{
+  /* fixed backgrounds + heavy paint = jank */
+  background-attachment: scroll !important;
+}
+
+body.low-end.dark{
+  /* dark mode currently uses fixed background too */
+  background-attachment: scroll !important;
+}
+
+/* Kill expensive blur */
+body.low-end header{
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+body.low-end .premium-footer-container{
+  opacity: 1 !important;
+}
+
+body.low-end .section,
+body.low-end .menu-item,
+body.low-end .menu-category,
+body.low-end .menu-items li,
+body.low-end .menu-sidebar,
+body.low-end .gallery-item{
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+
+  /* reduce heavy shadows (big GPU/paint cost) */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.10) !important;
+}
+
+/* Disable animations/transitions that cause scroll stutter */
+body.low-end *{
+  animation: none !important;
+  transition: none !important;
+}
+
+/* Remove shimmer overlay (continuous animation) */
+body.low-end .footer-shimmer{ display: none !important; }
+
+/* Float logo animation off */
+body.low-end .footer-brand img{ animation: none !important; }
+
+/* Gallery / hover transforms off (some mobiles still “simulate” hover) */
+body.low-end .gallery-item,
+body.low-end .gallery-item img,
+body.low-end .menu-item,
+body.low-end .category-card{
+  transform: none !important;
+  filter: none !important;
+}
+
+/* Section reveal: make sure content is visible even if classes exist */
+body.low-end .section-hidden{
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* =========================================================
+   Reduced motion support (universal, good for old devices too)
+========================================================= */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+  *{ animation: none !important; transition: none !important; }
+
+  /* Kill heavy continuous effects */
+  .footer-shimmer{ display: none !important; }
+  .footer-brand img{ animation: none !important; }
+
+  /* Optional: remove blur for smoother scrolling */
+  header{
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
+/* Keep the premium fade ONLY when animations are allowed */
+@media (prefers-reduced-motion: no-preference){
+  .premium-footer-container{
+    opacity: 0;
+    animation: fadeInFooter 1.2s forwards 0.3s;
+  }
+}
+
+/* =========================================================
    RESPONSIVE — SINGLE MOBILE BLOCK (768px)
 ========================================================= */
 @media (max-width: 1024px){
@@ -1204,11 +1372,6 @@ header.header-small .logo img{ transform: scale(0.76); }
 }
 
 @media (max-width: 768px){
-  /* performance: fixed background can jank on mobile */
-  body{ 
-    background-attachment: scroll; 
-  }
-
   /* section spacing */
   .section{
     padding: 3rem 1rem;
@@ -1386,172 +1549,4 @@ header.header-small .logo img{ transform: scale(0.76); }
   .gallery-item img{ height: 200px; }
   .category-card{ width: 145px; }
   .menu-items li{ padding: 0.9rem; }
-}
-
-/* =========================================================
-   DARK MODE — Soft / Same as Light (Night Version)
-   Philosophy:
-   - ίδιο background με light
-   - ίδια gradients / υφές
-   - απλά πιο σκοτεινό φίλτρο
-========================================================= */
-
-body.dark{
-  color: rgba(255,255,255,0.92);
-
-  /* ίδιο background, απλά νύχτα */
-  background:
-    linear-gradient(
-      rgba(0,0,0,0.45),
-      rgba(0,0,0,0.55)
-    ),
-    url("images/background.webp") center center / cover no-repeat fixed;
-}
-
-/* =========================================================
-   SECTIONS — same paper, darker
-========================================================= */
-body.dark .section{
-  background:
-    linear-gradient(180deg, rgba(20,20,20,0.65), rgba(20,20,20,0.55)),
-    radial-gradient(circle at 20% 0%, rgba(212,175,55,0.10), transparent 55%),
-    radial-gradient(circle at 100% 70%, rgba(15,107,111,0.10), transparent 60%);
-  border: 1px solid rgba(212,175,55,0.14);
-}
-
-/* headings */
-body.dark .section h2{
-  color: #33692d;
-  background-color: #2424243d;
-}
-
-body.dark .menu-category h3 {
-  color: #33692d;
-  background-color: #2424243d;
-  border-radius: 20px;
-  padding: 10px;
-}
-
-body.dark .menu-links-list {
-  background:#2424243d;
-  border: 1px solid rgba(212,175,55,0.14);
-}
-
-/* =========================================================
-   CARDS / MENU / SIDEBAR — translucent, όχι μαύρα
-========================================================= */
-body.dark .menu-item,
-body.dark .menu-category,
-body.dark .menu-items li,
-body.dark .menu-sidebar,
-body.dark .gallery-item{
-  background: #2424243d;
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(212,175,55,0.14);
-}
-body.dark .menu-item h3 {
-  color: #33692d;
-}
-
-body.dark .menu-item p {
-  color:#fff;  
-}
-/* menu text */
-body.dark .menu-items .dish{
-  color: rgba(255,255,255,0.92);
-}
-
-body.dark .menu-items .price{
-  color: rgba(255,255,255,0.85);
-}
-
-
-/* =========================================================
-   LOW-END MODE (old/cheap phones) — performance first
-   Enabled by body.low-end (set in main.js)
-========================================================= */
-body.low-end{
-  /* fixed backgrounds + heavy paint = jank */
-  background-attachment: scroll !important;
-}
-
-body.low-end.dark{
-  /* dark mode currently uses fixed background too */
-  background-attachment: scroll !important;
-}
-
-/* Kill expensive blur */
-body.low-end header{
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-}
-
-body.low-end .premium-footer-container{
-  opacity: 1 !important;
-}
-
-body.low-end .section,
-body.low-end .menu-item,
-body.low-end .menu-category,
-body.low-end .menu-items li,
-body.low-end .menu-sidebar,
-body.low-end .gallery-item{
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-
-  /* reduce heavy shadows (big GPU/paint cost) */
-  box-shadow: 0 10px 25px rgba(0,0,0,0.10) !important;
-}
-
-/* Disable animations/transitions that cause scroll stutter */
-body.low-end *{
-  animation: none !important;
-  transition: none !important;
-}
-
-/* Remove shimmer overlay (continuous animation) */
-body.low-end .footer-shimmer{ display: none !important; }
-
-/* Float logo animation off */
-body.low-end .footer-brand img{ animation: none !important; }
-
-/* Gallery / hover transforms off (some mobiles still “simulate” hover) */
-body.low-end .gallery-item,
-body.low-end .gallery-item img,
-body.low-end .menu-item,
-body.low-end .category-card{
-  transform: none !important;
-  filter: none !important;
-}
-
-/* Section reveal: make sure content is visible even if classes exist */
-body.low-end .section-hidden{
-  opacity: 1 !important;
-  transform: none !important;
-}
-
-/* =========================================================
-   Reduced motion support (universal, good for old devices too)
-========================================================= */
-@media (prefers-reduced-motion: reduce){
-  html{ scroll-behavior: auto; }
-  *{ animation: none !important; transition: none !important; }
-
-  /* Kill heavy continuous effects */
-  .footer-shimmer{ display: none !important; }
-  .footer-brand img{ animation: none !important; }
-
-  /* Optional: remove blur for smoother scrolling */
-  header{
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-  }
-}
-
-/* Keep the premium fade ONLY when animations are allowed */
-@media (prefers-reduced-motion: no-preference){
-  .premium-footer-container{
-    opacity: 0;
-    animation: fadeInFooter 1.2s forwards 0.3s;
-  }
 }
