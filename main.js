@@ -107,16 +107,23 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // Benchmark branch
+ // Benchmark branch (only if page is visible + focused)
+if (document.visibilityState !== "visible" || !document.hasFocus()) {
+  finish(false, "benchmark-skipped(not visible/focused)");
+  return;
+}
+
+// Give the page a moment to settle (fonts/layout)
+setTimeout(() => {
   const start = performance.now();
-  frames = 0;        // ✅ no "let" (writes to outer)
-  longFrames = 0;    // ✅ no "let" (writes to outer)
+  frames = 0;
+  longFrames = 0;
   let last = start;
 
   const tick = (t) => {
     frames++;
     const dt = t - last;
-    if (dt > 34) longFrames++; // > ~2 frames at 60Hz
+    if (dt > 34) longFrames++;
     last = t;
 
     if (t - start < 900) {
@@ -124,8 +131,14 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Expect ~55–60 fps. Over 0.9s => ~50+ frames.
-    // Long frames > 6 indicates stutter on many weak devices.
+    // If frames are extremely low, benchmark was likely throttled -> invalid
+    // (e.g., tab not truly active, power saver throttling, etc.)
+    if (frames < 30) {
+      // fall back to score decision instead of forcing low-end
+      finish(false, `benchmark-invalid(frames=${frames}, long=${longFrames})`);
+      return;
+    }
+
     const lowByFrames = frames < 45;
     const lowByLongs = longFrames > 6;
     const finalLowEnd = lowByFrames || lowByLongs;
@@ -134,7 +147,9 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   requestAnimationFrame(tick);
-  
+}, 250);
+
+
   /* =========================
      AUTO DARK MODE (SYSTEM)
   ========================= */
