@@ -82,6 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
   score = 0;
 
   // Strong signals
+  if (isMobile) score += 1;
   if (saveData) score += 3;
   if (effectiveType.includes("2g")) score += 3;
 
