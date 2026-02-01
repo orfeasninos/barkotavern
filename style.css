@@ -46,6 +46,7 @@
   padding: 0;
   scrollbar-width: thin;
   scrollbar-color: var(--gold) rgba(250, 248, 242, 0.8);
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
