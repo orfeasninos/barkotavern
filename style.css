@@ -1726,3 +1726,103 @@ body.low-end .section-hidden {
     filter: saturate(1.15) contrast(1.08);
   }
 }
+
+/* =========================
+   MOBILE TAP STATES
+   (touch devices)
+========================= */
+@media (hover:none) and (pointer:coarse){
+
+  .menu-items li:active{
+    transform: translateY(-2px);
+    background: linear-gradient(180deg, rgba(255,255,255,0.76), rgba(241,255,236,0.56));
+    box-shadow: 0 20px 45px rgba(0,0,0,0.16);
+  }
+
+  .menu-category:active{
+    transform: translateY(-3px);
+  }
+
+  .menu-item:active{
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+  }
+
+  .category-card:active{
+    transform: translateY(-4px);
+    filter: saturate(1.05);
+  }
+
+  p a:active{
+    color: var(--gold);
+    transform: translateY(-1px);
+    text-shadow: 0 0 4px rgba(212,175,55,0.5);
+  }
+
+  p a:active::after{
+    width: 100%;
+  }
+
+  .logo a:active img{
+    transform: scale(0.8) translateY(-2px);
+    filter: drop-shadow(0 14px 28px rgba(0,0,0,0.45));
+  }
+
+  .header-nav ul li a:active{
+    color:#fff;
+    background: rgba(212,175,55,0.16);
+    box-shadow:
+      0 10px 30px rgba(0,0,0,0.18),
+      inset 0 1px 0 rgba(255,255,255,0.12);
+    transform: translateY(-1px);
+  }
+
+  .header-nav ul li a:active::after{
+    transform: scaleX(1);
+  }
+
+  .lang-current:active{
+    transform: translateY(-1px);
+    background: rgba(212,175,55,0.12);
+  }
+
+  .lang-options img:active{
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+
+  .theme-toggle:active{
+    transform: rotate(20deg) scale(1.06);
+  }
+
+  .footer-credit a:active{
+    opacity: 0.85;
+  }
+
+  .dish-gallery img:active{
+    transform: translateY(-6px) scale(1.01);
+    filter: saturate(1.12) contrast(1.06);
+    box-shadow: 0 30px 70px rgba(0,0,0,.22);
+  }
+
+  .footer-links a:active::after,
+  .footer-contact a:active::after{
+    width: 100%;
+  }
+
+  .footer-links a:active,
+  .footer-contact a:active{
+    transform: translateX(4px);
+    text-shadow: 0 0 8px var(--gold);
+  }
+
+  .gallery-item:active{
+    transform: translateY(-6px);
+    box-shadow: 0 28px 70px rgba(0,0,0,0.22);
+  }
+
+  .gallery-item:active img{
+    transform: scale(1.08);
+    filter: saturate(1.15) contrast(1.08);
+  }
+}
