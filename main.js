@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
 /* =========================
-   SECTION REVEAL (FAIL-SAFE)
+   SECTION REVEAL (FAIL-SAFE)**************************************************************************************************************************************************
 ========================= */
 const sections = document.querySelectorAll(".section");
 
@@ -229,20 +229,6 @@ if (sections.length) {
         navLinks.forEach((link) => {
           link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
         });
-      },
-      { passive: true }
-    );
-  }
-
-  /* =========================
-     HEADER SHRINK
-  ========================= */
-  const header = document.querySelector("header");
-  if (header) {
-    window.addEventListener(
-      "scroll",
-      () => {
-        header.classList.toggle("header-small", window.scrollY > 80);
       },
       { passive: true }
     );
@@ -448,9 +434,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(".menu-item").forEach((item) => {
     item.addEventListener("click", () => {
-      modalImg.src = item.dataset.img || "";
-      modalTitle.textContent = item.dataset.title || "";
-      modalText.textContent = item.dataset.text || "";
       modal.classList.add("open");
     });
   });
