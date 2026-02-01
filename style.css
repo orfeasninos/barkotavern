@@ -595,17 +595,6 @@ header.header-small .logo img {
   transition: width 0.35s ease;
 }
 
-.footer-links a:hover::after,
-.footer-contact a:hover::after {
-  width: 100%;
-}
-
-.footer-links a:hover,
-.footer-contact a:hover {
-  transform: translateX(4px);
-  text-shadow: 0 0 8px var(--gold);
-}
-
 .footer-contact {
   display: flex;
   flex-direction: column;
@@ -1004,22 +993,6 @@ header.header-small .logo img {
   transform: scale(1.01);
   transition: transform 700ms var(--ease-2), filter 700ms var(--ease-2);
   filter: saturate(1.05) contrast(1.03);
-}
-
-@media (hover:hover) {
-  .gallery-item {
-    transition: transform 700ms var(--ease-2), box-shadow 700ms var(--ease-2);
-  }
-
-  .gallery-item:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 28px 70px rgba(0, 0, 0, 0.22);
-  }
-
-  .gallery-item:hover img {
-    transform: scale(1.08);
-    filter: saturate(1.15) contrast(1.08);
-  }
 }
 
 /* optional caption */
@@ -1653,15 +1626,6 @@ body.low-end .section-hidden {
   }
 }
 
-
-
-
-
-
-
-
-
-
 /* Hover polish (only on real hover devices) */
 @media (hover:hover) and (pointer:fine) {
   .menu-items li:hover {
@@ -1736,5 +1700,29 @@ body.low-end .section-hidden {
     transform: translateY(-6px) scale(1.01);
     filter: saturate(1.12) contrast(1.06);
     box-shadow: 0 30px 70px rgba(0, 0, 0, .22);
+  }
+
+  .footer-links a:hover::after,
+  .footer-contact a:hover::after {
+    width: 100%;
+  }
+
+  .footer-links a:hover,
+  .footer-contact a:hover {
+    transform: translateX(4px);
+    text-shadow: 0 0 8px var(--gold);
+  }
+    .gallery-item {
+    transition: transform 700ms var(--ease-2), box-shadow 700ms var(--ease-2);
+  }
+
+  .gallery-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 28px 70px rgba(0, 0, 0, 0.22);
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.08);
+    filter: saturate(1.15) contrast(1.08);
   }
 }
