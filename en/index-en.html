@@ -3,125 +3,162 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Barko Tavern</title>
+
+  <title>Barko Tavern | Traditional Greek Tavern in Milos</title>
+  <meta name="description"
+        content="Barko Tavern is a traditional Greek tavern in Adamas, Milos. Authentic local recipes, homemade Greek food and warm hospitality since 1993.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://barkotavernmilos.com/en/index-en.html">
+
+  <link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/index.html">
+  <link rel="alternate" hreflang="en" href="https://barkotavernmilos.com/en/index-en.html">
+  <link rel="alternate" hreflang="it" href="https://barkotavernmilos.com/it/index-it.html">
+  <link rel="alternate" hreflang="fr" href="https://barkotavernmilos.com/fr/index-fr.html">
+  <link rel="alternate" hreflang="x-default" href="https://barkotavernmilos.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Barko Tavern | Traditional Greek Tavern in Milos">
+  <meta property="og:description" content="Authentic Greek flavors and homemade food in Adamas, Milos.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://barkotavernmilos.com/en/index-en.html">
+  <meta property="og:image" content="https://barkotavernmilos.com/images/og-barko-1200x630.png">
+  <meta property="og:locale" content="en_US">
+
   <link rel="stylesheet" href="../style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-  <!-- HEADER -->
 <header>
   <div class="header-container">
-    <!-- LOGO -->
     <div class="logo">
       <a href="index-en.html">
         <img src="../images/logo.png" alt="Barko Tavern Logo">
       </a>
     </div>
 
-    <!-- BURGER MENU & NAV -->
     <div class="header-right">
+      <div class="burger-menu" id="burger-menu"><span></span><span></span><span></span></div>
 
-      <!-- Burger button -->
-      <div class="burger-menu" id="burger-menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-
-      <!-- Nav links + language -->
       <nav class="header-nav" id="mobile-nav">
         <ul>
-          <li><a href="index-en.html">Home</a></li>
+          <li><a href="index-en.html" class="active">Home</a></li>
+          <li><a href="restaurant-en.html">The Restaurant</a></li>
           <li><a href="menu-en.html">Menu</a></li>
+          <li><a href="gallery-en.html">Gallery</a></li>
           <li><a href="index-en.html#contact">Contact</a></li>
-          <li><a href="">Gallery</a></li>
-          <li><span class="open-status" id="open-status">🟢 Open</span></li>
+
           <li class="nav-controls">
-            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+            <button class="theme-toggle" id="theme-toggle">🌙</button>
             <div class="language-switcher">
               <div class="lang-current">
                 <img src="../images/en.jpg" alt="English">
                 <span class="lang-arrow">▾</span>
               </div>
               <div class="lang-options">
-                <a href="../menu.html"><img src="../images/gr.jpg" alt="Ελληνικά"></a>
-                <a href="it/menu-it.html"><img src="../images/it.jpg" alt="Italian"></a>
-                <a href="fr/menu-fr.html"><img src="../images/fr.jpg" alt="French"></a>
+                <a href="../index.html"><img src="../images/gr.jpg" alt="Greek"></a>
+                <a href="../it/index-it.html"><img src="../images/it.jpg" alt="Italian"></a>
+                <a href="../fr/index-fr.html"><img src="../images/fr.jpg" alt="French"></a>
               </div>
             </div>
+          </li>
         </ul>
       </nav>
     </div>
   </div>
 </header>
 
-  <!-- ABOUT -->
-  <section id="about" class="section about-section">
-    <div class="container">
-      <h2>About Us</h2>
-      <p>At Barko Tavern, we combine traditional Greek cuisine with fresh ingredients and love for every dish.</p>
+<section class="hero-welcome">
+  <div class="welcome-box">
+    <h1>Welcome to Barko</h1>
+    <span>Traditional Greek Tavern • Since 1993</span>
+    <p>
+      In the heart of Adamas, Milos, we serve authentic local Greek recipes,
+      homemade food and warm island hospitality.
+    </p>
+  </div>
+</section>
+
+<section id="about" class="section">
+  <div class="container">
+    <h2>Our Story</h2>
+    <p>
+      Barko Tavern is a family-run restaurant created to offer the classic Greek
+      holiday dining experience: honest food, simple ingredients and a relaxed atmosphere.
+      Since 1993, we keep Milos traditions alive with love and care.
+    </p>
+  </div>
+</section>
+
+<section id="contact" class="section contact-section">
+  <div class="container">
+    <h2>Contact</h2>
+    <p>📞 <a href="tel:+302287022660">+30 22870 22660</a></p>
+    <p>📧 <a href="mailto:barkomilos@gmail.com">barkomilos@gmail.com</a></p>
+    <p>📍 Adamas, Milos</p>
+    <p>⏰ 13:00 – 23:00</p>
+  </div>
+</section>
+
+<footer class="premium-footer">
+  <div class="premium-footer-container">
+
+    <!-- Brand & slogan -->
+    <div class="footer-brand">
+      <img src="../images/logo.png" alt="Barko Tavern Logo">
+      <p>Homemade food • Traditional recipes • Milos</p>
     </div>
-  </section>
 
-  <!-- MENU -->
-  <section id="menu" class="section menu-section">
-    <div class="container">
-      <h2>Barko Tavern Menu</h2>
-      <div class="menu-grid">
+    <!-- Quick links -->
+    <div class="footer-links" id="footer-nav">
+      <h4>Navigation</h4>
+      <a href="index-en.html">Home</a>
+      <a href="restaurant-en.html">The Restaurant</a>
+      <a href="menu-en.html">Menu</a>
+      <a href="gallery-en.html">Gallery</a>
+      <a href="index-en.html#contact">Contact</a>
+    </div>
 
-        <!-- Moussaka -->
-        <div class="menu-item">
-          <img src="../images/mousakas.jpg" alt="Moussaka">
-          <h3>Moussaka</h3>
-          <p>Traditional Greek dish with layers of eggplant, minced meat, and béchamel sauce.</p>
-        </div>
+    <!-- Contact -->
+    <div class="footer-contact">
+      <h4>Contact</h4>
 
-        <!-- Souvlaki -->
-        <div class="menu-item">
-          <img src="../images/mousakas.jpg" alt="Souvlaki">
-          <h3>Souvlaki</h3>
-          <p>Grilled pieces of meat served with pita bread and tzatziki sauce.</p>
-        </div>
+      <a href="https://www.google.com/maps/place/Barko+tavern+restaurant/"
+         target="_blank" rel="noopener noreferrer">
+        <span>📍</span>
+        <span>Adamas, Milos</span>
+      </a>
 
-        <!-- Greek Salad -->
-        <div class="menu-item">
-          <img src="../images/mousakas.jpg" alt="Greek Salad">
-          <h3>Greek Salad</h3>
-          <p>Fresh vegetables with feta cheese and olive oil — refreshing and tasty.</p>
-        </div>
+      <a href="tel:+302287022660">
+        <span>📞</span>
+        <span>+30 22870 22660</span>
+      </a>
 
+      <a href="mailto:barkomilos@gmail.com">
+        <span>📧</span>
+        <span>barkomilos@gmail.com</span>
+      </a>
+
+      <div class="hours">
+        <span>⏰</span>
+        <span>13:00 – 23:00</span>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- CONTACT -->
-  <section id="contact" class="section contact-section">
-    <div class="container">
-      <h2>Contact</h2>
-      <p>Address: 123 Street, City</p>
-      <p>Phone: +30 210-1234567</p>
-      <p>Email: info@restaurant.com</p>
-      <div class="map-container">
-        <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3190.640843206763!2d24.4442143!3d36.7283479!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1498df472dfb6355%3A0x2cd14b966d368b5f!2sBarko%20tavern%20restaurant!5e0!3m2!1sel!2sgr!4v1704800000000"
-        width="100%"
-        height="300"
-        style="border:0;"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-      </div>
-    </div>
-  </section>
+  <div class="footer-bottom">
+    © 2026 <strong>Barko Tavern</strong> • All rights reserved
+  </div>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <p>© 2026 Barko Tavern. All rights reserved.</p>
-    </div>
-  </footer>
+  <!-- Shimmer Overlay -->
+  <div class="footer-shimmer"></div>
+
+  <div class="footer-credit">
+    Website design &amp; development by Orfeas Ninos
+  </div>
+</footer>
+
+
 <script src="../main.js"></script>
 </body>
 </html>
