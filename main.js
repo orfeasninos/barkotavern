@@ -358,6 +358,21 @@ if (menuSections.length && menuLinks.length) {
 
             linksContainer.scrollTo({ left, behavior: "smooth" });
           });
+        } else if (!mobileNow && linksContainer && !rafPending) {
+          rafPending = true;
+          requestAnimationFrame(() => {
+            rafPending = false;
+            const cRect = linksContainer.getBoundingClientRect();
+            const lRect = link.getBoundingClientRect();
+            const current = linksContainer.scrollTop;
+            const offset =
+              lRect.top - cRect.top - cRect.height / 2 + lRect.height / 2;
+
+            linksContainer.scrollTo({
+              top: Math.max(0, current + offset),
+              behavior: "smooth",
+            });
+          });
         }
       }
     });
@@ -444,5 +459,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-
 

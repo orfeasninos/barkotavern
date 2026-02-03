@@ -806,6 +806,28 @@ header.header-small .logo img {
   border: 1px solid rgba(212, 175, 55, 0.18);
 }
 
+@media (min-width: 769px) {
+  .menu-links-list {
+    max-height: calc(100vh - var(--header-h) - 180px);
+    overflow-y: auto;
+    padding-right: 0.6rem;
+  }
+
+  .menu-links-list::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .menu-links-list::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--gold), var(--gold-2));
+    border-radius: 999px;
+  }
+
+  .menu-links-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: 999px;
+  }
+}
+
 /* category cards (your <a class="category-card"> is the card itself) */
 .category-card {
   position: relative;
@@ -1399,6 +1421,54 @@ body.low-end .section-hidden {
 /* =========================================================
    RESPONSIVE — SINGLE MOBILE BLOCK (768px)
 ========================================================= */
+@media (max-height: 720px) {
+  :root {
+    --header-h: 96px;
+  }
+
+  header {
+    height: var(--header-h);
+  }
+
+  .logo img {
+    height: 72px;
+  }
+
+  .section {
+    padding: 2.4rem 1.25rem;
+    margin: 1.4rem auto;
+  }
+
+  .hero-welcome {
+    min-height: 60vh;
+  }
+
+  .welcome-box {
+    padding: 2rem 3rem;
+  }
+
+  .menu-sidebar {
+    top: calc(var(--header-h) - 6px);
+  }
+
+  .gallery-item img {
+    height: 220px;
+  }
+
+  .dish-gallery img {
+    height: 220px;
+  }
+
+  .premium-footer {
+    padding: 3.5rem 1.5rem 2.5rem;
+  }
+
+  .scroll-top {
+    bottom: 16px;
+    right: 16px;
+  }
+}
+
 @media (max-width: 1024px) {
 
   /* gallery: 2 per row */
@@ -1628,228 +1698,20 @@ body.low-end .section-hidden {
 }
 
 
-/* =========================================================
-   LOW HEIGHT (landscape phones / short viewports)
-   Makes layout breathe when height is small
-========================================================= */
 
-/* 1) General short-height tuning */
-@media (max-height: 720px) {
 
-  :root {
-    --header-h: 92px; /* from 120px -> 92px */
-  }
 
-  /* header: slightly tighter */
-  header {
-    height: var(--header-h);
-  }
 
-  .logo img {
-    height: 62px; /* safer for short heights */
-  }
 
-  /* sections: less vertical padding/margins */
-  .section {
-    padding: 3.2rem 1.4rem;
-    margin: 1.8rem auto;
-  }
 
-  /* headings a bit tighter */
-  .section h2 {
-    margin-bottom: 2rem;
-    font-size: clamp(1.9rem, 3.2vw, 2.6rem);
-  }
 
-  /* footer: reduce top padding slightly */
-  .premium-footer {
-    padding: 3.2rem 1.2rem 2.2rem;
-  }
-}
 
-/* 2) Landscape phones specifically (short + wide) */
-@media (max-height: 520px) and (orientation: landscape) {
 
-  :root {
-    --header-h: 78px;
-  }
 
-  .logo img {
-    height: 52px;
-  }
 
-  /* HERO: don't force huge hero on short heights */
-  .hero-welcome {
-    min-height: 56svh; /* better than vh on mobile */
-    padding: 1rem 0;
-  }
 
-  .welcome-box {
-    padding: 1.4rem 1.6rem;
-    border-radius: 1.2rem;
-  }
 
-  .welcome-box h1 {
-    font-size: clamp(1.8rem, 4.5vw, 2.6rem);
-    margin-bottom: 0.5rem;
-  }
 
-  .welcome-box span {
-    margin-top: 0.6rem;
-    font-size: 0.78rem;
-  }
-
-  /* Menu page: sticky sidebar shouldn't steal the screen */
-  .menu-sidebar {
-    top: 12px;
-    padding: 0.75rem 0.75rem;
-  }
-
-  .menu-section {
-    padding: 3.5rem 1.2rem;
-    margin: 1.6rem auto;
-  }
-
-  /* Gallery images slightly shorter */
-  .gallery-item img {
-    height: 200px;
-  }
-}
-
-/* 3) Ultra-short heights (rare, but fixes “everything is cramped”) */
-@media (max-height: 420px) {
-
-  .section {
-    padding: 2.6rem 1rem;
-    margin: 1.2rem auto;
-    border-radius: 1.4rem;
-  }
-
-  .menu-category {
-    padding: 1.2rem 1rem;
-    margin-bottom: 2.2rem;
-  }
-
-  .menu-items li {
-    padding: 0.85rem 0.9rem;
-  }
-}
-
-/* =========================================================
-   SHORT VIEWPORT HEIGHT FIXES
-   (phones in landscape, split-screen, small laptop height)
-   Placed at the VERY END so it overrides earlier width media.
-========================================================= */
-
-/* A) Any short height: tighten header + section spacing */
-@media (max-height: 720px) {
-  :root { --header-h: 96px; }
-
-  header { height: var(--header-h); }
-  .logo img { height: 72px; }
-
-  .header-nav ul li a {
-    padding: 8px 9px;
-    font-size: 12px;
-  }
-
-  .theme-toggle { width: 40px; height: 40px; }
-  .lang-current { padding: 7px 9px; }
-
-  .section { padding: 3.2rem 1.5rem; margin: 1.8rem auto; }
-  .menu-section { padding: 3.2rem 1.5rem; margin: 1.8rem auto; }
-
-  .section h2 { margin-bottom: 2.1rem; font-size: clamp(2rem, 3.2vw, 2.6rem); }
-}
-
-/* B) Landscape phones: fix “cramped” hero + sticky sidebar stealing height */
-@media (max-height: 520px) and (orientation: landscape) {
-  :root { --header-h: 78px; }
-
-  header { height: var(--header-h); }
-  .logo img { height: 56px; }
-
-  /* HERO: stop forcing a tall hero on short screens */
-  .hero-welcome {
-    min-height: calc(100svh - var(--header-h));
-    padding: 0.75rem 0;
-  }
-
-  .welcome-box {
-    padding: 1.25rem 1.4rem;
-    border-radius: 1.2rem;
-    max-width: min(720px, 92vw);
-  }
-
-  .welcome-box h1 {
-    font-size: clamp(1.8rem, 4.6vw, 2.6rem);
-    margin-bottom: 0.4rem;
-  }
-
-  .welcome-box h1::after {
-    width: min(110px, 45vw);
-    margin: 0.7rem auto 0;
-  }
-
-  .welcome-box span {
-    margin-top: 0.6rem;
-    font-size: 0.78rem;
-    letter-spacing: 0.14em;
-  }
-
-  /* MENU: avoid sticky sidebar eating the viewport in landscape */
-  .menu-grid-wrapper {
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
-  }
-
-  .menu-sidebar {
-    position: relative;
-    top: auto;
-    max-height: none;
-    padding: 0.9rem;
-  }
-
-  /* Turn category list into horizontal “chips” row */
-  .menu-links-list {
-    flex-direction: row;
-    gap: 0.75rem;
-    padding: 0.6rem;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-  }
-
-  .menu-links-list::-webkit-scrollbar { height: 8px; }
-
-  .category-card {
-    flex: 0 0 auto;
-    width: 160px;
-    height: 64px;
-    scroll-snap-align: start;
-  }
-
-  /* Sections: less vertical padding */
-  .section { padding: 2.6rem 1.2rem; }
-  .menu-section { padding: 2.6rem 1.2rem; }
-}
-
-/* C) Ultra-short height: keep cards readable without huge gaps */
-@media (max-height: 420px) {
-  :root { --header-h: 70px; }
-
-  .logo img { height: 50px; }
-
-  .section,
-  .menu-section {
-    padding: 2.2rem 1rem;
-    margin: 1.2rem auto;
-    border-radius: 1.4rem;
-  }
-
-  .menu-category { padding: 1.1rem 1rem; margin-bottom: 2.2rem; }
-  .menu-items li { padding: 0.85rem 0.9rem; }
-}
 
 
 
@@ -2054,6 +1916,3 @@ body.low-end .section-hidden {
     filter: saturate(1.15) contrast(1.08);
   }
 }
-
-
-
