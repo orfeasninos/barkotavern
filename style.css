@@ -31,7 +31,7 @@
   /* shadows / rings used throughout */
   --shadow-sm: 0 10px 25px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.10);
-  --ring: 0 0 0 3px rgba(212, 175, 55, 0.55);
+  --ring: 0 0 0 3px rgb(17, 104, 0);
 
   /* header height (fixed, stable) */
   --header-h: 120px;
@@ -1250,7 +1250,7 @@ body.dark {
   background:
     linear-gradient(rgba(0, 0, 0, 0.45),
       rgba(0, 0, 0, 0.55)),
-    url("/assets/images/background.webp") center center / cover no-repeat fixed;
+    url("assets/images/background.webp") center center / cover no-repeat fixed;
 }
 
 /* =========================================================
