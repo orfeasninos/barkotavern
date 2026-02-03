@@ -58,7 +58,7 @@ body {
   font-family: var(--font-body);
   line-height: 1.6;
   color: #000000;
-  background: url("images/background.webp") center center / cover no-repeat fixed;
+  background: url("assets/images/background.webp") center center / cover no-repeat fixed;
   overflow-x: hidden;
   padding-bottom: 2.5rem;
 }
@@ -1250,7 +1250,7 @@ body.dark {
   background:
     linear-gradient(rgba(0, 0, 0, 0.45),
       rgba(0, 0, 0, 0.55)),
-    url("images/background.webp") center center / cover no-repeat fixed;
+    url("/assets/images/background.webp") center center / cover no-repeat fixed;
 }
 
 /* =========================================================
