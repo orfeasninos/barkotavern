@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="https://www.w3.org/1999/xhtml">
+
+  <!-- HOME -->
+  <url>
+    <loc>https://barkotavernmilos.com/el/</loc>
+    <xhtml:link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://barkotavernmilos.com/en/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://barkotavernmilos.com/it/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://barkotavernmilos.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://barkotavernmilos.com/" />
+  </url>
+
+  <!-- RESTAURANT -->
+  <url>
+    <loc>https://barkotavernmilos.com/el/restaurant.html</loc>
+    <xhtml:link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/restaurant.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://barkotavernmilos.com/en/restaurant.html" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://barkotavernmilos.com/it/restaurant.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://barkotavernmilos.com/fr/restaurant.html" />
+  </url>
+
+  <!-- MENU -->
+  <url>
+    <loc>https://barkotavernmilos.com/el/menu.html</loc>
+    <xhtml:link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/menu.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://barkotavernmilos.com/en/menu.html" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://barkotavernmilos.com/it/menu.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://barkotavernmilos.com/fr/menu.html" />
+  </url>
+
+  <!-- GALLERY -->
+  <url>
+    <loc>https://barkotavernmilos.com/el/gallery.html</loc>
+    <xhtml:link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/gallery.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://barkotavernmilos.com/en/gallery.html" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://barkotavernmilos.com/it/gallery.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://barkotavernmilos.com/fr/gallery.html" />
+  </url>
+
+</urlset>
+s
