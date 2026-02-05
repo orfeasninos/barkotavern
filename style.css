@@ -113,18 +113,12 @@ button:focus-visible,
    CONTAINER
 ======================= */
 .container {
-  width: min(92%, 1200px);
-  margin: auto;
-}
-
-/* =======================
-   SECTIONS
-======================= */
-.section {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.70), rgba(255, 255, 255, 0.50)),
     radial-gradient(circle at 20% 0%, rgba(212, 175, 55, 0.12), transparent 55%),
     radial-gradient(circle at 100% 70%, rgba(15, 107, 111, 0.10), transparent 60%);
+  width: min(92%, 1200px);
+  margin: auto;
   padding: 5rem 2rem;
   margin: 3rem auto;
   border-radius: 2rem;
@@ -145,7 +139,16 @@ button:focus-visible,
   }
 }
 
+
+/* =======================
+   SECTIONS
+======================= */
 /* optional reveal hooks */
+.section {
+  margin-bottom: 30px;
+  border-radius: 2rem;
+}
+
 .section-hidden {
   opacity: 0;
   transform: translateY(40px);
@@ -171,7 +174,7 @@ h3 {
   font-size: 2.6rem;
   text-align: center;
   margin-bottom: 3rem;
-  color: #0d2c15;
+  color: #105020;
 }
 
 .section h2::after {
@@ -186,7 +189,11 @@ h3 {
 }
 
 p {
-  font-size: 1rem;
+  font-size: 1.05rem;     
+  line-height: 1.85;      
+  color: #1f2c1d;
+  max-width: 72ch;        
+  margin: 0 auto 1.1rem;
 }
 
 /* nice links in paragraphs */
@@ -756,12 +763,6 @@ header.header-small .logo img {
   backdrop-filter: unset;
 }
 
-.menu-section h2 {
-  font-size: clamp(2.1rem, 2.8vw, 3.2rem);
-  background: #ffffffa8;
-  border-radius: 20px;
-}
-
 /* grid wrapper: sidebar + main */
 .menu-grid-wrapper {
   display: grid;
@@ -1173,8 +1174,7 @@ header.header-small .logo img {
 .history-section p,
 .location-section p,
 .cuisine-section p,
-.hospitality-section p,
-.reviews-section p {
+.hospitality-section p {
   font-size: 1.05rem;
   line-height: 1.85;
   max-width: 74ch;
@@ -1267,7 +1267,6 @@ body.dark .section {
 /* headings */
 body.dark .section h2 {
   color: #33692d;
-  background-color: #2424243d;
 }
 
 body.dark .menu-category h3 {
@@ -1310,6 +1309,47 @@ body.dark .menu-items .dish {
 
 body.dark .menu-items .price {
   color: rgba(255, 255, 255, 0.85);
+}
+
+body.dark .review-card {
+  background: #2424243d;
+  border: 1px solid rgba(212, 175, 55, .14);
+}
+
+body.dark .review-name {
+  color: rgba(255, 255, 255, .92);
+}
+
+body.dark .review-text {
+  color: rgba(255, 255, 255, .85);
+}
+
+body.dark .google-reviews-btn {
+  background: #2424243d;
+  color: rgba(255, 255, 255, .92);
+  border: 1px solid rgba(212, 175, 55, .22);
+}
+
+body.dark .maps-pin::before {
+  background:
+    conic-gradient(from 0deg,
+      #5a8cff,
+      /* softer blue */
+      #4fdc8c,
+      /* softer green */
+      #ffd66b,
+      /* softer yellow */
+      #ff7a6e,
+      /* softer red */
+      #5a8cff);
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, .45),
+    inset 0 1px 0 rgba(255, 255, 255, .25);
+}
+
+body.dark .maps-pin::after {
+  background: rgba(255, 255, 255, .92);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .45);
 }
 
 
@@ -1697,26 +1737,9 @@ body.low-end .section-hidden {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Hover polish (only on real hover devices) */
+/* =========================
+  Hover onnly on desktop
+========================= */
 @media (hover:hover) and (pointer:fine) {
   .menu-items li:hover {
     transform: translateY(-2px);
@@ -1761,7 +1784,6 @@ body.low-end .section-hidden {
     color: #fff;
     background: rgba(212, 175, 55, 0.16);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-    transform: translateY(-1px);
   }
 
   .header-nav ul li a:hover::after {
@@ -1802,7 +1824,8 @@ body.low-end .section-hidden {
     transform: translateX(4px);
     text-shadow: 0 0 8px var(--gold);
   }
-    .gallery-item {
+
+  .gallery-item {
     transition: transform 700ms var(--ease-2), box-shadow 700ms var(--ease-2);
   }
 
@@ -1821,98 +1844,297 @@ body.low-end .section-hidden {
    MOBILE TAP STATES
    (touch devices)
 ========================= */
-@media (hover:none) and (pointer:coarse){
+@media (hover:none) and (pointer:coarse) {
 
-  .menu-items li:active{
+  .menu-items li:active {
     transform: translateY(-2px);
-    background: linear-gradient(180deg, rgba(255,255,255,0.76), rgba(241,255,236,0.56));
-    box-shadow: 0 20px 45px rgba(0,0,0,0.16);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.76), rgba(241, 255, 236, 0.56));
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.16);
   }
 
-  .menu-category:active{
+  .menu-category:active {
     transform: translateY(-3px);
   }
 
-  .menu-item:active{
+  .menu-item:active {
     transform: translateY(-10px);
-    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
   }
 
-  .category-card:active{
+  .category-card:active {
     transform: translateY(-4px);
     filter: saturate(1.05);
   }
 
-  p a:active{
+  p a:active {
     color: var(--gold);
     transform: translateY(-1px);
-    text-shadow: 0 0 4px rgba(212,175,55,0.5);
+    text-shadow: 0 0 4px rgba(212, 175, 55, 0.5);
   }
 
-  p a:active::after{
+  p a:active::after {
     width: 100%;
   }
 
-  .logo a:active img{
+  .logo a:active img {
     transform: scale(0.8) translateY(-2px);
-    filter: drop-shadow(0 14px 28px rgba(0,0,0,0.45));
+    filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.45));
   }
 
-  .header-nav ul li a:active{
-    color:#fff;
-    background: rgba(212,175,55,0.16);
+  .header-nav ul li a:active {
+    color: #fff;
+    background: rgba(212, 175, 55, 0.16);
     box-shadow:
-      0 10px 30px rgba(0,0,0,0.18),
-      inset 0 1px 0 rgba(255,255,255,0.12);
+      0 10px 30px rgba(0, 0, 0, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
     transform: translateY(-1px);
   }
 
-  .header-nav ul li a:active::after{
+  .header-nav ul li a:active::after {
     transform: scaleX(1);
   }
 
-  .lang-current:active{
+  .lang-current:active {
     transform: translateY(-1px);
-    background: rgba(212,175,55,0.12);
+    background: rgba(212, 175, 55, 0.12);
   }
 
-  .lang-options img:active{
+  .lang-options img:active {
     transform: scale(1.05);
     opacity: 0.9;
   }
 
-  .theme-toggle:active{
+  .theme-toggle:active {
     transform: rotate(20deg) scale(1.06);
   }
 
-  .footer-credit a:active{
+  .footer-credit a:active {
     opacity: 0.85;
   }
 
-  .dish-gallery img:active{
+  .dish-gallery img:active {
     transform: translateY(-6px) scale(1.01);
     filter: saturate(1.12) contrast(1.06);
-    box-shadow: 0 30px 70px rgba(0,0,0,.22);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, .22);
   }
 
   .footer-links a:active::after,
-  .footer-contact a:active::after{
+  .footer-contact a:active::after {
     width: 100%;
   }
 
   .footer-links a:active,
-  .footer-contact a:active{
+  .footer-contact a:active {
     transform: translateX(4px);
     text-shadow: 0 0 8px var(--gold);
   }
 
-  .gallery-item:active{
+  .gallery-item:active {
     transform: translateY(-6px);
-    box-shadow: 0 28px 70px rgba(0,0,0,0.22);
+    box-shadow: 0 28px 70px rgba(0, 0, 0, 0.22);
   }
 
-  .gallery-item:active img{
+  .gallery-item:active img {
     transform: scale(1.08);
     filter: saturate(1.15) contrast(1.08);
   }
+}
+
+
+/* =========================================================
+   GOOGLE REVIEWS — SECTION
+========================================================= */
+
+.reviews-section {
+  position: relative;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(260px, 1fr));
+  gap: 1.2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.review-card {
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .72), rgba(241, 255, 236, .58));
+  border: 1px solid rgba(212, 175, 55, .18);
+  border-radius: 1.4rem;
+  padding: 1.1rem 1.2rem 1rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .12);
+  overflow: hidden;
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.review-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(212, 175, 55, .18), transparent 55%);
+  opacity: .55;
+  pointer-events: none;
+}
+
+.review-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: .6rem;
+}
+
+.review-name {
+  font-weight: 900;
+  letter-spacing: .04em;
+  color: #1f2c1d;
+}
+
+.review-stars {
+  color: var(--gold);
+  font-size: .95rem;
+  letter-spacing: .08em;
+}
+
+.review-text {
+  margin: 0;
+  line-height: 1.75;
+  color: rgba(31, 44, 29, .86);
+}
+
+/* Hover μόνο desktop */
+@media (hover:hover) and (pointer:fine) {
+  .review-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 55px rgba(0, 0, 0, .20);
+  }
+}
+
+/* =========================================================
+   GOOGLE REVIEWS — FLOATING BUTTON (BOTTOM RIGHT)
+========================================================= */
+
+.google-reviews-btn {
+  position: fixed;
+  bottom: 10px;
+  right: 50px;
+  z-index: 9999;
+
+  display: inline-flex;
+  align-items: center;
+  gap: .65rem;
+  padding: .75rem 1.25rem;
+  border-radius: 999px;
+
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .88), rgba(241, 255, 236, .68));
+  border: 1px solid rgba(212, 175, 55, .28);
+
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, .22),
+    inset 0 1px 0 rgba(255, 255, 255, .75);
+
+  font-weight: 900;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: #1f2c1d;
+
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease,
+    filter .35s ease;
+}
+
+
+
+.google-reviews-btn .btn-text {
+  white-space: nowrap;
+}
+
+.google-reviews-btnn {
+  color: var(--gold);
+  font-size: .9rem;
+  letter-spacing: .08em;
+  text-shadow: 0 8px 18px rgba(0, 0, 0, .15);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 768px) {
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .google-reviews-btn {
+    bottom: 18px;
+    right: 18px;
+    padding: .7rem 1.1rem;
+    font-size: .85rem;
+  }
+}
+
+/* =========================================================
+   GOOGLE MAPS PIN ICON
+========================================================= */
+
+/* =========================================================
+   GOOGLE MAPS PIN — MULTICOLOR (GOOGLE STYLE)
+========================================================= */
+
+.maps-pin {
+  width: 18px;
+  height: 18px;
+  position: relative;
+  display: inline-block;
+  transform: translateY(-1px);
+}
+
+/* main pin shape */
+.maps-pin::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    conic-gradient(from 0deg,
+      #4285F4,
+      /* blue */
+      #34A853,
+      /* green */
+      #FBBC05,
+      /* yellow */
+      #EA4335,
+      /* red */
+      #4285F4);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, .28),
+    inset 0 1px 0 rgba(255, 255, 255, .45);
+}
+
+/* inner dot */
+.maps-pin::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  top: 6px;
+  left: 6px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .25);
+}
+
+.map-container {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.70), rgba(255, 255, 255, 0.50)),
+    radial-gradient(circle at 20% 0%, rgba(212, 175, 55, 0.12), transparent 55%),
+    radial-gradient(circle at 100% 70%, rgba(15, 107, 111, 0.10), transparent 60%);
+  padding: 1em;
 }
