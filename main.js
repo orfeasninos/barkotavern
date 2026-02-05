@@ -166,47 +166,47 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   });
 
-/* =========================
-   SECTION REVEAL (FAIL-SAFE)**************************************************************************************************************************************************
-========================= */
-const sections = document.querySelectorAll(".section");
+  /* =========================
+     SECTION REVEAL (FAIL-SAFE)**************************************************************************************************************************************************
+  ========================= */
+  const sections = document.querySelectorAll(".section");
 
-if (sections.length) {
-  // Mobile: reveal immediately (no observers/animations)
-  if (isMobile) {
-    sections.forEach((sec) => sec.classList.add("section-visible"));
-  } else {
-  // Αν δεν υποστηρίζεται IntersectionObserver, δείξε τα πάντα.
-  if (!("IntersectionObserver" in window)) {
-    sections.forEach(sec => sec.classList.add("section-visible"));
-  } else {
-    const revealNowIfInView = (el) => {
-      const r = el.getBoundingClientRect();
-      // αν είναι ήδη “στο περίπου” μέσα στο viewport στο load, δείξ' το άμεσα
-      if (r.top < window.innerHeight * 0.92) el.classList.add("section-visible");
-    };
+  if (sections.length) {
+    // Mobile: reveal immediately (no observers/animations)
+    if (isMobile) {
+      sections.forEach((sec) => sec.classList.add("section-visible"));
+    } else {
+      // Αν δεν υποστηρίζεται IntersectionObserver, δείξε τα πάντα.
+      if (!("IntersectionObserver" in window)) {
+        sections.forEach(sec => sec.classList.add("section-visible"));
+      } else {
+        const revealNowIfInView = (el) => {
+          const r = el.getBoundingClientRect();
+          // αν είναι ήδη “στο περίπου” μέσα στο viewport στο load, δείξ' το άμεσα
+          if (r.top < window.innerHeight * 0.92) el.classList.add("section-visible");
+        };
 
-    const revealObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("section-visible");
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.08, rootMargin: "0px 0px -10% 0px" });
+        const revealObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("section-visible");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.08, rootMargin: "0px 0px -10% 0px" });
 
-    sections.forEach(sec => {
-      sec.classList.add("section-hidden");
-      revealNowIfInView(sec);      // ✅ fail-safe για refresh
-      revealObserver.observe(sec);
-    });
+        sections.forEach(sec => {
+          sec.classList.add("section-hidden");
+          revealNowIfInView(sec);      // ✅ fail-safe για refresh
+          revealObserver.observe(sec);
+        });
 
-    // άλλο ένα fail-safe μετά το πρώτο paint
-    requestAnimationFrame(() => sections.forEach(revealNowIfInView));
-    setTimeout(() => sections.forEach(revealNowIfInView), 250);
+        // άλλο ένα fail-safe μετά το πρώτο paint
+        requestAnimationFrame(() => sections.forEach(revealNowIfInView));
+        setTimeout(() => sections.forEach(revealNowIfInView), 250);
+      }
+    }
   }
-  }
-}
 
 
   /* =========================
@@ -215,24 +215,28 @@ if (sections.length) {
   const navLinks = document.querySelectorAll(".header-nav a");
   const sectionsWithId = document.querySelectorAll("section[id]");
 
-  if (navLinks.length && sectionsWithId.length) {
-    window.addEventListener(
-      "scroll",
-      () => {
-        let current = "";
-        const y = window.scrollY;
+  if (
+    navLinks.length &&
+    sectionsWithId.length &&
+    window.location.pathname.endsWith('/')
+  ) {
+    window.addEventListener("scroll", () => {
+      let current = "";
+      const y = window.scrollY;
 
-        sectionsWithId.forEach((section) => {
-          if (y >= section.offsetTop - 150) current = section.id;
-        });
+      sectionsWithId.forEach(section => {
+        if (y >= section.offsetTop - 150) current = section.id;
+      });
 
-        navLinks.forEach((link) => {
-          link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
-        });
-      },
-      { passive: true }
-    );
+      navLinks.forEach(link => {
+        link.classList.toggle(
+          "active",
+          link.getAttribute("href") === `#${current}`
+        );
+      });
+    });
   }
+
 
   /* =========================
      SCROLL TO TOP
@@ -330,85 +334,105 @@ if (sections.length) {
   makeMobileSidebar();
   window.addEventListener("resize", makeMobileSidebar, { passive: true });
 
-// Highlight active category; on mobile, auto-center active chip (NO JUMP / NO LOOP)
-// Highlight active category (desktop + mobile). On mobile: center active chip.
-if (menuSections.length && menuLinks.length) {
-  let lastActiveId = null;
-  let rafPending = false;
+  // Highlight active category; on mobile, auto-center active chip (NO JUMP / NO LOOP)
+  // Highlight active category (desktop + mobile). On mobile: center active chip.
+  if (menuSections.length && menuLinks.length) {
+    let lastActiveId = null;
+    let rafPending = false;
 
-  const setActive = (id) => {
-    menuLinks.forEach((link) => {
-      const isActive = link.getAttribute("href") === `#${id}`;
-      link.classList.toggle("active", isActive);
+    const setActive = (id) => {
+      menuLinks.forEach((link) => {
+        const isActive = link.getAttribute("href") === `#${id}`;
+        link.classList.toggle("active", isActive);
 
-      // center only on mobile (chips)
-      if (isActive) {
-        const mobileNow =
-          window.matchMedia("(max-width: 768px)").matches ||
-          sidebar?.classList.contains("menu-sidebar--mobile");
+        // center only on mobile (chips)
+        if (isActive) {
+          const mobileNow =
+            window.matchMedia("(max-width: 768px)").matches ||
+            sidebar?.classList.contains("menu-sidebar--mobile");
 
-        if (mobileNow && linksContainer && !rafPending) {
-          rafPending = true;
-          requestAnimationFrame(() => {
-            rafPending = false;
-            const left =
-              link.offsetLeft -
-              linksContainer.clientWidth / 2 +
-              link.clientWidth / 2;
+          if (mobileNow && linksContainer && !rafPending) {
+            rafPending = true;
+            requestAnimationFrame(() => {
+              rafPending = false;
+              const left =
+                link.offsetLeft -
+                linksContainer.clientWidth / 2 +
+                link.clientWidth / 2;
 
-            linksContainer.scrollTo({ left, behavior: "smooth" });
-          });
-        } else if (!mobileNow && linksContainer && !rafPending) {
-          rafPending = true;
-          requestAnimationFrame(() => {
-            rafPending = false;
-            const cRect = linksContainer.getBoundingClientRect();
-            const lRect = link.getBoundingClientRect();
-            const current = linksContainer.scrollTop;
-            const offset =
-              lRect.top - cRect.top - cRect.height / 2 + lRect.height / 2;
-
-            linksContainer.scrollTo({
-              top: Math.max(0, current + offset),
-              behavior: "smooth",
+              linksContainer.scrollTo({ left, behavior: "smooth" });
             });
-          });
+          } else if (!mobileNow && linksContainer && !rafPending) {
+            rafPending = true;
+            requestAnimationFrame(() => {
+              rafPending = false;
+              const cRect = linksContainer.getBoundingClientRect();
+              const lRect = link.getBoundingClientRect();
+              const current = linksContainer.scrollTop;
+              const offset =
+                lRect.top - cRect.top - cRect.height / 2 + lRect.height / 2;
+
+              linksContainer.scrollTo({
+                top: Math.max(0, current + offset),
+                behavior: "smooth",
+              });
+            });
+          }
         }
+      });
+    };
+
+    const menuObserver = new IntersectionObserver(
+      (entries) => {
+        const hits = entries.filter((e) => e.isIntersecting);
+        if (!hits.length) return;
+
+        // ✅ FIX 1: near-bottom lock (για να μην ανάβει λάθος το προτελευταίο/τελευταίο)
+        const nearBottom =
+          window.scrollY + window.innerHeight >=
+          document.documentElement.scrollHeight - 40;
+
+        if (nearBottom) {
+          const lastId = "drinks"; // 🔁 άλλαξε αν το τελευταίο section σου έχει άλλο id
+          if (lastActiveId !== lastId) {
+            lastActiveId = lastId;
+            setActive(lastId);
+          }
+          return;
+        }
+
+        // ✅ FIX 2: διάλεξε αυτό που είναι πιο “κοντά” σε σημείο εστίασης (όχι με ratio)
+        const focusY = window.innerHeight * 0.35; // 0.30–0.45 είναι συνήθως τέλειο
+        hits.sort((a, b) => {
+          const da = Math.abs(a.boundingClientRect.top - focusY);
+          const db = Math.abs(b.boundingClientRect.top - focusY);
+          return da - db;
+        });
+
+        const id = hits[0].target.id;
+        if (!id || id === lastActiveId) return;
+
+        lastActiveId = id;
+        setActive(id);
+      },
+      {
+        // λίγο πιο “ήπιο” για sticky header/sidebar
+        rootMargin: "-30% 0px -55% 0px",
+        threshold: [0.01, 0.08, 0.15],
       }
-    });
-  };
+    );
 
-  const menuObserver = new IntersectionObserver(
-    (entries) => {
-      // πάρε το πιο “κεντρικό” intersecting entry
-      const hits = entries.filter((e) => e.isIntersecting);
-      if (!hits.length) return;
 
-      // διαλέγουμε αυτό με το μεγαλύτερο intersection ratio
-      hits.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-      const id = hits[0].target.id;
-      if (!id || id === lastActiveId) return;
+    menuSections.forEach((sec) => menuObserver.observe(sec));
 
-      lastActiveId = id;
-      setActive(id);
-    },
-    {
-      // πιο “φυσικό” για sticky sidebar + header
-      rootMargin: "-35% 0px -55% 0px",
-      threshold: [0.01, 0.08, 0.15],
-    }
-  );
+    // initial state (σε refresh στη μέση της σελίδας)
+    const initial = [...menuSections]
+      .map((s) => ({ s, top: s.getBoundingClientRect().top }))
+      .filter((x) => x.top < window.innerHeight * 0.55)
+      .sort((a, b) => b.top - a.top)[0];
 
-  menuSections.forEach((sec) => menuObserver.observe(sec));
-
-  // initial state (σε refresh στη μέση της σελίδας)
-  const initial = [...menuSections]
-    .map((s) => ({ s, top: s.getBoundingClientRect().top }))
-    .filter((x) => x.top < window.innerHeight * 0.55)
-    .sort((a, b) => b.top - a.top)[0];
-
-  if (initial?.s?.id) setActive(initial.s.id);
-}
+    if (initial?.s?.id) setActive(initial.s.id);
+  }
 
   /* =========================
      MENU ITEMS ANIMATION

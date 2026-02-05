@@ -585,6 +585,7 @@ header.header-small .logo img {
 .footer-brand p {
   font-size: 0.9rem;
   opacity: 0.85;
+  color: #ffffff;
 }
 
 .footer-links a,
@@ -942,11 +943,12 @@ header.header-small .logo img {
   border: 1px solid rgba(212, 175, 55, 0.18);
   box-shadow: var(--shadow-lg);
   overflow: hidden;
+  margin-top: 3.6rem;
 }
 
 .menu-sidebar h2 {
   font-family: var(--font-title);
-  color: #1f2c1d;
+  color: #105020;
   font-size: 1.65rem;
   margin-bottom: 1rem;
   border-bottom: 2px solid rgba(212, 175, 55, 0.65);
@@ -1016,6 +1018,7 @@ header.header-small .logo img {
 /* menu category section */
 .menu-category {
   margin-bottom: 3.6rem;
+  margin-top: 3.6rem;
   padding: 1.6rem 1.4rem;
   border-radius: var(--r-lg);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.54));
@@ -1404,8 +1407,6 @@ body.dark .section h2 {
 
 body.dark .menu-category h3 {
   color: #33692d;
-  background-color: #2424243d;
-  border-radius: 20px;
   padding: 10px;
 }
 
@@ -1607,15 +1608,6 @@ body.low-end .section-hidden {
     height: 72px;
   }
 
-  .section {
-    padding: 2.4rem 1.25rem;
-    margin: 1.4rem auto;
-  }
-
-  .hero-welcome {
-    min-height: 60vh;
-  }
-
   .welcome-box {
     padding: 2rem 3rem;
   }
@@ -1624,21 +1616,87 @@ body.low-end .section-hidden {
     top: calc(var(--header-h) - 6px);
   }
 
-  .gallery-item img {
-    height: 220px;
-  }
-
   .dish-gallery img {
     height: 220px;
-  }
-
-  .premium-footer {
-    padding: 3.5rem 1.5rem 2.5rem;
   }
 
   .scroll-top {
     bottom: 16px;
     right: 16px;
+  }
+
+  /* sections γενικά */
+  .section {
+    padding: 2.2rem 1.25rem;
+    margin: 1.2rem auto;
+    border-radius: 1.4rem;
+  }
+
+  .section h2 {
+    font-size: 2rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .section p {
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  /* containers */
+  .container {
+    width: min(94%, 1100px);
+  }
+
+  /* restaurant storytelling */
+  .history-section p,
+  .location-section p,
+  .cuisine-section p,
+  .hospitality-section p {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    margin-bottom: 0.8rem;
+  }
+
+  /* gallery images */
+  .dish-gallery img,
+  .gallery-item img {
+    height: 200px;
+  }
+
+  /* hero */
+  .hero-welcome {
+    min-height: 55vh;
+  }
+
+  .welcome-box {
+    padding: 1.6rem 2.4rem;
+  }
+
+  .welcome-box h1 {
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+  }
+
+  /* footer */
+  .premium-footer {
+    padding: 3rem 1.2rem 2.2rem;
+  }
+
+  /* άσε το main να μπορεί να "στενέψει" */
+  .menu-main,
+  .menu-category,
+  .menu-items {
+    min-width: 0;
+  }
+
+  /* αντί για min 280px, άστο να μικραίνει σωστά */
+  .menu-items {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    width: 100%;
+  }
+
+  /* προαιρετικό safety: αν κάτι περισσέψει, μην κάνει sideways */
+  .menu-category {
+    overflow-x: hidden;
   }
 }
 
