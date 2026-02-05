@@ -506,6 +506,32 @@ header.header-small .logo img {
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.20);
 }
 
+.info-bar {
+  position: relative;
+  z-index: 9999;
+
+  text-align: center;
+  padding: 10px 16px;
+
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  color: #f3e7a5;
+
+  /* ίδιο feeling με header */
+  background: linear-gradient(180deg,
+      rgba(47, 58, 37, 0.92),
+      rgba(40, 48, 32, 0.88));
+
+  border-bottom: 1px solid rgba(212, 175, 55, 0.28);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.info-bar strong {
+  color: #fff;
+  font-weight: 700;
+}
+
 /* =======================
    PREMIUM FOOTER
 ======================= */
@@ -1923,6 +1949,11 @@ body.low-end .section-hidden {
   .menu-links-list::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.35);
     border-radius: 999px;
+  }
+
+  .info-bar {
+    font-size: 12px;
+    padding: 8px 12px;
   }
 }
 
