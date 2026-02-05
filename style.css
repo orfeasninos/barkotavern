@@ -1955,6 +1955,28 @@ body.low-end .section-hidden {
     font-size: 12px;
     padding: 8px 12px;
   }
+  .reviews-grid {
+    display: flex;                 /* αντί για grid στο mobile */
+    flex-wrap: nowrap;             /* 1 γραμμή */
+    overflow-x: auto;              /* οριζόντιο scroll */
+    gap: 16px;
+    padding: 4px 2px 12px;
+    scroll-snap-type: x mandatory; /* “κουμπώνει” το κάθε review */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .review-card {
+    flex: 0 0 85%;                 /* πόσο “μεγάλο” είναι κάθε card */
+    scroll-snap-align: start;
+  }
+
+  /* Προαιρετικό: κρύβει το scrollbar (Chrome/Safari) */
+  .reviews-grid::-webkit-scrollbar {
+    display: none;
+  }
+  .reviews-grid {
+    scrollbar-width: none;         /* Firefox */
+  }
 }
 
 @media (max-width: 480px) {
