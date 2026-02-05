@@ -213,29 +213,32 @@ document.addEventListener("DOMContentLoaded", async () => {
      ACTIVE NAV LINK (one-page sections)
   ========================= */
   const navLinks = document.querySelectorAll(".header-nav a");
-  const sectionsWithId = document.querySelectorAll("section[id]");
+  const contactSection = document.getElementById("contact");
 
-  if (
-    navLinks.length &&
-    sectionsWithId.length &&
-    window.location.pathname.endsWith('/')
-  ) {
-    window.addEventListener("scroll", () => {
-      let current = "";
-      const y = window.scrollY;
+  if (navLinks.length && contactSection) {
+    const homeLink = document.querySelector('.header-nav a[href="/el"]');
+    const contactLink = document.querySelector('.header-nav a[href="/el#contact"]');
 
-      sectionsWithId.forEach(section => {
-        if (y >= section.offsetTop - 150) current = section.id;
-      });
+    const onScroll = () => {
+      const r = contactSection.getBoundingClientRect();
+      const inContact =
+        r.top < window.innerHeight * 0.4 &&
+        r.bottom > window.innerHeight * 0.4;
 
-      navLinks.forEach(link => {
-        link.classList.toggle(
-          "active",
-          link.getAttribute("href") === `#${current}`
-        );
-      });
-    });
+      // reset
+      navLinks.forEach(l => l.classList.remove("active"));
+
+      if (inContact) {
+        contactLink?.classList.add("active");
+      } else {
+        homeLink?.classList.add("active");
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll(); // initial
   }
+
 
 
   /* =========================
