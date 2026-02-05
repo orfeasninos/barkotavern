@@ -150,7 +150,7 @@ button:focus-visible,
   backdrop-filter: blur(2px);
   margin: 3rem 0;
   /* μόνο πάνω-κάτω */
-  border-radius: 10rem;
+  border-radius: 5rem;
   margin: 3rem 0;
   padding: 3rem 0;
   background: none;
