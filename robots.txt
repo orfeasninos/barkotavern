@@ -5,4 +5,4 @@ Sitemap: https://barkotavernmilos.com/sitemap.xml
 
 
 User-agent: *
-Disallow: /assets/prices.json
+Disallow: /assets/json/prices.json
