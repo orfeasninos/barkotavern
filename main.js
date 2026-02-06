@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
   } catch (err) {
-    console.warn("[Barko] prices.json not loaded:", err);
+    console.log("[Barko] prices.json not loaded:", err);
     // fallback: keep the HTML prices as-is
   }
 })();

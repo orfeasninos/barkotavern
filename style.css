@@ -1022,40 +1022,6 @@ header.header-small .logo img {
   /* outline */
 }
 
-.restaurant-icon {
-  width: 28px;
-  height: 28px;
-  display: inline-block;
-  transform: translateY(-1px);
-
-  /* brand colors */
-  --plate: #d4af37;
-  --tools: #1f2c1d;
-
-  background:
-    /* plate ring */
-    radial-gradient(circle at 10px 14px,
-      transparent 0 6.5px,
-      var(--plate) 6.5px 8.5px,
-      transparent 8.5px 100%),
-
-    /* plate center */
-    radial-gradient(circle at 10px 14px,
-      var(--plate) 0 1.6px,
-      transparent 1.6px 100%),
-
-    /* fork prongs */
-    repeating-linear-gradient(90deg,
-      var(--tools) 0 1.4px,
-      transparent 1.4px 3px) 18px 7px / 8px 6px no-repeat,
-
-    /* fork handle */
-    linear-gradient(var(--tools), var(--tools)) 20px 13px / 2.6px 12px no-repeat,
-
-    /* knife */
-    linear-gradient(var(--tools), var(--tools)) 24px 9px / 2.6px 17px no-repeat;
-}
-
 .maps-pin {
   width: 18px;
   height: 18px;
@@ -1668,11 +1634,6 @@ body.dark .menu-icon::after {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .55);
 }
 
-body.dark .restaurant-icon {
-  --plate: #f3e7a5;
-  --tools: rgba(255, 255, 255, .92);
-}
-
 /* =========================================================
    LOW-END MODE (body.low-end)
 ========================================================= */
@@ -1928,7 +1889,7 @@ body.low-end .section-hidden {
 
   .menu-sidebar {
     position: sticky;
-    top: 30px;
+    top: 20px;
     z-index: 950;
     padding: 0.85rem 0.8rem;
     border-radius: 1.25rem;
