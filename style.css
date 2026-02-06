@@ -1,10 +1,3 @@
-/* =========================================================
-   BARKO — SINGLE STYLE.CSS (clean + premium + no duplicates)
-   - 1 :root
-   - no “decor layer” blocks
-   - subtle premium details built-in
-========================================================= */
-
 /* =======================
    VARIABLES / TOKENS
 ======================= */
@@ -1637,11 +1630,7 @@ body.dark .menu-icon::after {
 /* =========================================================
    LOW-END MODE (body.low-end)
 ========================================================= */
-body.low-end {
-  background-attachment: scroll !important;
-}
-
-body.low-end.dark {
+body.low-end, body.low-end.dark {
   background-attachment: scroll !important;
 }
 
@@ -1909,15 +1898,12 @@ body.low-end .section-hidden {
     -webkit-overflow-scrolling: touch;
     padding: 0.7rem;
     border-radius: 1.25rem;
+    scrollbar-width: none;
     max-height: calc(100vh - var(--header-h) - 180px);
   }
 
   .menu-links-list::-webkit-scrollbar {
     display: none;
-  }
-
-  .menu-links-list {
-    scrollbar-width: none;
   }
 
   .menu-links-list li {

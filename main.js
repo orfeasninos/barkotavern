@@ -1,32 +1,4 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  /* =========================
-   PRICES JSON (Menu prices)
-   Put this inside main.js (inside the main DOMContentLoaded)
-========================= */
-(async function loadPrices() {
-  // Always fetch from site root (works for /el/, /en/, /it/, /fr/)
-  const PRICES_URL = "/assets/json/prices.json?v=1";
-
-  try {
-    const res = await fetch(PRICES_URL, { cache: "no-store" });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-
-    const prices = await res.json();
-
-    document.querySelectorAll("[data-price]").forEach((el) => {
-      const key = el.getAttribute("data-price");
-      if (!key) return;
-
-      const val = prices[key];
-      if (val !== undefined && val !== null && String(val).trim() !== "") {
-        el.textContent = String(val);
-      }
-    });
-  } catch (err) {
-    console.log("[Barko] prices.json not loaded:", err);
-    // fallback: keep the HTML prices as-is
-  }
-})();
 
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
@@ -492,6 +464,34 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 /* =========================
+PRICES JSON (Menu prices)
+Put this inside main.js (inside the main DOMContentLoaded)
+========================= */
+(async function loadPrices() {
+  // Always fetch from site root (works for /el/, /en/, /it/, /fr/)
+  const PRICES_URL = "/assets/json/prices.json?v=1";
+
+  try {
+    const res = await fetch(PRICES_URL, { cache: "no-store" });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+    const prices = await res.json();
+
+    document.querySelectorAll("[data-price]").forEach((el) => {
+      const key = el.getAttribute("data-price");
+      if (!key) return;
+
+      const val = prices[key];
+      if (val !== undefined && val !== null && String(val).trim() !== "") {
+        el.textContent = String(val);
+      }
+    });
+  } catch (err) {
+    console.log("[Barko] prices.json not loaded:", err);
+    // fallback: keep the HTML prices as-is
+  }
+})();
+/* =========================
    DISH MODAL (INDEX)
 ========================= */
 document.addEventListener("DOMContentLoaded", () => {
@@ -500,17 +500,52 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalTitle = document.getElementById("modalTitle");
   const modalText = document.getElementById("modalText");
 
-  // ✅ αν δεν είμαστε στο index (ή λείπουν στοιχεία), μην κάνεις τίποτα
+  // ✅ αν λείπει το modal, μην κάνεις τίποτα (άρα δεν σπάει άλλες σελίδες)
   if (!modal || !modalImg || !modalTitle || !modalText) return;
 
+  const openModal = ({ src, title = "", text = "" }) => {
+    modalImg.src = src || "";
+    modalTitle.textContent = title || "";
+    modalText.textContent = text || "";
+
+    // αν είμαστε gallery (δεν έχουμε πάντα κείμενο), κρύψε το p όταν είναι άδειο
+    modalText.style.display = text ? "" : "none";
+
+    modal.classList.add("open");
+  };
+
+  // ✅ INDEX cards (.menu-item)
   document.querySelectorAll(".menu-item").forEach((item) => {
     item.addEventListener("click", () => {
-      modal.classList.add("open");
+      const img = item.querySelector("img");
+      const title = item.querySelector("h3");
+      const text = item.querySelector("p");
+
+      openModal({
+        src: img?.src,
+        title: title?.textContent || "",
+        text: text?.textContent || "",
+      });
     });
   });
 
+  // ✅ GALLERY images (.gallery-item img)
+  document.querySelectorAll(".gallery-item img").forEach((img) => {
+    img.addEventListener("click", () => {
+      openModal({
+        src: img.src,
+        title: img.alt || "Φωτογραφία",
+        text: "", // δεν έχει περιγραφή στη gallery
+      });
+    });
+  });
+
+  // ✅ close modal
   modal.addEventListener("click", (e) => {
-    if (e.target.classList.contains("dish-modal") || e.target.classList.contains("modal-close")) {
+    if (
+      e.target.classList.contains("dish-modal") ||
+      e.target.classList.contains("modal-close")
+    ) {
       modal.classList.remove("open");
     }
   });
