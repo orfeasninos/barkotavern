@@ -548,12 +548,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!img) return; // αν κάποιο item δεν έχει εικόνα, μην ανοίγεις modal
 
       const dish = li.querySelector(".dish")?.textContent?.trim() || "";
-      const price = li.querySelector(".price")?.textContent?.trim() || "";
 
       openModal({
         src: img.src,
         title: dish || img.alt || "Πιάτο",
-        text: price ? `Τιμή: ${price}` : "",
       });
     });
   });
