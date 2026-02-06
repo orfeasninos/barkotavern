@@ -1,4 +1,33 @@
 document.addEventListener("DOMContentLoaded", async () => {
+  /* =========================
+   PRICES JSON (Menu prices)
+   Put this inside main.js (inside the main DOMContentLoaded)
+========================= */
+(async function loadPrices() {
+  // Always fetch from site root (works for /el/, /en/, /it/, /fr/)
+  const PRICES_URL = "/assets/json/prices.json?v=1";
+
+  try {
+    const res = await fetch(PRICES_URL, { cache: "no-store" });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+    const prices = await res.json();
+
+    document.querySelectorAll("[data-price]").forEach((el) => {
+      const key = el.getAttribute("data-price");
+      if (!key) return;
+
+      const val = prices[key];
+      if (val !== undefined && val !== null && String(val).trim() !== "") {
+        el.textContent = String(val);
+      }
+    });
+  } catch (err) {
+    console.warn("[Barko] prices.json not loaded:", err);
+    // fallback: keep the HTML prices as-is
+  }
+})();
+
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
   // ===== Low-end detection =====
@@ -486,4 +515,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-
