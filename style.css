@@ -947,8 +947,8 @@ header.header-small .logo img {
   gap: .65rem;
   padding: .75rem 1.25rem;
   border-radius: 999px;
-  margin: 1.25rem 0 0 auto;   /* <- σπρώχνει δεξιά */
-  align-self: flex-end;       /* <- δεξιά μέσα στο flex column */
+  margin: 1.25rem 0 0 auto; 
+  align-self: flex-end;     
   background: linear-gradient(180deg, rgba(255, 255, 255, .88), rgba(241, 255, 236, .68));
   border: 1px solid rgba(212, 175, 55, .28);
   box-shadow:

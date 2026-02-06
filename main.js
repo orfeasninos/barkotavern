@@ -517,7 +517,7 @@ document.addEventListener("DOMContentLoaded", () => {
     modalTitle.textContent = title || "";
     modalText.textContent = text || "";
 
-    // αν είμαστε gallery (δεν έχουμε πάντα κείμενο), κρύψε το p όταν είναι άδειο
+    // αν είμαστε gallery/menu (δεν έχουμε πάντα κείμενο), κρύψε το p όταν είναι άδειο
     modalText.style.display = text ? "" : "none";
 
     modal.classList.add("open");
@@ -534,6 +534,26 @@ document.addEventListener("DOMContentLoaded", () => {
         src: img?.src,
         title: title?.textContent || "",
         text: text?.textContent || "",
+      });
+    });
+  });
+
+  // ✅ MENU PAGE items (menu.html) — click on li
+  document.querySelectorAll(".menu-items li").forEach((li) => {
+    li.addEventListener("click", (e) => {
+      // αν πατηθεί link μέσα στο li (σπάνιο), άστο να δουλέψει κανονικά
+      if (e.target.closest("a")) return;
+
+      const img = li.querySelector("img");
+      if (!img) return; // αν κάποιο item δεν έχει εικόνα, μην ανοίγεις modal
+
+      const dish = li.querySelector(".dish")?.textContent?.trim() || "";
+      const price = li.querySelector(".price")?.textContent?.trim() || "";
+
+      openModal({
+        src: img.src,
+        title: dish || img.alt || "Πιάτο",
+        text: price ? `Τιμή: ${price}` : "",
       });
     });
   });
