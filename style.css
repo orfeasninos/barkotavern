@@ -1889,12 +1889,10 @@ body.low-end .section-hidden {
 
   .menu-sidebar {
     position: sticky;
-    top: 20px;
+    top: calc(var(--header-h) - 72px);;
     z-index: 950;
     padding: 0.85rem 0.8rem;
-    border-radius: 1.25rem;
     width: 100%;
-    margin-top: 1.2rem;
   }
 
   .menu-sidebar h2 {
@@ -2144,12 +2142,6 @@ body.low-end .section-hidden {
   .welcome-box span {
     font-size: 0.76rem;
     letter-spacing: 0.16em;
-  }
-
-  /* menu page chips */
-  .menu-sidebar {
-    padding: 0.75rem;
-    border-radius: 1.1rem;
   }
 
   .menu-sidebar h2 {
