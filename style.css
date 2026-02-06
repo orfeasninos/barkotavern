@@ -2002,15 +2002,15 @@ body.low-end .section-hidden {
     transform: none;
   }
 
-  /* κράτα το carousel ΜΕΣΑ στο container */
-  .reviews-section .container {
+/* κράτα το carousel ΜΕΣΑ στο container */
+  .reviews-section .container{
     overflow: hidden;
     padding-left: 12px;
     padding-right: 12px;
   }
 
   /* horizontal swipe */
-  .reviews-grid {
+  .reviews-grid{
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -2023,30 +2023,19 @@ body.low-end .section-hidden {
     scroll-snap-type: x mandatory;
   }
 
-  /* hide scrollbar — mobile only */
-  .reviews-grid {
-    scrollbar-width: none;
-    /* Firefox */
-  }
-
-  .reviews-grid::-webkit-scrollbar {
-    display: none;
-    /* Chrome / Safari */
-  }
-
   /* review cards */
-  .review-card {
+  .review-card{
     flex: 0 0 78%;
     max-width: 280px;
     scroll-snap-align: start;
   }
 
   /* info bar λίγο πιο compact */
-  .info-bar {
+  .info-bar{
     font-size: 12px;
     padding: 8px 12px;
   }
-
+  
 }
 
 /* very small */
@@ -2438,3 +2427,5 @@ body.low-end .section-hidden {
   border-radius: 999px;
   box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .35);
 }
+
+
