@@ -469,13 +469,15 @@ Put this inside main.js (inside the main DOMContentLoaded)
 ========================= */
 (async function loadPrices() {
   // Always fetch from site root (works for /el/, /en/, /it/, /fr/)
-  const PRICES_URL = "/assets/json/prices.json?v=3";
+  const PRICES_URL = "/assets/json/prices.json?v=1";
 
   try {
     const res = await fetch(PRICES_URL, { cache: "no-store" });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
     const prices = await res.json();
+
+    let updatedCount = 0;
 
     document.querySelectorAll("[data-price]").forEach((el) => {
       const key = el.getAttribute("data-price");
@@ -484,13 +486,19 @@ Put this inside main.js (inside the main DOMContentLoaded)
       const val = prices[key];
       if (val !== undefined && val !== null && String(val).trim() !== "") {
         el.textContent = String(val);
+        updatedCount++;
       }
     });
+
+    console.log(
+      `[Barko] Prices loaded successfully (${updatedCount} items updated)`
+    );
   } catch (err) {
     console.log("[Barko] prices.json not loaded:", err);
     // fallback: keep the HTML prices as-is
   }
 })();
+
 
 /* =========================
    DISH MODAL (INDEX)
