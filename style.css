@@ -624,7 +624,7 @@ header.header-small .logo img {
 /* INFO BAR */
 .info-bar {
   position: relative;
-  z-index: 1100;
+  z-index: 100;
   text-align: center;
   padding: 10px 16px;
   font-size: 13px;
@@ -931,12 +931,11 @@ header.header-small .logo img {
 /* =========================================================
    Home page buttons
 ========================================================= */
-/* κάνε τους section containers column ώστε το κουμπί να πάει "κάτω" */
-.section .container {
+
+.container.has-bottom-cta {
   display: flex;
   flex-direction: column;
 }
-
 .home-button {
   position: static;
   right: auto;
