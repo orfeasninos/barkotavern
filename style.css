@@ -387,7 +387,7 @@ p a::after {
 header {
   position: sticky;
   top: 0;
-  z-index: 99999;
+  z-index: 1000;
 
   height: var(--header-h);
   padding: 0 20px;
@@ -624,7 +624,7 @@ header.header-small .logo img {
 /* INFO BAR */
 .info-bar {
   position: relative;
-  z-index: 9999;
+  z-index: 1100;
   text-align: center;
   padding: 10px 16px;
   font-size: 13px;
@@ -941,7 +941,7 @@ header.header-small .logo img {
   position: static;
   right: auto;
   bottom: auto;
-  z-index: 9999;
+  z-index: 1000;
   display: inline-flex;
   align-items: center;
   gap: .65rem;
@@ -1372,7 +1372,7 @@ header.header-small .logo img {
   display: none;
   align-items: center;
   justify-content: center;
-  z-index: 999999;
+  z-index: 2000;
 }
 
 .dish-modal.open {
