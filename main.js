@@ -469,7 +469,7 @@ Put this inside main.js (inside the main DOMContentLoaded)
 ========================= */
 (async function loadPrices() {
   // Always fetch from site root (works for /el/, /en/, /it/, /fr/)
-  const PRICES_URL = "/assets/json/prices.json?v=1";
+  const PRICES_URL = "/assets/json/prices.json?v=3";
 
   try {
     const res = await fetch(PRICES_URL, { cache: "no-store" });
@@ -491,6 +491,7 @@ Put this inside main.js (inside the main DOMContentLoaded)
     // fallback: keep the HTML prices as-is
   }
 })();
+
 /* =========================
    DISH MODAL (INDEX)
 ========================= */
