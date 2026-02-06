@@ -489,10 +489,6 @@ header.header-small .logo img {
   border-radius: 999px;
   display: inline-block;
   transition: transform var(--dur-1) var(--ease), background var(--dur-1) var(--ease), box-shadow var(--dur-1) var(--ease);
-  white-space: nowrap;      
-  overflow: hidden;         
-  text-overflow: ellipsis;  
-  max-width: 140px;
 }
 
 /* underline shimmer */
@@ -1791,7 +1787,7 @@ body.low-end .section-hidden {
   }
 
   .menu-items {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-columns: 1fr !important;
     width: 100%;
   }
 
@@ -1810,22 +1806,6 @@ body.low-end .section-hidden {
 
   .gallery-item img {
     height: 240px;
-  }
-  /* από 2 στήλες → 1 στήλη */
-  .menu-items{
-    grid-template-columns: 1fr;
-  }
-
-  /* πιο “άνετο” layout μέσα στο li */
-  .menu-items li{
-    grid-template-columns: 84px 1fr auto;
-    grid-template-areas: "img dish price";
-    column-gap: .9rem;
-  }
-
-  .menu-items .dish{
-    font-size: 1.05rem;
-    line-height: 1.25;
   }
 }
 
