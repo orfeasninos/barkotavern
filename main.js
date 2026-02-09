@@ -576,3 +576,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+
+
+
+
+(() => {
+  const bg = document.querySelector('.page-bg');
+  if (!bg || !window.visualViewport) return;
+
+  const vv = window.visualViewport;
+  const sync = () => {
+    bg.style.height = vv.height + 'px';
+    bg.style.width  = vv.width  + 'px';
+    bg.style.top    = vv.offsetTop + 'px';
+  };
+
+  sync();
+  vv.addEventListener('resize', sync);
+  vv.addEventListener('scroll', sync);
+})();
