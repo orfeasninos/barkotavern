@@ -72,6 +72,10 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+html, body { 
+  min-height: 100%; 
+}
+
 html {
   font-size: 100%;
   scroll-behavior: smooth;
@@ -82,10 +86,21 @@ body {
   font-family: var(--font-body);
   line-height: 1.65;
   color: #000;
-  background: url("assets/images/background.webp") center center / cover no-repeat fixed;
   overflow-x: clip;
-  /* prevents accidental sideways scroll */
   padding-bottom: 2.5rem;
+}
+
+.page-bg{
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  z-index: -1;
+  pointer-events: none;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 img,
@@ -2235,7 +2250,7 @@ body.low-end .section-hidden {
 /* =========================
    HOVER (desktop only)
 ========================= */
-@media (hover:hover) and (pointer:fine) {
+@media (hover:hover) and (pointer:fine) { 
   .container:hover {
     transform: translateY(-2px);
     box-shadow: 0 26px 70px rgba(0, 0, 0, .14);
@@ -2435,3 +2450,6 @@ body.low-end .section-hidden {
   border-radius: 999px;
   box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .35);
 }
+
+
+
