@@ -92,25 +92,28 @@ body {
 
 .page-bg{
   position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh; /* fallback */
   z-index: -2;
   pointer-events: none;
-
-  /* force stable compositing */
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  will-change: transform;
 }
+
+/* modern mobile browsers: ακολουθεί το address bar */
+@supports (height: 100dvh){
+  .page-bg{ height: 100dvh; }
+}
+@supports (width: 100dvw){
+  .page-bg{ width: 100dvw; }
+}
+
 .page-bg img{
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center top;
-  transform: translateZ(0);
 }
-
 
 img,
 video {
