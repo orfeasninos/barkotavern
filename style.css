@@ -1552,13 +1552,6 @@ header::after {
 /* =========================================================
    DARK MODE — soft “night filter”
 ========================================================= */
-body.dark {
-  color: rgba(255, 255, 255, 0.92);
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)),
-    url("assets/images/background.webp") center center / cover no-repeat fixed;
-}
-
 body.dark .container,
 body.dark .section>.container {
   background:
