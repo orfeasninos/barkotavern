@@ -551,7 +551,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       openModal({
         src: img.src,
-        title: dish || img.alt || "Πιάτο",
       });
     });
   });

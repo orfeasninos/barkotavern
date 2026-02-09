@@ -422,11 +422,6 @@ header::after {
   pointer-events: none;
 }
 
-header.header-small {
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(212, 175, 55, 0.28);
-}
-
 .header-container {
   width: 100%;
   display: flex;
@@ -453,10 +448,6 @@ header.header-small {
   transform-origin: center;
   transition: transform var(--dur-2) var(--ease), filter var(--dur-2) var(--ease);
   filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.35));
-}
-
-header.header-small .logo img {
-  transform: scale(0.76);
 }
 
 .header-right {
@@ -962,6 +953,7 @@ header.header-small .logo img {
 
 .home-button .btn-text {
   white-space: nowrap;
+  color: #105020;
 }
 
 /* =========================================================
@@ -1205,7 +1197,7 @@ header.header-small .logo img {
 .menu-category h3 {
   font-family: var(--font-title);
   font-size: 1.95rem;
-  color: var(--ink);
+  color: #105020;
   margin-bottom: 1.25rem;
   display: inline-block;
   padding-bottom: .35rem;
@@ -1341,24 +1333,6 @@ header.header-small .logo img {
   filter: saturate(1.06) contrast(1.04);
 }
 
-/* optional caption */
-.gallery-item .cap {
-  position: absolute;
-  left: 12px;
-  bottom: 12px;
-  z-index: 2;
-  color: #fff;
-  font-weight: 900;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  font-size: .78rem;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: rgba(0, 0, 0, 0.55);
-  border: 1px solid rgba(212, 175, 55, 0.22);
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
-}
-
 /* =========================================================
    DISH MODAL
 ========================================================= */
@@ -1381,7 +1355,7 @@ header.header-small .logo img {
   background: #fffdf8;
   border-radius: 1.8rem;
   padding: 2rem;
-  max-width: 600px;
+  max-width: 1200px;
   width: 90%;
   text-align: center;
   position: relative;
@@ -1404,7 +1378,7 @@ header.header-small .logo img {
 
 .dish-modal-content img {
   width: 100%;
-  height: 380px;
+  height: 100%;
   object-fit: cover;
   border-radius: 1.2rem;
   margin-bottom: 1rem;
@@ -1581,6 +1555,14 @@ body.dark .section h2 {
   text-shadow: 0 10px 28px rgba(0, 0, 0, .35);
 }
 
+body.dark .menu-category h3{
+  color: #79b16f;
+}
+
+body.dark .menu-sidebar h2 {
+  color: #79b16f;
+}
+
 body.dark p {
   color: rgba(255, 255, 255, .86);
 }
@@ -1643,6 +1625,10 @@ body.dark .menu-icon {
 body.dark .menu-icon::before,
 body.dark .menu-icon::after {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .55);
+}
+
+body.dark .btn-text {
+    color: #79b16f;
 }
 
 /* =========================================================
