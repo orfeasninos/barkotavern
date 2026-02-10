@@ -309,24 +309,61 @@ function autoRedirectByBrowserLang(options = {}) {
      ACTIVE NAV LINK (one-page)
   ========================================================= */
 function initActiveNavLink() {
-  const navLinks = document.querySelectorAll(".header-nav a");
+  // ✅ Μόνο τα “κανονικά” menu links (όχι σημαίες / controls)
+  const navLinks = document.querySelectorAll(
+    ".header-nav ul > li:not(.nav-controls) > a"
+  );
   if (!navLinks.length) return;
 
   const path = location.pathname.replace(/\/$/, "");
+  const langRoot = path.split("/").filter(Boolean)[0] || "";
+  const isHome = path === `/${langRoot}`; // /el, /en, /it, /fr
+
+  /* =========================
+     HOME PAGE → scroll logic
+  ========================= */
+  if (isHome) {
+    const contactSection = document.getElementById("contact");
+    if (!contactSection) {
+      // αν δεν υπάρχει contact section, απλά βάλε active στο Home
+      navLinks.forEach(l => l.classList.remove("active"));
+      navLinks[0]?.classList.add("active");
+      return;
+    }
+
+    const homeLink = [...navLinks].find(a => a.getAttribute("href") === `/${langRoot}`);
+    const contactLink = [...navLinks].find(a => a.getAttribute("href") === `/${langRoot}#contact`);
+
+    const onScroll = () => {
+      const r = contactSection.getBoundingClientRect();
+      const inContact =
+        r.top < window.innerHeight * 0.4 &&
+        r.bottom > window.innerHeight * 0.4;
+
+      navLinks.forEach(l => l.classList.remove("active"));
+      if (inContact) contactLink?.classList.add("active");
+      else homeLink?.classList.add("active");
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return;
+  }
+
+  /* =========================
+     OTHER PAGES → filename
+  ========================= */
+  const currentPage = path.split("/").pop();
 
   navLinks.forEach(link => {
     const href = link.getAttribute("href");
-    if (!href) return;
+    if (!href || href.startsWith("#")) return;
 
-    const cleanHref = href.replace(/\/$/, "");
-
-    if (cleanHref === path) {
-      link.classList.add("active");
-    } else {
-      link.classList.remove("active");
-    }
+    const linkPage = href.split("/").pop();
+    link.classList.toggle("active", linkPage === currentPage);
   });
 }
+
 
 
   /* =========================================================
