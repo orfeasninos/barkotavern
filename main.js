@@ -48,96 +48,96 @@
      LOW-END MODE (score + optional benchmark)
   ========================================================= */
   function initLowEndMode(state) {
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
-    // ===== Low-end detection =====
-    const params = new URLSearchParams(location.search);
-    const debugOn = params.has("debug");
-    const forceLite = params.has("lite");
-    const forceFull = params.has("full");
+  // ===== Low-end detection =====
+  const params = new URLSearchParams(location.search);
+  const debugOn = params.has("debug");
+  const forceLite = params.has("lite");
+  const forceFull = params.has("full");
 
-    const prefersReducedMotion =
-      !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  const prefersReducedMotion =
+    !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
 
-    const mem = navigator.deviceMemory || 0;
-    const cores = navigator.hardwareConcurrency || 0;
-    const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-    const saveData = !!(conn && conn.saveData);
-    const effectiveType = (conn && conn.effectiveType) ? conn.effectiveType : "";
+  const mem = navigator.deviceMemory || 0;
+  const cores = navigator.hardwareConcurrency || 0;
+  const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  const saveData = !!(conn && conn.saveData);
+  const effectiveType = (conn && conn.effectiveType) ? conn.effectiveType : "";
 
-    const logDecision = (finalLowEnd, reason, extra = {}) => {
-      if (!debugOn) return;
-      console.group("%c[Barko] Low-end decision", "color:#d4af37;font-weight:bold;");
-      console.log("isMobile:", isMobile);
-      console.log("memGB:", mem || "n/a", "cores:", cores || "n/a");
-      console.log("effectiveType:", effectiveType || "n/a", "saveData:", saveData);
-      console.log("prefersReducedMotion:", prefersReducedMotion);
-      Object.entries(extra).forEach(([k, v]) => console.log(k + ":", v));
-      console.log("➡️ FINAL low-end:", finalLowEnd);
-      console.log("reason:", reason);
-      console.groupEnd();
-    };
+  const logDecision = (finalLowEnd, reason, extra = {}) => {
+    if (!debugOn) return;
+    console.group("%c[Barko] Low-end decision", "color:#d4af37;font-weight:bold;");
+    console.log("isMobile:", isMobile);
+    console.log("memGB:", mem || "n/a", "cores:", cores || "n/a");
+    console.log("effectiveType:", effectiveType || "n/a", "saveData:", saveData);
+    console.log("prefersReducedMotion:", prefersReducedMotion);
+    Object.entries(extra).forEach(([k, v]) => console.log(k + ":", v));
+    console.log("➡️ FINAL low-end:", finalLowEnd);
+    console.log("reason:", reason);
+    console.groupEnd();
+  };
 
-    const decideLowEnd = () => {
-      // 0) forced
-      if (forceFull) return { lowEnd: false, reason: "forceFull(?full)" };
-      if (forceLite) return { lowEnd: true, reason: "forceLite(?lite)" };
+  const decideLowEnd = () => {
+    // 0) forced
+    if (forceFull) return { lowEnd: false, reason: "forceFull(?full)" };
+    if (forceLite) return { lowEnd: true, reason: "forceLite(?lite)" };
 
-      // 1) cached
-      const cached = sessionStorage.getItem("barko_low_end");
-      if (cached === "1") return { lowEnd: true, reason: "cached=1" };
-      if (cached === "0") return { lowEnd: false, reason: "cached=0" };
+    // 1) cached
+    const cached = sessionStorage.getItem("barko_low_end");
+    if (cached === "1") return { lowEnd: true, reason: "cached=1" };
+    if (cached === "0") return { lowEnd: false, reason: "cached=0" };
 
-      // 2) benchmark only if visible+focused
-      if (document.visibilityState !== "visible" || !document.hasFocus()) {
-        return { lowEnd: false, reason: "benchmark-skipped(not visible/focused)" };
-      }
+    // 2) benchmark only if visible+focused
+    if (document.visibilityState !== "visible" || !document.hasFocus()) {
+      return { lowEnd: false, reason: "benchmark-skipped(not visible/focused)" };
+    }
 
-      // 3) run benchmark (after a short settle delay)
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          const start = performance.now();
-          let frames = 0;
-          let longFrames = 0;
-          let last = start;
+    // 3) run benchmark (after a short settle delay)
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const start = performance.now();
+        let frames = 0;
+        let longFrames = 0;
+        let last = start;
 
-          const tick = (t) => {
-            frames++;
-            const dt = t - last;
-            if (dt > 34) longFrames++;
-            last = t;
+        const tick = (t) => {
+          frames++;
+          const dt = t - last;
+          if (dt > 34) longFrames++;
+          last = t;
 
-            if (t - start < 1000) {
-              requestAnimationFrame(tick);
-              return;
-            }
+          if (t - start < 1000) {
+            requestAnimationFrame(tick);
+            return;
+          }
 
-            if (frames < 35) {
-              const finalLowEnd = (frames <= 30) || (longFrames >= 8);
-              resolve({
-                lowEnd: finalLowEnd,
-                reason: `benchmark-low(frames=${frames}, long=${longFrames})`,
-                extra: { frames, longFrames }
-              });
-              return;
-            }
-
-
-            const lowByFrames = frames <= 48;
-            const lowByLongs = longFrames >= 8;
-            const finalLowEnd = lowByFrames || lowByLongs;
-
+          if (frames < 35) {
+            const finalLowEnd = (frames <= 30) || (longFrames >= 8);
             resolve({
               lowEnd: finalLowEnd,
-              reason: `benchmark(frames=${frames}, long=${longFrames})`,
-              extra: { frames, longFrames },
+              reason: `benchmark-low(frames=${frames}, long=${longFrames})`,
+              extra: { frames, longFrames }
             });
-          };
+            return;
+          }
 
-          requestAnimationFrame(tick);
-        }, 350);
-      });
-    };
+
+          const lowByFrames = frames <= 48;
+          const lowByLongs = longFrames >= 8;
+          const finalLowEnd = lowByFrames || lowByLongs;
+
+          resolve({
+            lowEnd: finalLowEnd,
+            reason: `benchmark(frames=${frames}, long=${longFrames})`,
+            extra: { frames, longFrames },
+          });
+        };
+
+        requestAnimationFrame(tick);
+      }, 350);
+    });
+  };
 
     // apply result safely (works for object OR promise)
     Promise.resolve(decideLowEnd()).then((result) => {
@@ -291,14 +291,20 @@
     document.body.appendChild(topBtn);
 
     topBtn.addEventListener("click", () => {
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const lowEnd = document.body.classList.contains("low-end");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const behavior = reduceMotion ? "auto" : "smooth";
 
-      window.scrollTo({
-        top: 0,
-        behavior: (reduceMotion || lowEnd) ? "auto" : "smooth",
-      });
-    });
+  // iOS / Android safe
+  document.documentElement.scrollTo({
+    top: 0,
+    behavior
+  });
+
+  document.body.scrollTo({
+    top: 0,
+    behavior
+  });
+});
 
 
     const update = () => {
