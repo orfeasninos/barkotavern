@@ -2045,13 +2045,6 @@ body.low-end .premium-footer-container {
     max-width: 280px;
     scroll-snap-align: start;
   }
-
-  /* info bar λίγο πιο compact */
-  .info-bar {
-    font-size: 12px;
-    padding: 8px 12px;
-  }
-
 }
 
 /* very small */

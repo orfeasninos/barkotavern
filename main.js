@@ -1,130 +1,195 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+/* =========================================================
+   Barko main.js — CLEAN / SINGLE INIT
+   - One DOMContentLoaded
+   - No scope leaks / no ReferenceError
+   - Runs safely on all pages (checks DOM existence)
+========================================================= */
+(() => {
+  "use strict";
 
-  // ===== Low-end detection =====
-  const params = new URLSearchParams(location.search);
-  const debugOn = params.has("debug");
-  const forceLite = params.has("lite");
-  const forceFull = params.has("full");
+  document.addEventListener("DOMContentLoaded", () => {
+    const state = createState();
 
-  const prefersReducedMotion =
-    !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    // INIT ONCE (1 φορά)
+    initLowEndMode(state);          // async-ish but non-blocking (applies class when ready)
+    initTheme(state);
+    initSmoothAnchors(state);
+    initSectionReveal(state);
+    initActiveNavLink(state);
+    initScrollTop(state);
+    initBurgerMenu(state);
+    initLanguageDropdown(state);
 
-  const mem = navigator.deviceMemory || 0;
-  const cores = navigator.hardwareConcurrency || 0;
-  const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-  const saveData = !!(conn && conn.saveData);
-  const effectiveType = (conn && conn.effectiveType) ? conn.effectiveType : "";
+    // Menu page only
+    initMenuSidebarLayout(state);
+    initMenuCategoryActive(state);
+    initMenuItemsAnimation(state);
 
-  const logDecision = (finalLowEnd, reason, extra = {}) => {
-    if (!debugOn) return;
-    console.group("%c[Barko] Low-end decision", "color:#d4af37;font-weight:bold;");
-    console.log("isMobile:", isMobile);
-    console.log("memGB:", mem || "n/a", "cores:", cores || "n/a");
-    console.log("effectiveType:", effectiveType || "n/a", "saveData:", saveData);
-    console.log("prefersReducedMotion:", prefersReducedMotion);
-    Object.entries(extra).forEach(([k, v]) => console.log(k + ":", v));
-    console.log("➡️ FINAL low-end:", finalLowEnd);
-    console.log("reason:", reason);
-    console.groupEnd();
-  };
-
-  const decideLowEnd = () => {
-    // 0) forced
-    if (forceFull) return { lowEnd: false, reason: "forceFull(?full)" };
-    if (forceLite) return { lowEnd: true, reason: "forceLite(?lite)" };
-
-    // 1) cached
-    const cached = sessionStorage.getItem("barko_low_end");
-    if (cached === "1") return { lowEnd: true, reason: "cached=1" };
-    if (cached === "0") return { lowEnd: false, reason: "cached=0" };
-
-    // 2) benchmark only if visible+focused
-    if (document.visibilityState !== "visible" || !document.hasFocus()) {
-      return { lowEnd: false, reason: "benchmark-skipped(not visible/focused)" };
-    }
-
-    // 3) run benchmark (after a short settle delay)
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const start = performance.now();
-        let frames = 0;
-        let longFrames = 0;
-        let last = start;
-
-        const tick = (t) => {
-          frames++;
-          const dt = t - last;
-          if (dt > 34) longFrames++;
-          last = t;
-
-          if (t - start < 1000) {
-            requestAnimationFrame(tick);
-            return;
-          }
-
-          if (frames < 35) {
-            const finalLowEnd = (frames <= 30) || (longFrames >= 8);
-            resolve({
-              lowEnd: finalLowEnd,
-              reason: `benchmark-low(frames=${frames}, long=${longFrames})`,
-              extra: { frames, longFrames }
-            });
-            return;
-          }
-
-
-          const lowByFrames = frames <= 48;
-          const lowByLongs = longFrames >= 8;
-          const finalLowEnd = lowByFrames || lowByLongs;
-
-          resolve({
-            lowEnd: finalLowEnd,
-            reason: `benchmark(frames=${frames}, long=${longFrames})`,
-            extra: { frames, longFrames },
-          });
-        };
-
-        requestAnimationFrame(tick);
-      }, 350);
-    });
-  };
-
-  // ✅ Apply result safely (works whether decideLowEnd returns object or Promise)
-  Promise.resolve(decideLowEnd()).then((result) => {
-    const finalLowEnd = !!result.lowEnd;
-
-    document.body.classList.toggle("low-end", finalLowEnd);
-    sessionStorage.setItem("barko_low_end", finalLowEnd ? "1" : "0");
-    logDecision(finalLowEnd, result.reason, result.extra || {});
+    // Extras
+    loadPrices();                   // 1 φορά (async fetch) — safe on all pages
+    initDishModal();                // 1 φορά (bind clicks) — safe on all pages
+    initVisualViewportBgSync();     // “continuous” via events — safe if .page-bg exists
   });
 
-  // ✅ Από εδώ και κάτω τρέχουν ΟΛΑ κανονικά (dark mode, scroll, burger, κλπ)
-  // ...
   /* =========================
-     AUTO DARK MODE (SYSTEM)
+     STATE
   ========================= */
-  const themeToggle = document.getElementById("theme-toggle");
-
-  if (
-    !localStorage.getItem("theme") &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches
-  ) {
-    document.body.classList.add("dark");
-    if (themeToggle) themeToggle.textContent = "☀️";
+  function createState() {
+    const mqMobile = window.matchMedia("(max-width: 768px)");
+    return {
+      mqMobile,
+      isMobile: mqMobile.matches,
+      rafScrollPending: false,
+    };
   }
 
-  /* =========================
-     DARK MODE TOGGLE
-  ========================= */
-  if (themeToggle) {
-    if (localStorage.getItem("theme") === "dark") {
+  /* =========================================================
+     LOW-END MODE (score + optional benchmark)
+  ========================================================= */
+  function initLowEndMode(state) {
+    const params = new URLSearchParams(location.search);
+    const debugOn = params.has("debug");
+    const forceLite = params.has("lite");
+    const forceFull = params.has("full");
+
+    const prefersReducedMotion =
+      !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+
+    const mem = navigator.deviceMemory || 0;
+    const cores = navigator.hardwareConcurrency || 0;
+    const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    const saveData = !!(conn && conn.saveData);
+    const effectiveType = (conn && conn.effectiveType) ? conn.effectiveType : "";
+
+    let score = 0;
+
+    const logDecision = (finalLowEnd, reason, extra = {}) => {
+      if (!debugOn) return;
+      console.group("%c[Barko] Low-end decision", "color:#d4af37;font-weight:bold;");
+      console.log("isMobile:", state.isMobile);
+      console.log("memGB:", mem || "n/a", "cores:", cores || "n/a");
+      console.log("effectiveType:", effectiveType || "n/a", "saveData:", saveData);
+      console.log("prefersReducedMotion:", prefersReducedMotion);
+      console.log("score:", score);
+      Object.entries(extra).forEach(([k, v]) => console.log(k + ":", v));
+      console.log("➡️ FINAL low-end:", finalLowEnd);
+      console.log("reason:", reason);
+      console.groupEnd();
+    };
+
+    const decideLowEnd = () => {
+      // 0) forced
+      if (forceFull) return { lowEnd: false, reason: "forceFull(?full)" };
+      if (forceLite) return { lowEnd: true, reason: "forceLite(?lite)" };
+
+      // 1) cached
+      const cached = sessionStorage.getItem("barko_low_end");
+      if (cached === "1") return { lowEnd: true, reason: "cached=1" };
+      if (cached === "0") return { lowEnd: false, reason: "cached=0" };
+
+      // 2) score
+      score = 0;
+      if (saveData) score += 3;
+      if (effectiveType.includes("2g")) score += 3;
+
+      if (mem && mem < 1) score += 2;
+      else if (mem && mem <= 4) score += 1;
+
+      if (cores && cores <= 2) score += 3;
+      else if (cores && cores <= 4) score += 1;
+
+      if (prefersReducedMotion) score += 1;
+      if (state.isMobile && score > 0) score += 1;
+
+      const isLowEndByScore = score >= 4;
+      const shouldBenchmark = !isLowEndByScore && score >= 2 && score <= 3;
+
+      if (!shouldBenchmark) {
+        return { lowEnd: isLowEndByScore, reason: isLowEndByScore ? "score>=4" : "score<4" };
+      }
+
+      // 3) benchmark only if visible+focused
+      if (document.visibilityState !== "visible" || !document.hasFocus()) {
+        return { lowEnd: false, reason: "benchmark-skipped(not visible/focused)" };
+      }
+
+      // 4) benchmark ~0.9s
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          const start = performance.now();
+          let frames = 0;
+          let longFrames = 0;
+          let last = start;
+
+          const tick = (t) => {
+            frames++;
+            const dt = t - last;
+            if (dt > 34) longFrames++;
+            last = t;
+
+            if (t - start < 900) {
+              requestAnimationFrame(tick);
+              return;
+            }
+
+            if (frames < 30) {
+              resolve({
+                lowEnd: false,
+                reason: `benchmark-invalid(frames=${frames}, long=${longFrames})`,
+                extra: { frames, longFrames },
+              });
+              return;
+            }
+
+            const lowByFrames = frames < 45;
+            const lowByLongs = longFrames > 6;
+            const finalLowEnd = lowByFrames || lowByLongs;
+
+            resolve({
+              lowEnd: finalLowEnd,
+              reason: `benchmark(frames=${frames}, long=${longFrames})`,
+              extra: { frames, longFrames },
+            });
+          };
+
+          requestAnimationFrame(tick);
+        }, 250);
+      });
+    };
+
+    // apply result safely (works for object OR promise)
+    Promise.resolve(decideLowEnd()).then((result) => {
+      const finalLowEnd = !!result.lowEnd;
+
+      document.body.classList.toggle("low-end", finalLowEnd);
+      sessionStorage.setItem("barko_low_end", finalLowEnd ? "1" : "0");
+      logDecision(finalLowEnd, result.reason, result.extra || {});
+    });
+  }
+
+  /* =========================================================
+     THEME
+  ========================================================= */
+  function initTheme(state) {
+    const themeToggle = document.getElementById("theme-toggle");
+
+    // System auto-dark (only if user has NOT chosen)
+    if (!localStorage.getItem("theme") &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches) {
       document.body.classList.add("dark");
-      themeToggle.textContent = "☀️";
+      if (themeToggle) themeToggle.textContent = "☀️";
     }
 
+    // Persisted choice
+    if (localStorage.getItem("theme") === "dark") {
+      document.body.classList.add("dark");
+      if (themeToggle) themeToggle.textContent = "☀️";
+    }
+
+    // Toggle
+    if (!themeToggle) return;
+
     themeToggle.addEventListener("click", () => {
-      // keep scroll position stable on mobile
       const y = window.scrollY;
 
       document.body.classList.toggle("dark");
@@ -132,81 +197,89 @@ document.addEventListener("DOMContentLoaded", () => {
       themeToggle.textContent = isDark ? "☀️" : "🌙";
       localStorage.setItem("theme", isDark ? "dark" : "light");
 
+      // keep scroll stable on mobile
       requestAnimationFrame(() => window.scrollTo(0, y));
     });
-  }
 
-  /* =========================
-     SMOOTH SCROLL (ANCHORS)
-  ========================= */
-  document.querySelectorAll('a[href^="#"]').forEach((link) => {
-    link.addEventListener("click", (e) => {
-      const href = link.getAttribute("href");
-      if (!href || href === "#") return;
-
-      const target = document.querySelector(href);
-      if (!target) return;
-
-      e.preventDefault();
-
-      const header = document.querySelector("header");
-      const offset = header ? header.offsetHeight : 0;
-      const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
-
-      window.scrollTo({ top: y, behavior: isMobile ? "auto" : "smooth" });
+    // keep state.isMobile updated on rotate/resizes
+    state.mqMobile.addEventListener?.("change", (e) => {
+      state.isMobile = e.matches;
     });
-  });
-
-  /* =========================
-     SECTION REVEAL (FAIL-SAFE)**************************************************************************************************************************************************
-  ========================= */
-  const sections = document.querySelectorAll(".section");
-
-  if (sections.length) {
-    // Mobile: reveal immediately (no observers/animations)
-    if (isMobile) {
-      sections.forEach((sec) => sec.classList.add("section-visible"));
-    } else {
-      // Αν δεν υποστηρίζεται IntersectionObserver, δείξε τα πάντα.
-      if (!("IntersectionObserver" in window)) {
-        sections.forEach(sec => sec.classList.add("section-visible"));
-      } else {
-        const revealNowIfInView = (el) => {
-          const r = el.getBoundingClientRect();
-          // αν είναι ήδη “στο περίπου” μέσα στο viewport στο load, δείξ' το άμεσα
-          if (r.top < window.innerHeight * 0.92) el.classList.add("section-visible");
-        };
-
-        const revealObserver = new IntersectionObserver(entries => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("section-visible");
-              revealObserver.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.08, rootMargin: "0px 0px -10% 0px" });
-
-        sections.forEach(sec => {
-          sec.classList.add("section-hidden");
-          revealNowIfInView(sec);      // ✅ fail-safe για refresh
-          revealObserver.observe(sec);
-        });
-
-        // άλλο ένα fail-safe μετά το πρώτο paint
-        requestAnimationFrame(() => sections.forEach(revealNowIfInView));
-        setTimeout(() => sections.forEach(revealNowIfInView), 250);
-      }
-    }
   }
 
+  /* =========================================================
+     SMOOTH ANCHORS
+  ========================================================= */
+  function initSmoothAnchors(state) {
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+      link.addEventListener("click", (e) => {
+        const href = link.getAttribute("href");
+        if (!href || href === "#") return;
 
-  /* =========================
-     ACTIVE NAV LINK (one-page sections)
-  ========================= */
-  const navLinks = document.querySelectorAll(".header-nav a");
-  const contactSection = document.getElementById("contact");
+        const target = document.querySelector(href);
+        if (!target) return;
 
-  if (navLinks.length && contactSection) {
+        e.preventDefault();
+
+        const header = document.querySelector("header");
+        const offset = header ? header.offsetHeight : 0;
+        const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
+
+        window.scrollTo({ top: y, behavior: state.isMobile ? "auto" : "smooth" });
+      });
+    });
+  }
+
+  /* =========================================================
+     SECTION REVEAL (fail-safe)
+  ========================================================= */
+  function initSectionReveal(state) {
+    const sections = document.querySelectorAll(".section");
+    if (!sections.length) return;
+
+    // Mobile: show immediately
+    if (state.isMobile) {
+      sections.forEach((sec) => sec.classList.add("section-visible"));
+      return;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      sections.forEach((sec) => sec.classList.add("section-visible"));
+      return;
+    }
+
+    const revealNowIfInView = (el) => {
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight * 0.92) el.classList.add("section-visible");
+    };
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("section-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: "0px 0px -10% 0px" });
+
+    sections.forEach((sec) => {
+      sec.classList.add("section-hidden");
+      revealNowIfInView(sec);
+      revealObserver.observe(sec);
+    });
+
+    requestAnimationFrame(() => sections.forEach(revealNowIfInView));
+    setTimeout(() => sections.forEach(revealNowIfInView), 250);
+  }
+
+  /* =========================================================
+     ACTIVE NAV LINK (one-page)
+  ========================================================= */
+  function initActiveNavLink(state) {
+    const navLinks = document.querySelectorAll(".header-nav a");
+    const contactSection = document.getElementById("contact");
+    if (!navLinks.length || !contactSection) return;
+
     const homeLink = document.querySelector('.header-nav a[href="/el"]');
     const contactLink = document.querySelector('.header-nav a[href="/el#contact"]');
 
@@ -216,50 +289,51 @@ document.addEventListener("DOMContentLoaded", () => {
         r.top < window.innerHeight * 0.4 &&
         r.bottom > window.innerHeight * 0.4;
 
-      // reset
-      navLinks.forEach(l => l.classList.remove("active"));
-
-      if (inContact) {
-        contactLink?.classList.add("active");
-      } else {
-        homeLink?.classList.add("active");
-      }
+      navLinks.forEach((l) => l.classList.remove("active"));
+      if (inContact) contactLink?.classList.add("active");
+      else homeLink?.classList.add("active");
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll(); // initial
+    onScroll();
   }
 
-
-
-  /* =========================
+  /* =========================================================
      SCROLL TO TOP
-  ========================= */
-  const topBtn = document.createElement("button");
-  topBtn.className = "scroll-top";
-  topBtn.type = "button";
-  topBtn.textContent = "↑";
-  document.body.appendChild(topBtn);
+  ========================================================= */
+  function initScrollTop(state) {
+    const topBtn = document.createElement("button");
+    topBtn.className = "scroll-top";
+    topBtn.type = "button";
+    topBtn.textContent = "↑";
+    document.body.appendChild(topBtn);
 
-  topBtn.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: isMobile ? "auto" : "smooth" });
-  });
+    topBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: state.isMobile ? "auto" : "smooth" });
+    });
 
-  window.addEventListener(
-    "scroll",
-    () => {
+    const update = () => {
+      state.rafScrollPending = false;
       topBtn.style.display = window.scrollY > 400 ? "flex" : "none";
-    },
-    { passive: true }
-  );
+    };
 
-  /* =========================
+    window.addEventListener("scroll", () => {
+      if (state.rafScrollPending) return;
+      state.rafScrollPending = true;
+      requestAnimationFrame(update);
+    }, { passive: true });
+
+    update();
+  }
+
+  /* =========================================================
      BURGER MENU
-  ========================= */
-  const burger = document.getElementById("burger-menu");
-  const mobileNav = document.getElementById("mobile-nav");
+  ========================================================= */
+  function initBurgerMenu() {
+    const burger = document.getElementById("burger-menu");
+    const mobileNav = document.getElementById("mobile-nav");
+    if (!burger || !mobileNav) return;
 
-  if (burger && mobileNav) {
     burger.addEventListener("click", (e) => {
       e.stopPropagation();
       mobileNav.classList.toggle("open");
@@ -267,70 +341,67 @@ document.addEventListener("DOMContentLoaded", () => {
 
     mobileNav.addEventListener("click", (e) => e.stopPropagation());
 
-    document.addEventListener(
-      "click",
-      (e) => {
-        if (!mobileNav.contains(e.target) && !burger.contains(e.target)) {
-          mobileNav.classList.remove("open");
-        }
-      },
-      { passive: true }
-    );
+    document.addEventListener("click", (e) => {
+      if (!mobileNav.contains(e.target) && !burger.contains(e.target)) {
+        mobileNav.classList.remove("open");
+      }
+    }, { passive: true });
   }
 
-  /* =========================
+  /* =========================================================
      LANGUAGE DROPDOWN
-  ========================= */
-  document.querySelectorAll(".language-switcher").forEach((ls) => {
-    const current = ls.querySelector(".lang-current");
-    if (!current) return;
+  ========================================================= */
+  function initLanguageDropdown() {
+    document.querySelectorAll(".language-switcher").forEach((ls) => {
+      const current = ls.querySelector(".lang-current");
+      if (!current) return;
 
-    current.addEventListener("click", (e) => {
-      e.stopPropagation();
-      ls.classList.toggle("open");
+      current.addEventListener("click", (e) => {
+        e.stopPropagation();
+        ls.classList.toggle("open");
+      });
     });
-  });
 
-  document.addEventListener("click", () => {
-    document.querySelectorAll(".language-switcher").forEach((ls) => ls.classList.remove("open"));
-  });
+    document.addEventListener("click", () => {
+      document.querySelectorAll(".language-switcher")
+        .forEach((ls) => ls.classList.remove("open"));
+    });
+  }
 
   /* =========================================================
-     MENU PAGE: MOBILE SIDEBAR TRANSFORM + ACTIVE (NO JUMP)
+     MENU PAGE: sidebar move on mobile
   ========================================================= */
-  const wrapper = document.querySelector(".menu-grid-wrapper");
-  const sidebar = document.querySelector(".menu-sidebar");
-  const main = document.querySelector(".menu-main");
-
-  const menuSections = document.querySelectorAll(".menu-category");
-  const menuLinks = document.querySelectorAll(".menu-links-list a");
-  const linksContainer = document.querySelector(".menu-links-list");
-
-  // On mobile: move sidebar above menu and mark it for mobile styling
-  const makeMobileSidebar = () => {
+  function initMenuSidebarLayout(state) {
+    const wrapper = document.querySelector(".menu-grid-wrapper");
+    const sidebar = document.querySelector(".menu-sidebar");
+    const main = document.querySelector(".menu-main");
     if (!wrapper || !sidebar || !main) return;
 
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const apply = () => {
+      const mobileNow = state.mqMobile.matches;
+      sidebar.classList.toggle("menu-sidebar--mobile", mobileNow);
 
-    if (isMobile) {
-      sidebar.classList.add("menu-sidebar--mobile");
+      // keep sidebar first (above menu) on mobile (and also consistent on desktop)
       if (sidebar.parentElement === wrapper && wrapper.firstElementChild !== sidebar) {
         wrapper.insertBefore(sidebar, main);
       }
-    } else {
-      sidebar.classList.remove("menu-sidebar--mobile");
-      if (sidebar.parentElement === wrapper && wrapper.firstElementChild !== sidebar) {
-        wrapper.insertBefore(sidebar, main);
-      }
-    }
-  };
+    };
 
-  makeMobileSidebar();
-  window.addEventListener("resize", makeMobileSidebar, { passive: true });
+    apply();
+    window.addEventListener("resize", apply, { passive: true });
+  }
 
-  // Highlight active category; on mobile, auto-center active chip (NO JUMP / NO LOOP)
-  // Highlight active category (desktop + mobile). On mobile: center active chip.
-  if (menuSections.length && menuLinks.length) {
+  /* =========================================================
+     MENU PAGE: active category (IntersectionObserver)
+  ========================================================= */
+  function initMenuCategoryActive(state) {
+    const sidebar = document.querySelector(".menu-sidebar");
+    const menuSections = document.querySelectorAll(".menu-category");
+    const menuLinks = document.querySelectorAll(".menu-links-list a");
+    const linksContainer = document.querySelector(".menu-links-list");
+
+    if (!menuSections.length || !menuLinks.length || !("IntersectionObserver" in window)) return;
+
     let lastActiveId = null;
     let rafPending = false;
 
@@ -339,87 +410,77 @@ document.addEventListener("DOMContentLoaded", () => {
         const isActive = link.getAttribute("href") === `#${id}`;
         link.classList.toggle("active", isActive);
 
-        // center only on mobile (chips)
-        if (isActive) {
-          const mobileNow =
-            window.matchMedia("(max-width: 768px)").matches ||
-            sidebar?.classList.contains("menu-sidebar--mobile");
+        if (!isActive) return;
 
-          if (mobileNow && linksContainer && !rafPending) {
-            rafPending = true;
-            requestAnimationFrame(() => {
-              rafPending = false;
-              const left =
-                link.offsetLeft -
-                linksContainer.clientWidth / 2 +
-                link.clientWidth / 2;
+        const mobileNow =
+          state.mqMobile.matches || sidebar?.classList.contains("menu-sidebar--mobile");
 
-              linksContainer.scrollTo({ left, behavior: "smooth" });
-            });
-          } else if (!mobileNow && linksContainer && !rafPending) {
-            rafPending = true;
-            requestAnimationFrame(() => {
-              rafPending = false;
-              const cRect = linksContainer.getBoundingClientRect();
-              const lRect = link.getBoundingClientRect();
-              const current = linksContainer.scrollTop;
-              const offset =
-                lRect.top - cRect.top - cRect.height / 2 + lRect.height / 2;
+        if (!linksContainer || rafPending) return;
 
-              linksContainer.scrollTo({
-                top: Math.max(0, current + offset),
-                behavior: "smooth",
-              });
+        rafPending = true;
+        requestAnimationFrame(() => {
+          rafPending = false;
+
+          if (mobileNow) {
+            // center horizontal chips
+            const left =
+              link.offsetLeft - linksContainer.clientWidth / 2 + link.clientWidth / 2;
+            linksContainer.scrollTo({ left, behavior: "smooth" });
+          } else {
+            // center vertical list
+            const cRect = linksContainer.getBoundingClientRect();
+            const lRect = link.getBoundingClientRect();
+            const current = linksContainer.scrollTop;
+            const offset = lRect.top - cRect.top - cRect.height / 2 + lRect.height / 2;
+
+            linksContainer.scrollTo({
+              top: Math.max(0, current + offset),
+              behavior: "smooth",
             });
           }
-        }
+        });
       });
     };
 
-    const menuObserver = new IntersectionObserver(
-      (entries) => {
-        const hits = entries.filter((e) => e.isIntersecting);
-        if (!hits.length) return;
+    const menuObserver = new IntersectionObserver((entries) => {
+      const hits = entries.filter((e) => e.isIntersecting);
+      if (!hits.length) return;
 
-        // ✅ FIX 1: near-bottom lock (για να μην ανάβει λάθος το προτελευταίο/τελευταίο)
-        const nearBottom =
-          window.scrollY + window.innerHeight >=
-          document.documentElement.scrollHeight - 40;
+      // near-bottom lock (avoid wrong last highlight)
+      const nearBottom =
+        window.scrollY + window.innerHeight >=
+        document.documentElement.scrollHeight - 40;
 
-        if (nearBottom) {
-          const lastId = "drinks"; // 🔁 άλλαξε αν το τελευταίο section σου έχει άλλο id
-          if (lastActiveId !== lastId) {
-            lastActiveId = lastId;
-            setActive(lastId);
-          }
-          return;
+      if (nearBottom) {
+        const lastId = "drinks"; // άλλαξε αν το τελευταίο σου section έχει άλλο id
+        if (lastActiveId !== lastId) {
+          lastActiveId = lastId;
+          setActive(lastId);
         }
-
-        // ✅ FIX 2: διάλεξε αυτό που είναι πιο “κοντά” σε σημείο εστίασης (όχι με ratio)
-        const focusY = window.innerHeight * 0.35; // 0.30–0.45 είναι συνήθως τέλειο
-        hits.sort((a, b) => {
-          const da = Math.abs(a.boundingClientRect.top - focusY);
-          const db = Math.abs(b.boundingClientRect.top - focusY);
-          return da - db;
-        });
-
-        const id = hits[0].target.id;
-        if (!id || id === lastActiveId) return;
-
-        lastActiveId = id;
-        setActive(id);
-      },
-      {
-        // λίγο πιο “ήπιο” για sticky header/sidebar
-        rootMargin: "-30% 0px -55% 0px",
-        threshold: [0.01, 0.08, 0.15],
+        return;
       }
-    );
 
+      // choose closest to focus point
+      const focusY = window.innerHeight * 0.35;
+      hits.sort((a, b) => {
+        const da = Math.abs(a.boundingClientRect.top - focusY);
+        const db = Math.abs(b.boundingClientRect.top - focusY);
+        return da - db;
+      });
+
+      const id = hits[0].target.id;
+      if (!id || id === lastActiveId) return;
+
+      lastActiveId = id;
+      setActive(id);
+    }, {
+      rootMargin: "-30% 0px -55% 0px",
+      threshold: [0.01, 0.08, 0.15],
+    });
 
     menuSections.forEach((sec) => menuObserver.observe(sec));
 
-    // initial state (σε refresh στη μέση της σελίδας)
+    // initial (refresh mid-page)
     const initial = [...menuSections]
       .map((s) => ({ s, top: s.getBoundingClientRect().top }))
       .filter((x) => x.top < window.innerHeight * 0.55)
@@ -428,161 +489,144 @@ document.addEventListener("DOMContentLoaded", () => {
     if (initial?.s?.id) setActive(initial.s.id);
   }
 
-  /* =========================
+  /* =========================================================
      MENU ITEMS ANIMATION
-  ========================= */
-  const items = document.querySelectorAll(".menu-items li");
-  if (!isMobile && items.length) {
+  ========================================================= */
+  function initMenuItemsAnimation(state) {
+    const items = document.querySelectorAll(".menu-items li");
+    if (!items.length || state.isMobile || !("IntersectionObserver" in window)) return;
+
     items.forEach((item, i) => {
       if (i % 2 !== 0) item.classList.add("from-right");
     });
 
-    const itemsObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-            itemsObserver.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
+    const itemsObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          itemsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
 
     items.forEach((item) => itemsObserver.observe(item));
   }
-});
 
-/* =========================
-PRICES JSON (Menu prices)
-Put this inside main.js (inside the main DOMContentLoaded)
-========================= */
-(async function loadPrices() {
-  // Always fetch from site root (works for /el/, /en/, /it/, /fr/)
-  const PRICES_URL = "/assets/json/prices.json?v=1";
+  /* =========================================================
+     PRICES JSON (1 φορά)
+  ========================================================= */
+  async function loadPrices() {
+    const PRICES_URL = "/assets/json/prices.json?v=1";
 
-  try {
-    const res = await fetch(PRICES_URL, { cache: "no-store" });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    try {
+      const res = await fetch(PRICES_URL, { cache: "no-store" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
-    const prices = await res.json();
+      const prices = await res.json();
+      let updatedCount = 0;
 
-    let updatedCount = 0;
+      document.querySelectorAll("[data-price]").forEach((el) => {
+        const key = el.getAttribute("data-price");
+        if (!key) return;
 
-    document.querySelectorAll("[data-price]").forEach((el) => {
-      const key = el.getAttribute("data-price");
-      if (!key) return;
+        const val = prices[key];
+        if (val !== undefined && val !== null && String(val).trim() !== "") {
+          el.textContent = String(val);
+          updatedCount++;
+        }
+      });
 
-      const val = prices[key];
-      if (val !== undefined && val !== null && String(val).trim() !== "") {
-        el.textContent = String(val);
-        updatedCount++;
+      console.log(`[Barko] Prices loaded successfully (${updatedCount} items updated)`);
+    } catch (err) {
+      console.log("[Barko] prices.json not loaded:", err);
+      // fallback: keep HTML prices
+    }
+  }
+
+  /* =========================================================
+     DISH MODAL (index + menu + gallery) — safe on all pages
+  ========================================================= */
+  function initDishModal() {
+    const modal = document.getElementById("dishModal");
+    const modalImg = document.getElementById("modalImg");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalText = document.getElementById("modalText");
+
+    if (!modal || !modalImg || !modalTitle || !modalText) return;
+
+    const openModal = ({ src, title = "", text = "" }) => {
+      modalImg.src = src || "";
+      modalTitle.textContent = title || "";
+      modalText.textContent = text || "";
+      modalText.style.display = text ? "" : "none";
+      modal.classList.add("open");
+    };
+
+    // INDEX cards
+    document.querySelectorAll(".menu-item").forEach((item) => {
+      item.addEventListener("click", () => {
+        const img = item.querySelector("img");
+        const title = item.querySelector("h3");
+        const text = item.querySelector("p");
+
+        openModal({
+          src: img?.src,
+          title: title?.textContent || "",
+          text: text?.textContent || "",
+        });
+      });
+    });
+
+    // MENU PAGE items (li click) — only if li has img
+    document.querySelectorAll(".menu-items li").forEach((li) => {
+      li.addEventListener("click", (e) => {
+        if (e.target.closest("a")) return; // allow links
+
+        const img = li.querySelector("img");
+        if (!img) return;
+
+        openModal({ src: img.src, title: "", text: "" });
+      });
+    });
+
+    // GALLERY images
+    document.querySelectorAll(".gallery-item img").forEach((img) => {
+      img.addEventListener("click", () => {
+        openModal({
+          src: img.src,
+          title: img.alt || "Φωτογραφία",
+          text: "",
+        });
+      });
+    });
+
+    // close modal
+    modal.addEventListener("click", (e) => {
+      if (
+        e.target.classList.contains("dish-modal") ||
+        e.target.classList.contains("modal-close")
+      ) {
+        modal.classList.remove("open");
       }
     });
-
-    console.log(
-      `[Barko] Prices loaded successfully (${updatedCount} items updated)`
-    );
-  } catch (err) {
-    console.log("[Barko] prices.json not loaded:", err);
-    // fallback: keep the HTML prices as-is
   }
-})();
 
+  /* =========================================================
+     VISUAL VIEWPORT BG SYNC (fix address bar gaps)
+  ========================================================= */
+  function initVisualViewportBgSync() {
+    const bg = document.querySelector(".page-bg");
+    if (!bg || !window.visualViewport) return;
 
-/* =========================
-   DISH MODAL (INDEX)
-========================= */
-document.addEventListener("DOMContentLoaded", () => {
-  const modal = document.getElementById("dishModal");
-  const modalImg = document.getElementById("modalImg");
-  const modalTitle = document.getElementById("modalTitle");
-  const modalText = document.getElementById("modalText");
+    const vv = window.visualViewport;
+    const sync = () => {
+      bg.style.height = vv.height + "px";
+      bg.style.width = vv.width + "px";
+      bg.style.top = vv.offsetTop + "px";
+    };
 
-  // ✅ αν λείπει το modal, μην κάνεις τίποτα (άρα δεν σπάει άλλες σελίδες)
-  if (!modal || !modalImg || !modalTitle || !modalText) return;
-
-  const openModal = ({ src, title = "", text = "" }) => {
-    modalImg.src = src || "";
-    modalTitle.textContent = title || "";
-    modalText.textContent = text || "";
-
-    // αν είμαστε gallery/menu (δεν έχουμε πάντα κείμενο), κρύψε το p όταν είναι άδειο
-    modalText.style.display = text ? "" : "none";
-
-    modal.classList.add("open");
-  };
-
-  // ✅ INDEX cards (.menu-item)
-  document.querySelectorAll(".menu-item").forEach((item) => {
-    item.addEventListener("click", () => {
-      const img = item.querySelector("img");
-      const title = item.querySelector("h3");
-      const text = item.querySelector("p");
-
-      openModal({
-        src: img?.src,
-        title: title?.textContent || "",
-        text: text?.textContent || "",
-      });
-    });
-  });
-
-  // ✅ MENU PAGE items (menu.html) — click on li
-  document.querySelectorAll(".menu-items li").forEach((li) => {
-    li.addEventListener("click", (e) => {
-      // αν πατηθεί link μέσα στο li (σπάνιο), άστο να δουλέψει κανονικά
-      if (e.target.closest("a")) return;
-
-      const img = li.querySelector("img");
-      if (!img) return; // αν κάποιο item δεν έχει εικόνα, μην ανοίγεις modal
-
-      const dish = li.querySelector(".dish")?.textContent?.trim() || "";
-
-      openModal({
-        src: img.src,
-      });
-    });
-  });
-
-  // ✅ GALLERY images (.gallery-item img)
-  document.querySelectorAll(".gallery-item img").forEach((img) => {
-    img.addEventListener("click", () => {
-      openModal({
-        src: img.src,
-        title: img.alt || "Φωτογραφία",
-        text: "", // δεν έχει περιγραφή στη gallery
-      });
-    });
-  });
-
-  // ✅ close modal
-  modal.addEventListener("click", (e) => {
-    if (
-      e.target.classList.contains("dish-modal") ||
-      e.target.classList.contains("modal-close")
-    ) {
-      modal.classList.remove("open");
-    }
-  });
-});
-
-
-
-
-
-(() => {
-  const bg = document.querySelector('.page-bg');
-  if (!bg || !window.visualViewport) return;
-
-  const vv = window.visualViewport;
-  const sync = () => {
-    bg.style.height = vv.height + 'px';
-    bg.style.width = vv.width + 'px';
-    bg.style.top = vv.offsetTop + 'px';
-  };
-
-  sync();
-  vv.addEventListener('resize', sync);
-  vv.addEventListener('scroll', sync);
+    sync();
+    vv.addEventListener("resize", sync);
+    vv.addEventListener("scroll", sync);
+  }
 })();
