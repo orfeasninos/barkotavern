@@ -100,136 +100,216 @@
 </head>
 
 <body>
-  <!-- HEADER -->
-  <header>
-    <div class="header-container">
-      <!-- LOGO -->
-      <div class="logo">
-        <a href="/en">
-          <img src="../assets/images/logo.png" alt="Barko Tavern Logo">
-        </a>
+<picture class="page-bg">
+  <!-- desktop -->
+  <source
+    srcset="../assets/images/background.webp"
+    media="(min-width: 1024px)"
+  >
+
+  <!-- mobile (default) -->
+  <img
+    src="../assets/images/background.jpg"
+    alt=""
+    aria-hidden="true"
+  >
+</picture>
+
+<div class="info-bar">
+  ⏰ Open daily: <strong>13:00 – 00:00</strong>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-container">
+    <!-- LOGO -->
+    <div class="logo">
+      <a href="/en">
+        <img src="../assets/images/logo.png" alt="Barko Tavern Logo">
+      </a>
+    </div>
+
+    <!-- BURGER MENU & NAV -->
+    <div class="header-right">
+
+      <!-- Burger button -->
+      <div class="burger-menu" id="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
 
-      <!-- BURGER MENU & NAV -->
-      <div class="header-right">
+      <!-- Nav links + language -->
+      <nav class="header-nav" id="mobile-nav">
+        <ul>
+          <li><a href="/en" class="active">Home</a></li>
+          <li><a href="restaurant.html">The Restaurant</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="/en#contact">Contact</a></li>
 
-        <!-- Burger button -->
-        <div class="burger-menu" id="burger-menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-
-        <!-- Nav links + language -->
-        <nav class="header-nav" id="mobile-nav">
-          <ul>
-            <li><a href="/en">Home</a></li>
-            <li><a href="restaurant.html">The Restaurant</a></li>
-            <li><a href="menu.html">Menu</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="/en#contact">Contact</a></li>
-
-            <li class="nav-controls">
-              <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
-
-              <div class="language-switcher">
-                <div class="lang-current">
-                  <img src="../assets/images/en.jpg" alt="English">
-                  <span class="lang-arrow">▾</span>
-                </div>
-                <div class="lang-options">
-                  <a href="/el/"><img src="../assets/images/gr.jpg" alt="Ελληνικά"></a>
-                  <a href="/it/"><img src="../assets/images/it.jpg" alt="Italiano"></a>
-                  <a href="/fr/"><img src="../assets/images/fr.jpg" alt="Français"></a>
-                </div>
+          <li class="nav-controls">
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+            <div class="language-switcher">
+              <div class="lang-current">
+                <img src="../assets/images/en.jpg" alt="English">
+                <span class="lang-arrow">▾</span>
               </div>
-            </li>
-          </ul>
-        </nav>
+              <div class="lang-options">
+                <a href="/el/"><img src="../assets/images/gr.jpg" alt="Ελληνικά"></a>
+                <a href="/it/"><img src="../assets/images/it.jpg" alt="Italiano"></a>
+                <a href="/fr/"><img src="../assets/images/fr.jpg" alt="Français"></a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<section class="hero-welcome">
+  <div class="hero-bg" aria-hidden="true"></div>
+
+  <div class="welcome-box">
+    <h1>Welcome to Barko</h1>
+    <span>Traditional Greek Tavern • Since 1993</span>
+    <p>Authentic local flavours, warm hospitality and a relaxed island atmosphere in the heart of Milos.</p>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu" class="section menu-section">
+  <div class="container has-bottom-cta">
+    <h2>Traditional Dishes of Milos</h2>
+
+    <div class="menu-grid">
+      <div class="menu-item">
+        <img src="../assets/images/arnaki.jpg" alt="Oven-baked lamb">
+        <h3>Oven-Baked Lamb</h3>
+        <p>Slow-roasted lamb with lemon sauce and locally grown potatoes</p>
+      </div>
+
+      <div class="menu-item">
+        <img src="../assets/images/skordolazana.jpg" alt="Skordolazana">
+        <h3>Skordolazana of Milos</h3>
+        <p>Traditional Milos recipe with handmade pasta, local tomato paste and garlic sauce</p>
+      </div>
+
+      <div class="menu-item">
+        <img src="../assets/images/pitarakia.webp" alt="Milos pies">
+        <h3>Milos Traditional Pies</h3>
+        <p>Local homemade recipe, fried in olive oil and filled with local cheese</p>
       </div>
     </div>
-  </header>
 
-  <!-- HERO -->
-  <section class="hero-welcome">
-    <div class="welcome-box">
-      <h1>Welcome to Barko</h1>
-      <span>Traditional Taverna • Since 1993</span>
-      <p>
-        In the heart of Adamas, Milos, we serve authentic local flavors,
-        homemade Greek food, and warm hospitality.
-      </p>
-    </div>
-  </section>
+    <a class="home-button" href="menu.html">
+      <span class="btn-text">View Menu</span>
+      <span class="menu-icon" aria-hidden="true"></span>
+    </a>
+  </div>
+</section>
 
-  <!-- FEATURED DISHES -->
-  <section id="menu" class="section menu-section">
-    <div class="container">
-      <h2>Traditional Milos specialties</h2>
-      <div class="menu-grid">
+<!-- GOOGLE REVIEWS -->
+<section class="section reviews-section">
+  <div class="container has-bottom-cta">
+    <h2>Guest Reviews</h2>
 
-        <div class="menu-item" data-title="Lemon-roasted lamb"
-          data-img="assets/images/mousakas.jpg"
-          data-text="Slow-roasted lamb with lemon and local potatoes — a true homemade Greek classic.">
-          <img src="../assets/images/arnaki.jpg" alt="Lemon-roasted lamb with local potatoes">
-          <h3>Lemon-roasted lamb</h3>
-          <p>Lemon-roasted lamb in the oven with local potatoes</p>
+    <div class="reviews-grid">
+      <article class="review-card">
+        <div class="review-top">
+          <div class="review-name">Annie Y</div>
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
         </div>
-
-        <div class="menu-item">
-          <img src="../assets/images/skordolazana.jpg" alt="Skordolazana (Milos garlic pasta)">
-          <h3>Skordolazana of Milos</h3>
-          <p>
-            A traditional Milos recipe with handmade pasta, local belte cheese,
-            and the island’s classic garlic sauce
-          </p>
-        </div>
-
-        <div class="menu-item">
-          <img src="../assets/images/pitarakia.webp" alt="Milos pitarakia (fried cheese pies)">
-          <h3>Milos Pitarakia</h3>
-          <p>Traditional local recipe. Fried in olive oil and filled with local cheese</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about" class="section about-section">
-    <div class="container">
-      <h2>Our story</h2>
-      <div>
-        <p>
-          Barko Tavern is a family-run taverna in Adamas, created to give you the “classic” Greek holiday experience in
-          Milos: warm hospitality, homemade flavors, and a relaxed atmosphere. Since 1993, we’ve been keeping the
-          island’s traditional recipes alive with simple ingredients and lots of love.
-          Here, you’ll taste dishes that feel truly Greek — slow-cooked pots, grilled favorites, and shared meze plates.
-          Perfect for families, groups of friends, and couples looking for an authentic, honest dinner in Milos.
+        <p class="review-text">
+          Traditional atmosphere under lemon and vine trees. We visited twice — amazing fava, lamb chops and goat.
         </p>
-      </div>
-    </div>
-  </section>
+      </article>
 
-  <!-- CONTACT -->
-  <section id="contact" class="section contact-section">
-    <div class="container">
-      <h2>Contact</h2>
-      <p>📞 <a href="tel:+302287022660">+30 22870 22660</a></p>
-      <p>📧 <a href="mailto:barkomilos@gmail.com">barkomilos@gmail.com</a></p>
-      <p>📍 <a
-          href="https://www.google.com/maps/place/Barko+tavern+restaurant/@36.7283522,24.4438267,17z/data=!3m1!4b1!4m6!3m5!1s0x1498df472dfb6355:0x2cd14b966d368b5f!8m2!3d36.7283479!4d24.4464016!16s%2Fg%2F11btyk6by8?entry=ttu&g_ep=EgoyMDI2MDEyMS4wIKXMDSoASAFQAw%3D%3D"
-          target="_blank" rel="noopener noreferrer">Adamas, Milos</a></p>
-      <p>⏰ 13:00 - 23:00</p>
+      <article class="review-card">
+        <div class="review-top">
+          <div class="review-name">Ruby P</div>
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+        </div>
+        <p class="review-text">
+          Lovely courtyard under the vines. Very kind service. The food was delicious and great value for money.
+        </p>
+      </article>
 
-      <div class="map-container">
-        <h2>Find us on the map</h2>
-        <iframe width="100%" height="400" style="border:0" loading="lazy" allowfullscreen
-          src="https://maps.google.com/maps?q=Barko%20Tavern%2C%20Adamas%2C%20Milos%2C%20Greece&t=m&z=13&output=embed">
-        </iframe>
-      </div>
+      <article class="review-card">
+        <div class="review-top">
+          <div class="review-name">Arusan S</div>
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+        </div>
+        <p class="review-text">
+          Tasty, authentic dishes with excellent value. Shrimp saganaki, calamari and zucchini fritters were top.
+        </p>
+      </article>
+
+      <article class="review-card">
+        <div class="review-top">
+          <div class="review-name">Alison T</div>
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+        </div>
+        <p class="review-text">
+          Authentic family-style food. Even though it was busy, everything arrived quickly and was absolutely delicious.
+        </p>
+      </article>
     </div>
-  </section>
+
+    <a class="home-button"
+      href="https://www.google.com/maps/place/Barko+tavern+restaurant/"
+      target="_blank" rel="noopener noreferrer"
+      aria-label="See all reviews on Google">
+      <span class="btn-text">See all reviews</span>
+      <span class="maps-pin" aria-hidden="true"></span>
+    </a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section about-section">
+  <div class="container has-bottom-cta">
+    <h2>Our Story</h2>
+    <p>
+      Barko Tavern is a family-run taverna in Adamas, created to offer the classic Greek holiday experience:
+      warm hospitality, homemade food and a relaxed island vibe. Since 1993, we have been keeping the traditional
+      recipes of Milos alive, using simple ingredients and plenty of love.
+      Here you will enjoy dishes that truly taste like Greece — slow-cooked meals, grilled specialties and shared
+      plates. Ideal for families, friends and couples looking for an authentic dining experience in Milos.
+    </p>
+
+    <a class="home-button" href="restaurant.html">
+      <span class="btn-text">The Restaurant 🍽️</span>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section contact-section">
+  <div class="container has-bottom-cta">
+    <h2>Contact</h2>
+    <p>📞 <a href="tel:+302287022660">+30 22870 22660</a></p>
+    <p>📧 <a href="mailto:barkomilos@gmail.com">barkomilos@gmail.com</a></p>
+    <p>📍 <a href="https://www.google.com/maps/place/Barko+tavern+restaurant/"
+      target="_blank" rel="noopener noreferrer">Adamas, Milos</a></p>
+    <p>⏰ 13:00 – 00:00</p>
+
+    <div class="map-container">
+      <h2>Find Us on the Map</h2>
+      <iframe
+        width="100%" height="400" style="border:0"
+        loading="lazy" allowfullscreen
+        src="https://maps.google.com/maps?q=Barko%20Tavern%2C%20Adamas%2C%20Milos%2C%20Greece&t=m&z=13&output=embed">
+      </iframe>
+    </div>
+
+    <a class="home-button" href="tel:+302287022660">
+      <span class="btn-text">Call us for a reservation 📞</span>
+    </a>
+  </div>
+</section>
+
 
   <!-- FOOTER -->
   <footer class="premium-footer">
