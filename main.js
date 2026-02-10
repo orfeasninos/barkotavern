@@ -50,96 +50,96 @@
      LOW-END MODE (score + optional benchmark)
   ========================================================= */
   function initLowEndMode(state) {
-const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
-  // ===== Low-end detection =====
-  const params = new URLSearchParams(location.search);
-  const debugOn = params.has("debug");
-  const forceLite = params.has("lite");
-  const forceFull = params.has("full");
+    // ===== Low-end detection =====
+    const params = new URLSearchParams(location.search);
+    const debugOn = params.has("debug");
+    const forceLite = params.has("lite");
+    const forceFull = params.has("full");
 
-  const prefersReducedMotion =
-    !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    const prefersReducedMotion =
+      !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
 
-  const mem = navigator.deviceMemory || 0;
-  const cores = navigator.hardwareConcurrency || 0;
-  const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-  const saveData = !!(conn && conn.saveData);
-  const effectiveType = (conn && conn.effectiveType) ? conn.effectiveType : "";
+    const mem = navigator.deviceMemory || 0;
+    const cores = navigator.hardwareConcurrency || 0;
+    const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    const saveData = !!(conn && conn.saveData);
+    const effectiveType = (conn && conn.effectiveType) ? conn.effectiveType : "";
 
-  const logDecision = (finalLowEnd, reason, extra = {}) => {
-    if (!debugOn) return;
-    console.group("%c[Barko] Low-end decision", "color:#d4af37;font-weight:bold;");
-    console.log("isMobile:", isMobile);
-    console.log("memGB:", mem || "n/a", "cores:", cores || "n/a");
-    console.log("effectiveType:", effectiveType || "n/a", "saveData:", saveData);
-    console.log("prefersReducedMotion:", prefersReducedMotion);
-    Object.entries(extra).forEach(([k, v]) => console.log(k + ":", v));
-    console.log("➡️ FINAL low-end:", finalLowEnd);
-    console.log("reason:", reason);
-    console.groupEnd();
-  };
+    const logDecision = (finalLowEnd, reason, extra = {}) => {
+      if (!debugOn) return;
+      console.group("%c[Barko] Low-end decision", "color:#d4af37;font-weight:bold;");
+      console.log("isMobile:", isMobile);
+      console.log("memGB:", mem || "n/a", "cores:", cores || "n/a");
+      console.log("effectiveType:", effectiveType || "n/a", "saveData:", saveData);
+      console.log("prefersReducedMotion:", prefersReducedMotion);
+      Object.entries(extra).forEach(([k, v]) => console.log(k + ":", v));
+      console.log("➡️ FINAL low-end:", finalLowEnd);
+      console.log("reason:", reason);
+      console.groupEnd();
+    };
 
-  const decideLowEnd = () => {
-    // 0) forced
-    if (forceFull) return { lowEnd: false, reason: "forceFull(?full)" };
-    if (forceLite) return { lowEnd: true, reason: "forceLite(?lite)" };
+    const decideLowEnd = () => {
+      // 0) forced
+      if (forceFull) return { lowEnd: false, reason: "forceFull(?full)" };
+      if (forceLite) return { lowEnd: true, reason: "forceLite(?lite)" };
 
-    // 1) cached
-    const cached = sessionStorage.getItem("barko_low_end");
-    if (cached === "1") return { lowEnd: true, reason: "cached=1" };
-    if (cached === "0") return { lowEnd: false, reason: "cached=0" };
+      // 1) cached
+      const cached = sessionStorage.getItem("barko_low_end");
+      if (cached === "1") return { lowEnd: true, reason: "cached=1" };
+      if (cached === "0") return { lowEnd: false, reason: "cached=0" };
 
-    // 2) benchmark only if visible+focused
-    if (document.visibilityState !== "visible" || !document.hasFocus()) {
-      return { lowEnd: false, reason: "benchmark-skipped(not visible/focused)" };
-    }
+      // 2) benchmark only if visible+focused
+      if (document.visibilityState !== "visible" || !document.hasFocus()) {
+        return { lowEnd: false, reason: "benchmark-skipped(not visible/focused)" };
+      }
 
-    // 3) run benchmark (after a short settle delay)
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const start = performance.now();
-        let frames = 0;
-        let longFrames = 0;
-        let last = start;
+      // 3) run benchmark (after a short settle delay)
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          const start = performance.now();
+          let frames = 0;
+          let longFrames = 0;
+          let last = start;
 
-        const tick = (t) => {
-          frames++;
-          const dt = t - last;
-          if (dt > 34) longFrames++;
-          last = t;
+          const tick = (t) => {
+            frames++;
+            const dt = t - last;
+            if (dt > 34) longFrames++;
+            last = t;
 
-          if (t - start < 1000) {
-            requestAnimationFrame(tick);
-            return;
-          }
+            if (t - start < 1000) {
+              requestAnimationFrame(tick);
+              return;
+            }
 
-          if (frames < 35) {
-            const finalLowEnd = (frames <= 30) || (longFrames >= 8);
+            if (frames < 35) {
+              const finalLowEnd = (frames <= 30) || (longFrames >= 8);
+              resolve({
+                lowEnd: finalLowEnd,
+                reason: `benchmark-low(frames=${frames}, long=${longFrames})`,
+                extra: { frames, longFrames }
+              });
+              return;
+            }
+
+
+            const lowByFrames = frames <= 48;
+            const lowByLongs = longFrames >= 8;
+            const finalLowEnd = lowByFrames || lowByLongs;
+
             resolve({
               lowEnd: finalLowEnd,
-              reason: `benchmark-low(frames=${frames}, long=${longFrames})`,
-              extra: { frames, longFrames }
+              reason: `benchmark(frames=${frames}, long=${longFrames})`,
+              extra: { frames, longFrames },
             });
-            return;
-          }
+          };
 
-
-          const lowByFrames = frames <= 48;
-          const lowByLongs = longFrames >= 8;
-          const finalLowEnd = lowByFrames || lowByLongs;
-
-          resolve({
-            lowEnd: finalLowEnd,
-            reason: `benchmark(frames=${frames}, long=${longFrames})`,
-            extra: { frames, longFrames },
-          });
-        };
-
-        requestAnimationFrame(tick);
-      }, 350);
-    });
-  };
+          requestAnimationFrame(tick);
+        }, 350);
+      });
+    };
 
     // apply result safely (works for object OR promise)
     Promise.resolve(decideLowEnd()).then((result) => {
@@ -150,54 +150,54 @@ const isMobile = window.matchMedia("(max-width: 768px)").matches;
       logDecision(finalLowEnd, result.reason, result.extra || {});
     });
   }
-/* =========================================================
-   LANGUAGE AUTO-REDIRECT (browser language)
-   - Default: English
-   - Supported: el, en, it, fr
-   - Skips redirect if already in /el|/en|/it|/fr/
-   - Optional: respects user's manual choice via localStorage
-========================================================= */
-function autoRedirectByBrowserLang(options = {}) {
-  const {
-    supported = ["el", "en", "it", "fr"],
-    defaultLang = "en",
-    rememberKey = "barko_lang_choice", // set this when user picks a language manually
-    rootDomain = "", // leave "" to keep same host; use e.g. "https://barkotavernmilos.com" if needed
-  } = options;
+  /* =========================================================
+     LANGUAGE AUTO-REDIRECT (browser language)
+     - Default: English
+     - Supported: el, en, it, fr
+     - Skips redirect if already in /el|/en|/it|/fr/
+     - Optional: respects user's manual choice via localStorage
+  ========================================================= */
+  function autoRedirectByBrowserLang(options = {}) {
+    const {
+      supported = ["el", "en", "it", "fr"],
+      defaultLang = "en",
+      rememberKey = "barko_lang_choice", // set this when user picks a language manually
+      rootDomain = "", // leave "" to keep same host; use e.g. "https://barkotavernmilos.com" if needed
+    } = options;
 
-  // If user manually chose a language, respect it
-  const saved = localStorage.getItem(rememberKey);
-  if (saved && supported.includes(saved)) return;
+    // If user manually chose a language, respect it
+    const saved = localStorage.getItem(rememberKey);
+    if (saved && supported.includes(saved)) return;
 
-  const path = location.pathname; // e.g. /el/menu.html or / (root)
-  const inLangFolder = path.match(/^\/(el|en|it|fr)(\/|$)/i);
-  if (inLangFolder) return; // already localized
+    const path = location.pathname; // e.g. /el/menu.html or / (root)
+    const inLangFolder = path.match(/^\/(el|en|it|fr)(\/|$)/i);
+    if (inLangFolder) return; // already localized
 
-  // Detect browser language(s)
-  const langs = (navigator.languages && navigator.languages.length)
-    ? navigator.languages
-    : [navigator.language || defaultLang];
+    // Detect browser language(s)
+    const langs = (navigator.languages && navigator.languages.length)
+      ? navigator.languages
+      : [navigator.language || defaultLang];
 
-  // Pick first supported language
-  let chosen = defaultLang;
-  for (const l of langs) {
-    const code = String(l).toLowerCase().split("-")[0]; // "en-US" -> "en"
-    if (supported.includes(code)) { chosen = code; break; }
+    // Pick first supported language
+    let chosen = defaultLang;
+    for (const l of langs) {
+      const code = String(l).toLowerCase().split("-")[0]; // "en-US" -> "en"
+      if (supported.includes(code)) { chosen = code; break; }
+    }
+
+    // Keep same page name if it exists (index root -> /{lang}/)
+    // Examples:
+    //  - / -> /en/
+    //  - /menu.html -> /en/menu.html
+    //  - /restaurant.html -> /en/restaurant.html
+    const file = path === "/" ? "" : path.replace(/^\//, ""); // remove leading "/"
+    const targetPath = file ? `/${chosen}/${file}` : `/${chosen}/`;
+
+    // Avoid loops
+    if (location.pathname === targetPath) return;
+
+    location.replace(rootDomain + targetPath);
   }
-
-  // Keep same page name if it exists (index root -> /{lang}/)
-  // Examples:
-  //  - / -> /en/
-  //  - /menu.html -> /en/menu.html
-  //  - /restaurant.html -> /en/restaurant.html
-  const file = path === "/" ? "" : path.replace(/^\//, ""); // remove leading "/"
-  const targetPath = file ? `/${chosen}/${file}` : `/${chosen}/`;
-
-  // Avoid loops
-  if (location.pathname === targetPath) return;
-
-  location.replace(rootDomain + targetPath);
-}
 
 
   /* =========================================================
@@ -308,61 +308,61 @@ function autoRedirectByBrowserLang(options = {}) {
   /* =========================================================
      ACTIVE NAV LINK (one-page)
   ========================================================= */
-function initActiveNavLink() {
-  // ✅ Μόνο τα “κανονικά” menu links (όχι σημαίες / controls)
-  const navLinks = document.querySelectorAll(
-    ".header-nav ul > li:not(.nav-controls) > a"
-  );
-  if (!navLinks.length) return;
+  function initActiveNavLink() {
+    // ✅ Μόνο τα “κανονικά” menu links (όχι σημαίες / controls)
+    const navLinks = document.querySelectorAll(
+      ".header-nav ul > li:not(.nav-controls) > a"
+    );
+    if (!navLinks.length) return;
 
-  const path = location.pathname.replace(/\/$/, "");
-  const langRoot = path.split("/").filter(Boolean)[0] || "";
-  const isHome = path === `/${langRoot}`; // /el, /en, /it, /fr
+    const path = location.pathname.replace(/\/$/, "");
+    const langRoot = path.split("/").filter(Boolean)[0] || "";
+    const isHome = path === `/${langRoot}`; // /el, /en, /it, /fr
 
-  /* =========================
-     HOME PAGE → scroll logic
-  ========================= */
-  if (isHome) {
-    const contactSection = document.getElementById("contact");
-    if (!contactSection) {
-      // αν δεν υπάρχει contact section, απλά βάλε active στο Home
-      navLinks.forEach(l => l.classList.remove("active"));
-      navLinks[0]?.classList.add("active");
+    /* =========================
+       HOME PAGE → scroll logic
+    ========================= */
+    if (isHome) {
+      const contactSection = document.getElementById("contact");
+      if (!contactSection) {
+        // αν δεν υπάρχει contact section, απλά βάλε active στο Home
+        navLinks.forEach(l => l.classList.remove("active"));
+        navLinks[0]?.classList.add("active");
+        return;
+      }
+
+      const homeLink = [...navLinks].find(a => a.getAttribute("href") === `/${langRoot}`);
+      const contactLink = [...navLinks].find(a => a.getAttribute("href") === `/${langRoot}#contact`);
+
+      const onScroll = () => {
+        const r = contactSection.getBoundingClientRect();
+        const inContact =
+          r.top < window.innerHeight * 0.4 &&
+          r.bottom > window.innerHeight * 0.4;
+
+        navLinks.forEach(l => l.classList.remove("active"));
+        if (inContact) contactLink?.classList.add("active");
+        else homeLink?.classList.add("active");
+      };
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
       return;
     }
 
-    const homeLink = [...navLinks].find(a => a.getAttribute("href") === `/${langRoot}`);
-    const contactLink = [...navLinks].find(a => a.getAttribute("href") === `/${langRoot}#contact`);
+    /* =========================
+       OTHER PAGES → filename
+    ========================= */
+    const currentPage = path.split("/").pop();
 
-    const onScroll = () => {
-      const r = contactSection.getBoundingClientRect();
-      const inContact =
-        r.top < window.innerHeight * 0.4 &&
-        r.bottom > window.innerHeight * 0.4;
+    navLinks.forEach(link => {
+      const href = link.getAttribute("href");
+      if (!href || href.startsWith("#")) return;
 
-      navLinks.forEach(l => l.classList.remove("active"));
-      if (inContact) contactLink?.classList.add("active");
-      else homeLink?.classList.add("active");
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return;
+      const linkPage = href.split("/").pop();
+      link.classList.toggle("active", linkPage === currentPage);
+    });
   }
-
-  /* =========================
-     OTHER PAGES → filename
-  ========================= */
-  const currentPage = path.split("/").pop();
-
-  navLinks.forEach(link => {
-    const href = link.getAttribute("href");
-    if (!href || href.startsWith("#")) return;
-
-    const linkPage = href.split("/").pop();
-    link.classList.toggle("active", linkPage === currentPage);
-  });
-}
 
 
 
@@ -632,7 +632,17 @@ function initActiveNavLink() {
         const img = li.querySelector("img");
         if (!img) return;
 
-        openModal({ src: img.src, title: "", text: "" });
+        const srcset = img.getAttribute("srcset");
+        let modalSrc = img.src;
+
+        if (srcset) {
+          const parts = srcset.split(",").map(s => s.trim());
+          const last = parts[parts.length - 1]; // το μεγαλύτερο
+          modalSrc = last.split(" ")[0];
+        }
+
+        openModal({ src: modalSrc });
+
       });
     });
 
