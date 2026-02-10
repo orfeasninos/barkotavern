@@ -19,6 +19,8 @@
     initScrollTop(state);
     initBurgerMenu(state);
     initLanguageDropdown(state);
+    autoRedirectByBrowserLang();
+
 
     // Menu page only
     initMenuSidebarLayout(state);
@@ -148,6 +150,55 @@ const isMobile = window.matchMedia("(max-width: 768px)").matches;
       logDecision(finalLowEnd, result.reason, result.extra || {});
     });
   }
+/* =========================================================
+   LANGUAGE AUTO-REDIRECT (browser language)
+   - Default: English
+   - Supported: el, en, it, fr
+   - Skips redirect if already in /el|/en|/it|/fr/
+   - Optional: respects user's manual choice via localStorage
+========================================================= */
+function autoRedirectByBrowserLang(options = {}) {
+  const {
+    supported = ["el", "en", "it", "fr"],
+    defaultLang = "en",
+    rememberKey = "barko_lang_choice", // set this when user picks a language manually
+    rootDomain = "", // leave "" to keep same host; use e.g. "https://barkotavernmilos.com" if needed
+  } = options;
+
+  // If user manually chose a language, respect it
+  const saved = localStorage.getItem(rememberKey);
+  if (saved && supported.includes(saved)) return;
+
+  const path = location.pathname; // e.g. /el/menu.html or / (root)
+  const inLangFolder = path.match(/^\/(el|en|it|fr)(\/|$)/i);
+  if (inLangFolder) return; // already localized
+
+  // Detect browser language(s)
+  const langs = (navigator.languages && navigator.languages.length)
+    ? navigator.languages
+    : [navigator.language || defaultLang];
+
+  // Pick first supported language
+  let chosen = defaultLang;
+  for (const l of langs) {
+    const code = String(l).toLowerCase().split("-")[0]; // "en-US" -> "en"
+    if (supported.includes(code)) { chosen = code; break; }
+  }
+
+  // Keep same page name if it exists (index root -> /{lang}/)
+  // Examples:
+  //  - / -> /en/
+  //  - /menu.html -> /en/menu.html
+  //  - /restaurant.html -> /en/restaurant.html
+  const file = path === "/" ? "" : path.replace(/^\//, ""); // remove leading "/"
+  const targetPath = file ? `/${chosen}/${file}` : `/${chosen}/`;
+
+  // Avoid loops
+  if (location.pathname === targetPath) return;
+
+  location.replace(rootDomain + targetPath);
+}
+
 
   /* =========================================================
      THEME
