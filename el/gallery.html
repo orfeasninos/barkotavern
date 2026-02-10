@@ -94,42 +94,47 @@
     ⏰ Καθημερινά ανοιχτά: <strong>13:00 – 00:00</strong>
   </div>
   <!-- HEADER -->
-  <header>
+   <header>
     <div class="header-container">
+      <!-- LOGO -->
       <div class="logo">
         <a href="/el">
           <img src="../assets/images/logo.png" alt="Barko Tavern Logo">
         </a>
       </div>
 
+      <!-- BURGER MENU & NAV -->
       <div class="header-right">
+
+        <!-- Burger button -->
         <div class="burger-menu" id="burger-menu">
-          <span></span><span></span><span></span>
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
 
+        <!-- Nav links + language -->
         <nav class="header-nav" id="mobile-nav">
           <ul>
-            <li><a href="/el">Αρχική</a></li>
+            <li><a href="/el" class="active">Αρχική</a></li>
             <li><a href="restaurant.html">Το εστιατόριο</a></li>
             <li><a href="menu.html">Μενού</a></li>
-            <li><a href="gallery.html" class="active">Gallery</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
             <li><a href="/el#contact">Επικοινωνία</a></li>
-
             <li class="nav-controls">
-              <button class="theme-toggle" id="theme-toggle">🌙</button>
-
+              <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
               <div class="language-switcher">
                 <div class="lang-current">
                   <img src="../assets/images/gr.jpg" alt="Ελληνικά">
                   <span class="lang-arrow">▾</span>
                 </div>
                 <div class="lang-options">
-                  <a href="/en/gallery.html"><img src="../assets/images/en.jpg" alt="English"></a>
-                  <a href="/it/gallery.html"><img src="../assets/images/it.jpg" alt="Italiano"></a>
-                  <a href="/fr/gallery.html"><img src="../assets/images/fr.jpg" alt="Français"></a>
+                  <a href="/en/"><img src="../assets/images/en.jpg" alt="English"></a>
+                  <a href="/it/"><img src="../assets/images/it.jpg" alt="Italiano"></a>
+                  <a href="/fr/"><img src="../assets/images/fr.jpg" alt="Français"></a>
                 </div>
               </div>
-            </li>
+              </li>
           </ul>
         </nav>
       </div>
