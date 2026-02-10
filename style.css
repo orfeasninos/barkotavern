@@ -532,7 +532,7 @@ header::after {
   box-shadow:
     0 12px 32px rgba(0, 0, 0, .20),
     inset 0 1px 0 rgba(255, 255, 255, .12);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 .header-nav ul li a.active::after {
@@ -2244,10 +2244,6 @@ body.low-end .premium-footer-container {
     transform: translateY(-2px);
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.76), rgba(241, 255, 236, 0.56));
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.16);
-  }
-
-  .menu-category:hover {
-    transform: translateY(-4px);
   }
 
   .menu-item:hover {

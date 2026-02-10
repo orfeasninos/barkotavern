@@ -291,21 +291,8 @@ const isMobile = window.matchMedia("(max-width: 768px)").matches;
     document.body.appendChild(topBtn);
 
     topBtn.addEventListener("click", () => {
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const behavior = reduceMotion ? "auto" : "smooth";
-
-  // iOS / Android safe
-  document.documentElement.scrollTo({
-    top: 0,
-    behavior
-  });
-
-  document.body.scrollTo({
-    top: 0,
-    behavior
-  });
-});
-
+      window.scrollTo({ top: 0, behavior: state.isMobile ? "auto" : "smooth" });
+    });
 
     const update = () => {
       state.rafScrollPending = false;
