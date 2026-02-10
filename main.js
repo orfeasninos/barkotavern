@@ -308,28 +308,26 @@ function autoRedirectByBrowserLang(options = {}) {
   /* =========================================================
      ACTIVE NAV LINK (one-page)
   ========================================================= */
-  function initActiveNavLink(state) {
-    const navLinks = document.querySelectorAll(".header-nav a");
-    const contactSection = document.getElementById("contact");
-    if (!navLinks.length || !contactSection) return;
+function initActiveNavLink() {
+  const navLinks = document.querySelectorAll(".header-nav a");
+  if (!navLinks.length) return;
 
-    const homeLink = document.querySelector('.header-nav a[href="/el"]');
-    const contactLink = document.querySelector('.header-nav a[href="/el#contact"]');
+  const path = location.pathname.replace(/\/$/, "");
 
-    const onScroll = () => {
-      const r = contactSection.getBoundingClientRect();
-      const inContact =
-        r.top < window.innerHeight * 0.4 &&
-        r.bottom > window.innerHeight * 0.4;
+  navLinks.forEach(link => {
+    const href = link.getAttribute("href");
+    if (!href) return;
 
-      navLinks.forEach((l) => l.classList.remove("active"));
-      if (inContact) contactLink?.classList.add("active");
-      else homeLink?.classList.add("active");
-    };
+    const cleanHref = href.replace(/\/$/, "");
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-  }
+    if (cleanHref === path) {
+      link.classList.add("active");
+    } else {
+      link.classList.remove("active");
+    }
+  });
+}
+
 
   /* =========================================================
      SCROLL TO TOP
