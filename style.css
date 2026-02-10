@@ -1895,10 +1895,8 @@ body.low-end .map-container {
   .lang-options {
     flex-direction: row;
     gap: 8px;
-    top: 100%;
-    right: -30px;
-    left: auto;
-    min-width: auto;
+    top: 120%;
+    min-width: 120px;
     padding: 0.5rem;
   }
 
