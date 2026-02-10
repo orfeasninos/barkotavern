@@ -1,5 +1,4 @@
-document.addEventListener("DOMContentLoaded", async () => {
-
+document.addEventListener("DOMContentLoaded", () => {
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
   // ===== Low-end detection =====
@@ -17,8 +16,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const saveData = !!(conn && conn.saveData);
   const effectiveType = (conn && conn.effectiveType) ? conn.effectiveType : "";
 
-  let score = 0;
-
   const logDecision = (finalLowEnd, reason, extra = {}) => {
     if (!debugOn) return;
     console.group("%c[Barko] Low-end decision", "color:#d4af37;font-weight:bold;");
@@ -26,7 +23,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log("memGB:", mem || "n/a", "cores:", cores || "n/a");
     console.log("effectiveType:", effectiveType || "n/a", "saveData:", saveData);
     console.log("prefersReducedMotion:", prefersReducedMotion);
-    console.log("score:", score);
     Object.entries(extra).forEach(([k, v]) => console.log(k + ":", v));
     console.log("➡️ FINAL low-end:", finalLowEnd);
     console.log("reason:", reason);
@@ -38,35 +34,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (forceFull) return { lowEnd: false, reason: "forceFull(?full)" };
     if (forceLite) return { lowEnd: true, reason: "forceLite(?lite)" };
 
-    // 1) cached (IMPORTANT: no return from DOMContentLoaded!)
+    // 1) cached
     const cached = sessionStorage.getItem("barko_low_end");
     if (cached === "1") return { lowEnd: true, reason: "cached=1" };
     if (cached === "0") return { lowEnd: false, reason: "cached=0" };
 
-    // 2) score
-    score = 0;
-    if (saveData) score += 3;
-    if (effectiveType.includes("2g")) score += 3;
-
-    if (mem && mem < 1) score += 2;
-    else if (mem && mem <= 4) score += 1;
-
-    if (cores && cores <= 2) score += 3;
-    else if (cores && cores <= 4) score += 1;
-
-    if (prefersReducedMotion) score += 1;
-    if (isMobile && score > 0) score += 1;
-    const isLowEndByScore = score >= 4;
-    const shouldBenchmark = !isLowEndByScore && score >= 2 && score <= 3;
-
-    if (!shouldBenchmark) return { lowEnd: isLowEndByScore, reason: isLowEndByScore ? "score>=4" : "score<4" };
-
-    // 3) benchmark only if visible+focused
+    // 2) benchmark only if visible+focused
     if (document.visibilityState !== "visible" || !document.hasFocus()) {
       return { lowEnd: false, reason: "benchmark-skipped(not visible/focused)" };
     }
 
-    // return a promise result
+    // 3) run benchmark (after a short settle delay)
     return new Promise((resolve) => {
       setTimeout(() => {
         const start = performance.now();
@@ -80,34 +58,46 @@ document.addEventListener("DOMContentLoaded", async () => {
           if (dt > 34) longFrames++;
           last = t;
 
-          if (t - start < 900) {
+          if (t - start < 1000) {
             requestAnimationFrame(tick);
             return;
           }
 
-          if (frames < 30) {
-            resolve({ lowEnd: false, reason: `benchmark-invalid(frames=${frames}, long=${longFrames})`, extra: { frames, longFrames } });
+          if (frames < 35) {
+            const finalLowEnd = (frames <= 30) || (longFrames >= 8);
+            resolve({
+              lowEnd: finalLowEnd,
+              reason: `benchmark-low(frames=${frames}, long=${longFrames})`,
+              extra: { frames, longFrames }
+            });
             return;
           }
 
-          const lowByFrames = frames < 45;
-          const lowByLongs = longFrames > 6;
+
+          const lowByFrames = frames <= 48;
+          const lowByLongs = longFrames >= 8;
           const finalLowEnd = lowByFrames || lowByLongs;
 
-          resolve({ lowEnd: finalLowEnd, reason: `benchmark(frames=${frames}, long=${longFrames})`, extra: { frames, longFrames } });
+          resolve({
+            lowEnd: finalLowEnd,
+            reason: `benchmark(frames=${frames}, long=${longFrames})`,
+            extra: { frames, longFrames },
+          });
         };
 
         requestAnimationFrame(tick);
-      }, 250);
+      }, 350);
     });
   };
 
-  const result = await decideLowEnd();
-  const finalLowEnd = result.lowEnd;
+  // ✅ Apply result safely (works whether decideLowEnd returns object or Promise)
+  Promise.resolve(decideLowEnd()).then((result) => {
+    const finalLowEnd = !!result.lowEnd;
 
-  document.body.classList.toggle("low-end", finalLowEnd);
-  sessionStorage.setItem("barko_low_end", finalLowEnd ? "1" : "0");
-  logDecision(finalLowEnd, result.reason, result.extra || {});
+    document.body.classList.toggle("low-end", finalLowEnd);
+    sessionStorage.setItem("barko_low_end", finalLowEnd ? "1" : "0");
+    logDecision(finalLowEnd, result.reason, result.extra || {});
+  });
 
   // ✅ Από εδώ και κάτω τρέχουν ΟΛΑ κανονικά (dark mode, scroll, burger, κλπ)
   // ...
@@ -588,8 +578,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const vv = window.visualViewport;
   const sync = () => {
     bg.style.height = vv.height + 'px';
-    bg.style.width  = vv.width  + 'px';
-    bg.style.top    = vv.offsetTop + 'px';
+    bg.style.width = vv.width + 'px';
+    bg.style.top = vv.offsetTop + 'px';
   };
 
   sync();
