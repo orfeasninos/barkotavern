@@ -26,7 +26,9 @@
     initMenuItemsAnimation(state);
 
     // Extras
-    loadPrices();                   // 1 φορά (async fetch) — safe on all pages
+    if (document.querySelector(".menu-grid-wrapper") || document.querySelector("[data-price]")) {
+      loadPrices();
+    }              // 1 φορά (async fetch) — safe on all pages
     initDishModal();                // 1 φορά (bind clicks) — safe on all pages
     initVisualViewportBgSync();     // “continuous” via events — safe if .page-bg exists
   });
@@ -47,115 +49,96 @@
      LOW-END MODE (score + optional benchmark)
   ========================================================= */
   function initLowEndMode(state) {
-    const params = new URLSearchParams(location.search);
-    const debugOn = params.has("debug");
-    const forceLite = params.has("lite");
-    const forceFull = params.has("full");
+const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
-    const prefersReducedMotion =
-      !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  // ===== Low-end detection =====
+  const params = new URLSearchParams(location.search);
+  const debugOn = params.has("debug");
+  const forceLite = params.has("lite");
+  const forceFull = params.has("full");
 
-    const mem = navigator.deviceMemory || 0;
-    const cores = navigator.hardwareConcurrency || 0;
-    const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-    const saveData = !!(conn && conn.saveData);
-    const effectiveType = (conn && conn.effectiveType) ? conn.effectiveType : "";
+  const prefersReducedMotion =
+    !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
 
-    let score = 0;
+  const mem = navigator.deviceMemory || 0;
+  const cores = navigator.hardwareConcurrency || 0;
+  const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  const saveData = !!(conn && conn.saveData);
+  const effectiveType = (conn && conn.effectiveType) ? conn.effectiveType : "";
 
-    const logDecision = (finalLowEnd, reason, extra = {}) => {
-      if (!debugOn) return;
-      console.group("%c[Barko] Low-end decision", "color:#d4af37;font-weight:bold;");
-      console.log("isMobile:", state.isMobile);
-      console.log("memGB:", mem || "n/a", "cores:", cores || "n/a");
-      console.log("effectiveType:", effectiveType || "n/a", "saveData:", saveData);
-      console.log("prefersReducedMotion:", prefersReducedMotion);
-      console.log("score:", score);
-      Object.entries(extra).forEach(([k, v]) => console.log(k + ":", v));
-      console.log("➡️ FINAL low-end:", finalLowEnd);
-      console.log("reason:", reason);
-      console.groupEnd();
-    };
+  const logDecision = (finalLowEnd, reason, extra = {}) => {
+    if (!debugOn) return;
+    console.group("%c[Barko] Low-end decision", "color:#d4af37;font-weight:bold;");
+    console.log("isMobile:", isMobile);
+    console.log("memGB:", mem || "n/a", "cores:", cores || "n/a");
+    console.log("effectiveType:", effectiveType || "n/a", "saveData:", saveData);
+    console.log("prefersReducedMotion:", prefersReducedMotion);
+    Object.entries(extra).forEach(([k, v]) => console.log(k + ":", v));
+    console.log("➡️ FINAL low-end:", finalLowEnd);
+    console.log("reason:", reason);
+    console.groupEnd();
+  };
 
-    const decideLowEnd = () => {
-      // 0) forced
-      if (forceFull) return { lowEnd: false, reason: "forceFull(?full)" };
-      if (forceLite) return { lowEnd: true, reason: "forceLite(?lite)" };
+  const decideLowEnd = () => {
+    // 0) forced
+    if (forceFull) return { lowEnd: false, reason: "forceFull(?full)" };
+    if (forceLite) return { lowEnd: true, reason: "forceLite(?lite)" };
 
-      // 1) cached
-      const cached = sessionStorage.getItem("barko_low_end");
-      if (cached === "1") return { lowEnd: true, reason: "cached=1" };
-      if (cached === "0") return { lowEnd: false, reason: "cached=0" };
+    // 1) cached
+    const cached = sessionStorage.getItem("barko_low_end");
+    if (cached === "1") return { lowEnd: true, reason: "cached=1" };
+    if (cached === "0") return { lowEnd: false, reason: "cached=0" };
 
-      // 2) score
-      score = 0;
-      if (saveData) score += 3;
-      if (effectiveType.includes("2g")) score += 3;
+    // 2) benchmark only if visible+focused
+    if (document.visibilityState !== "visible" || !document.hasFocus()) {
+      return { lowEnd: false, reason: "benchmark-skipped(not visible/focused)" };
+    }
 
-      if (mem && mem < 1) score += 2;
-      else if (mem && mem <= 4) score += 1;
+    // 3) run benchmark (after a short settle delay)
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const start = performance.now();
+        let frames = 0;
+        let longFrames = 0;
+        let last = start;
 
-      if (cores && cores <= 2) score += 3;
-      else if (cores && cores <= 4) score += 1;
+        const tick = (t) => {
+          frames++;
+          const dt = t - last;
+          if (dt > 34) longFrames++;
+          last = t;
 
-      if (prefersReducedMotion) score += 1;
-      if (state.isMobile && score > 0) score += 1;
+          if (t - start < 1000) {
+            requestAnimationFrame(tick);
+            return;
+          }
 
-      const isLowEndByScore = score >= 4;
-      const shouldBenchmark = !isLowEndByScore && score >= 2 && score <= 3;
-
-      if (!shouldBenchmark) {
-        return { lowEnd: isLowEndByScore, reason: isLowEndByScore ? "score>=4" : "score<4" };
-      }
-
-      // 3) benchmark only if visible+focused
-      if (document.visibilityState !== "visible" || !document.hasFocus()) {
-        return { lowEnd: false, reason: "benchmark-skipped(not visible/focused)" };
-      }
-
-      // 4) benchmark ~0.9s
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          const start = performance.now();
-          let frames = 0;
-          let longFrames = 0;
-          let last = start;
-
-          const tick = (t) => {
-            frames++;
-            const dt = t - last;
-            if (dt > 34) longFrames++;
-            last = t;
-
-            if (t - start < 900) {
-              requestAnimationFrame(tick);
-              return;
-            }
-
-            if (frames < 30) {
-              resolve({
-                lowEnd: false,
-                reason: `benchmark-invalid(frames=${frames}, long=${longFrames})`,
-                extra: { frames, longFrames },
-              });
-              return;
-            }
-
-            const lowByFrames = frames < 45;
-            const lowByLongs = longFrames > 6;
-            const finalLowEnd = lowByFrames || lowByLongs;
-
+          if (frames < 35) {
+            const finalLowEnd = (frames <= 30) || (longFrames >= 8);
             resolve({
               lowEnd: finalLowEnd,
-              reason: `benchmark(frames=${frames}, long=${longFrames})`,
-              extra: { frames, longFrames },
+              reason: `benchmark-low(frames=${frames}, long=${longFrames})`,
+              extra: { frames, longFrames }
             });
-          };
+            return;
+          }
 
-          requestAnimationFrame(tick);
-        }, 250);
-      });
-    };
+
+          const lowByFrames = frames <= 48;
+          const lowByLongs = longFrames >= 8;
+          const finalLowEnd = lowByFrames || lowByLongs;
+
+          resolve({
+            lowEnd: finalLowEnd,
+            reason: `benchmark(frames=${frames}, long=${longFrames})`,
+            extra: { frames, longFrames },
+          });
+        };
+
+        requestAnimationFrame(tick);
+      }, 350);
+    });
+  };
 
     // apply result safely (works for object OR promise)
     Promise.resolve(decideLowEnd()).then((result) => {
@@ -175,7 +158,7 @@
 
     // System auto-dark (only if user has NOT chosen)
     if (!localStorage.getItem("theme") &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      window.matchMedia("(prefers-color-scheme: dark)").matches) {
       document.body.classList.add("dark");
       if (themeToggle) themeToggle.textContent = "☀️";
     }
