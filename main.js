@@ -23,7 +23,6 @@
     // Menu page only
     initMenuSidebarLayout(state);
     initMenuCategoryActive(state);
-    initMenuItemsAnimation(state);
 
     // Extras
     if (document.querySelector(".menu-grid-wrapper") || document.querySelector("[data-price]")) {
@@ -472,28 +471,7 @@ const isMobile = window.matchMedia("(max-width: 768px)").matches;
     if (initial?.s?.id) setActive(initial.s.id);
   }
 
-  /* =========================================================
-     MENU ITEMS ANIMATION
-  ========================================================= */
-  function initMenuItemsAnimation(state) {
-    const items = document.querySelectorAll(".menu-items li");
-    if (!items.length || state.isMobile || !("IntersectionObserver" in window)) return;
 
-    items.forEach((item, i) => {
-      if (i % 2 !== 0) item.classList.add("from-right");
-    });
-
-    const itemsObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show");
-          itemsObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-
-    items.forEach((item) => itemsObserver.observe(item));
-  }
 
   /* =========================================================
      PRICES JSON (1 φορά)
