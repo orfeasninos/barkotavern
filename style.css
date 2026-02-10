@@ -1699,6 +1699,9 @@ body.low-end .premium-footer-container {
   transform: none !important;
 }
 
+body.low-end .map-container {
+  display: none;
+}
 
 /* =========================================================
    Reduced motion
