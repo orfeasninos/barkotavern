@@ -632,16 +632,9 @@
         const img = li.querySelector("img");
         if (!img) return;
 
-        const srcset = img.getAttribute("srcset");
-        let modalSrc = img.src;
+        const modalSrc = img.dataset.modalImg || img.src;
+        openModal({ src: modalSrc, title: "", text: "" });
 
-        if (srcset) {
-          const parts = srcset.split(",").map(s => s.trim());
-          const last = parts[parts.length - 1]; // το μεγαλύτερο
-          modalSrc = last.split(" ")[0];
-        }
-
-        openModal({ src: modalSrc });
 
       });
     });
