@@ -2,11 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="robots" content="noindex">
+
+  <!-- IMPORTANT: root must not be indexed -->
+  <meta name="robots" content="noindex, follow">
+
+  <!-- SEO-safe redirect (for Google & bots) -->
+  <meta http-equiv="refresh" content="0; url=/el/">
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Redirecting…</title>
 </head>
+
 <body>
+
 <script>
 (function () {
   const supported = ["el","en","it","fr"];
@@ -17,13 +25,19 @@
     : [navigator.language || defaultLang];
 
   let chosen = defaultLang;
+
   for (const l of langs) {
     const code = String(l).toLowerCase().split("-")[0];
-    if (supported.includes(code)) { chosen = code; break; }
+    if (supported.includes(code)) {
+      chosen = code;
+      break;
+    }
   }
 
-  location.replace("/" + chosen + "/");
+  // Replace meta refresh with language-based redirect
+  window.location.replace("/" + chosen + "/");
 })();
 </script>
+
 </body>
 </html>
