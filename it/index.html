@@ -2,8 +2,6 @@
 <html lang="it">
 
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-W5LVLHN94F"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
@@ -43,7 +41,6 @@
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Barko Tavern Milos – Taverna tradizionale" />
   <meta property="og:locale" content="it_IT" />
-
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -87,7 +84,7 @@
       <!-- LOGO -->
       <div class="logo">
         <a href="/it/">
-          <img src="../assets/images/logo.png" alt="Barko Tavern Logo">
+          <img src="../assets/images/logo.webp" alt="Barko Tavern Logo">
         </a>
       </div>
 
@@ -104,11 +101,11 @@
         <!-- Nav links + language -->
         <nav class="header-nav" id="mobile-nav">
           <ul>
-            <li><a href="/it/">Home</a></li>
+            <li><a href="/it">Home</a></li>
             <li><a href="restaurant.html">Il ristorante</a></li>
             <li><a href="menu.html">Menù</a></li>
             <li><a href="gallery.html">Galleria</a></li>
-            <li><a href="/it/#contact">Contatti</a></li>
+            <li><a href="/it#contact">Contatti</a></li>
 
             <li class="nav-controls">
               <button class="theme-toggle" id="theme-toggle" aria-label="Attiva/disattiva modalità scura">🌙</button>
@@ -215,7 +212,7 @@
     <div class="premium-footer-container">
 
       <div class="footer-brand">
-        <img src="../assets/images/logo.png" alt="Barko Tavern Logo">
+        <img src="../assets/images/logo.webp" alt="Barko Tavern Logo">
         <p>Cucina fatta in casa • Ricette tradizionali • Milos</p>
       </div>
 
@@ -271,7 +268,20 @@
       <p id="modalText"></p>
     </div>
   </div>
+<!-- Cookie Consent -->
+<div id="consentBanner" class="consent">
+  <div class="consent-box">
+    <p>
+      Χρησιμοποιούμε cookies για στατιστικά (Google Analytics)
+      ώστε να βελτιώνουμε το site.
+    </p>
 
+    <div class="consent-buttons">
+      <button id="consentReject" class="btn-ghost">Απόρριψη</button>
+      <button id="consentAccept" class="btn-primary">Αποδοχή</button>
+    </div>
+  </div>
+</div>
   <script src="../main.js"></script>
 </body>
 
