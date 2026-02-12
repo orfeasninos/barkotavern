@@ -378,60 +378,82 @@
      ACTIVE NAV LINK (one-page)
   ========================================================= */
   function initActiveNavLink() {
-    // ✅ Μόνο τα “κανονικά” menu links (όχι σημαίες / controls)
-    const navLinks = document.querySelectorAll(
-      ".header-nav ul > li:not(.nav-controls) > a"
-    );
-    if (!navLinks.length) return;
+  // Μόνο κανονικά links (όχι flags / controls)
+  const navLinks = document.querySelectorAll(
+    ".header-nav ul > li:not(.nav-controls) > a"
+  );
+  if (!navLinks.length) return;
 
-    const path = location.pathname.replace(/\/$/, "");
-    const langRoot = path.split("/").filter(Boolean)[0] || "";
-    const isHome = path === `/${langRoot}`; // /el, /en, /it, /fr
+  const normPath = (p) => String(p || "")
+    .split("#")[0]
+    .replace(/\/+$/, ""); // κόβει trailing "/"
 
-    /* =========================
-       HOME PAGE → scroll logic
-    ========================= */
-    if (isHome) {
-      const contactSection = document.getElementById("contact");
-      if (!contactSection) {
-        // αν δεν υπάρχει contact section, απλά βάλε active στο Home
-        navLinks.forEach(l => l.classList.remove("active"));
-        navLinks[0]?.classList.add("active");
-        return;
-      }
+  const path = normPath(location.pathname); // "/el/" -> "/el"
+  const langRoot = path.split("/").filter(Boolean)[0] || "";
+  const homeA = `/${langRoot}`;    // "/el"
+  const homeB = `/${langRoot}/`;   // "/el/"
 
-      const homeLink = [...navLinks].find(a => a.getAttribute("href") === `/${langRoot}`);
-      const contactLink = [...navLinks].find(a => a.getAttribute("href") === `/${langRoot}#contact`);
+  const isHome = path === homeA;
 
-      const onScroll = () => {
-        const r = contactSection.getBoundingClientRect();
-        const inContact =
-          r.top < window.innerHeight * 0.4 &&
-          r.bottom > window.innerHeight * 0.4;
+  // βρίσκει link που είναι είτε "/el" είτε "/el/"
+  const findHomeLink = () => {
+    return [...navLinks].find(a => {
+      const href = a.getAttribute("href") || "";
+      return normPath(href) === homeA;
+    });
+  };
 
-        navLinks.forEach(l => l.classList.remove("active"));
-        if (inContact) contactLink?.classList.add("active");
-        else homeLink?.classList.add("active");
-      };
+  // βρίσκει link contact που είναι είτε "/el#contact" είτε "/el/#contact"
+  const findContactLink = () => {
+    return [...navLinks].find(a => {
+      const href = a.getAttribute("href") || "";
+      const base = normPath(href);
+      const hash = (href.split("#")[1] || "");
+      return base === homeA && hash === "contact";
+    });
+  };
 
-      window.addEventListener("scroll", onScroll, { passive: true });
-      onScroll();
+  if (isHome) {
+    const contactSection = document.getElementById("contact");
+    const homeLink = findHomeLink();
+    const contactLink = findContactLink();
+
+    const setActive = (el) => {
+      navLinks.forEach(l => l.classList.remove("active"));
+      el?.classList.add("active");
+    };
+
+    if (!contactSection) {
+      setActive(homeLink);
       return;
     }
 
-    /* =========================
-       OTHER PAGES → filename
-    ========================= */
-    const currentPage = path.split("/").pop();
+    const onScroll = () => {
+      const r = contactSection.getBoundingClientRect();
+      const inContact =
+        r.top < window.innerHeight * 0.4 &&
+        r.bottom > window.innerHeight * 0.4;
 
-    navLinks.forEach(link => {
-      const href = link.getAttribute("href");
-      if (!href || href.startsWith("#")) return;
+      setActive(inContact ? contactLink : homeLink);
+    };
 
-      const linkPage = href.split("/").pop();
-      link.classList.toggle("active", linkPage === currentPage);
-    });
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return;
   }
+
+  // OTHER PAGES → filename compare
+  const currentPage = path.split("/").pop();
+
+  navLinks.forEach(link => {
+    const href = link.getAttribute("href");
+    if (!href || href.startsWith("#")) return;
+
+    const linkPage = normPath(href).split("/").pop();
+    link.classList.toggle("active", linkPage === currentPage);
+  });
+}
+
 
 
 

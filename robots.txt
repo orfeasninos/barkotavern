@@ -1,8 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /assets/json/prices.json
 
 Sitemap: https://barkotavernmilos.com/sitemap.xml
-
-
-User-agent: *
-Disallow: /assets/json/prices.json
