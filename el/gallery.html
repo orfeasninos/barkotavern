@@ -2,8 +2,6 @@
 <html lang="el">
 
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-W5LVLHN94F"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
@@ -20,7 +18,7 @@
     content="Δείτε φωτογραφίες από το Barko Tavern στον Αδάμαντα Μήλου: παραδοσιακά μηλέικα πιάτα, θαλασσινά, ορεκτικά και την ατμόσφαιρα της ταβέρνας.">
   <meta name="robots" content="index, follow">
 
-      <!-- Hreflang (languages) -->
+  <!-- Hreflang (languages) -->
   <link rel="canonical" href="https://barkotavernmilos.com/el/gallery.html">
 
   <link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/gallery.html">
@@ -40,7 +38,6 @@
   <meta property="og:image:alt" content="Barko Tavern – Παραδοσιακή Ταβέρνα στη Μήλο">
 
   <meta property="og:locale" content="el_GR">
-
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -78,24 +75,17 @@
 
 <body>
   <picture class="page-bg">
-  <!-- desktop -->
-  <source
-    srcset="../assets/images/background.webp"
-    media="(min-width: 1024px)"
-  >
+    <!-- desktop -->
+    <source srcset="../assets/images/background.webp" media="(min-width: 1024px)">
 
-  <!-- mobile (default) -->
-  <img
-    src="../assets/images/background.jpg"
-    alt=""
-    aria-hidden="true"
-  >
-</picture>
-    <div class="info-bar">
+    <!-- mobile (default) -->
+    <img src="../assets/images/background.jpg" alt="" aria-hidden="true">
+  </picture>
+  <div class="info-bar">
     ⏰ Καθημερινά ανοιχτά: <strong>13:00 – 00:00</strong>
   </div>
   <!-- HEADER -->
-   <header>
+  <header>
     <div class="header-container">
       <!-- LOGO -->
       <div class="logo">
@@ -135,7 +125,7 @@
                   <a href="../fr/gallery.html"><img src="../assets/images/fr.jpg" alt="Français"></a>
                 </div>
               </div>
-              </li>
+            </li>
           </ul>
         </nav>
       </div>
@@ -156,6 +146,9 @@
         <div class="gallery-item">
           <img src="../assets/images/feta-meli.webp" alt="Φέτα με μέλι και σουσάμι">
         </div>
+        <div class="gallery-item">
+          <img src="../assets/images/revithokeftedes.webp" alt="Φέτα με μέλι και σουσάμι">
+        </div>
       </div>
     </div>
   </section>
@@ -163,6 +156,12 @@
     <div class="container">
       <h2>Ο χώρος μας</h2>
       <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="../assets/images/background.jpg" alt="Φέτα με μέλι και σουσάμι">
+        </div>
+        <div class="gallery-item">
+          <img src="../assets/images/background.webp" alt="Φέτα με μέλι και σουσάμι">
+        </div>
       </div>
     </div>
   </section>
@@ -223,16 +222,29 @@
   </footer>
 
   <div class="dish-modal" id="dishModal">
-  <div class="dish-modal-content">
-    <button class="modal-close">&times;</button>
-    <img id="modalImg" src="" alt="">
-    <h3 id="modalTitle"></h3>
-    <p id="modalText"></p>
+    <div class="dish-modal-content">
+      <button class="modal-close">&times;</button>
+      <img id="modalImg" src="" alt="">
+      <h3 id="modalTitle"></h3>
+      <p id="modalText"></p>
+    </div>
+  </div>
+<!-- Cookie Consent -->
+<div id="consentBanner" class="consent">
+  <div class="consent-box">
+    <p>
+      Χρησιμοποιούμε cookies για στατιστικά (Google Analytics)
+      ώστε να βελτιώνουμε το site.
+    </p>
+
+    <div class="consent-buttons">
+      <button id="consentReject" class="btn-ghost">Απόρριψη</button>
+      <button id="consentAccept" class="btn-primary">Αποδοχή</button>
+    </div>
   </div>
 </div>
-
   <script src="../main.js"></script>
-  
+
 </body>
 
 </html>
