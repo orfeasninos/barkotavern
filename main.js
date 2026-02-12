@@ -93,7 +93,6 @@
   function disableAnalytics() {
     const GA_ID = "G-W5LVLHN94F";
     window["ga-disable-" + GA_ID] = true;
-    console.log("GA disabled");
   }
 
   function loadAnalytics() {
