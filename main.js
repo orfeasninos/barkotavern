@@ -20,7 +20,7 @@
     initBurgerMenu(state);
     initLanguageDropdown(state);
     autoRedirectByBrowserLang();
-
+    initConsent();
 
     // Menu page only
     initMenuSidebarLayout(state);
@@ -45,6 +45,57 @@
       rafScrollPending: false,
     };
   }
+/* =========================
+   COOKIE CONSENT
+========================= */
+function initConsent() {
+  const KEY = "barko_cookie_choice";
+  const banner = document.getElementById("consentBanner");
+  const accept = document.getElementById("consentAccept");
+  const reject = document.getElementById("consentReject");
+
+  if (!banner || !accept || !reject) return;
+
+  const choice = localStorage.getItem(KEY);
+
+  if (!choice) {
+    banner.classList.add("show");
+  }
+
+  accept.addEventListener("click", () => {
+    localStorage.setItem(KEY, "accepted");
+    banner.classList.remove("show");
+    loadAnalytics();
+  });
+
+  reject.addEventListener("click", () => {
+    localStorage.setItem(KEY, "rejected");
+    banner.classList.remove("show");
+  });
+
+  if (choice === "accepted") {
+    loadAnalytics();
+  }
+}
+
+function loadAnalytics() {
+  if (window.__gaLoaded) return;
+  window.__gaLoaded = true;
+
+  const GA_ID = "G-W5LVLHN94F";
+
+  const s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-W5LVLHN94F";
+  document.head.appendChild(s);
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  window.gtag = gtag;
+
+  gtag("js", new Date());
+  gtag("config", GA_ID);
+}
 
   /* =========================================================
      LOW-END MODE (score + optional benchmark)
