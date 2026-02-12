@@ -2,15 +2,22 @@
 <html lang="en">
 
 <head>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+
+    // Disable by default (until consent is given)
+    window['ga-disable-G-W5LVLHN94F'] = true;
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
   <!-- SEO -->
   <title>Privacy Policy | Barko Tavern – Milos</title>
   <meta name="description"
-    content="Privacy Policy of Barko Tavern in Milos. Information about cookies, Google Analytics and your rights.">
+    content="Privacy Policy of Barko Tavern in Milos. Information about cookies, Google Analytics, legal basis of processing and your rights.">
   <meta name="robots" content="index, follow">
-
   <link rel="canonical" href="https://barkotavernmilos.com/en/privacy.html">
 
   <!-- Hreflang -->
@@ -47,41 +54,34 @@
 </head>
 
 <body>
-  <picture class="page-bg">
-    <!-- desktop -->
-    <source srcset="../assets/images/background.webp" media="(min-width: 1024px)">
 
-    <!-- mobile (default) -->
+  <picture class="page-bg">
+    <source srcset="../assets/images/background.webp" media="(min-width: 1024px)">
     <img src="../assets/images/background.jpg" alt="" aria-hidden="true">
   </picture>
 
   <!-- HEADER -->
   <header>
     <div class="header-container">
-      <!-- LOGO -->
       <div class="logo">
         <a href="/en">
           <img src="../assets/images/logo.webp" alt="Barko Tavern Logo">
         </a>
       </div>
 
-      <!-- BURGER MENU & NAV -->
       <div class="header-right">
-        <!-- Burger button -->
         <div class="burger-menu" id="burger-menu">
-          <span></span>
-          <span></span>
-          <span></span>
+          <span></span><span></span><span></span>
         </div>
 
-        <!-- Nav links + language -->
         <nav class="header-nav" id="mobile-nav">
           <ul>
-            <li><a href="/en" class="active">Home</a></li>
+            <li><a href="/en">Home</a></li>
             <li><a href="restaurant.html">The Restaurant</a></li>
             <li><a href="menu.html">Menu</a></li>
             <li><a href="gallery.html">Gallery</a></li>
             <li><a href="/en#contact">Contact</a></li>
+
             <li class="nav-controls">
               <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
 
@@ -90,14 +90,14 @@
                   <img src="../assets/images/en.jpg" alt="English">
                   <span class="lang-arrow">▾</span>
                 </div>
-
                 <div class="lang-options">
-                  <a href="../el/privacy.html"><img src="../assets/images/gr.jpg" alt="Ελληνικά"></a>
-                  <a href="../it/privacy.html"><img src="../assets/images/it.jpg" alt="Italiano"></a>
-                  <a href="../fr/privacy.html"><img src="../assets/images/fr.jpg" alt="Français"></a>
+                  <a href="/el/privacy.html"><img src="../assets/images/gr.jpg" alt="Ελληνικά"></a>
+                  <a href="/it/privacy.html"><img src="../assets/images/it.jpg" alt="Italiano"></a>
+                  <a href="/fr/privacy.html"><img src="../assets/images/fr.jpg" alt="Français"></a>
                 </div>
               </div>
             </li>
+
           </ul>
         </nav>
       </div>
@@ -108,66 +108,130 @@
     <div class="container">
       <h2>Privacy Policy</h2>
 
-      <!-- New layout wrapper -->
       <div class="policy-layout">
 
-        <!-- MAIN -->
         <div class="policy-main">
           <p class="policy-lead">
-            <strong>Barko Tavern</strong> respects the privacy of visitors to our website.
-            Here we explain what data may be collected and why.
+            <strong>Barko Tavern</strong> respects the privacy of visitors to its website.
+            Below we explain in simple terms what data may be collected, for what purpose,
+            and how you can control your choices.
           </p>
 
           <div class="policy-cards">
+
             <article class="policy-card">
-              <h3>1. What data we collect</h3>
+              <h3>1. Data Controller</h3>
               <p>
-                The website uses Google Analytics to collect anonymous usage statistics (e.g. device type, country,
-                time spent on the site and pages viewed).
+                The data controller is <strong>Barko Tavern</strong>, Adamas, Milos, Greece.
               </p>
               <p>
-                No personal data (such as name, phone number or email) is collected through the website.
+                For privacy matters you may contact us at
+                <a href="mailto:barkomilos@gmail.com">barkomilos@gmail.com</a>.
               </p>
             </article>
 
             <article class="policy-card">
-              <h3>2. Purpose of processing</h3>
+              <h3>2. What Data We Collect</h3>
               <p>
-                The data is used exclusively for statistical analysis and to improve the user experience.
+                The website may use <strong>Google Analytics</strong> for anonymous statistics
+                (e.g. device type, general country/region, time spent and pages viewed).
+              </p>
+              <p>
+                We do not collect personal data such as name, phone number or email
+                unless you choose to contact us directly.
               </p>
             </article>
 
             <article class="policy-card">
-              <h3>3. Cookies</h3>
+              <h3>3. Purpose of Processing</h3>
               <p>
-                The website uses analytics cookies (Google Analytics).
-                These cookies are enabled only after you accept them via the cookie banner.
+                Data (where applicable) is used exclusively for statistical analysis
+                and improvement of user experience and website performance.
               </p>
             </article>
 
             <article class="policy-card">
-              <h3>4. Your rights</h3>
+              <h3>4. Cookies</h3>
               <p>
-                You can accept or reject cookies and delete them at any time through your browser settings.
+                The website uses <strong>analytics cookies</strong> (Google Analytics).
+                These cookies are activated only after <strong>explicit consent</strong>
+                via the cookie banner.
+              </p>
+              <p>
+                You may accept or reject cookies and change your choice at any time.
+              </p>
+
+              <button type="button" class="policy-btn policy-btn--ghost" id="openCookieSettings">
+                Change cookie settings
+              </button>
+            </article>
+
+            <article class="policy-card">
+              <h3>5. Legal Basis of Processing</h3>
+              <p>
+                For analytics cookies, the legal basis is <strong>your consent</strong>.
+                You may withdraw it at any time.
               </p>
             </article>
+
+            <article class="policy-card">
+              <h3>6. Data Recipients</h3>
+              <p>
+                For anonymous statistics we use <strong>Google Analytics</strong>.
+                Google acts as a service provider/processor on our behalf.
+              </p>
+            </article>
+
+            <article class="policy-card">
+              <h3>7. Transfers Outside the EU/EEA</h3>
+              <p>
+                Third-party services (such as Google) may involve data transfers
+                outside the European Union/EEA.
+              </p>
+            </article>
+
+            <article class="policy-card">
+              <h3>8. Data Retention</h3>
+              <p>
+                Statistical data is retained for the period necessary
+                for website improvement and according to Google Analytics settings.
+              </p>
+            </article>
+
+            <article class="policy-card">
+              <h3>9. Your Rights</h3>
+              <p>
+                You have the right of access, rectification, erasure,
+                restriction, objection and data portability (where applicable).
+              </p>
+              <p>
+                You may also lodge a complaint with the Hellenic Data Protection Authority.
+              </p>
+            </article>
+
+            <article class="policy-card">
+              <h3>10. Policy Updates</h3>
+              <p>
+                This policy may be updated from time to time.
+                The latest version is always available on this page.
+              </p>
+            </article>
+
           </div>
         </div>
-
         <!-- ASIDE -->
         <aside class="policy-aside">
           <div class="policy-box">
             <h3>Summary</h3>
             <ul>
               <li>We use analytics only to improve the website</li>
-              <li>Cookies are enabled after acceptance</li>
-              <li>You can reject/delete cookies anytime</li>
+              <li>Analytics cookies are activated only after consent</li>
+              <li>You can change your choice at any time</li>
             </ul>
           </div>
 
           <div class="policy-box">
             <h3>Contact</h3>
-
             <a class="policy-link" href="mailto:barkomilos@gmail.com">📧 barkomilos@gmail.com</a>
             <a class="policy-link" href="tel:+302287022660">📞 +30 22870 22660</a>
 
@@ -184,6 +248,7 @@
   <!-- FOOTER -->
   <footer class="premium-footer">
     <div class="premium-footer-container">
+
       <div class="footer-brand">
         <img src="../assets/images/logo.webp" alt="Barko Tavern Logo">
         <p>Homemade food • Traditional recipes • Milos</p>
@@ -196,30 +261,20 @@
         <a href="menu.html">Menu</a>
         <a href="gallery.html">Gallery</a>
         <a href="/en#contact">Contact</a>
+        <a href="privacy.html">Privacy Policy</a>
       </div>
 
       <div class="footer-contact">
         <h4>Contact</h4>
-        <a href="https://www.google.com/maps/place/Barko+tavern+restaurant/@36.7283522,24.4438267,17z/data=!3m1!4b1!4m6!3m5!1s0x1498df472dfb6355:0x2cd14b966d368b5f!8m2!3d36.7283479!4d24.4464016!16s%2Fg%2F11btyk6by8?entry=ttu&g_ep=EgoyMDI2MDEyMS4wIKXMDSoASAFQAw%3D%3D"
-          target="_blank" rel="noopener noreferrer">
-          <span>📍</span>
-          <span>Adamas, Milos</span>
+
+        <a href="https://www.google.com/maps/place/Barko+tavern+restaurant/" target="_blank" rel="noopener noreferrer">
+          <span>📍</span><span>Adamas, Milos</span>
         </a>
 
-        <a href="tel:+302287022660">
-          <span>📞</span>
-          <span>+30 22870 22660</span>
-        </a>
+        <a href="tel:+302287022660"><span>📞</span><span>+30 22870 22660</span></a>
+        <a href="mailto:barkomilos@gmail.com"><span>📧</span><span>barkomilos@gmail.com</span></a>
 
-        <a href="mailto:barkomilos@gmail.com">
-          <span>📧</span>
-          <span>barkomilos@gmail.com</span>
-        </a>
-
-        <div class="hours">
-          <span>⏰</span>
-          <span>13:00 - 00:00</span>
-        </div>
+        <div class="hours"><span>⏰</span><span>13:00 - 00:00</span></div>
       </div>
     </div>
 
@@ -233,6 +288,21 @@
       Website design & development by Orfeas Ninos
     </div>
   </footer>
+
+  <!-- Cookie Consent -->
+  <div id="consentBanner" class="consent">
+    <div class="consent-box">
+      <p>
+        We use analytics cookies to improve our website. Accept or reject.<a href="privacy.html"> Privacy Policy</a>
+      </p>
+      </p>
+
+      <div class="consent-buttons">
+        <button id="consentReject" class="btn-ghost">Reject</button>
+        <button id="consentAccept" class="btn-primary">Accept</button>
+      </div>
+    </div>
+  </div>
 
   <script src="../main.js"></script>
 </body>
