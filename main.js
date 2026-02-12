@@ -21,6 +21,13 @@
     initLanguageDropdown(state);
     autoRedirectByBrowserLang();
     initConsent();
+    const btn = document.getElementById("openCookieSettings");
+    if (btn) {
+      btn.addEventListener("click", () => {
+        const banner = document.getElementById("consentBanner");
+        if (banner) banner.classList.add("show");
+      });
+    }
 
     // Menu page only
     initMenuSidebarLayout(state);
@@ -45,57 +52,69 @@
       rafScrollPending: false,
     };
   }
-/* =========================
-   COOKIE CONSENT
-========================= */
-function initConsent() {
-  const KEY = "barko_cookie_choice";
-  const banner = document.getElementById("consentBanner");
-  const accept = document.getElementById("consentAccept");
-  const reject = document.getElementById("consentReject");
+  /* =========================
+     COOKIE CONSENT
+  ========================= */
+  function initConsent() {
+    const KEY = "barko_cookie_choice";
+    const banner = document.getElementById("consentBanner");
+    const accept = document.getElementById("consentAccept");
+    const reject = document.getElementById("consentReject");
 
-  if (!banner || !accept || !reject) return;
+    if (!banner || !accept || !reject) return;
 
-  const choice = localStorage.getItem(KEY);
+    const choice = localStorage.getItem(KEY);
 
-  if (!choice) {
-    banner.classList.add("show");
+    if (!choice) {
+      banner.classList.add("show");
+    }
+
+    accept.addEventListener("click", () => {
+      localStorage.setItem(KEY, "accepted");
+      banner.classList.remove("show");
+      loadAnalytics();
+    });
+
+    reject.addEventListener("click", () => {
+      localStorage.setItem(KEY, "rejected");
+      disableAnalytics();
+      banner.classList.remove("show");
+    });
+
+
+    if (choice === "accepted") {
+      loadAnalytics();
+    } else if (choice === "rejected") {
+      disableAnalytics();
+    }
+
   }
 
-  accept.addEventListener("click", () => {
-    localStorage.setItem(KEY, "accepted");
-    banner.classList.remove("show");
-    loadAnalytics();
-  });
-
-  reject.addEventListener("click", () => {
-    localStorage.setItem(KEY, "rejected");
-    banner.classList.remove("show");
-  });
-
-  if (choice === "accepted") {
-    loadAnalytics();
+  function disableAnalytics() {
+    const GA_ID = "G-W5LVLHN94F";
+    window["ga-disable-" + GA_ID] = true;
+    console.log("GA disabled");
   }
-}
 
-function loadAnalytics() {
-  if (window.__gaLoaded) return;
-  window.__gaLoaded = true;
+  function loadAnalytics() {
+    
+    if (window.__gaLoaded) return;
+    window.__gaLoaded = true;
 
-  const GA_ID = "G-W5LVLHN94F";
+    const GA_ID = "G-W5LVLHN94F";
 
-  const s = document.createElement("script");
-  s.async = true;
-  s.src = "https://www.googletagmanager.com/gtag/js?id=G-W5LVLHN94F";
-  document.head.appendChild(s);
+    const s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=G-W5LVLHN94F";
+    document.head.appendChild(s);
 
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){ dataLayer.push(arguments); }
-  window.gtag = gtag;
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    window.gtag = gtag;
 
-  gtag("js", new Date());
-  gtag("config", GA_ID);
-}
+    gtag("js", new Date());
+    gtag("config", GA_ID);
+  }
 
   /* =========================================================
      LOW-END MODE (score + optional benchmark)

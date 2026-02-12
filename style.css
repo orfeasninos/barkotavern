@@ -1793,6 +1793,7 @@ header::after {
   letter-spacing: .04em;
   color: #105020;
   transition: transform .25s var(--ease);
+  cursor:pointer;
 }
 .policy-btn:hover{ transform: translateY(-1px); }
 
