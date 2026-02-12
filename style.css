@@ -1679,6 +1679,139 @@ header::after {
   grid-column: 10 / span 3;
 }
 
+/* =======================
+   PRIVACY / POLICY LAYOUT
+======================= */
+.policy-layout{
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 1.6rem;
+  align-items: start;
+}
+
+.policy-lead{
+  max-width: 76ch;
+  margin: 0 auto 1.2rem;
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--ink);
+}
+
+.policy-cards{
+  display: grid;
+  gap: 1rem;
+}
+
+.policy-card{
+  background: linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,.56));
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  border-radius: 1.4rem;
+  box-shadow: var(--shadow-sm);
+  padding: 1.2rem 1.15rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.policy-card::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(255,255,255,.35), transparent 55%),
+    radial-gradient(circle at 20% 0%, rgba(212,175,55,.08), transparent 55%);
+  opacity:.28;
+}
+
+.policy-card h3{
+  margin-bottom: .6rem;
+  color:#105020;
+  font-size: 1.4rem;
+}
+
+.policy-card p{
+  margin: 0 0 .7rem;
+}
+
+.policy-aside{
+  position: sticky;
+  top: calc(var(--header-h) + 16px);
+  display: grid;
+  gap: 1rem;
+}
+
+.policy-box{
+  background: linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,.56));
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  border-radius: 1.4rem;
+  box-shadow: var(--shadow-md);
+  padding: 1.1rem;
+}
+
+.policy-box h3{
+  margin-bottom: .7rem;
+  color:#105020;
+  font-size: 1.35rem;
+}
+
+.policy-box ul{
+  margin: 0;
+  padding-left: 1.1rem;
+  line-height: 1.7;
+}
+
+.policy-link{
+  display: block;
+  padding: .55rem .7rem;
+  border-radius: .9rem;
+  margin-bottom: .5rem;
+  background: rgba(241, 255, 236, 0.55);
+  border: 1px solid rgba(212,175,55,.14);
+  font-weight: 800;
+  color: #2E3A26;
+  transition: transform .25s var(--ease);
+}
+.policy-link:hover{ transform: translateY(-1px); }
+
+.policy-actions{
+  display: flex;
+  gap: .6rem;
+  flex-wrap: wrap;
+  margin-top: .75rem;
+}
+
+.policy-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .65rem .9rem;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255,255,255,.88), rgba(241,255,236,.68));
+  border: 1px solid rgba(212, 175, 55, .28);
+  box-shadow: 0 14px 34px rgba(0,0,0,.18);
+  font-weight: 900;
+  letter-spacing: .04em;
+  color: #105020;
+  transition: transform .25s var(--ease);
+}
+.policy-btn:hover{ transform: translateY(-1px); }
+
+.policy-btn--ghost{
+  background: rgba(255,255,255,.35);
+  box-shadow: none;
+}
+
+/* responsive############################################################################################################# */
+@media (max-width: 1024px){
+  .policy-layout{
+    grid-template-columns: 1fr;
+  }
+  .policy-aside{
+    position: static;
+  }
+}
+
+
 /* =========================================================
    DARK MODE — soft “night filter”
 ========================================================= */
