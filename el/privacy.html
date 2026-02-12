@@ -2,85 +2,242 @@
 <html lang="el">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-  <title>Πολιτική Απορρήτου | Barko Tavern Μήλος</title>
-  <meta name="description" content="Πολιτική Απορρήτου της Barko Tavern στη Μήλο. Ενημέρωση για τη χρήση cookies και Google Analytics.">
+  <!-- SEO -->
+  <title>Πολιτική Απορρήτου | Barko Tavern – Μήλος</title>
+  <meta name="description"
+    content="Πολιτική Απορρήτου της Barko Tavern στη Μήλο. Πληροφορίες για cookies, Google Analytics και τα δικαιώματά σας.">
+  <meta name="robots" content="index, follow">
 
   <link rel="canonical" href="https://barkotavernmilos.com/el/privacy.html">
 
   <!-- Hreflang -->
   <link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/privacy.html">
   <link rel="alternate" hreflang="en" href="https://barkotavernmilos.com/en/privacy.html">
+  <link rel="alternate" hreflang="it" href="https://barkotavernmilos.com/it/privacy.html">
+  <link rel="alternate" hreflang="fr" href="https://barkotavernmilos.com/fr/privacy.html">
   <link rel="alternate" hreflang="x-default" href="https://barkotavernmilos.com/">
 
+  <!-- Open Graph -->
+  <meta property="og:title" content="Πολιτική Απορρήτου | Barko Tavern – Μήλος">
+  <meta property="og:description" content="Πληροφορίες για cookies, Google Analytics και τα δικαιώματά σας.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://barkotavernmilos.com/el/privacy.html">
+  <meta property="og:image" content="https://barkotavernmilos.com/assets/images/og-barko-1200x630.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Barko Tavern – Παραδοσιακή Ταβέρνα στη Μήλο">
+  <meta property="og:locale" content="el_GR">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
   <link rel="stylesheet" href="../style.css">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicons/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicons/favicon-32x32.png">
+  <link rel="apple-touch-icon" href="../assets/favicons/apple-touch-icon.png">
+  <link rel="manifest" href="../assets/favicons/site.webmanifest">
 </head>
 
 <body>
+<picture class="page-bg">
+  <!-- desktop -->
+  <source
+    srcset="../assets/images/background.webp"
+    media="(min-width: 1024px)"
+  >
 
-<header>
-  <div class="header-container">
-    <div class="logo">
-      <a href="/el">
-        <img src="../assets/images/logo.png" alt="Barko Tavern Logo">
-      </a>
+  <!-- mobile (default) -->
+  <img
+    src="../assets/images/background.jpg"
+    alt=""
+    aria-hidden="true"
+  >
+</picture>
+<!-- HEADER -->
+    <header>
+    <div class="header-container">
+      <!-- LOGO -->
+      <div class="logo">
+        <a href="/el">
+          <img src="../assets/images/logo.webp" alt="Barko Tavern Logo">
+        </a>
+      </div>
+
+      <!-- BURGER MENU & NAV -->
+      <div class="header-right">
+
+        <!-- Burger button -->
+        <div class="burger-menu" id="burger-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <!-- Nav links + language -->
+        <nav class="header-nav" id="mobile-nav">
+          <ul>
+            <li><a href="/el" class="active">Αρχική</a></li>
+            <li><a href="restaurant.html">Το εστιατόριο</a></li>
+            <li><a href="menu.html">Μενού</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="/el#contact">Επικοινωνία</a></li>
+            <li class="nav-controls">
+              <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+              <div class="language-switcher">
+                <div class="lang-current">
+                  <img src="../assets/images/gr.jpg" alt="Ελληνικά">
+                  <span class="lang-arrow">▾</span>
+                </div>
+                <div class="lang-options">
+                  <a href="../en/menu.html"><img src="../assets/images/en.jpg" alt="English"></a>
+                  <a href="../it/menu.html"><img src="../assets/images/it.jpg" alt="Italiano"></a>
+                  <a href="../fr/menu.html"><img src="../assets/images/fr.jpg" alt="Français"></a>
+                </div>
+              </div>
+              </li>
+          </ul>
+        </nav>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
 <section class="section">
   <div class="container">
     <h2>Πολιτική Απορρήτου</h2>
 
-    <p>
-      Η επιχείρηση <strong>Barko Tavern</strong> σέβεται την ιδιωτικότητα των επισκεπτών της ιστοσελίδας της.
-      Η παρούσα πολιτική εξηγεί ποια δεδομένα συλλέγονται και για ποιο σκοπό.
-    </p>
+    <!-- New layout wrapper -->
+    <div class="policy-layout">
 
-    <h3>1. Ποια δεδομένα συλλέγουμε</h3>
-    <p>
-      Η ιστοσελίδα χρησιμοποιεί το Google Analytics για τη συλλογή ανώνυμων στατιστικών στοιχείων,
-      όπως τύπος συσκευής, χώρα επίσκεψης, διάρκεια παραμονής και σελίδες που προβλήθηκαν.
-    </p>
-    <p>
-      Δεν συλλέγονται προσωπικά δεδομένα (όπως όνομα, τηλέφωνο ή email) μέσω της ιστοσελίδας.
-    </p>
+      <!-- MAIN -->
+      <div class="policy-main">
+        <p class="policy-lead">
+          Η επιχείρηση <strong>Barko Tavern</strong> σέβεται την ιδιωτικότητα των επισκεπτών της ιστοσελίδας της.
+          Εδώ εξηγούμε τι δεδομένα συλλέγονται και γιατί.
+        </p>
 
-    <h3>2. Σκοπός επεξεργασίας</h3>
-    <p>
-      Τα δεδομένα χρησιμοποιούνται αποκλειστικά για στατιστική ανάλυση και βελτίωση της εμπειρίας χρήστη.
-    </p>
+        <div class="policy-cards">
+          <article class="policy-card">
+            <h3>1. Ποια δεδομένα συλλέγουμε</h3>
+            <p>
+              Η ιστοσελίδα χρησιμοποιεί το Google Analytics για ανώνυμα στατιστικά (π.χ. τύπος συσκευής, χώρα,
+              διάρκεια παραμονής και σελίδες που προβλήθηκαν).
+            </p>
+            <p>
+              Δεν συλλέγονται προσωπικά δεδομένα (όπως όνομα, τηλέφωνο ή email) μέσω της ιστοσελίδας.
+            </p>
+          </article>
 
-    <h3>3. Cookies</h3>
-    <p>
-      Η ιστοσελίδα χρησιμοποιεί cookies στατιστικής ανάλυσης (Google Analytics).
-      Η χρήση τους ενεργοποιείται μόνο μετά από αποδοχή του χρήστη μέσω του σχετικού banner.
-    </p>
+          <article class="policy-card">
+            <h3>2. Σκοπός επεξεργασίας</h3>
+            <p>
+              Τα δεδομένα χρησιμοποιούνται αποκλειστικά για στατιστική ανάλυση και βελτίωση της εμπειρίας χρήστη.
+            </p>
+          </article>
 
-    <h3>4. Δικαιώματα χρήστη</h3>
-    <p>
-      Ο χρήστης μπορεί να αποδεχθεί ή να απορρίψει τα cookies, καθώς και να τα διαγράψει
-      ανά πάσα στιγμή μέσω των ρυθμίσεων του browser του.
-    </p>
+          <article class="policy-card">
+            <h3>3. Cookies</h3>
+            <p>
+              Η ιστοσελίδα χρησιμοποιεί cookies στατιστικής ανάλυσης (Google Analytics).
+              Η χρήση τους ενεργοποιείται μόνο μετά από αποδοχή του χρήστη μέσω του σχετικού banner.
+            </p>
+          </article>
 
-    <h3>5. Στοιχεία Επικοινωνίας</h3>
-    <p>
-      Για οποιαδήποτε ερώτηση σχετικά με την παρούσα πολιτική μπορείτε να επικοινωνήσετε:
-    </p>
-    <p>
-      📧 barkomilos@gmail.com<br>
-      📞 +30 22870 22660
-    </p>
+          <article class="policy-card">
+            <h3>4. Δικαιώματα χρήστη</h3>
+            <p>
+              Μπορείτε να αποδεχθείτε ή να απορρίψετε τα cookies και να τα διαγράψετε ανά πάσα στιγμή
+              από τις ρυθμίσεις του browser σας.
+            </p>
+          </article>
+        </div>
+      </div>
 
+      <!-- ASIDE -->
+      <aside class="policy-aside">
+        <div class="policy-box">
+          <h3>Σύνοψη</h3>
+          <ul>
+            <li>Χρησιμοποιούμε analytics μόνο για βελτίωση του site</li>
+            <li>Τα cookies ενεργοποιούνται μετά από αποδοχή</li>
+            <li>Μπορείτε να κάνετε απόρριψη/διαγραφή όποτε θέλετε</li>
+          </ul>
+        </div>
+
+        <div class="policy-box">
+          <h3>Επικοινωνία</h3>
+
+          <a class="policy-link" href="mailto:barkomilos@gmail.com">📧 barkomilos@gmail.com</a>
+          <a class="policy-link" href="tel:+302287022660">📞 +30 22870 22660</a>
+
+          <div class="policy-actions">
+            <a class="policy-btn policy-btn--ghost" href="/el">Αρχική</a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
   </div>
 </section>
 
-<footer class="premium-footer">
-  <div class="footer-bottom">
-    © 2026 <strong>Barko Tavern</strong> • Όλα τα δικαιώματα διατηρούνται
-  </div>
-</footer>
+
+  <!-- FOOTER -->
+  <footer class="premium-footer">
+    <div class="premium-footer-container">
+      <div class="footer-brand">
+        <img src="../assets/images/logo.webp" alt="Barko Tavern Logo">
+        <p>Σπιτικό φαγητό • Παραδοσιακές συνταγές • Μήλος</p>
+      </div>
+
+      <div class="footer-links" id="footer-nav">
+        <h4>Πλοήγηση</h4>
+        <a href="/el">Αρχική</a>
+        <a href="restaurant.html">Το εστιατόριο</a>
+        <a href="menu.html">Μενού</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="/el#contact">Επικοινωνία</a>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Επικοινωνία</h4>
+        <a href="https://www.google.com/maps/place/Barko+tavern+restaurant/@36.7283522,24.4438267,17z/data=!3m1!4b1!4m6!3m5!1s0x1498df472dfb6355:0x2cd14b966d368b5f!8m2!3d36.7283479!4d24.4464016!16s%2Fg%2F11btyk6by8?entry=ttu&g_ep=EgoyMDI2MDEyMS4wIKXMDSoASAFQAw%3D%3D"
+          target="_blank" rel="noopener noreferrer">
+          <span>📍</span>
+          <span>Αδάμαντας, Μήλος</span>
+        </a>
+
+        <a href="tel:+302287022660">
+          <span>📞</span>
+          <span>+30 22870 22660</span>
+        </a>
+
+        <a href="mailto:barkomilos@gmail.com">
+          <span>📧</span>
+          <span>barkomilos@gmail.com</span>
+        </a>
+
+        <div class="hours">
+          <span>⏰</span>
+          <span>13:00 - 00:00</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 <strong>Barko Tavern</strong> • Όλα τα δικαιώματα διατηρούνται
+    </div>
+
+    <div class="footer-shimmer"></div>
+    <div class="footer-credit">
+      Website design & development by Orfeas Ninos
+    </div>
+  </footer>
 
 <script src="../main.js"></script>
 </body>
