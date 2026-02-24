@@ -1898,68 +1898,6 @@ body.dark .consent-box {
 }
 
 /* =========================================================
-   LOW-END MODE (body.low-end)
-========================================================= */
-body.low-end header {
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-}
-
-body.low-end .section,
-body.low-end .menu-item,
-body.low-end .menu-category,
-body.low-end .menu-items li,
-body.low-end .menu-sidebar,
-body.low-end .gallery-item,
-body.low-end .review-card {
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.10) !important;
-}
-
-body.low-end .container {
-  animation: none !important;
-  transition: none !important;
-}
-
-body.low-end .container::after,
-body.low-end .menu-item::before,
-body.low-end .menu-sidebar::before,
-body.low-end .menu-category::before,
-body.low-end .menu-items li::before,
-body.low-end .gallery-item::before,
-body.low-end .review-card::before {
-  content: none !important;
-}
-
-body.low-end * {
-  animation: none !important;
-  transition: none !important;
-}
-
-body.low-end .footer-shimmer {
-  display: none !important;
-}
-
-body.low-end .footer-brand img {
-  animation: none !important;
-}
-
-body.low-end .section-hidden {
-  opacity: 1 !important;
-  transform: none !important;
-}
-
-body.low-end .premium-footer-container {
-  opacity: 1 !important;
-  transform: none !important;
-}
-
-body.low-end .map-container {
-  display: none;
-}
-
-/* =========================================================
    Reduced motion
 ========================================================= */
 @media (prefers-reduced-motion: reduce) {
