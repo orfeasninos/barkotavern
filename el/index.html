@@ -2,13 +2,13 @@
 <html lang="el">
 
 <head>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){ dataLayer.push(arguments); }
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
 
-  // Disable by default (μέχρι να δώσει consent)
-  window['ga-disable-G-W5LVLHN94F'] = true;
-</script>
+    // Disable by default (μέχρι να δώσει consent)
+    window['ga-disable-G-W5LVLHN94F'] = true;
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
@@ -72,23 +72,17 @@
 </head>
 
 <body>
-<picture class="page-bg">
-  <!-- desktop -->
-  <source
-    srcset="../assets/images/background.webp"
-    media="(min-width: 1024px)"
-  >
+  <picture class="page-bg">
+    <!-- desktop -->
+    <source srcset="../assets/images/background.webp" media="(min-width: 1024px)">
 
-  <!-- mobile (default) -->
-  <img
-    src="../assets/images/background.jpg"
-    alt="Παραδοσιακή ταβέρνα με αυλή κάτω από κληματαριά στη Μήλο"
-    aria-hidden="true"
-  >
-</picture>
+    <!-- mobile (default) -->
+    <img src="../assets/images/background.jpg" alt="Παραδοσιακή ταβέρνα με αυλή κάτω από κληματαριά στη Μήλο"
+      aria-hidden="true">
+  </picture>
 
 
-    <div class="info-bar">
+  <div class="info-bar">
     ⏰ Καθημερινά ανοιχτά: <strong>13:00 – 00:00</strong>
   </div>
   <!-- HEADER -->
@@ -132,7 +126,7 @@
                   <a href="/fr/"><img src="../assets/images/fr.jpg" alt="Français"></a>
                 </div>
               </div>
-              </li>
+            </li>
           </ul>
         </nav>
       </div>
@@ -140,15 +134,19 @@
   </header>
 
 
-<section class="hero-welcome">
-  <div class="hero-bg" aria-hidden="true"></div>
+  <section class="hero-welcome">
+    <div class="hero-bg" aria-hidden="true"></div>
 
-  <div class="welcome-box">
-    <h1>Καλώς ορίσατε στο Barko</h1>
-    <span>Παραδοσιακή ταβέρνα • Από το 1993</span>
-    <p>...</p>
-  </div>
-</section>
+    <div class="welcome-box">
+      <h1>Καλώς ορίσατε στο Barko</h1>
+      <span>Παραδοσιακή ταβέρνα • Από το 1993</span>
+      <p>
+        Barko - Είμαστε παραδοσιακή ταβέρνα στον Αδάμαντα Μήλου,
+        κοντά στο λιμάνι. Αν ψάχνετε πού να φάτε στη Μήλο,
+        εδώ θα βρείτε αυθεντική ελληνική κουζίνα και τοπικές συνταγές.
+      </p>
+    </div>
+  </section>
 
 
 
@@ -340,7 +338,7 @@
       Website design & development by Orfeas Ninos
     </div>
   </footer>
-
+  <!-- Dish Modal -->
   <div class="dish-modal" id="dishModal">
     <div class="dish-modal-content">
       <button class="modal-close">&times;</button>
@@ -349,17 +347,19 @@
       <p id="modalText"></p>
     </div>
   </div>
-<!-- Cookie Consent -->
-<div id="consentBanner" class="consent">
-  <div class="consent-box">
-    <p>
-Χρησιμοποιούμε cookies στατιστικών για να βελτιώνουμε το website μας. Μπορείτε να επιλέξετε αποδοχή ή απόρριψη. <a href="privacy.html"> Πολιτική απορρήτου</a>   </p>
-    <div class="consent-buttons">
-      <button id="consentReject" class="btn-ghost">Απόρριψη</button>
-      <button id="consentAccept" class="btn-primary">Αποδοχή</button>
+  <!-- Cookie Consent -->
+  <div id="consentBanner" class="consent">
+    <div class="consent-box">
+      <p>
+        Χρησιμοποιούμε cookies στατιστικών για να βελτιώνουμε το website μας. Μπορείτε να επιλέξετε αποδοχή ή απόρριψη.
+        <a href="privacy.html"> Πολιτική απορρήτου</a>
+      </p>
+      <div class="consent-buttons">
+        <button id="consentReject" class="btn-ghost">Απόρριψη</button>
+        <button id="consentAccept" class="btn-primary">Αποδοχή</button>
+      </div>
     </div>
   </div>
-</div>
 
 
   <script src="../main.js"></script>
