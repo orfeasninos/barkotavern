@@ -98,7 +98,7 @@
     window.__gaLoaded = true;
 
     const GA_ID = "G-W5LVLHN94F";
-
+    window["ga-disable-" + GA_ID] = false;
     const s = document.createElement("script");
     s.async = true;
     s.src = "https://www.googletagmanager.com/gtag/js?id=G-W5LVLHN94F";
