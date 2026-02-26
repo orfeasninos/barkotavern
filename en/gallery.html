@@ -55,34 +55,44 @@
   <link rel="manifest" href="../assets/favicons/site.webmanifest">
 
   <!-- Structured Data -->
-  <script type="application/ld+json">
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Restaurant",
-  "@id": "https://barkotavernmilos.com/#restaurant",
-  "name": "Barko Tavern",
-  "url": "https://barkotavernmilos.com/en/gallery.html",
-  "image": "https://barkotavernmilos.com/assets/images/og-barko-1200x630-2026.png",
-  "telephone": "+30 22870 22660",
-  "priceRange": "$$",
-  "servesCuisine": ["Greek", "Mediterranean"],
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Adamas",
-    "addressRegion": "Milos",
-    "addressCountry": "GR"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 36.7283479,
-    "longitude": 24.4464016
-  },
-  "openingHours": "Mo-Su 13:00-00:00",
-  "sameAs": [
-    "https://www.google.com/maps/place/Barko+tavern+restaurant/@36.7283522,24.4438267,17z/data=!3m1!4b1!4m6!3m5!1s0x1498df472dfb6355:0x2cd14b966d368b5f!8m2!3d36.7283479!4d24.4464016!16s%2Fg%2F11btyk6by8"
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://barkotavernmilos.com/el/gallery.html#webpage",
+      "url": "https://barkotavernmilos.com/el/gallery.html",
+      "name": "Φωτογραφίες | Barko Tavern",
+      "inLanguage": "el",
+      "isPartOf": {
+        "@id": "https://barkotavernmilos.com/el/#website"
+      },
+      "about": {
+        "@id": "https://barkotavernmilos.com/el/#restaurant"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://barkotavernmilos.com/el/gallery.html#breadcrumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Αρχική",
+          "item": "https://barkotavernmilos.com/el/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Φωτογραφίες",
+          "item": "https://barkotavernmilos.com/el/gallery.html"
+        }
+      ]
+    }
   ]
 }
-  </script>
+</script>
 </head>
 
 <body>

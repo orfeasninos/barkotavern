@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){ dataLayer.push(arguments); }
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
 
-  // Disable by default (μέχρι να δώσει consent)
-  window['ga-disable-G-W5LVLHN94F'] = true;
-</script>
+    // Disable by default (μέχρι να δώσει consent)
+    window['ga-disable-G-W5LVLHN94F'] = true;
+  </script>
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -61,7 +61,7 @@
   <link rel="manifest" href="../assets/favicons/site.webmanifest" />
 
   <!-- Structured Data -->
-<script type="application/ld+json">
+  <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -136,215 +136,205 @@
 </head>
 
 <body>
-<picture class="page-bg">
-  <!-- desktop -->
-  <source
-    srcset="../assets/images/background.webp"
-    media="(min-width: 1024px)"
-  >
+  <picture class="page-bg">
+    <!-- desktop -->
+    <source srcset="../assets/images/background.webp" media="(min-width: 1024px)">
 
-  <!-- mobile (default) -->
-  <img
-    src="../assets/images/background.jpg"
-    alt=""
-    aria-hidden="true"
-  >
-</picture>
+    <!-- mobile (default) -->
+    <img src="../assets/images/background.jpg" alt="" aria-hidden="true">
+  </picture>
 
-<div class="info-bar">
-  ⏰ Open daily: <strong>13:00 – 00:00</strong>
-</div>
+  <div class="info-bar">
+    ⏰ Open daily: <strong>13:00 – 00:00</strong>
+  </div>
 
-<!-- HEADER -->
-<header>
-  <div class="header-container">
-    <!-- LOGO -->
-    <div class="logo">
-      <a href="/en/">
-        <img src="../assets/images/logo.webp" alt="Barko Tavern Logo">
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <!-- LOGO -->
+      <div class="logo">
+        <a href="/en/">
+          <img src="../assets/images/logo.webp" alt="Barko Tavern Logo">
+        </a>
+      </div>
+
+      <!-- BURGER MENU & NAV -->
+      <div class="header-right">
+
+        <!-- Burger button -->
+        <div class="burger-menu" id="burger-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <!-- Nav links + language -->
+        <nav class="header-nav" id="mobile-nav">
+          <ul>
+            <li><a href="/en/">Home</a></li>
+            <li><a href="restaurant.html">The Restaurant</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="/en#contact">Contact</a></li>
+
+            <li class="nav-controls">
+              <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+              <div class="language-switcher">
+                <div class="lang-current">
+                  <img src="../assets/images/en.jpg" alt="English">
+                  <span class="lang-arrow">▾</span>
+                </div>
+                <div class="lang-options">
+                  <a href="/el/"><img src="../assets/images/gr.jpg" alt="Ελληνικά"></a>
+                  <a href="/it/"><img src="../assets/images/it.jpg" alt="Italiano"></a>
+                  <a href="/fr/"><img src="../assets/images/fr.jpg" alt="Français"></a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero-welcome">
+    <div class="hero-bg" aria-hidden="true"></div>
+
+    <div class="welcome-box">
+      <h1>Barko Tavern | Authentic Greek Flavours in Milos</h1>
+      <span>Traditional Greek Tavern • Since 1993</span>
+      <p>Authentic local flavours, warm hospitality and a relaxed island atmosphere in the heart of Milos.</p>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section id="menu" class="section menu-section">
+    <div class="container has-bottom-cta">
+      <h2>Traditional Dishes of Milos</h2>
+
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img src="../assets/images/arnaki.jpg" alt="Oven-baked lamb">
+          <h3>Oven-Baked Lamb</h3>
+          <p>Slow-roasted lamb with lemon sauce and locally grown potatoes</p>
+        </div>
+
+        <div class="menu-item">
+          <img src="../assets/images/skordolazana.jpg" alt="Skordolazana">
+          <h3>Skordolazana of Milos</h3>
+          <p>Traditional Milos recipe with handmade pasta, local tomato paste and garlic sauce</p>
+        </div>
+
+        <div class="menu-item">
+          <img src="../assets/images/pitarakia.webp" alt="Milos pies">
+          <h3>Milos Traditional Pies</h3>
+          <p>Local homemade recipe, fried in olive oil and filled with local cheese</p>
+        </div>
+      </div>
+
+      <a class="home-button" href="menu.html">
+        <span class="btn-text">View Menu</span>
+        <span class="menu-icon" aria-hidden="true"></span>
       </a>
     </div>
+  </section>
 
-    <!-- BURGER MENU & NAV -->
-    <div class="header-right">
+  <!-- GOOGLE REVIEWS -->
+  <section class="section reviews-section">
+    <div class="container has-bottom-cta">
+      <h2>Guest Reviews</h2>
 
-      <!-- Burger button -->
-      <div class="burger-menu" id="burger-menu">
-        <span></span>
-        <span></span>
-        <span></span>
+      <div class="reviews-grid">
+        <article class="review-card">
+          <div class="review-top">
+            <div class="review-name">Annie Y</div>
+            <div class="review-stars" aria-label="5 stars">★★★★★</div>
+          </div>
+          <p class="review-text">
+            Traditional atmosphere under lemon and vine trees. We visited twice — amazing fava, lamb chops and goat.
+          </p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-top">
+            <div class="review-name">Ruby P</div>
+            <div class="review-stars" aria-label="5 stars">★★★★★</div>
+          </div>
+          <p class="review-text">
+            Lovely courtyard under the vines. Very kind service. The food was delicious and great value for money.
+          </p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-top">
+            <div class="review-name">Arusan S</div>
+            <div class="review-stars" aria-label="5 stars">★★★★★</div>
+          </div>
+          <p class="review-text">
+            Tasty, authentic dishes with excellent value. Shrimp saganaki, calamari and zucchini fritters were top.
+          </p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-top">
+            <div class="review-name">Alison T</div>
+            <div class="review-stars" aria-label="5 stars">★★★★★</div>
+          </div>
+          <p class="review-text">
+            Authentic family-style food. Even though it was busy, everything arrived quickly and was absolutely
+            delicious.
+          </p>
+        </article>
       </div>
 
-      <!-- Nav links + language -->
-      <nav class="header-nav" id="mobile-nav">
-        <ul>
-          <li><a href="/en/">Home</a></li>
-          <li><a href="restaurant.html">The Restaurant</a></li>
-          <li><a href="menu.html">Menu</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="/en#contact">Contact</a></li>
-
-          <li class="nav-controls">
-            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
-            <div class="language-switcher">
-              <div class="lang-current">
-                <img src="../assets/images/en.jpg" alt="English">
-                <span class="lang-arrow">▾</span>
-              </div>
-              <div class="lang-options">
-                <a href="/el/"><img src="../assets/images/gr.jpg" alt="Ελληνικά"></a>
-                <a href="/it/"><img src="../assets/images/it.jpg" alt="Italiano"></a>
-                <a href="/fr/"><img src="../assets/images/fr.jpg" alt="Français"></a>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </nav>
+      <a class="home-button" href="https://www.google.com/maps/place/Barko+tavern+restaurant/" target="_blank"
+        rel="noopener noreferrer" aria-label="See all reviews on Google">
+        <span class="btn-text">See all reviews</span>
+        <span class="maps-pin" aria-hidden="true"></span>
+      </a>
     </div>
-  </div>
-</header>
+  </section>
 
-<section class="hero-welcome">
-  <div class="hero-bg" aria-hidden="true"></div>
+  <!-- ABOUT -->
+  <section id="about" class="section about-section">
+    <div class="container has-bottom-cta">
+      <h2>Our Story</h2>
+      <p>
+        Barko Tavern is a family-run taverna in Adamas, created to offer the classic Greek holiday experience:
+        warm hospitality, homemade food and a relaxed island vibe. Since 1993, we have been keeping the traditional
+        recipes of Milos alive, using simple ingredients and plenty of love.
+        Here you will enjoy dishes that truly taste like Greece — slow-cooked meals, grilled specialties and shared
+        plates. Ideal for families, friends and couples looking for an authentic dining experience in Milos.
+      </p>
 
-  <div class="welcome-box">
-    <h1>Welcome to Barko Tavern</h1>
-    <span>Traditional Greek Tavern • Since 1993</span>
-    <p>Authentic local flavours, warm hospitality and a relaxed island atmosphere in the heart of Milos.</p>
-  </div>
-</section>
+      <a class="home-button" href="restaurant.html">
+        <span class="btn-text">The Restaurant 🍽️</span>
+      </a>
+    </div>
+  </section>
 
-<!-- MENU -->
-<section id="menu" class="section menu-section">
-  <div class="container has-bottom-cta">
-    <h2>Traditional Dishes of Milos</h2>
+  <!-- CONTACT -->
+  <section id="contact" class="section contact-section">
+    <div class="container has-bottom-cta">
+      <h2>Contact</h2>
+      <p>📞 <a href="tel:+302287022660">+30 22870 22660</a></p>
+      <p>📧 <a href="mailto:barkomilos@gmail.com">barkomilos@gmail.com</a></p>
+      <p>📍 <a href="https://www.google.com/maps/place/Barko+tavern+restaurant/" target="_blank"
+          rel="noopener noreferrer">Adamas, Milos</a></p>
+      <p>⏰ 13:00 – 00:00</p>
 
-    <div class="menu-grid">
-      <div class="menu-item">
-        <img src="../assets/images/arnaki.jpg" alt="Oven-baked lamb">
-        <h3>Oven-Baked Lamb</h3>
-        <p>Slow-roasted lamb with lemon sauce and locally grown potatoes</p>
+      <div class="map-container">
+        <h2>Find Us on the Map</h2>
+        <iframe width="100%" height="400" style="border:0" loading="lazy" allowfullscreen
+          src="https://maps.google.com/maps?q=Barko%20Tavern%2C%20Adamas%2C%20Milos%2C%20Greece&t=m&z=13&output=embed">
+        </iframe>
       </div>
 
-      <div class="menu-item">
-        <img src="../assets/images/skordolazana.jpg" alt="Skordolazana">
-        <h3>Skordolazana of Milos</h3>
-        <p>Traditional Milos recipe with handmade pasta, local tomato paste and garlic sauce</p>
-      </div>
-
-      <div class="menu-item">
-        <img src="../assets/images/pitarakia.webp" alt="Milos pies">
-        <h3>Milos Traditional Pies</h3>
-        <p>Local homemade recipe, fried in olive oil and filled with local cheese</p>
-      </div>
+      <a class="home-button" href="tel:+302287022660">
+        <span class="btn-text">Call us for a reservation 📞</span>
+      </a>
     </div>
-
-    <a class="home-button" href="menu.html">
-      <span class="btn-text">View Menu</span>
-      <span class="menu-icon" aria-hidden="true"></span>
-    </a>
-  </div>
-</section>
-
-<!-- GOOGLE REVIEWS -->
-<section class="section reviews-section">
-  <div class="container has-bottom-cta">
-    <h2>Guest Reviews</h2>
-
-    <div class="reviews-grid">
-      <article class="review-card">
-        <div class="review-top">
-          <div class="review-name">Annie Y</div>
-          <div class="review-stars" aria-label="5 stars">★★★★★</div>
-        </div>
-        <p class="review-text">
-          Traditional atmosphere under lemon and vine trees. We visited twice — amazing fava, lamb chops and goat.
-        </p>
-      </article>
-
-      <article class="review-card">
-        <div class="review-top">
-          <div class="review-name">Ruby P</div>
-          <div class="review-stars" aria-label="5 stars">★★★★★</div>
-        </div>
-        <p class="review-text">
-          Lovely courtyard under the vines. Very kind service. The food was delicious and great value for money.
-        </p>
-      </article>
-
-      <article class="review-card">
-        <div class="review-top">
-          <div class="review-name">Arusan S</div>
-          <div class="review-stars" aria-label="5 stars">★★★★★</div>
-        </div>
-        <p class="review-text">
-          Tasty, authentic dishes with excellent value. Shrimp saganaki, calamari and zucchini fritters were top.
-        </p>
-      </article>
-
-      <article class="review-card">
-        <div class="review-top">
-          <div class="review-name">Alison T</div>
-          <div class="review-stars" aria-label="5 stars">★★★★★</div>
-        </div>
-        <p class="review-text">
-          Authentic family-style food. Even though it was busy, everything arrived quickly and was absolutely delicious.
-        </p>
-      </article>
-    </div>
-
-    <a class="home-button"
-      href="https://www.google.com/maps/place/Barko+tavern+restaurant/"
-      target="_blank" rel="noopener noreferrer"
-      aria-label="See all reviews on Google">
-      <span class="btn-text">See all reviews</span>
-      <span class="maps-pin" aria-hidden="true"></span>
-    </a>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="section about-section">
-  <div class="container has-bottom-cta">
-    <h2>Our Story</h2>
-    <p>
-      Barko Tavern is a family-run taverna in Adamas, created to offer the classic Greek holiday experience:
-      warm hospitality, homemade food and a relaxed island vibe. Since 1993, we have been keeping the traditional
-      recipes of Milos alive, using simple ingredients and plenty of love.
-      Here you will enjoy dishes that truly taste like Greece — slow-cooked meals, grilled specialties and shared
-      plates. Ideal for families, friends and couples looking for an authentic dining experience in Milos.
-    </p>
-
-    <a class="home-button" href="restaurant.html">
-      <span class="btn-text">The Restaurant 🍽️</span>
-    </a>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="section contact-section">
-  <div class="container has-bottom-cta">
-    <h2>Contact</h2>
-    <p>📞 <a href="tel:+302287022660">+30 22870 22660</a></p>
-    <p>📧 <a href="mailto:barkomilos@gmail.com">barkomilos@gmail.com</a></p>
-    <p>📍 <a href="https://www.google.com/maps/place/Barko+tavern+restaurant/"
-      target="_blank" rel="noopener noreferrer">Adamas, Milos</a></p>
-    <p>⏰ 13:00 – 00:00</p>
-
-    <div class="map-container">
-      <h2>Find Us on the Map</h2>
-      <iframe
-        width="100%" height="400" style="border:0"
-        loading="lazy" allowfullscreen
-        src="https://maps.google.com/maps?q=Barko%20Tavern%2C%20Adamas%2C%20Milos%2C%20Greece&t=m&z=13&output=embed">
-      </iframe>
-    </div>
-
-    <a class="home-button" href="tel:+302287022660">
-      <span class="btn-text">Call us for a reservation 📞</span>
-    </a>
-  </div>
-</section>
+  </section>
 
 
   <!-- FOOTER -->
@@ -409,19 +399,21 @@
       <p id="modalText"></p>
     </div>
   </div>
-<!-- Cookie Consent -->
-<div id="consentBanner" class="consent">
-  <div class="consent-box">
-    <p>
-We use analytics cookies to improve our website. Accept or reject.<a href="privacy.html"> Privacy Policy</a>  </p>
-    </p>
+  <!-- Cookie Consent -->
+  <div id="consentBanner" class="consent">
+    <div class="consent-box">
+      <p>
+        We use analytics cookies to improve our website. Accept or reject.<a href="privacy.html"> Privacy Policy</a>
+      </p>
+      </p>
 
-    <div class="consent-buttons">
-      <button id="consentReject" class="btn-ghost">Reject</button>
-      <button id="consentAccept" class="btn-primary">Accept</button>
+      <div class="consent-buttons">
+        <button id="consentReject" class="btn-ghost">Reject</button>
+        <button id="consentAccept" class="btn-primary">Accept</button>
+      </div>
     </div>
   </div>
-</div>
   <script src="../main.js"></script>
 </body>
+
 </html>
