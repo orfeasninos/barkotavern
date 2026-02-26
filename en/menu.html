@@ -35,18 +35,11 @@
     content="Discover our menu: authentic Milos recipes, homemade Greek food, seafood, and grilled dishes in Adamas, Milos." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://barkotavernmilos.com/en/menu.html" />
-  <meta property="og:image" content="https://barkotavernmilos.com/assets/images/og-barko-1200x630.png" />
+  <meta property="og:image" content="https://barkotavernmilos.com/assets/images/og-barko-1200x630-2026.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Barko Tavern Milos – Traditional Greek Taverna" />
   <meta property="og:locale" content="en_US" />
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Menu | Barko Tavern Milos" />
-  <meta name="twitter:description"
-    content="Explore the Barko Tavern menu: traditional Milos recipes, homemade Greek dishes, seafood and grilled specialties in Adamas, Milos." />
-  <meta name="twitter:image" content="https://barkotavernmilos.com/assets/images/og-barko-1200x630.png" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -63,35 +56,46 @@
   <link rel="manifest" href="../assets/favicons/site.webmanifest">
 
   <!-- Structured Data -->
-  <script type="application/ld+json">
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Restaurant",
-  "@id": "https://barkotavernmilos.com/#restaurant",
-  "name": "Barko Tavern",
-  "url": "https://barkotavernmilos.com/en/menu.html",
-  "image": "https://barkotavernmilos.com/assets/images/og-barko-1200x630.png",
-  "telephone": "+30 22870 22660",
-  "priceRange": "$$",
-  "servesCuisine": ["Greek", "Mediterranean"],
-  "hasMenu": "https://barkotavernmilos.com/en/menu.html",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Adamas",
-    "addressRegion": "Milos",
-    "addressCountry": "GR"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 36.7283479,
-    "longitude": 24.4464016
-  },
-  "openingHours": "Mo-Su 13:00-00:00",
-  "sameAs": [
-    "https://www.google.com/maps/place/Barko+tavern+restaurant/@36.7283522,24.4438267,17z/data=!3m1!4b1!4m6!3m5!1s0x1498df472dfb6355:0x2cd14b966d368b5f!8m2!3d36.7283479!4d24.4464016!16s%2Fg%2F11btyk6by8"
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://barkotavernmilos.com/en/menu.html#webpage",
+      "url": "https://barkotavernmilos.com/en/menu.html",
+      "name": "Barko Tavern Menu",
+      "inLanguage": "en",
+      "isPartOf": { "@id": "https://barkotavernmilos.com/en/#website" },
+      "about": { "@id": "https://barkotavernmilos.com/en/#restaurant" },
+      "mainEntity": { "@id": "https://barkotavernmilos.com/en/menu.html#menu" }
+    },
+    {
+      "@type": "Menu",
+      "@id": "https://barkotavernmilos.com/en/menu.html#menu",
+      "name": "Barko Tavern Menu",
+      "inLanguage": "en",
+      "url": "https://barkotavernmilos.com/en/menu.html",
+      "hasMenuSection": [
+        { "@type": "MenuSection", "name": "Appetizers" },
+        { "@type": "MenuSection", "name": "Salads" },
+        { "@type": "MenuSection", "name": "Cooked Dishes" },
+        { "@type": "MenuSection", "name": "Grilled" },
+        { "@type": "MenuSection", "name": "Seafood" },
+        { "@type": "MenuSection", "name": "Drinks & Wine" }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://barkotavernmilos.com/en/menu.html#breadcrumbs",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://barkotavernmilos.com/en/" },
+        { "@type": "ListItem", "position": 2, "name": "Menu", "item": "https://barkotavernmilos.com/en/menu.html" }
+      ]
+    }
   ]
 }
-  </script>
+</script>
 </head>
 
 <body>
