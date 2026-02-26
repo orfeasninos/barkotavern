@@ -32,7 +32,7 @@
   <meta property="og:description" content="Αυθεντικές μηλέικες γεύσεις και σπιτικό φαγητό στον Αδάμαντα Μήλου.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://barkotavernmilos.com/el/">
-  <meta property="og:image" content="https://barkotavernmilos.com/assets/images/og-barko-1200x630.png">
+  <meta property="og:image" content="https://barkotavernmilos.com/assets/images/og-barko-1200x630-2026.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Barko Tavern – Παραδοσιακή Ταβέρνα στη Μήλο">
@@ -52,21 +52,80 @@
   <link rel="apple-touch-icon" href="../assets/favicons/apple-touch-icon.png">
   <link rel="manifest" href="../assets/favicons/site.webmanifest">
 
-  <script type="application/ld+json">
+  <!-- Structured Data -->
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Restaurant",
-  "name": "Barko Tavern",
-  "url": "https://barkotavernmilos.com/el/",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Adamas",
-    "addressRegion": "Milos",
-    "addressCountry": "GR"
-  },
-  "telephone": "+30 22870 22660",
-  "servesCuisine": "Greek",
-  "openingHours": "Mo-Su 13:00-00:00"
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://barkotavernmilos.com/el/#website",
+      "url": "https://barkotavernmilos.com/el/",
+      "name": "Barko Tavern",
+      "inLanguage": "el"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://barkotavernmilos.com/el/#webpage",
+      "url": "https://barkotavernmilos.com/el/",
+      "name": "Barko Tavern | Παραδοσιακή ταβέρνα στη Μήλο",
+      "isPartOf": { "@id": "https://barkotavernmilos.com/el/#website" },
+      "about": { "@id": "https://barkotavernmilos.com/el/#restaurant" },
+      "inLanguage": "el"
+    },
+    {
+      "@type": "Restaurant",
+      "@id": "https://barkotavernmilos.com/el/#restaurant",
+      "name": "Barko Tavern",
+      "url": "https://barkotavernmilos.com/el/",
+      "image": "https://barkotavernmilos.com/assets/images/og-barko-1200x630.png",
+      "telephone": "+30 22870 22660",
+      "servesCuisine": ["Ελληνική", "Μεσογειακή"],
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Αδάμαντας",
+        "addressLocality": "Μήλος",
+        "addressRegion": "Κυκλάδες",
+        "postalCode": "84800",
+        "addressCountry": "GR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 36.7283479,
+        "longitude": 24.4464016
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday","Tuesday","Wednesday",
+            "Thursday","Friday","Saturday","Sunday"
+          ],
+          "opens": "13:00",
+          "closes": "00:00"
+        }
+      ],
+      "hasMenu": {
+        "@id": "https://barkotavernmilos.com/el/menu.html#menu"
+      },
+      "sameAs": [
+        "https://www.google.com/maps/place/Barko+tavern+restaurant/"
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://barkotavernmilos.com/el/#breadcrumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Αρχική",
+          "item": "https://barkotavernmilos.com/el/"
+        }
+      ]
+    }
+  ]
 }
 </script>
 </head>
