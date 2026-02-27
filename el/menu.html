@@ -2,13 +2,12 @@
 <html lang="el">
 
 <head>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){ dataLayer.push(arguments); }
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    window['ga-disable-G-W5LVLHN94F'] = true;
+  </script>
 
-  // Disable by default (μέχρι να δώσει consent)
-  window['ga-disable-G-W5LVLHN94F'] = true;
-</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
@@ -20,7 +19,6 @@
 
   <!-- Hreflang (languages) -->
   <link rel="canonical" href="https://barkotavernmilos.com/el/menu.html">
-
   <link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/menu.html">
   <link rel="alternate" hreflang="en" href="https://barkotavernmilos.com/en/menu.html">
   <link rel="alternate" hreflang="it" href="https://barkotavernmilos.com/it/menu.html">
@@ -53,7 +51,8 @@
   <link rel="apple-touch-icon" href="../assets/favicons/apple-touch-icon.png">
   <link rel="manifest" href="../assets/favicons/site.webmanifest">
 
-<script type="application/ld+json">
+  <!-- Structured Data -->
+  <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -107,28 +106,21 @@
 
 <body>
   <picture class="page-bg">
-  <!-- desktop -->
-  <source
-    srcset="../assets/images/background.webp"
-    media="(min-width: 1024px)"
-  >
+    <!-- desktop -->
+    <source srcset="../assets/images/background.webp" media="(min-width: 1024px)">
 
-  <!-- mobile (default) -->
-  <img
-    src="../assets/images/background.jpg"
-    alt=""
-    aria-hidden="true"
-  >
-</picture>
-      <div class="info-bar">
+    <!-- mobile (default) -->
+    <img src="../assets/images/background.jpg" alt="" aria-hidden="true">
+  </picture>
+  <div class="info-bar">
     ⏰ Καθημερινά ανοιχτά: <strong>13:00 – 00:00</strong>
   </div>
   <!-- HEADER -->
-    <header>
+  <header>
     <div class="header-container">
       <!-- LOGO -->
       <div class="logo">
-        <a href="/el">
+        <a href="/el/">
           <img src="../assets/images/logo.webp" alt="Barko Tavern Logo">
         </a>
       </div>
@@ -164,7 +156,7 @@
                   <a href="../fr/menu.html"><img src="../assets/images/fr.jpg" alt="Français"></a>
                 </div>
               </div>
-              </li>
+            </li>
           </ul>
         </nav>
       </div>
@@ -220,7 +212,8 @@
           <h3>Ορεκτικά</h3>
           <ul class="menu-items">
             <li>
-              <span class="dish">Ψωμί</span><span class="price" data-price="psomi">1,20€</span></li>
+              <span class="dish">Ψωμί</span><span class="price" data-price="psomi">1,20€</span>
+            </li>
             <li><span class="dish">Πίτα</span><span class="price" data-price="pita">1,50€</span></li>
             <li><span class="dish">Τζατζίκι με πίτα</span><span class="price" data-price="tzatziki_pita">5,50€</span>
             </li>
@@ -230,19 +223,27 @@
             <li>
               <img src="../assets/images/pitarakia.webp" alt="Παραδοσιακά πιταράκια Μήλου" loading="lazy">
               <span class="dish">Παραδοσιακά πιταράκια Μήλου</span><span class="price"
-                data-price="pitarakia">8,00€</span></li>
-            <li><img src="../assets/images/kolokithokeftedes.webp" data-modal-img="../assets/images/kolokithokeftedes@2x.webp" alt="Κολοκυθοκεφτέδες με τζατζίκι" loading="lazy">
-              <span class="dish">Κολοκυθοκεφτέδες με τζατζίκι</span><span class="price" data-price="kolokithokeftedes">7,50€</span></li>
-            <li><img src="../assets/images/revithokeftedes.webp" data-modal-img="../assets/images/revithokeftedes@2x.webp" alt="Ρεβυθοκεφτέδες" loading="lazy">
+                data-price="pitarakia">8,00€</span>
+            </li>
+            <li><img src="../assets/images/kolokithokeftedes.webp"
+                data-modal-img="../assets/images/kolokithokeftedes@2x.webp" alt="Κολοκυθοκεφτέδες με τζατζίκι"
+                loading="lazy">
+              <span class="dish">Κολοκυθοκεφτέδες με τζατζίκι</span><span class="price"
+                data-price="kolokithokeftedes">7,50€</span>
+            </li>
+            <li><img src="../assets/images/revithokeftedes.webp"
+                data-modal-img="../assets/images/revithokeftedes@2x.webp" alt="Ρεβυθοκεφτέδες" loading="lazy">
               <span class="dish">Ρεβυθοκεφτέδες</span><span class="price" data-price="revithokeftedes">7,00€</span>
             </li>
             <li><span class="dish">Μελιτζάνες τηγανητές με σάλτσα και τυρί</span><span class="price"
                 data-price="melitzanes">7,90€</span></li>
             <li><span class="dish">Πατάτες τηγανητές</span><span class="price" data-price="patates">5,50€</span></li>
             <li><span class="dish">Σαγανάκι τυρί</span><span class="price" data-price="saganaki">7,00€</span></li>
-            <li><img src="../assets/images/feta-meli.webp" alt="Φέτα τηγανητή σε φύλλο κρούστας με σουσάμι και μέλι" loading="lazy">
+            <li><img src="../assets/images/feta-meli.webp" alt="Φέτα τηγανητή σε φύλλο κρούστας με σουσάμι και μέλι"
+                loading="lazy">
               <span class="dish">Φέτα τηγανητή σε φύλλο κρούστας με σουσάμι και μέλι</span><span class="price"
-                data-price="feta_meli">8,50€</span></li>
+                data-price="feta_meli">8,50€</span>
+            </li>
             <li><span class="dish">Χειροποίητα ντολμαδάκια</span><span class="price"
                 data-price="dolmadakia">7,50€</span></li>
             <li><span class="dish">Χοιρινή τηγανιά</span><span class="price" data-price="tigania">10,00€</span></li>
@@ -457,25 +458,26 @@
       Website design & development by Orfeas Ninos
     </div>
   </footer>
-<div class="dish-modal" id="dishModal">
-  <div class="dish-modal-content">
-    <button class="modal-close">&times;</button>
-    <img id="modalImg" src="" alt="">
-    <h3 id="modalTitle"></h3>
-    <p id="modalText"></p>
-  </div>
-</div>
-<!-- Cookie Consent -->
-<div id="consentBanner" class="consent">
-  <div class="consent-box">
-    <p>
-Χρησιμοποιούμε cookies στατιστικών για να βελτιώνουμε το website μας. Μπορείτε να επιλέξετε αποδοχή ή απόρριψη.  <a href="privacy.html"> Πολιτική απορρήτου</a>  </p>
-    <div class="consent-buttons">
-      <button id="consentReject" class="btn-ghost">Απόρριψη</button>
-      <button id="consentAccept" class="btn-primary">Αποδοχή</button>
+  <div class="dish-modal" id="dishModal">
+    <div class="dish-modal-content">
+      <button class="modal-close">&times;</button>
+      <img id="modalImg" src="" alt="">
+      <h3 id="modalTitle"></h3>
+      <p id="modalText"></p>
     </div>
   </div>
-</div>
+  <!-- Cookie Consent -->
+  <div id="consentBanner" class="consent">
+    <div class="consent-box">
+      <p>
+        Χρησιμοποιούμε cookies στατιστικών για να βελτιώνουμε το website μας. Μπορείτε να επιλέξετε αποδοχή ή απόρριψη.
+        <a href="privacy.html"> Πολιτική απορρήτου</a> </p>
+      <div class="consent-buttons">
+        <button id="consentReject" class="btn-ghost">Απόρριψη</button>
+        <button id="consentAccept" class="btn-primary">Αποδοχή</button>
+      </div>
+    </div>
+  </div>
   <script src="../main.js"></script>
 </body>
 

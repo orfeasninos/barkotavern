@@ -5,22 +5,21 @@
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
-
-    // Disable by default (μέχρι να δώσει consent)
     window['ga-disable-G-W5LVLHN94F'] = true;
   </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="google-site-verification" content="GvQB1BZCKx3jy9dTrjIHMJ237iDLwxJjFs3eHY3mVU4">
 
-  <meta name="google-site-verification" content="GvQB1BZCKx3jy9dTrjIHMJ237iDLwxJjFs3eHY3mVU4" />
-
-  <!-- SEO -->
+  <!-- Primary SEO -->
   <title>Barko Tavern | Παραδοσιακή ταβέρνα στη Μήλο</title>
   <meta name="description"
     content="Το Barko Tavern είναι παραδοσιακή ταβέρνα στον Αδάμαντα Μήλου. Αυθεντικές μηλέικες συνταγές, σπιτικό φαγητό και ζεστή φιλοξενία από το 1993.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://barkotavernmilos.com/el/">
 
+    <!-- Canonical + hreflang -->
+  <link rel="canonical" href="https://barkotavernmilos.com/el/">
   <link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/">
   <link rel="alternate" hreflang="en" href="https://barkotavernmilos.com/en/">
   <link rel="alternate" hreflang="it" href="https://barkotavernmilos.com/it/">
@@ -53,7 +52,7 @@
   <link rel="manifest" href="../assets/favicons/site.webmanifest">
 
   <!-- Structured Data -->
-<script type="application/ld+json">
+  <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -71,6 +70,7 @@
       "name": "Barko Tavern | Παραδοσιακή ταβέρνα στη Μήλο",
       "isPartOf": { "@id": "https://barkotavernmilos.com/el/#website" },
       "about": { "@id": "https://barkotavernmilos.com/el/#restaurant" },
+      "mainEntity": { "@id": "https://barkotavernmilos.com/el/#restaurant" },
       "inLanguage": "el"
     },
     {
@@ -78,7 +78,7 @@
       "@id": "https://barkotavernmilos.com/el/#restaurant",
       "name": "Barko Tavern",
       "url": "https://barkotavernmilos.com/el/",
-      "image": "https://barkotavernmilos.com/assets/images/og-barko-1200x630.png",
+      "image": "https://barkotavernmilos.com/assets/images/og-barko-1200x630-2026.png",
       "telephone": "+30 22870 22660",
       "servesCuisine": ["Ελληνική", "Μεσογειακή"],
       "priceRange": "$$",
@@ -98,10 +98,7 @@
       "openingHoursSpecification": [
         {
           "@type": "OpeningHoursSpecification",
-          "dayOfWeek": [
-            "Monday","Tuesday","Wednesday",
-            "Thursday","Friday","Saturday","Sunday"
-          ],
+          "dayOfWeek": ["Monday","Tuesday","Wednesday", "Thursday","Friday","Saturday","Sunday"],
           "opens": "13:00",
           "closes": "00:00"
         }
@@ -109,8 +106,9 @@
       "hasMenu": {
         "@id": "https://barkotavernmilos.com/el/menu.html#menu"
       },
+      "menu": "https://barkotavernmilos.com/el/menu.html",
       "sameAs": [
-        "https://www.google.com/maps/place/Barko+tavern+restaurant/"
+        "https://maps.app.goo.gl/StZMkrWjXkuVHxUB8"
       ]
     },
     {
