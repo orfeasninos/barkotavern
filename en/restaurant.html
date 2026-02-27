@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){ dataLayer.push(arguments); }
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
 
-  // Disable by default (μέχρι να δώσει consent)
-  window['ga-disable-G-W5LVLHN94F'] = true;
-</script>
+    // Disable by default (μέχρι να δώσει consent)
+    window['ga-disable-G-W5LVLHN94F'] = true;
+  </script>
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,7 +56,7 @@
   <link rel="manifest" href="../assets/favicons/site.webmanifest">
 
   <!-- Structured Data -->
-<script type="application/ld+json">
+  <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -98,23 +98,16 @@
 
 <body>
   <picture class="page-bg">
-  <!-- desktop -->
-  <source
-    srcset="../assets/images/background.webp"
-    media="(min-width: 1024px)"
-  >
+    <!-- desktop -->
+    <source srcset="../assets/images/background-desktop.webp" media="(min-width: 1024px)">
 
-  <!-- mobile (default) -->
-  <img
-    src="../assets/images/background.jpg"
-    alt=""
-    aria-hidden="true"
-  >
-</picture>
+    <!-- mobile (default) -->
+    <img src="../assets/images/background-mobile.webp" alt="" aria-hidden="true">
+  </picture>
 
-<div class="info-bar">
-  ⏰ Open daily: <strong>13:00 – 00:00</strong>
-</div>
+  <div class="info-bar">
+    ⏰ Open daily: <strong>13:00 – 00:00</strong>
+  </div>
   <!-- HEADER -->
   <header>
     <div class="header-container">
@@ -201,7 +194,8 @@
       <p>
         Our cooking is purely Greek and traditional, with an island character.
         We cook daily and prefer simple recipes that highlight quality ingredients.
-        You’ll find home-style dishes, grilled favorites, seafood, and meze plates that pair perfectly with ouzo or wine.
+        You’ll find home-style dishes, grilled favorites, seafood, and meze plates that pair perfectly with ouzo or
+        wine.
       </p>
       <p>
         If you’re visiting Milos for the first time, don’t leave without tasting local specialties
@@ -209,9 +203,9 @@
         depending on the season and the day’s catch.
       </p>
       <div class="dish-gallery">
-        <img src="../assets/images/mousakas.jpg" alt="Moussaka (traditional Greek dish)">
-        <img src="../assets/images/souvlaki.jpg" alt="Charcoal-grilled souvlaki">
-        <img src="../assets/images/xoriatiki.webp" alt="Greek salad">
+        <img src="../assets/images/pitarakia.webp" alt="">
+        <img src="../assets/images/kolokithokeftedes.webp" alt="">
+        <img src="../assets/images/feta-meli.webp" alt="">
       </div>
     </div>
   </section>
@@ -285,19 +279,20 @@
       Website design &amp; development by Orfeas Ninos
     </div>
   </footer>
-<!-- Cookie Consent -->
-<div id="consentBanner" class="consent">
-  <div class="consent-box">
-    <p>
-We use analytics cookies to improve our website. Accept or reject.<a href="privacy.html"> Privacy Policy</a>  </p>
-    </p>
+  <!-- Cookie Consent -->
+  <div id="consentBanner" class="consent">
+    <div class="consent-box">
+      <p>
+        We use analytics cookies to improve our website. Accept or reject.<a href="privacy.html"> Privacy Policy</a>
+      </p>
+      </p>
 
-    <div class="consent-buttons">
-      <button id="consentReject" class="btn-ghost">Reject</button>
-      <button id="consentAccept" class="btn-primary">Accept</button>
+      <div class="consent-buttons">
+        <button id="consentReject" class="btn-ghost">Reject</button>
+        <button id="consentAccept" class="btn-primary">Accept</button>
+      </div>
     </div>
   </div>
-</div>
   <script src="../main.js"></script>
 </body>
 
