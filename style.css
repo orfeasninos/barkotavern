@@ -86,7 +86,6 @@ body {
   top: 0;
   width: 100vw;
   height: 100vh;
-  /* fallback */
   z-index: -2;
   pointer-events: none;
 }
