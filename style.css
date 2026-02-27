@@ -7,17 +7,7 @@
   --r-md: 1.25rem;
   --r-lg: 2rem;
   --r-xl: 2.6rem;
-
-  /* spacing */
-  --s-1: .5rem;
-  --s-2: .75rem;
-  --s-3: 1rem;
-  --s-4: 1.25rem;
-  --s-5: 1.75rem;
-  --s-6: 2.5rem;
-  --s-7: 3.5rem;
-  --s-8: 5rem;
-
+  
   /* typography */
   --font-title: 'Playfair Display', Georgia, serif;
   --font-body: 'Roboto', Arial, sans-serif;
@@ -33,8 +23,7 @@
   --gold: #d4af37;
   --gold-2: #f3e7a5;
 
-  --ink: #1f2c1d;
-  --ink-2: rgba(31, 44, 29, .78);
+  --ink: #105020;
 
   --paper: rgba(255, 255, 255, 0.70);
   --paper-2: rgba(255, 255, 255, 0.50);
@@ -305,7 +294,7 @@ h3 {
 p {
   font-size: clamp(1rem, 1.05vw, 1.06rem);
   line-height: 1.85;
-  color: var(--ink);
+  color: #000000;
   max-width: 72ch;
   margin: 0 auto 1.1rem;
 }
@@ -1512,7 +1501,7 @@ header::after {
 .dish-modal-content p {
   font-size: 0.95rem;
   line-height: 1.6;
-  color: var(--ink-2);
+  color: #000;
   margin-bottom: 0.5rem;
 }
 
@@ -1809,7 +1798,11 @@ body.dark .welcome-box,
 body.dark .menu-category,
 body.dark .menu-sidebar,
 body.dark .menu-links-list,
-body.dark .menu-items {
+body.dark .menu-items,
+body.dark .policy-card,
+body.dark .policy-box,
+body.dark .policy-link,
+body.dark .policy-btn{
   background:
     linear-gradient(180deg, rgba(20, 20, 20, 0.58), rgba(20, 20, 20, 0.46)),
     radial-gradient(circle at 20% 0%, rgba(212, 175, 55, 0.10), transparent 55%),
@@ -1824,7 +1817,11 @@ body.dark .menu-category h3,
 body.dark .section h2,
 body.dark .btn-text,
 body.dark .contact-section p,
-body.dark .menu-item h3 {
+body.dark .menu-item h3,
+body.dark .policy-card h3,
+body.dark .policy-box h3,
+body.dark .policy-link,
+body.dark .policy-btn{
   color: #79b16f;
 }
 
@@ -1832,7 +1829,8 @@ body.dark .container::after {
   opacity: .30;
 }
 
-body.dark p {
+body.dark p,
+body.dark li {
   color: rgba(255, 255, 255, .86);
 }
 
