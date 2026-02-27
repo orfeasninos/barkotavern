@@ -3,59 +3,244 @@
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-  <!-- ================= HOME ================= -->
+  <!-- ========================================================= -->
+  <!-- HOME -->
+  <!-- ========================================================= -->
+
+  <url>
+    <loc>https://barkotavernmilos.com/en/</loc>
+    <lastmod>2026-02-12</lastmod>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://barkotavernmilos.com/en/" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://barkotavernmilos.com/it/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://barkotavernmilos.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://barkotavernmilos.com/en/" />
+  </url>
 
   <url>
     <loc>https://barkotavernmilos.com/el/</loc>
     <lastmod>2026-02-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/" />
+    <priority>0.64</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://barkotavernmilos.com/en/" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/" />
     <xhtml:link rel="alternate" hreflang="it" href="https://barkotavernmilos.com/it/" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://barkotavernmilos.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://barkotavernmilos.com/en/" />
   </url>
 
-  <!-- ================= RESTAURANT ================= -->
+  <url>
+    <loc>https://barkotavernmilos.com/it/</loc>
+    <lastmod>2026-02-12</lastmod>
+    <priority>0.64</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://barkotavernmilos.com/en/" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://barkotavernmilos.com/it/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://barkotavernmilos.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://barkotavernmilos.com/en/" />
+  </url>
+
+  <url>
+    <loc>https://barkotavernmilos.com/fr/</loc>
+    <lastmod>2026-02-12</lastmod>
+    <priority>0.64</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://barkotavernmilos.com/en/" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://barkotavernmilos.com/it/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://barkotavernmilos.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://barkotavernmilos.com/en/" />
+  </url>
+
+  <!-- ========================================================= -->
+  <!-- RESTAURANT -->
+  <!-- ========================================================= -->
+
+  <url>
+    <loc>https://barkotavernmilos.com/en/restaurant.html</loc>
+    <lastmod>2026-02-12</lastmod>
+    <priority>0.64</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://barkotavernmilos.com/en/restaurant.html" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/restaurant.html" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://barkotavernmilos.com/it/restaurant.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://barkotavernmilos.com/fr/restaurant.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://barkotavernmilos.com/en/restaurant.html" />
+  </url>
 
   <url>
     <loc>https://barkotavernmilos.com/el/restaurant.html</loc>
     <lastmod>2026-02-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/restaurant.html" />
+    <priority>0.51</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://barkotavernmilos.com/en/restaurant.html" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/restaurant.html" />
     <xhtml:link rel="alternate" hreflang="it" href="https://barkotavernmilos.com/it/restaurant.html" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://barkotavernmilos.com/fr/restaurant.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://barkotavernmilos.com/en/restaurant.html" />
   </url>
 
-  <!-- ================= MENU ================= -->
+  <url>
+    <loc>https://barkotavernmilos.com/it/restaurant.html</loc>
+    <lastmod>2026-02-12</lastmod>
+    <priority>0.51</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://barkotavernmilos.com/en/restaurant.html" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/restaurant.html" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://barkotavernmilos.com/it/restaurant.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://barkotavernmilos.com/fr/restaurant.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://barkotavernmilos.com/en/restaurant.html" />
+  </url>
+
+  <url>
+    <loc>https://barkotavernmilos.com/fr/restaurant.html</loc>
+    <lastmod>2026-02-12</lastmod>
+    <priority>0.51</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://barkotavernmilos.com/en/restaurant.html" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/restaurant.html" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://barkotavernmilos.com/it/restaurant.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://barkotavernmilos.com/fr/restaurant.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://barkotavernmilos.com/en/restaurant.html" />
+  </url>
+
+  <!-- ========================================================= -->
+  <!-- MENU -->
+  <!-- ========================================================= -->
+
+  <url>
+    <loc>https://barkotavernmilos.com/en/menu.html</loc>
+    <lastmod>2026-02-12</lastmod>
+    <priority>0.64</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://barkotavernmilos.com/en/menu.html" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/menu.html" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://barkotavernmilos.com/it/menu.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://barkotavernmilos.com/fr/menu.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://barkotavernmilos.com/en/menu.html" />
+  </url>
 
   <url>
     <loc>https://barkotavernmilos.com/el/menu.html</loc>
     <lastmod>2026-02-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/menu.html" />
+    <priority>0.51</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://barkotavernmilos.com/en/menu.html" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/menu.html" />
     <xhtml:link rel="alternate" hreflang="it" href="https://barkotavernmilos.com/it/menu.html" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://barkotavernmilos.com/fr/menu.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://barkotavernmilos.com/en/menu.html" />
   </url>
 
-  <!-- ================= GALLERY ================= -->
+  <url>
+    <loc>https://barkotavernmilos.com/it/menu.html</loc>
+    <lastmod>2026-02-12</lastmod>
+    <priority>0.51</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://barkotavernmilos.com/en/menu.html" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/menu.html" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://barkotavernmilos.com/it/menu.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://barkotavernmilos.com/fr/menu.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://barkotavernmilos.com/en/menu.html" />
+  </url>
+
+  <url>
+    <loc>https://barkotavernmilos.com/fr/menu.html</loc>
+    <lastmod>2026-02-12</lastmod>
+    <priority>0.51</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://barkotavernmilos.com/en/menu.html" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/menu.html" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://barkotavernmilos.com/it/menu.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://barkotavernmilos.com/fr/menu.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://barkotavernmilos.com/en/menu.html" />
+  </url>
+
+  <!-- ========================================================= -->
+  <!-- GALLERY -->
+  <!-- ========================================================= -->
+
+  <url>
+    <loc>https://barkotavernmilos.com/en/gallery.html</loc>
+    <lastmod>2026-02-12</lastmod>
+    <priority>0.64</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://barkotavernmilos.com/en/gallery.html" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/gallery.html" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://barkotavernmilos.com/it/gallery.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://barkotavernmilos.com/fr/gallery.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://barkotavernmilos.com/en/gallery.html" />
+  </url>
 
   <url>
     <loc>https://barkotavernmilos.com/el/gallery.html</loc>
     <lastmod>2026-02-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/gallery.html" />
+    <priority>0.51</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://barkotavernmilos.com/en/gallery.html" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/gallery.html" />
     <xhtml:link rel="alternate" hreflang="it" href="https://barkotavernmilos.com/it/gallery.html" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://barkotavernmilos.com/fr/gallery.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://barkotavernmilos.com/en/gallery.html" />
   </url>
 
-  <!-- ================= PRIVACY ================= -->
+  <url>
+    <loc>https://barkotavernmilos.com/it/gallery.html</loc>
+    <lastmod>2026-02-12</lastmod>
+    <priority>0.51</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://barkotavernmilos.com/en/gallery.html" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/gallery.html" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://barkotavernmilos.com/it/gallery.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://barkotavernmilos.com/fr/gallery.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://barkotavernmilos.com/en/gallery.html" />
+  </url>
+
+  <url>
+    <loc>https://barkotavernmilos.com/fr/gallery.html</loc>
+    <lastmod>2026-02-12</lastmod>
+    <priority>0.51</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://barkotavernmilos.com/en/gallery.html" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/gallery.html" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://barkotavernmilos.com/it/gallery.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://barkotavernmilos.com/fr/gallery.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://barkotavernmilos.com/en/gallery.html" />
+  </url>
+
+  <!-- ========================================================= -->
+  <!-- PRIVACY -->
+  <!-- ========================================================= -->
+
+  <url>
+    <loc>https://barkotavernmilos.com/en/privacy.html</loc>
+    <lastmod>2026-02-12</lastmod>
+    <priority>0.30</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://barkotavernmilos.com/en/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://barkotavernmilos.com/it/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://barkotavernmilos.com/fr/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://barkotavernmilos.com/en/privacy.html" />
+  </url>
 
   <url>
     <loc>https://barkotavernmilos.com/el/privacy.html</loc>
     <lastmod>2026-02-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/privacy.html" />
+    <priority>0.30</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://barkotavernmilos.com/en/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/privacy.html" />
     <xhtml:link rel="alternate" hreflang="it" href="https://barkotavernmilos.com/it/privacy.html" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://barkotavernmilos.com/fr/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://barkotavernmilos.com/en/privacy.html" />
+  </url>
+
+  <url>
+    <loc>https://barkotavernmilos.com/it/privacy.html</loc>
+    <lastmod>2026-02-12</lastmod>
+    <priority>0.30</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://barkotavernmilos.com/en/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://barkotavernmilos.com/it/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://barkotavernmilos.com/fr/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://barkotavernmilos.com/en/privacy.html" />
+  </url>
+
+  <url>
+    <loc>https://barkotavernmilos.com/fr/privacy.html</loc>
+    <lastmod>2026-02-12</lastmod>
+    <priority>0.30</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://barkotavernmilos.com/en/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://barkotavernmilos.com/it/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://barkotavernmilos.com/fr/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://barkotavernmilos.com/en/privacy.html" />
   </url>
 
 </urlset>
