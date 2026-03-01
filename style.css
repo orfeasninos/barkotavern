@@ -54,7 +54,6 @@
 ======================= */
 * {
   box-sizing: border-box;
-  max-width: 100vw;
   margin: 0;
   padding: 0;
   scrollbar-width: thin;
@@ -65,7 +64,6 @@
 html,
 body {
   min-height: 100%;
-  overflow-x: hidden;
 }
 
 html {
@@ -78,6 +76,7 @@ body {
   font-family: var(--font-body);
   line-height: 1.65;
   color: #000;
+  overflow-x: clip;
   padding-bottom: 2.5rem;
 }
 
@@ -2618,4 +2617,346 @@ body.dark .consent-box {
   background: linear-gradient(180deg, var(--gold), var(--gold-2));
   border-radius: 999px;
   box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .35);
+}
+
+
+
+
+/* =========================================================
+   MOBILE & SMALL SCREENS — GLOBAL FIX
+========================================================= */
+
+/* prevent horizontal scroll globally */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  max-width: 100vw;
+}
+
+/* =========================================================
+   RESPONSIVE — tablets / mobile
+========================================================= */
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .section {
+    padding: 2.5rem 1rem;
+    margin: 2rem 0;
+  }
+
+  .section>.container {
+    padding: 2.4rem 1rem;
+  }
+
+  /* header */
+  .burger-menu {
+    display: flex;
+  }
+
+  .logo img {
+    height: 60px;
+    max-width: 100%;
+  }
+
+  .header-right {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  .consent.show {
+    display: flex;
+  }
+
+  .consent-box {
+    flex-direction: column;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .consent-buttons {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .header-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(47, 58, 37, 0.95);
+    border-radius: 0 0 12px 12px;
+    padding: 1rem 0;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .header-nav.open {
+    display: flex;
+  }
+
+  .header-nav ul {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0 1rem;
+  }
+
+  .header-nav ul li a {
+    font-size: 1rem;
+    padding: 0.55rem 0.25rem;
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .lang-options {
+    flex-direction: row;
+    gap: 8px;
+    top: 120%;
+    min-width: 120px;
+    padding: 0.5rem;
+  }
+
+  /* MENU: one column + sticky chips */
+  .menu-grid-wrapper {
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+  }
+
+  .menu-sidebar {
+    position: sticky;
+    top: calc(var(--header-h) - 72px);
+    z-index: 950;
+    padding: 0.85rem 0.8rem;
+    width: 100%;
+  }
+
+  .menu-sidebar h2 {
+    font-size: 1.15rem;
+    margin-bottom: 0.55rem;
+  }
+
+  .menu-links-list {
+    display: flex;
+    flex-direction: row;
+    gap: 0.65rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding: 0.7rem;
+    border-radius: 1.25rem;
+    scrollbar-width: none;
+    max-width: 100%;
+  }
+
+  .menu-links-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .menu-links-list li {
+    flex: 0 0 auto;
+  }
+
+  .menu-links-list a {
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .category-card {
+    height: 58px;
+    width: 160px;
+    border-radius: 1rem;
+    flex-shrink: 0;
+  }
+
+  .category-card span {
+    font-size: 0.72rem;
+    letter-spacing: 0.09em;
+  }
+
+  .menu-items {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+    width: 100%;
+  }
+
+  .menu-items li {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    grid-template-areas:
+      "img dish"
+      "img price";
+    gap: 0.5rem;
+  }
+
+  .menu-items li>img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+  }
+
+  .menu-items .dish, 
+  .menu-items .price {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Gallery stacked */
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .gallery-item {
+    grid-column: auto;
+    border-radius: 1.2rem;
+    overflow: hidden;
+  }
+
+  .gallery-item img {
+    height: 220px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  /* Dish gallery */
+  .dish-gallery {
+    grid-template-columns: 1fr;
+    gap: .9rem;
+    width: 100%;
+  }
+
+  .dish-gallery img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+  }
+
+  .welcome-box {
+    padding: 2rem 1rem;
+    margin: 0 1rem;
+  }
+
+  .welcome-box h1 {
+    letter-spacing: 0.05em;
+  }
+
+  .welcome-box span {
+    font-size: 0.8rem;
+  }
+
+  /* Reviews horizontal scroll */
+  .reviews-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 12px;
+    padding: 2px 0 10px;
+    max-width: 100%;
+    scroll-snap-type: x mandatory;
+  }
+
+  .reviews-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .review-card {
+    flex: 0 0 78%;
+    max-width: 280px;
+    scroll-snap-align: start;
+  }
+
+  /* footer safe */
+  .premium-footer-container {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* =========================================================
+   EXTRA SMALL — 480px and below
+========================================================= */
+@media (max-width: 480px) {
+  .scroll-top {
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+  }
+
+  .gallery-item img {
+    height: 200px;
+  }
+
+  .category-card {
+    width: 145px;
+  }
+
+  .menu-items li {
+    padding: 0.9rem;
+  }
+
+  .home-button {
+    bottom: 18px;
+    right: 18px;
+    padding: .7rem 1.1rem;
+    font-size: .85rem;
+  }
+}
+
+/* =========================================================
+   VERY SMALL — 380px and below
+========================================================= */
+@media (max-width: 380px) {
+  :root {
+    --header-h: 92px;
+  }
+
+  header {
+    height: var(--header-h);
+  }
+
+  .logo img {
+    height: 54px;
+  }
+
+  .menu-items li>img {
+    width: 74px;
+    height: 74px;
+  }
+
+  .gallery-item img {
+    height: 190px;
+  }
+
+  .review-card {
+    flex: 0 0 92%;
+  }
+
+  .home-button {
+    bottom: 16px;
+    right: 14px;
+    padding: .65rem 1rem;
+    font-size: .82rem;
+  }
+
+  .scroll-top {
+    width: 34px;
+    height: 34px;
+    font-size: 17px;
+    right: 14px;
+    bottom: 14px;
+  }
 }
