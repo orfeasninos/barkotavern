@@ -64,7 +64,7 @@
 html,
 body {
   min-height: 100%;
-  overflow-x: hidden !important;
+  overflow-x: hidden;
 }
 
 html {
@@ -99,11 +99,11 @@ body {
 }
 
 .page-bg img {
-  position: absolute;
+  position: fixed;      /* <-- fixed αντί για absolute */
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100vw;         /* πάντα full viewport width */
+  height: 100vh;        /* πάντα full viewport height */
   object-fit: cover;
   object-position: center top;
   display: block;
