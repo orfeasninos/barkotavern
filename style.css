@@ -82,10 +82,12 @@ body {
 
 .page-bg {
   position: fixed;
+  width: 100vw;
   left: 0;
   top: 0;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
   z-index: -2;
   pointer-events: none;
 }
@@ -102,6 +104,7 @@ body {
   height: 100%;
   object-fit: cover;
   object-position: center top;
+  display: block;
 }
 
 img,
@@ -2622,149 +2625,3 @@ body.dark .consent-box {
 
 
 
-/* =========================================================
-   MOBILE FIX — REMOVE HORIZONTAL SCROLL
-========================================================= */
-
-/* 1. Global fix */
-html, body {
-  overflow-x: hidden; /* no horizontal scroll */
-  width: 100%;
-}
-
-* {
-  box-sizing: border-box;
-  max-width: 100vw; /* nothing can exceed viewport width */
-  margin: 0;
-  padding: 0;
-}
-
-/* 2. Containers / sections */
-.section,
-.section>.container,
-.menu-grid-wrapper,
-.menu-items,
-.gallery-grid,
-.dish-gallery,
-.reviews-grid {
-  width: 100% !important;
-  max-width: 100vw !important;
-  overflow-x: hidden !important;
-}
-
-/* 3. Images */
-img {
-  max-width: 100%;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  display: block;
-}
-
-/* 4. Horizontal scrollable lists (keep swipeable inside viewport) */
-.menu-links-list,
-.reviews-grid {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  gap: 0.6rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  max-width: 100vw;
-  scroll-snap-type: x mandatory;
-}
-
-.menu-links-list::-webkit-scrollbar,
-.reviews-grid::-webkit-scrollbar {
-  display: none;
-}
-
-.menu-links-list li,
-.review-card {
-  flex: 0 0 auto;
-}
-
-/* 5. Specific small screen adjustments */
-@media (max-width: 768px) {
-  body {
-    padding: 0;
-    margin: 0;
-  }
-
-  .header-nav,
-  .menu-sidebar {
-    width: 100% !important;
-  }
-
-  .menu-items li {
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    grid-template-areas:
-      "img dish"
-      "img price";
-    gap: 0.4rem;
-    padding: 0.6rem;
-    max-width: 100%;
-  }
-
-  .menu-items li img {
-    width: 80px;
-    height: 80px;
-  }
-
-  .category-card {
-    flex-shrink: 0;
-  }
-
-  .gallery-item,
-  .dish-gallery img {
-    width: 100% !important;
-    max-width: 100vw;
-  }
-
-  .welcome-box {
-    margin: 0 0.8rem;
-    padding: 1.8rem 1rem;
-  }
-
-  .scroll-top,
-  .home-button {
-    right: 14px;
-    bottom: 14px;
-  }
-}
-
-/* 6. Extra small devices */
-@media (max-width: 420px) {
-  .gallery-item img {
-    height: 200px;
-  }
-
-  .category-card {
-    width: 140px;
-  }
-
-  .menu-items li>img {
-    width: 74px;
-    height: 74px;
-  }
-}
-
-@media (max-width: 380px) {
-  header {
-    height: 92px;
-  }
-
-  .logo img {
-    height: 54px;
-  }
-
-  .gallery-item img {
-    height: 190px;
-  }
-
-  .review-card {
-    flex: 0 0 92%;
-  }
-}
