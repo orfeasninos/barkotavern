@@ -76,19 +76,21 @@ body {
   font-family: var(--font-body);
   line-height: 1.65;
   color: #000;
-  overflow-x: hidden;
+  overflow-x: clip;
   padding-bottom: 2.5rem;
 }
 
 .page-bg {
   position: fixed;
-  inset: 0;
-  height: 100%;
-  width: 100%;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
   z-index: -2;
   pointer-events: none;
 }
 
+/* modern mobile browsers: ακολουθεί το address bar */
 @supports (height: 100dvh) {
   .page-bg {
     height: 100dvh;
@@ -1020,9 +1022,6 @@ header::after {
 
 .home-button {
   position: static;
-  right: auto;
-  bottom: auto;
-  z-index: 1000;
   display: inline-flex;
   align-items: center;
   gap: .65rem;
@@ -1039,7 +1038,6 @@ header::after {
   letter-spacing: .06em;
   text-transform: uppercase;
   color: var(--ink);
-
   transition: transform .35s var(--ease), box-shadow .35s var(--ease), filter .35s var(--ease);
 }
 
@@ -1643,7 +1641,7 @@ header::after {
 ======================= */
 .policy-layout {
   display: grid;
-  grid-template-columns: 1fr 340px;
+  grid-template-columns: 1fr;
   gap: 1.6rem;
   align-items: start;
 }
@@ -1743,18 +1741,24 @@ header::after {
 }
 
 .policy-btn {
+  position: static;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: .65rem .9rem;
+  gap: .65rem;
+  padding: .75rem 1.25rem;
   border-radius: 999px;
+  margin: 1.25rem 0 0 auto;
+  align-self: flex-end;
   background: linear-gradient(180deg, rgba(255, 255, 255, .88), rgba(241, 255, 236, .68));
   border: 1px solid rgba(212, 175, 55, .28);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, .18);
+  box-shadow:
+    0 18px 46px rgba(0, 0, 0, .22),
+    inset 0 1px 0 rgba(255, 255, 255, .55);
   font-weight: 900;
-  letter-spacing: .04em;
-  color: #105020;
-  transition: transform .25s var(--ease);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease), filter .35s var(--ease);
   cursor: pointer;
 }
 
@@ -1762,21 +1766,6 @@ header::after {
   transform: translateY(-1px);
 }
 
-.policy-btn--ghost {
-  background: rgba(255, 255, 255, .35);
-  box-shadow: none;
-}
-
-/* responsive############################################################################################################# */
-@media (max-width: 1024px) {
-  .policy-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .policy-aside {
-    position: static;
-  }
-}
 
 
 /* =========================================================
