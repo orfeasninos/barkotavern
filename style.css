@@ -87,7 +87,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;   /* βασικό για να μην εμφανίζεται scroll */
+  overflow: hidden;
   z-index: -2;
   pointer-events: none;
 }
@@ -99,11 +99,11 @@ body {
 }
 
 .page-bg img {
-  position: fixed;      /* <-- fixed αντί για absolute */
+  position: fixed;     
   top: 0;
   left: 0;
-  width: 100vw;         /* πάντα full viewport width */
-  height: 100vh;        /* πάντα full viewport height */
+  width: 100vw;        
+  height: 100vh;       
   object-fit: cover;
   object-position: center top;
   display: block;
