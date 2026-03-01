@@ -2621,34 +2621,38 @@ body.dark .consent-box {
 
 
 
-/* Body & html fix */
+/* ===========================================
+   Page background responsive — χωρίς JS
+=========================================== */
 html, body {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100%;
-  overflow-x: hidden; /* απενεργοποιεί horizontal scroll */
+  overflow-x: hidden; /* block horizontal scroll */
 }
 
-/* Page background container */
 .page-bg {
-  position: fixed;       /* πάντα πίσω από όλα */
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;          /* full viewport width */
-  height: 100vh;         /* full viewport height */
-  z-index: -1;           /* πίσω από περιεχόμενο */
+  width: 100%;
+  height: 100vh; /* fallback για Safari χωρίς 100dvh */
+  z-index: -1;
   overflow: hidden;
 }
 
-/* Background image itself */
-.page-bg img,
-.page-bg picture > img {
+@supports (height: 100dvh) {
+  .page-bg {
+    height: 100dvh; /* σύγχρονο CSS για σωστό ύψος σε iOS */
+  }
+}
+
+.page-bg img {
   width: 100%;
   height: 100%;
-  object-fit: cover;     /* γεμίζει πάντα, χωρίς να σπάει aspect ratio */
+  object-fit: cover;
   object-position: center top;
   display: block;
-  pointer-events: none;  /* δεν παρεμβαίνει σε gestures */
+  pointer-events: none;
   user-select: none;
 }
