@@ -82,16 +82,15 @@ body {
 
 .page-bg {
   position: fixed;
-  left: 0;
   top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;   /* βασικό για να μην εμφανίζεται scroll */
   z-index: -2;
-  overflow: hidden;
   pointer-events: none;
 }
 
-/* modern mobile browsers: ακολουθεί το address bar */
 @supports (height: 100dvh) {
   .page-bg {
     height: 100dvh;
@@ -99,19 +98,16 @@ body {
 }
 
 .page-bg img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center top;
   display: block;
-}
-
-img,
-video {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 1rem;
+  max-width: none;   /* αφαιρεί περιορισμούς από global img */
+  border-radius: 0;  /* αφαιρεί border-radius που δίνει global img */
 }
 
 ::selection {
