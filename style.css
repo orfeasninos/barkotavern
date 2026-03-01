@@ -80,14 +80,14 @@ body {
   padding-bottom: 2.5rem;
 }
 
-  .page-bg {
-  position: fixed;       /* κρατάει την εικόνα σταθερή στην οθόνη */
-  top: 0;
-  left: 0;
-  width: 100vw;          /* πλήρες πλάτος viewport */
-  height: 100vh;         /* πλήρες ύψος viewport */
-  overflow: hidden;      /* κρύβει ό,τι ξεφεύγει */
-  z-index: -1;           /* πίσω από το περιεχόμενο */
+.page-bg {
+  position: fixed;
+  inset: 0;                 /* top:0 right:0 bottom:0 left:0 */
+  width: 100vw;
+  height: 100dvh;            /* καλύτερο από 100vh σε mobile */
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;      /* να μην μπλοκάρει clicks */
 }
 
 /* modern mobile browsers: ακολουθεί το address bar */
@@ -104,10 +104,11 @@ body {
 }
 
 .page-bg img {
-  width: 100%;           /* γεμίζει το container */
+  width: 100%;
   height: 100%;
-  object-fit: cover;     /* διατηρεί αναλογία και καλύπτει πλήρως */
-  object-position: center center; /* κρατάει το κέντρο */
+  object-fit: cover;
+  object-position: center center;
+  display: block;
 }
 
 img,
