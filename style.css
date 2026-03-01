@@ -82,24 +82,16 @@ body {
 
 .page-bg {
   position: fixed;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
+  height: 100%;
+  width: 100%;
   z-index: -2;
   pointer-events: none;
 }
 
-/* modern mobile browsers: ακολουθεί το address bar */
 @supports (height: 100dvh) {
   .page-bg {
     height: 100dvh;
-  }
-}
-
-@supports (width: 100dvw) {
-  .page-bg {
-    width: 100dvw;
   }
 }
 
