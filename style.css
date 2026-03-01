@@ -86,8 +86,8 @@ body {
   top: 0;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
   z-index: -2;
+  pointer-events: none;
 }
 
 /* modern mobile browsers: ακολουθεί το address bar */
@@ -98,12 +98,10 @@ body {
 }
 
 .page-bg img {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center top;
-  display: block;
-  pointer-events: none;
 }
 
 img,
@@ -2623,4 +2621,34 @@ body.dark .consent-box {
 
 
 
+/* Body & html fix */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* απενεργοποιεί horizontal scroll */
+}
 
+/* Page background container */
+.page-bg {
+  position: fixed;       /* πάντα πίσω από όλα */
+  top: 0;
+  left: 0;
+  width: 100vw;          /* full viewport width */
+  height: 100vh;         /* full viewport height */
+  z-index: -1;           /* πίσω από περιεχόμενο */
+  overflow: hidden;
+}
+
+/* Background image itself */
+.page-bg img,
+.page-bg picture > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;     /* γεμίζει πάντα, χωρίς να σπάει aspect ratio */
+  object-position: center top;
+  display: block;
+  pointer-events: none;  /* δεν παρεμβαίνει σε gestures */
+  user-select: none;
+}
