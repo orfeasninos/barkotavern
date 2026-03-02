@@ -318,7 +318,7 @@ p a::after {
 /* =======================
    HOME MENU GRID (cards)
 ======================= */
-.menu-grid {
+.home-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
   gap: 2.5rem;
@@ -351,8 +351,7 @@ p a::after {
 
 .menu-item img {
   width: 100%;
-  height: 200px;
-  aspect-ratio: 4 / 3;
+  height: 60%;
   object-fit: cover;
   border-radius: 1rem;
   margin-bottom: 1rem;
@@ -482,7 +481,6 @@ header::after {
 
 .header-nav ul li a {
   position: relative;
-  /* required for underline */
   color: rgba(255, 255, 255, 0.92);
   font-size: 13px;
   letter-spacing: 0.12em;
@@ -516,7 +514,7 @@ header::after {
   box-shadow:
     0 12px 32px rgba(0, 0, 0, .20),
     inset 0 1px 0 rgba(255, 255, 255, .12);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 .header-nav ul li a.active::after {
@@ -1912,10 +1910,6 @@ body.dark .consent-box {
     height: 72px;
   }
 
-  .hero-welcome {
-    min-height: 55vh;
-  }
-
   .welcome-box {
     padding: 1.6rem 2.4rem;
   }
@@ -2190,6 +2184,7 @@ body.dark .consent-box {
   .premium-footer-container {
     opacity: 1;
     transform: none;
+    grid-template-columns: 1fr;
   }
 
   /* κράτα το carousel ΜΕΣΑ στο container */
