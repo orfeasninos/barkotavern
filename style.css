@@ -108,45 +108,6 @@ body {
   display: block;
 }
 
-.info-bar {
-  position: relative;
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(-8px);
-  animation: luxuryFade 1.2s cubic-bezier(.19,1,.22,1) forwards;
-}
-
-@keyframes luxuryFade {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.info-bar::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -6px;
-  width: 60px;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    rgba(212,175,55,0.2),
-    rgba(212,175,55,0.9),
-    rgba(212,175,55,0.2)
-  );
-  transform: translateX(-50%) scaleX(0);
-  transform-origin: center;
-  animation: accentReveal 1.4s cubic-bezier(.19,1,.22,1) 0.5s forwards;
-}
-
-@keyframes accentReveal {
-  to {
-    transform: translateX(-50%) scaleX(1);
-  }
-}
-
 ::selection {
   background: rgba(212, 175, 55, 0.35);
   color: #102014;
@@ -663,6 +624,45 @@ header::after {
   box-shadow: 0 14px 34px rgba(0, 0, 0, .22), inset 0 1px 0 rgba(255, 255, 255, .10);
 }
 
+.info-bar {
+  position: relative;
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(-8px);
+  animation: luxuryFade 1.2s cubic-bezier(.19,1,.22,1) forwards;
+}
+
+@keyframes luxuryFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.info-bar::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(212,175,55,0.2),
+    rgba(212,175,55,0.9),
+    rgba(212,175,55,0.2)
+  );
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  animation: accentReveal 1.4s cubic-bezier(.19,1,.22,1) 0.5s forwards;
+}
+
+@keyframes accentReveal {
+  to {
+    transform: translateX(-50%) scaleX(1);
+  }
+}
+
 /* INFO BAR */
 .info-bar {
   position: fixed;
@@ -681,6 +681,7 @@ header::after {
   color: #fff;
   font-weight: 900;
 }
+
 
 /* =======================
    PREMIUM FOOTER
