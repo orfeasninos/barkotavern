@@ -625,11 +625,19 @@ header::after {
 }
 
 .info-bar {
-  position: relative;
-  display: inline-block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  text-align: center;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: #f3e7a5;
   opacity: 0;
   transform: translateY(-8px);
-  animation: luxuryFade 1.2s cubic-bezier(.19,1,.22,1) forwards;
+  animation: luxuryFade 1s cubic-bezier(.19,1,.22,1) forwards;
 }
 
 @keyframes luxuryFade {
@@ -661,20 +669,6 @@ header::after {
   to {
     transform: translateX(-50%) scaleX(1);
   }
-}
-
-/* INFO BAR */
-.info-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 9999;
-  text-align: center;
-  font-size: 13px;
-  letter-spacing: 0.1em;
-  font-weight: 700;
-  color: #f3e7a5;
 }
 
 .info-bar strong {
