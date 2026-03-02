@@ -351,7 +351,7 @@ p a::after {
 
 .menu-item img {
   width: 100%;
-  height: 150px;
+  height: 200px;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 1rem;
@@ -1829,6 +1829,10 @@ body.dark .menu-items .price,
 body.dark .review-name,
 body.dark .review-text {
   color: rgba(255, 255, 255, 0.92);
+}
+
+body.dark .dish-modal-content h3 {
+  color: #79b16f;
 }
 
 body.dark .dish-modal-content {
