@@ -7,7 +7,6 @@
 (() => {
   "use strict";
   document.addEventListener("DOMContentLoaded", () => {
-    const state = createState();
 
     // INIT ONCE (1 φορά)
     initTheme(state);
@@ -38,17 +37,6 @@
     initVisualViewportBgSync();     // “continuous” via events — safe if .page-bg exists
   });
 
-  /* =========================
-     STATE
-  ========================= */
-  function createState() {
-    const mqMobile = window.matchMedia("(max-width: 768px)");
-    return {
-      mqMobile,
-      isMobile: mqMobile.matches,
-      rafScrollPending: false,
-    };
-  }
   /* =========================
      COOKIE CONSENT
   ========================= */
@@ -145,11 +133,6 @@
       // keep scroll stable on mobile
       requestAnimationFrame(() => window.scrollTo(0, y));
     });
-
-    // keep state.isMobile updated on rotate/resizes
-    state.mqMobile.addEventListener?.("change", (e) => {
-      state.isMobile = e.matches;
-    });
   }
 
   /* =========================================================
@@ -170,7 +153,7 @@
         const offset = header ? header.offsetHeight : 0;
         const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
 
-        window.scrollTo({ top: y, behavior: state.isMobile ? "auto" : "smooth" });
+        window.scrollTo({ top: y, behavior: "smooth"});
       });
     });
   }
@@ -181,12 +164,6 @@
   function initSectionReveal(state) {
     const sections = document.querySelectorAll(".section");
     if (!sections.length) return;
-
-    // Mobile: show immediately
-    if (state.isMobile) {
-      sections.forEach((sec) => sec.classList.add("section-visible"));
-      return;
-    }
 
     if (!("IntersectionObserver" in window)) {
       sections.forEach((sec) => sec.classList.add("section-visible"));
@@ -311,7 +288,7 @@
     document.body.appendChild(topBtn);
 
     topBtn.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: state.isMobile ? "auto" : "smooth" });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
     const update = () => {
