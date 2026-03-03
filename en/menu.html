@@ -45,7 +45,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
 
   <!-- CSS -->
   <link rel="stylesheet" href="../style.css">
@@ -182,7 +182,7 @@
             </a>
           </li>
           <li>
-            <a href="#cooked" class="category-card" style="background-image:url('../assets/images/mousakas.jpg')">
+            <a href="#cooked" class="category-card" style="background-image:url('../assets/images/kokoras.webp')">
               <span>Home-style cooked</span>
             </a>
           </li>
@@ -218,17 +218,31 @@
             <li><span class="dish">Taramosalata</span><span class="price" data-price="taramosalata">6,00€</span></li>
             <li><span class="dish">Fava with sun-dried tomato, capers & onion</span><span class="price"
                 data-price="fava">7,50€</span></li>
-            <li><span class="dish">Traditional Milos cheese pies</span><span class="price"
+            <li>
+              <img src="../assets/images/pitarakia.webp" alt="Traditional Milos cheese pies" loading="lazy">
+              <span class="dish">
+              
+              Traditional Milos cheese pies</span><span class="price"
                 data-price="pitarakia">8,00€</span></li>
-            <li><span class="dish">Zucchini fritters with tzatziki</span><span class="price"
+            <li>
+              <img src="../assets/images/kolokithokeftedes.webp"
+                data-modal-img="../assets/images/kolokithokeftedes@2x.webp" alt="zuchini balls"
+                loading="lazy">
+              <span class="dish">Zucchini fritters with tzatziki</span><span class="price"
                 data-price="kolokithokeftedes">7,50€</span></li>
-            <li><span class="dish">Chickpea fritters</span><span class="price" data-price="revithokeftedes">7,00€</span>
+            <li>
+              <img src="../assets/images/revithokeftedes.webp"
+                data-modal-img="../assets/images/revithokeftedes@2x.webp" alt="Chickpea fritters" loading="lazy">
+              <span class="dish">Chickpea fritters</span><span class="price" data-price="revithokeftedes">7,00€</span>
             </li>
             <li><span class="dish">Fried eggplant with sauce & cheese</span><span class="price"
                 data-price="melitzanes">7,90€</span></li>
             <li><span class="dish">French fries</span><span class="price" data-price="patates">5,50€</span></li>
             <li><span class="dish">Saganaki cheese</span><span class="price" data-price="saganaki">7,00€</span></li>
-            <li><span class="dish">Fried feta in phyllo pastry with sesame & honey</span><span class="price"
+            <li>
+              <img src="../assets/images/feta-meli.webp" alt="Φέτα τηγανητή σε φύλλο κρούστας με σουσάμι και μέλι"
+                loading="lazy">
+              <span class="dish">Fried feta in phyllo pastry with sesame & honey</span><span class="price"
                 data-price="feta_meli">8,50€</span></li>
             <li><span class="dish">Handmade stuffed vine leaves</span><span class="price"
                 data-price="dolmadakia">7,50€</span></li>
@@ -392,25 +406,26 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
+ <!-- FOOTER -->
   <footer class="premium-footer">
     <div class="premium-footer-container">
+
       <div class="footer-brand">
         <img src="../assets/images/logo.webp" alt="Barko Tavern Logo">
         <p>Homemade food • Traditional recipes • Milos</p>
       </div>
 
       <div class="footer-links" id="footer-nav">
-        <h4>Navigation</h4>
-        <a href="/en/">Home</a>
+        <h3>Navigation</h3>
+        <a href="index.html">Home</a>
         <a href="restaurant.html">The Restaurant</a>
         <a href="menu.html">Menu</a>
         <a href="gallery.html">Gallery</a>
-        <a href="/en/#contact">Contact</a>
+        <a href="index.html#contact">Contact</a>
       </div>
 
       <div class="footer-contact">
-        <h4>Contact</h4>
+        <h3>Contact</h3>
         <a href="https://www.google.com/maps/place/Barko+tavern+restaurant/@36.7283522,24.4438267,17z/data=!3m1!4b1!4m6!3m5!1s0x1498df472dfb6355:0x2cd14b966d368b5f!8m2!3d36.7283479!4d24.4464016!16s%2Fg%2F11btyk6by8?entry=ttu&g_ep=EgoyMDI2MDEyMS4wIKXMDSoASAFQAw%3D%3D"
           target="_blank" rel="noopener noreferrer">
           <span>📍</span>
@@ -444,14 +459,21 @@
       Website design &amp; development by <a href="mailto:orfeasninos5@gmail.com">Orfeas Ninos</a>
     </div>
   </footer>
+
+  <div class="dish-modal" id="dishModal">
+    <div class="dish-modal-content">
+      <button class="modal-close">&times;</button>
+      <img id="modalImg" src="placeholder.webp" alt="modal image">
+      <h3 id="modalTitle">Modal title</h3>
+      <p id="modalText"></p>
+    </div>
+  </div>
   <!-- Cookie Consent -->
   <div id="consentBanner" class="consent">
     <div class="consent-box">
       <p>
         We use analytics cookies to improve our website. Accept or reject.<a href="privacy.html"> Privacy Policy</a>
       </p>
-      </p>
-
       <div class="consent-buttons">
         <button id="consentReject" class="btn-ghost">Reject</button>
         <button id="consentAccept" class="btn-primary">Accept</button>
