@@ -2,49 +2,30 @@
    VARIABLES / TOKENS
 ======================= */
 :root {
-  /* radius */
   --r-sm: 0.9rem;
   --r-md: 1.25rem;
   --r-lg: 2rem;
   --r-xl: 2.6rem;
-  
-  /* typography */
   --font-title: 'Playfair Display', Georgia, serif;
-  --font-body: 'Roboto', Arial, sans-serif;
-
-  /* motion */
+  --font-body: 'Source Sans 3', sans-serif;
   --ease: cubic-bezier(.2, .8, .2, 1);
   --ease-2: cubic-bezier(.2, 1, .2, 1);
   --dur-1: 180ms;
   --dur-2: 600ms;
   --dur-3: 750ms;
-
-  /* palette */
   --gold: #d4af37;
   --gold-2: #f3e7a5;
-
   --ink: #0D2E0B;
-
   --paper: rgba(255, 255, 255, 0.70);
   --paper-2: rgba(255, 255, 255, 0.50);
-
-  /* effects */
   --blur: blur(10px);
   --shadow-sm: 0 10px 25px rgba(0, 0, 0, 0.08);
   --shadow-md: 0 16px 34px rgba(0, 0, 0, 0.10);
   --shadow-lg: 0 22px 60px rgba(0, 0, 0, 0.12);
   --shadow-xl: 0 30px 70px rgba(0, 0, 0, 0.22);
-
-  /* ring */
   --ring: 0 0 0 3px rgb(17, 104, 0);
-
-  /* header height */
   --header-h: 120px;
-
-  /* container width */
   --wrap: 1200px;
-
-  /* subtle decor (kept elegant) */
   --gold-glow: 0 10px 26px rgba(212, 175, 55, .16);
   --ornament-line: linear-gradient(90deg, transparent, rgba(212, 175, 55, .75), rgba(243, 231, 165, .70), rgba(212, 175, 55, .75), transparent);
 }
@@ -113,13 +94,11 @@ body {
   color: #102014;
 }
 
-/* Links (don’t kill globally) */
 a {
   text-decoration: none;
   color: inherit;
 }
 
-/* Allow selecting content text */
 body,
 p,
 h1,
@@ -132,19 +111,18 @@ a {
   user-select: text;
 }
 
-/* Prevent selection only on UI bits */
+img,
 button,
 .burger-menu,
 .theme-toggle,
 .lang-current,
 .category-card,
-.menu-item img,
-.logo img {
+.info-bar, 
+.info-bar strong {
   user-select: none;
   -webkit-user-drag: none;
 }
 
-/* Focus visibility */
 a:focus-visible,
 button:focus-visible,
 .theme-toggle:focus-visible,
@@ -178,7 +156,6 @@ button:focus-visible,
   overflow: hidden;
 }
 
-/* subtle premium container sheen (not heavy) */
 .container::after {
   content: "";
   position: absolute;
@@ -205,7 +182,6 @@ button:focus-visible,
   }
 }
 
-/* Each section uses its inner container as the “card” */
 .section>.container {
   padding: 5rem 2rem;
   border-radius: var(--r-xl);
@@ -222,7 +198,6 @@ button:focus-visible,
   box-shadow: none;
 }
 
-/* reveal hooks */
 .section-hidden {
   opacity: 0;
   transform: translateY(40px);
@@ -241,7 +216,7 @@ h1,
 h2,
 h3 {
   font-family: var(--font-title);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.1rem;
 }
 
 .section h2 {
@@ -253,7 +228,6 @@ h3 {
   text-shadow: 0 10px 28px rgba(0, 0, 0, .10);
 }
 
-/* main ornament underline */
 .section h2::after {
   content: "";
   display: block;
@@ -264,20 +238,6 @@ h3 {
   background: linear-gradient(90deg, transparent, var(--gold), var(--gold-2), var(--gold), transparent);
   box-shadow: var(--gold-glow);
   opacity: .95;
-}
-
-/* tiny second line (very subtle) */
-.section h2::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: -12px;
-  width: min(3.2rem, 22vw);
-  height: 1px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, .65), transparent);
-  opacity: .45;
 }
 
 p {
@@ -294,7 +254,6 @@ p {
   }
 }
 
-/* nice links inside paragraphs */
 p a {
   color: #33692d;
   font-weight: 800;
@@ -337,7 +296,6 @@ p a::after {
   overflow: hidden;
 }
 
-/* subtle corner highlight (YES – you approved) */
 .menu-item::before {
   content: "";
   position: absolute;
@@ -420,7 +378,6 @@ header {
     inset 0 1px 0 rgba(255, 255, 255, 0.10);
 }
 
-/* subtle gold edge (very light) */
 header::after {
   content: "";
   position: absolute;
@@ -441,7 +398,6 @@ header::after {
   gap: 18px;
 }
 
-/* LOGO — shrink only via transform */
 .logo {
   display: flex;
   align-items: center;
@@ -467,7 +423,6 @@ header::after {
   gap: 16px;
 }
 
-/* NAV */
 .header-nav ul {
   list-style: none;
   display: flex;
@@ -480,19 +435,19 @@ header::after {
 }
 
 .header-nav ul li a {
+  font-family: var(--font-title);
   position: relative;
   color: rgba(255, 255, 255, 0.92);
   font-size: 13px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  font-weight: 800;
   padding: 10px 10px;
   border-radius: 999px;
   display: inline-block;
   transition: transform var(--dur-1) var(--ease), background var(--dur-1) var(--ease), box-shadow var(--dur-1) var(--ease);
+  white-space: nowrap;
 }
 
-/* underline shimmer */
 .header-nav ul li a::after {
   content: "";
   position: absolute;
@@ -521,7 +476,6 @@ header::after {
   transform: scaleX(1);
 }
 
-/* BURGER */
 .burger-menu {
   display: none;
   flex-direction: column;
@@ -541,7 +495,6 @@ header::after {
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* Lang & theme controls */
 .nav-controls {
   display: flex;
   align-items: center;
@@ -622,7 +575,6 @@ header::after {
   box-shadow: 0 14px 34px rgba(0, 0, 0, .22), inset 0 1px 0 rgba(255, 255, 255, .10);
 }
 
-/* INFO BAR */
 .info-bar {
   position: fixed;
   top: 0;
@@ -679,7 +631,7 @@ header::after {
   }
 }
 
-.premium-footer h4 {
+.premium-footer h3 {
   color: var(--gold);
   font-size: 1.1rem;
   margin-bottom: 1rem;
@@ -688,7 +640,7 @@ header::after {
   overflow: hidden;
 }
 
-.premium-footer h4::after {
+.premium-footer h3::after {
   content: "";
   display: block;
   height: 3px;
@@ -804,8 +756,6 @@ header::after {
     transform: rotate(360deg) translate(0, 0);
   }
 }
-
-/* ===== Cookie Consent ===== */
 
 .consent {
   position: fixed;
@@ -982,10 +932,18 @@ header::after {
   margin-bottom: .6rem;
 }
 
-.review-name {
-  font-weight: 900;
-  letter-spacing: .04em;
-  color: var(--ink);
+.review-top > .review-name {
+  font-size: 1.3rem;
+}
+
+.review-top > .review-name::after {
+  content: "";
+  display: block;
+  width: 8rem;
+  height: 2px;
+  margin: 3px auto 0;
+  background: linear-gradient(90deg, transparent, var(--gold), var(--gold-2), var(--gold), transparent);
+  border-radius: 999px;
 }
 
 .review-stars {
@@ -1045,13 +1003,10 @@ header::after {
   position: relative;
   display: inline-block;
   transform: translateY(-1px);
-
-  /* 🔑 visibility boost */
   filter:
     drop-shadow(0 6px 14px rgba(0, 0, 0, .28)) drop-shadow(0 0 0.6px rgba(0, 0, 0, .45));
 }
 
-/* fork */
 .menu-icon::before {
   content: "";
   position: absolute;
@@ -1067,10 +1022,8 @@ header::after {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, .35),
     0 0 0 1px rgba(0, 0, 0, .28);
-  /* outline */
 }
 
-/* knife */
 .menu-icon::after {
   content: "";
   position: absolute;
@@ -1086,7 +1039,6 @@ header::after {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, .45),
     0 0 0 1px rgba(0, 0, 0, .28);
-  /* outline */
 }
 
 .maps-pin {
@@ -1208,7 +1160,6 @@ header::after {
   overscroll-behavior: contain;
 }
 
-/* category cards */
 .category-card {
   position: relative;
   height: 78px;
@@ -1290,7 +1241,6 @@ header::after {
   z-index: 1;
 }
 
-/* items grid */
 .menu-items {
   list-style: none;
   margin: 0;
@@ -1533,7 +1483,6 @@ header::after {
       rgba(212, 175, 55, .12),
       rgba(212, 175, 55, 0));
 
-  /* ✅ VALIDATOR-SAFE MASK */
   -webkit-mask-image:
     linear-gradient(#000, #000),
     linear-gradient(#000, #000);
@@ -1998,7 +1947,6 @@ body.dark .consent-box {
     padding: 2.4rem 1.25rem;
   }
 
-  /* header */
   .burger-menu {
     display: flex;
   }
@@ -2064,7 +2012,6 @@ body.dark .consent-box {
     padding: 0.5rem;
   }
 
-  /* MENU: one column + sticky chips */
   .menu-grid-wrapper {
     grid-template-columns: 1fr;
     gap: 1.1rem;
@@ -2136,7 +2083,6 @@ body.dark .consent-box {
     height: 80px;
   }
 
-  /* Gallery stacked */
   .gallery-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -2151,7 +2097,6 @@ body.dark .consent-box {
     height: 220px;
   }
 
-  /* Restaurant stacked dish gallery */
   .dish-gallery {
     grid-template-columns: 1fr;
     gap: .9rem;
@@ -2180,21 +2125,18 @@ body.dark .consent-box {
     font-size: 0.8rem;
   }
 
-  /* footer visible safe */
   .premium-footer-container {
     opacity: 1;
     transform: none;
     grid-template-columns: 1fr;
   }
 
-  /* κράτα το carousel ΜΕΣΑ στο container */
   .reviews-section .container {
     overflow: hidden;
     padding-left: 12px;
     padding-right: 12px;
   }
 
-  /* horizontal swipe */
   .reviews-grid {
     display: flex;
     flex-wrap: nowrap;
@@ -2209,10 +2151,8 @@ body.dark .consent-box {
 
   .reviews-grid::-webkit-scrollbar {
     display: none;
-    /* Chrome / Safari */
   }
 
-  /* review cards */
   .review-card {
     flex: 0 0 78%;
     max-width: 280px;
@@ -2220,7 +2160,6 @@ body.dark .consent-box {
   }
 }
 
-/* very small */
 @media (max-width: 480px) {
   .scroll-top {
     width: 35px;
@@ -2258,8 +2197,6 @@ body.dark .consent-box {
    EXTRA SMALL — 380px and below
 ========================================================= */
 @media (max-width: 380px) {
-
-  /* header / nav */
   :root {
     --header-h: 92px;
   }
@@ -2291,7 +2228,6 @@ body.dark .consent-box {
     height: 40px;
   }
 
-  /* section/card spacing */
   .section {
     margin: 1.6rem 0;
     padding: 2.1rem 0;
@@ -2321,7 +2257,6 @@ body.dark .consent-box {
     line-height: 1.65;
   }
 
-  /* hero */
   .hero-welcome {
     min-height: 52vh;
   }
@@ -2359,7 +2294,6 @@ body.dark .consent-box {
     font-size: 0.70rem;
   }
 
-  /* menu items */
   .menu-items li {
     padding: 0.85rem;
   }
@@ -2378,17 +2312,14 @@ body.dark .consent-box {
     font-size: 0.95rem;
   }
 
-  /* gallery */
   .gallery-item img {
     height: 190px;
   }
 
-  /* reviews: swipe cards a bit wider */
   .review-card {
     flex: 0 0 92%;
   }
 
-  /* floating buttons */
   .home-button {
     bottom: 16px;
     right: 14px;
