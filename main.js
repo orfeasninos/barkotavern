@@ -170,7 +170,7 @@
         const offset = header ? header.offsetHeight : 0;
         const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
 
-        window.scrollTo({ top: y, behavior: state.isMobile ? "smooth" : "smooth" });
+        window.scrollTo({ top: y, behavior: state.isMobile ? "auto" : "smooth" });
       });
     });
   }
