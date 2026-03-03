@@ -44,7 +44,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
 
   <!-- CSS -->
   <link rel="stylesheet" href="../style.css">
@@ -141,6 +141,7 @@
   <div class="info-bar">
     ⏰ Καθημερινά ανοιχτά: <strong>13:00 – 00:00</strong>
   </div>
+
   <!-- HEADER -->
   <header>
     <div class="header-container">
@@ -189,7 +190,6 @@
     </div>
   </header>
 
-
   <section class="hero-welcome">
     <div class="hero-bg" aria-hidden="true"></div>
 
@@ -197,14 +197,12 @@
       <h1>Barko | Αυθεντικές Μηλέικες συνταγές</h1>
       <span>Παραδοσιακή ταβέρνα • Από το 1993</span>
       <p>
-        Barko - Είμαστε παραδοσιακή ταβέρνα στον Αδάμαντα Μήλου,
+        Είμαστε παραδοσιακή ταβέρνα στον Αδάμαντα Μήλου,
         κοντά στο λιμάνι. Αν ψάχνετε πού να φάτε στη Μήλο,
         εδώ θα βρείτε αυθεντική ελληνική κουζίνα και τοπικές συνταγές.
       </p>
     </div>
   </section>
-
-
 
   <!-- MENU -->
   <section id="menu" class="section menu-section">
@@ -213,20 +211,20 @@
       <div class="home-grid">
 
         <div class="menu-item">
-          <img src="../assets/images/kokoras.webp" alt="Κόκορας Μήλου" width="300px" height="200px" loading="lazy">
+          <img src="../assets/images/kokoras.webp" alt="Κόκορας Μήλου" width="300" height="200" loading="lazy">
           <h3>Κόκορας Μήλου</h3>
           <p>Παραδοσιακή συνταγή της Μήλου με ντόπιο κόκορα, χειροποίητα ζυμαρικά και σάλτσα ντομάτας από ντόπιες ντομάτες</p>
         </div>
 
         <div class="menu-item">
-          <img src="../assets/images/skordolazana.webp" alt="Σκορδολάζανα Μήλου" width="300px" height="200px" loading="lazy">
+          <img src="../assets/images/skordolazana.webp" alt="Σκορδολάζανα Μήλου" width="300" height="200" loading="lazy">
           <h3>Σκορδολάζανα Μήλου</h3>
           <p>Παραδοσιακή συνταγή της Μήλου με χειροποίητα ζυμαρικά, Μηλέικο μπελτέ και την παραδοσιακή σάλτσα σκόρδου
           </p>
         </div>
 
         <div class="menu-item">
-          <img src="../assets/images/pitarakia.webp" alt="Πιταράκια Μήλου" width="300px" height="200px" loading="lazy">
+          <img src="../assets/images/pitarakia.webp" alt="Πιταράκια Μήλου" width="300" height="200" loading="lazy">
           <h3>Πιταράκια Μήλου</h3>
           <p>Παραδοσιακή Μηλέικη συνταγή. Γεμιστά με ντόπιο τυρί, κρεμμύδι και μυρωδικά</p>
         </div>
@@ -237,9 +235,6 @@
         <span class="menu-icon" aria-hidden="true"></span>
       </a>
     </div>
-
-
-    </div>
   </section>
 
   <!-- GOOGLE REVIEWS (NO API) -->
@@ -249,8 +244,8 @@
       <div class="reviews-grid">
         <article class="review-card">
           <div class="review-top">
-            <div class="review-name">Annie Y</div>
-            <div class="review-stars" aria-label="5 stars">★★★★★</div>
+            <h2 class="review-name">Annie Y</h2>
+            <div class="review-stars" role="img" aria-label="5 stars">★★★★★</div>
           </div>
           <p class="review-text">
             Παραδοσιακή ατμόσφαιρα με λεμονιά &amp; κληματαριά. Πήγαμε 2 φορές — υπέροχη φάβα, παϊδάκια και κατσίκι.
@@ -259,8 +254,8 @@
 
         <article class="review-card">
           <div class="review-top">
-            <div class="review-name">Ruby P</div>
-            <div class="review-stars" aria-label="5 stars">★★★★★</div>
+            <h2 class="review-name">Ruby P</h2>
+            <div class="review-stars" role="img" aria-label="5 stars">★★★★★</div>
           </div>
           <p class="review-text">
             Cute αυλή κάτω από κληματαριά. Πολύ ευγενικό service. Το φαγητό ήταν νόστιμο και “τίμιο”.
@@ -269,8 +264,8 @@
 
         <article class="review-card">
           <div class="review-top">
-            <div class="review-name">Arusan S</div>
-            <div class="review-stars" aria-label="5 stars">★★★★★</div>
+            <h2 class="review-name">Arusan S</h2>
+            <div class="review-stars" role="img" aria-label="5 stars">★★★★★</div>
           </div>
           <p class="review-text">
             Νόστιμα, value-for-money πιάτα και αυθεντικό vibe. Γαρίδες σαγανάκι, καλαμάρι και κολοκυθοκεφτέδες top.
@@ -279,15 +274,14 @@
 
         <article class="review-card">
           <div class="review-top">
-            <div class="review-name">Alison T</div>
-            <div class="review-stars" aria-label="5 stars">★★★★★</div>
+            <h2 class="review-name">Alison T</h2>
+            <div class="review-stars" role="img" aria-label="5 stars">★★★★★</div>
           </div>
           <p class="review-text">
             Αυθεντικό οικογενειακό φαγητό. Παρότι είχε πολύ κόσμο, όλα ήρθαν γρήγορα και ήταν πεντανόστιμα.
           </p>
         </article>
       </div>
-
 
       <!-- (κρατάς και το fixed κουμπί αν το θες) -->
       <a class="home-button"
@@ -352,7 +346,7 @@
       </div>
 
       <div class="footer-links" id="footer-nav">
-        <h4>Πλοήγηση</h4>
+        <h3>Πλοήγηση</h3>
         <a href="/el/">Αρχική</a>
         <a href="restaurant.html">Το εστιατόριο</a>
         <a href="menu.html">Μενού</a>
@@ -361,7 +355,7 @@
       </div>
 
       <div class="footer-contact">
-        <h4>Επικοινωνία</h4>
+        <h3>Επικοινωνία</h3>
         <a href="https://www.google.com/maps/place/Barko+tavern+restaurant/@36.7283522,24.4438267,17z/data=!3m1!4b1!4m6!3m5!1s0x1498df472dfb6355:0x2cd14b966d368b5f!8m2!3d36.7283479!4d24.4464016!16s%2Fg%2F11btyk6by8?entry=ttu&g_ep=EgoyMDI2MDEyMS4wIKXMDSoASAFQAw%3D%3D"
           target="_blank" rel="noopener noreferrer">
           <span>📍</span>
@@ -399,8 +393,8 @@
   <div class="dish-modal" id="dishModal">
     <div class="dish-modal-content">
       <button class="modal-close">&times;</button>
-      <img id="modalImg" src="" alt="Εικόνα πιάτου">
-      <h3 id="modalTitle"></h3>
+      <img id="modalImg" src="placeholder.webp" alt="Εικόνα πιάτου">
+      <h3 id="modalTitle">Modal title</h3>
       <p id="modalText"></p>
     </div>
   </div>
@@ -416,8 +410,6 @@
       </div>
     </div>
   </div>
-
-
   <script src="../main.js"></script>
 </body>
 
