@@ -1698,6 +1698,72 @@ header::after {
   transform: translateY(-1px);
 }
 
+/* =======================
+  Contact form
+======================= */
+#contactForm {
+  max-width: 520px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: rgba(255, 253, 248, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  font-family: var(--font-body);
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+
+#contactForm input,
+#contactForm textarea {
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  font-size: var(--r-sm);
+  outline: none;
+  transition: box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+
+#contactForm input:focus,
+#contactForm textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.35);
+}
+
+#contactForm button[type="submit"] {
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  border: none;
+  background: var(--gold);
+  color: #1b2416;
+  font-weight: 700;
+  font-size: var(--r-md);
+  cursor: pointer;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+
+#contactForm button[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+#contactForm label {
+  font-weight: 600;
+  font-size: var(--r-sm);
+  color: var(--ink);
+}
+
+#form-message {
+  margin-top: 0.5rem;
+  font-weight: 600;
+  color: #33692d;
+  text-align: center;
+  min-height: 1.2em;
+}
+
 /* =========================================================
    DARK MODE — soft “night filter”
 ========================================================= */
@@ -2599,75 +2665,3 @@ color:#888;
 
 
 
-/* =======================
-   BOOKING FORM
-======================= */
-#bookingForm {
-  max-width: 520px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background: rgba(255, 253, 248, 0.85);
-  backdrop-filter: blur(10px);
-  border-radius: var(--r-xl);
-  box-shadow: var(--shadow-lg);
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  font-family: var(--font-body);
-  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
-}
-
-#bookingForm input,
-#bookingForm select {
-  padding: 0.75rem 1rem;
-  border-radius: 999px;
-  border: 1px solid rgba(212, 175, 55, 0.22);
-  font-size: var(--r-sm);
-  outline: none;
-  transition: box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
-}
-
-#bookingForm input:focus,
-#bookingForm select:focus {
-  border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.35);
-}
-
-#bookingForm button[type="submit"] {
-  padding: 0.75rem 1.5rem;
-  border-radius: 999px;
-  border: none;
-  background: var(--gold);
-  color: #1b2416;
-  font-weight: 700;
-  font-size: var(--r-md);
-  cursor: pointer;
-  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.10);
-}
-
-#bookingForm button[type="submit"]:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-}
-
-#bookingForm label {
-  font-weight: 600;
-  font-size: var(--r-sm);
-  color: var(--ink);
-}
-
-#bookingMessage {
-  margin-top: 0.5rem;
-  font-weight: 600;
-  color: #33692d;
-  text-align: center;
-  min-height: 1.2em;
-}
-
-@media (max-width: 768px) {
-  #bookingForm {
-    margin: 1.5rem;
-    padding: 1.5rem;
-  }
-}
