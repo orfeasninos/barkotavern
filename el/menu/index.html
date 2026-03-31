@@ -56,53 +56,66 @@
   <link rel="manifest" href="/assets/favicons/site.webmanifest">
 
   <!-- Structured Data -->
-  <script type="application/ld+json">
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
+
     {
       "@type": "WebPage",
       "@id": "https://barkotavernmilos.com/el/menu/#webpage",
       "url": "https://barkotavernmilos.com/el/menu/",
-      "name": "Μενού Barko Tavern",
+      "name": "Barko Tavern Menu",
       "inLanguage": "el",
       "isPartOf": { "@id": "https://barkotavernmilos.com/el/#website" },
       "about": { "@id": "https://barkotavernmilos.com/el/#restaurant" },
       "mainEntity": { "@id": "https://barkotavernmilos.com/el/menu/#menu" }
     },
+
+    {
+      "@type": "Restaurant",
+      "@id": "https://barkotavernmilos.com/el/#restaurant",
+      "name": "Barko Tavern",
+      "url": "https://barkotavernmilos.com/el/"
+    },
+
     {
       "@type": "Menu",
       "@id": "https://barkotavernmilos.com/el/menu/#menu",
-      "name": "Μενού Barko Tavern",
+      "name": "Barko Tavern Menu",
+      "description": "Explore traditional Greek dishes, seafood, grilled meats and local specialties at Barko Tavern in Milos.",
       "inLanguage": "el",
       "url": "https://barkotavernmilos.com/el/menu/",
+      "isPartOf": { "@id": "https://barkotavernmilos.com/el/#restaurant" },
       "hasMenuSection": [
-        { "@type": "MenuSection", "name": "Ορεκτικά" },
-        { "@type": "MenuSection", "name": "Σαλάτες" },
-        { "@type": "MenuSection", "name": "Μαγειρευτά" },
-        { "@type": "MenuSection", "name": "Της Ώρας" },
-        { "@type": "MenuSection", "name": "Θαλασσινά" },
-        { "@type": "MenuSection", "name": "Ποτά & Κρασιά" }
+        { "@type": "MenuSection", "name": "Appetizers" },
+        { "@type": "MenuSection", "name": "Salads" },
+        { "@type": "MenuSection", "name": "Cooked Dishes" },
+        { "@type": "MenuSection", "name": "Grilled" },
+        { "@type": "MenuSection", "name": "Seafood" },
+        { "@type": "MenuSection", "name": "Drinks & Wine" }
       ]
     },
+
     {
       "@type": "BreadcrumbList",
       "@id": "https://barkotavernmilos.com/el/menu/#breadcrumbs",
       "itemListElement": [
-        {
+        { 
           "@type": "ListItem",
           "position": 1,
-          "name": "Αρχική",
+          "name": "Home",
           "item": "https://barkotavernmilos.com/el/"
         },
-        {
+        { 
           "@type": "ListItem",
           "position": 2,
-          "name": "Μενού",
+          "name": "Menu",
           "item": "https://barkotavernmilos.com/el/menu/"
         }
       ]
     }
+
   ]
 }
 </script>

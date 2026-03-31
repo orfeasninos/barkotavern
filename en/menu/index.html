@@ -57,10 +57,11 @@
   <link rel="manifest" href="/assets/favicons/site.webmanifest">
 
   <!-- Structured Data -->
-  <script type="application/ld+json">
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
+
     {
       "@type": "WebPage",
       "@id": "https://barkotavernmilos.com/en/menu/#webpage",
@@ -71,12 +72,22 @@
       "about": { "@id": "https://barkotavernmilos.com/en/#restaurant" },
       "mainEntity": { "@id": "https://barkotavernmilos.com/en/menu/#menu" }
     },
+
+    {
+      "@type": "Restaurant",
+      "@id": "https://barkotavernmilos.com/en/#restaurant",
+      "name": "Barko Tavern",
+      "url": "https://barkotavernmilos.com/en/"
+    },
+
     {
       "@type": "Menu",
       "@id": "https://barkotavernmilos.com/en/menu/#menu",
       "name": "Barko Tavern Menu",
+      "description": "Explore traditional Greek dishes, seafood, grilled meats and local specialties at Barko Tavern in Milos.",
       "inLanguage": "en",
       "url": "https://barkotavernmilos.com/en/menu/",
+      "isPartOf": { "@id": "https://barkotavernmilos.com/en/#restaurant" },
       "hasMenuSection": [
         { "@type": "MenuSection", "name": "Appetizers" },
         { "@type": "MenuSection", "name": "Salads" },
@@ -86,6 +97,7 @@
         { "@type": "MenuSection", "name": "Drinks & Wine" }
       ]
     },
+
     {
       "@type": "BreadcrumbList",
       "@id": "https://barkotavernmilos.com/en/menu/#breadcrumbs",
@@ -104,6 +116,7 @@
         }
       ]
     }
+
   ]
 }
 </script>
@@ -441,14 +454,6 @@
           <span>📧</span>
           <span>barkomilos@gmail.com</span>
         </a>
-        <div class="footer-review">
-          <a href="GOOGLE_REVIEW_LINK" target="_blank" rel="noopener" class="footer-review">
-            <img src="/assets/images/google-maps.webp">
-          </a>
-          <a href="GOOGLE_REVIEW_LINK" target="_blank" rel="noopener" class="footer-review">
-            <img src="/assets/images/tripadvisor.webp">
-          </a>
-        </div>
       </div>
     </div>
 
