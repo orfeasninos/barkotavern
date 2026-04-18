@@ -35,3 +35,13 @@
   transition: transform 700ms var(--ease-2), filter 700ms var(--ease-2);
   filter: saturate(1.06) contrast(1.04);
 }
+
+@media (max-width: 1024px) {
+  .gallery-item {
+    grid-column: span 6;
+  }
+
+  .gallery-item img {
+    height: 100%;
+  }
+}

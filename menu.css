@@ -226,3 +226,9 @@
   white-space: nowrap;
 }
 
+@media (max-width: 1024px) {
+  .menu-items {
+    grid-template-columns: 1fr !important;
+    width: 100%;
+  }
+}

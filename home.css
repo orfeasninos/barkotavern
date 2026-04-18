@@ -82,7 +82,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.7rem;
-    background: var(--terracotta);
+    background: var(--gold);
     color: var(--white);
     font-family: 'Jost', sans-serif;
     font-size: 0.75rem;
@@ -94,7 +94,7 @@
     border-radius: 2px;
     transition: background 0.25s, transform 0.2s;
   }
-  .hero-cta:hover { background: #b5562f; transform: translateY(-2px); }
+  .hero-cta:hover { background: #4f964a69; transform: translateY(-2px); }
 .container.has-bottom-cta {
   display: flex;
   flex-direction: column;
