@@ -3,8 +3,10 @@
 
 <head>
   <link rel="preload" as="image" href="/assets/images/background-mobile.webp" fetchpriority="high">
-  <link rel="preload" href="/assets/fonts/playfair-display-v40-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/source-sans-3-v19-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/playfair-display-v40-latin-regular.woff2" as="font" type="font/woff2"
+    crossorigin>
+  <link rel="preload" href="/assets/fonts/source-sans-3-v19-latin-regular.woff2" as="font" type="font/woff2"
+    crossorigin>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
@@ -44,7 +46,7 @@
   <meta property="og:locale:alternate" content="it_IT">
 
   <!-- CSS -->
-   <link rel="stylesheet" href="/gallery.css">
+  <link rel="stylesheet" href="/gallery.css">
   <link rel="stylesheet" href="/style.css">
 
   <!-- Favicons -->
@@ -158,16 +160,52 @@
       <h2>Τα πιάτα μας</h2>
       <div class="gallery-grid">
         <div class="gallery-item">
-          <img src="/assets/images/pitarakia.webp" alt="Πιταράκια Μήλου">
+          <img src="/assets/images/kokoras.webp" data-modal-img="/assets/images/kokoras@2x.webp"
+            alt="Κόκορας κοκκινιστός με χειροποίητες χυλοπίτες" loading="lazy">
         </div>
         <div class="gallery-item">
-          <img src="/assets/images/kolokithokeftedes.webp" alt="Κολοκυθοκεφτέδες στο Barko">
+          <img src="/assets/images/makaronia-me-kima.webp" data-modal-img="/assets/images/makaronia-me-kima@2x.webp"
+            alt="Μακαρόνια με κιμά" loading="lazy">
         </div>
         <div class="gallery-item">
-          <img src="/assets/images/feta-meli.webp" alt="Φέτα με μέλι και σουσάμι">
+          <img src="/assets/images/kalamarakia.webp" data-modal-img="/assets/images/kalamarakia@2x.webp"
+            alt="Καλαμάρι τηγανητό" loading="lazy">
         </div>
         <div class="gallery-item">
-          <img src="/assets/images/revithokeftedes.webp" alt="Ρεβιθοκεφτέδες στο Barko">
+          <img src="/assets/images/kolokithokeftedes.webp" data-modal-img="/assets/images/kolokithokeftedes@2x.webp"
+            alt="Κολοκυθοκεφτέδες με τζατζίκι" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/images/pitarakia.webp" data-modal-img="/assets/images/pitarakia@2x.webp" alt="Πιτάρακια"
+            loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/images/patates.webp" data-modal-img="/assets/images/patates@2x.webp" alt="Πατάτες τηγανητές"
+            loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/images/revithokeftedes.webp" data-modal-img="/assets/images/revithokeftedes@2x.webp"
+            alt="Ρεβυθοκεφτέδες" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/images/feta-meli.webp" data-modal-img="/assets/images/feta-meli@2x.webp"
+            alt="Φέτα τηγανητή σε φύλλο κρούστας με σουσάμι και μέλι" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/images/revithokeftedes.webp" data-modal-img="/assets/images/revithokeftedes@2x.webp"
+            alt="Ρεβυθοκεφτέδες" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/images/revithokeftedes.webp" data-modal-img="/assets/images/revithokeftedes@2x.webp"
+            alt="Ρεβυθοκεφτέδες" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/images/revithokeftedes.webp" data-modal-img="/assets/images/revithokeftedes@2x.webp"
+            alt="Ρεβυθοκεφτέδες" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/images/revithokeftedes.webp" data-modal-img="/assets/images/revithokeftedes@2x.webp"
+            alt="Ρεβυθοκεφτέδες" loading="lazy">
         </div>
       </div>
     </div>
@@ -239,7 +277,8 @@
   <div class="dish-modal" id="dishModal">
     <div class="dish-modal-content">
       <button class="modal-close">&times;</button>
-      <img id="modalImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Εικόνα πιάτου">
+      <img id="modalImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+        alt="Εικόνα πιάτου">
       <h3 id="modalTitle">Modal title</h3>
       <p id="modalText"></p>
     </div>

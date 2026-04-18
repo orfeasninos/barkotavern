@@ -26,9 +26,9 @@
     initMenuCategoryActive(state);
     if (document.querySelector(".menu-grid-wrapper") || document.querySelector("[data-price]")) {
       loadPrices();
-    }              
-    initDishModal();             
-    initVisualViewportBgSync();  
+    }
+    initDishModal();
+    initVisualViewportBgSync();
   });
 
   /* =========================
@@ -86,7 +86,7 @@
   }
 
   function loadAnalytics() {
-    
+
     if (window.__gaLoaded) return;
     window.__gaLoaded = true;
 
@@ -169,18 +169,18 @@
      ACTIVE NAV LINK (one-page)
   ========================================================= */
   function initActiveNavLink() {
-  const navLinks = document.querySelectorAll(
-    ".header-nav ul > li:not(.nav-controls) > a"
-  );
-  if (!navLinks.length) return;
-  const normPath = (p) => String(p || "").replace(/\/+$/, ""); // κόβει trailing "/"
-  const path = normPath(location.pathname); // "/el/" -> "/el"
-  navLinks.forEach(link => {
-    const href = link.getAttribute("href");
-    const linkPage = normPath(href).split("/").pop();
-    link.classList.toggle("active", linkPage === path.split("/").pop());
-  });
-}
+    const navLinks = document.querySelectorAll(
+      ".header-nav ul > li:not(.nav-controls) > a"
+    );
+    if (!navLinks.length) return;
+    const normPath = (p) => String(p || "").replace(/\/+$/, ""); // κόβει trailing "/"
+    const path = normPath(location.pathname); // "/el/" -> "/el"
+    navLinks.forEach(link => {
+      const href = link.getAttribute("href");
+      const linkPage = normPath(href).split("/").pop();
+      link.classList.toggle("active", linkPage === path.split("/").pop());
+    });
+  }
 
   /* =========================================================
      SCROLL TO TOP
@@ -451,19 +451,14 @@
 
         const modalSrc = img.dataset.modalImg || img.src;
         openModal({ src: modalSrc, title: "", text: "" });
-
-
       });
     });
 
     // GALLERY images
     document.querySelectorAll(".gallery-item img").forEach((img) => {
       img.addEventListener("click", () => {
-        openModal({
-          src: img.src,
-          title: img.alt || "Φωτογραφία",
-          text: "",
-        });
+        const modalSrc = img.dataset.modalImg || img.src;
+        openModal({ src: modalSrc, title: img.alt, text: "" });
       });
     });
 
