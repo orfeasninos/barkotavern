@@ -1,25 +1,6 @@
   :root {
     --navy:      #1e2d18;
-    --sea:       #2e4220;
-    --terracotta:#c9a84c;
-    --sand:      #3a4f28;
     --cream:     #f0ede4;
-    --stone:     #8a9a78;
-    --white:     #ffffff;
-  }
-
-  .hero {
-    background: var(--navy);
-    color: var(--cream);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 3rem 2rem;
-    position: relative;
-    overflow: hidden;
   }
 
   .hero::before {
@@ -83,7 +64,7 @@
     align-items: center;
     gap: 0.7rem;
     background: var(--gold);
-    color: var(--white);
+    color: white;
     font-family: 'Jost', sans-serif;
     font-size: 0.75rem;
     font-weight: 500;
