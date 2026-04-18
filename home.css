@@ -1,8 +1,3 @@
-  :root {
-    --navy:      #1e2d18;
-    --cream:     #f0ede4;
-  }
-
   .hero::before {
     content: '';
     position: absolute;
