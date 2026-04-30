@@ -1047,9 +1047,13 @@ header::after {
     flex: 0 0 auto;
   }
 
-  .menu-links-list a {
-    white-space: nowrap;
-  }
+.menu-links-list a {
+  display: block;
+  flex: 0 0 auto;
+  width: 160px;
+  min-width: 160px;
+  white-space: nowrap;
+}
 
   .category-card {
     height: 58px;
