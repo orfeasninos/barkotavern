@@ -27,7 +27,8 @@
   <link rel="alternate" hreflang="fr" href="https://barkotavernmilos.com/fr/">
   <link rel="alternate" hreflang="x-default" href="https://barkotavernmilos.com/en/">
   <meta property="og:title" content="Barko Tavern Milos | Traditional Greek Taverna in Adamas">
-  <meta property="og:description" content="Authentic local Milos flavors, homemade Greek dishes and warm hospitality in Adamas, Milos — since 1993.">
+  <meta property="og:description"
+    content="Authentic local Milos flavors, homemade Greek dishes and warm hospitality in Adamas, Milos — since 1993.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://barkotavernmilos.com/en/">
   <meta property="og:image" content="https://barkotavernmilos.com/assets/images/og-barko-1200x630.jpg">
@@ -139,13 +140,19 @@
       object-fit: cover;
     }
 
-    .hero-welcome {
+    .hero {
+      background: #1e2d18;
+      color: #f0ede4;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      min-height: 100vh;
+      justify-content: center;
       text-align: center;
+      padding: 3rem 2rem;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
     }
 
     .info-bar {
@@ -217,14 +224,11 @@
   </header>
 
   <main>
-    <section class="hero-welcome">
-      <div class="hero-bg" aria-hidden="true"></div>
-
-      <div class="welcome-box">
-        <h1>Barko Tavern | Authentic Greek Flavours in Milos</h1>
-        <span>Traditional Greek Tavern • Since 1993</span>
-        <p>Authentic local flavours, warm hospitality and a relaxed island atmosphere in the heart of Milos.</p>
-      </div>
+    <section class="hero">
+      <span class="hero-eyebrow">Adamas · Milos · Since 1993</span>
+      <h1>Barko<br><em>Tavern</em></h1>
+      <p class="hero-sub">Authentic Greek flavors in Adamas, Milos</p>
+      <a href="/el/menu/" class="hero-cta">View menu →</a>
     </section>
 
     <!-- MENU -->
@@ -261,20 +265,21 @@
       </div>
     </section>
 
-     <section class="section reviews-section">
-    <div class="container has-bottom-cta">
-      <h2>Guest Reviews</h2>
-      <div class="reviews-grid">
-        <div class="sk-ww-google-reviews" data-embed-id="25667099"></div><script src="https://widgets.sociablekit.com/google-reviews/widget.js" defer></script>
+    <section class="section reviews-section">
+      <div class="container has-bottom-cta">
+        <h2>Guest Reviews</h2>
+        <div class="reviews-grid">
+          <div class="sk-ww-google-reviews" data-embed-id="25667099"></div>
+          <script src="https://widgets.sociablekit.com/google-reviews/widget.js" defer></script>
+        </div>
+        <a class="home-button"
+          href="https://www.google.gr/maps/place/Barko+tavern+restaurant/@36.7283479,24.4464016,17z/data=!4m8!3m7!1s0x1498df472dfb6355:0x2cd14b966d368b5f!8m2!3d36.7283479!4d24.4464016!9m1!1b1!16s%2Fg%2F11btyk6by8?entry=ttu&g_ep=EgoyMDI2MDIwMS4wIKXMDSoASAFQAw%3D%3D"
+          target="_blank" rel="noopener noreferrer" aria-label="View all reviews on Google">
+          <span class="btn-text">View more reviews</span>
+          <img src="/assets/images/google-maps.webp" alt="Google Maps" width="25" height="25">
+        </a>
       </div>
-      <a class="home-button"
-        href="https://www.google.gr/maps/place/Barko+tavern+restaurant/@36.7283479,24.4464016,17z/data=!4m8!3m7!1s0x1498df472dfb6355:0x2cd14b966d368b5f!8m2!3d36.7283479!4d24.4464016!9m1!1b1!16s%2Fg%2F11btyk6by8?entry=ttu&g_ep=EgoyMDI2MDIwMS4wIKXMDSoASAFQAw%3D%3D"
-        target="_blank" rel="noopener noreferrer" aria-label="View all reviews on Google">
-        <span class="btn-text">View more reviews</span>
-        <img src="/assets/images/google-maps.webp" alt="Google Maps" width="25" height="25">
-      </a>
-    </div>
-  </section>
+    </section>
 
     <!-- ABOUT -->
     <section id="about" class="section about-section">
