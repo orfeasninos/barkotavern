@@ -1474,6 +1474,9 @@ header::after {
     transform: scale(1.08);
     filter: saturate(1.15) contrast(1.08);
   }
+  .dev-credit .dev-tooltip {
+    display: block;
+  }
 }
 
 /* =========================
