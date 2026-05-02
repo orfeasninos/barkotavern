@@ -71,6 +71,7 @@ body {
   overflow-x: hidden;
   padding-bottom: 2.5rem;
   user-select: text;
+  cursor: default;
 }
 
 .page-bg {
@@ -233,6 +234,7 @@ p {
   color: #000000;
   max-width: 72ch;
   margin: 0 auto 1.1rem;
+  cursor: text;
 }
 
 @media (min-width: 1024px) {
@@ -1473,9 +1475,6 @@ header::after {
   .gallery-item:active img {
     transform: scale(1.08);
     filter: saturate(1.15) contrast(1.08);
-  }
-  .dev-credit .dev-tooltip {
-    display: block;
   }
 }
 

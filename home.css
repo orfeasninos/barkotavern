@@ -398,36 +398,3 @@ body.dark .sk-post {
   .hero h1      { animation: fadeUp 0.7s ease 0.15s both; }
   .hero-sub     { animation: fadeUp 0.7s ease 0.28s both; }
   .hero-cta     { animation: fadeUp 0.7s ease 0.42s both; }
-
-
-
-
-
-
-  
-  .dev-credit {
-  position: relative;
-  cursor: default;
-  font-weight: 700;
-  border-bottom: 1px dashed rgba(212, 175, 55, 0.4);
-}
-
-.dev-tooltip {
-  display: none;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgb(30, 38, 22);
-  border: 1px solid rgba(212, 175, 55, 0.25);
-  border-radius: 10px;
-  padding: 0.75rem 1rem;
-  font-size: 0.78rem;
-  white-space: nowrap;
-  line-height: 1.7;
-  color: #FAF9F6;
-  z-index: 999;
-}
-
-.dev-credit:hover .dev-tooltip {
-  display: block;
-}
