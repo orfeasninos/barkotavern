@@ -1289,6 +1289,10 @@ header::after {
     filter: saturate(1.05);
   }
 
+  a:hover {
+    text-decoration: none;
+  }
+
   p a:hover {
     color: var(--gold);
     transform: translateY(-1px);
