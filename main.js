@@ -9,7 +9,6 @@
   document.addEventListener("DOMContentLoaded", () => {
     const state = createState();
     initTheme(state);
-    initSectionReveal(state);
     initActiveNavLink();
     initScrollTop(state);
     initBurgerMenu(state);
@@ -120,38 +119,6 @@
     });
     state.mqMobile.addEventListener?.("change", (e) => {
       state.isMobile = e.matches;
-    });
-  }
-
-/* =========================================================
-      SECTION REVEAL (Performance Optimized)
-   ========================================================= */
-  function initSectionReveal(state) {
-    const sections = document.querySelectorAll(".section");
-    if (!sections.length) return;
-
-    // Mobile ή browsers χωρίς υποστήριξη: Εμφάνιση αμέσως χωρίς υπολογισμούς
-    if (state.isMobile || !("IntersectionObserver" in window)) {
-      sections.forEach((sec) => sec.classList.add("section-visible"));
-      return;
-    }
-
-    // Χρησιμοποιούμε ΜΟΝΟ τον Observer που είναι asynchronous και δεν μπλοκάρει το main thread
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("section-visible");
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { 
-      threshold: 0.05, // Μόλις φανεί το 5% του section
-      rootMargin: "0px 0px -50px 0px" // Ξεκινάει λίγο πριν μπει στην οθόνη
-    });
-
-    sections.forEach((sec) => {
-      sec.classList.add("section-hidden");
-      revealObserver.observe(sec);
     });
   }
 
