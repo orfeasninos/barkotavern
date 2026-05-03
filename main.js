@@ -9,7 +9,6 @@
   document.addEventListener("DOMContentLoaded", () => {
     const state = createState();
     initActiveNavLink();
-    initScrollTop(state);
     initBurgerMenu(state);
     initLanguageDropdown(state);
     initConsent();
@@ -120,35 +119,6 @@
   }
 
   /* =========================================================
-     SCROLL TO TOP
-  ========================================================= */
-  function initScrollTop(state) {
-    const topBtn = document.createElement("button");
-    topBtn.className = "scroll-top";
-    topBtn.type = "button";
-    topBtn.textContent = "↑";
-    document.body.appendChild(topBtn);
-
-    topBtn.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: state.isMobile ? "auto" : "smooth" });
-    });
-
-    const update = () => {
-      state.rafScrollPending = false;
-      // Αντί για .style.display, παίζουμε με class
-      document.body.classList.toggle("is-scrolled", window.scrollY > 400);
-    };
-
-    window.addEventListener("scroll", () => {
-      if (state.rafScrollPending) return;
-      state.rafScrollPending = true;
-      requestAnimationFrame(update);
-    }, { passive: true });
-
-    update();
-  }
-
-  /* =========================================================
      BURGER MENU
   ========================================================= */
   function initBurgerMenu() {
@@ -213,9 +183,9 @@
     window.addEventListener("resize", apply, { passive: true });
   }
 
-  /* =========================================================
-       MENU PAGE: active category (Barko Optimized - No Reflow)
-      ========================================================= */
+ /* =========================================================
+      MENU PAGE: active category (Barko Optimized - No Reflow)
+     ========================================================= */
   function initMenuCategoryActive(state) {
     const menuSections = document.querySelectorAll(".menu-category");
     const menuLinks = document.querySelectorAll(".menu-links-list a");
@@ -234,18 +204,18 @@
         link.classList.toggle("active", isActive);
 
         // Scroll μόνο αν υπάρχει ανάγκη και πάντα μέσα σε requestAnimationFrame
-        if (isActive && linksContainer) {
-          // Διπλό RAF για να βεβαιωθούμε ότι ο browser έχει τελειώσει με το στυλ
-          requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-              const linkOffset = link.offsetLeft;
-              linksContainer.scrollTo({
-                left: linkOffset - (linksContainer.clientWidth / 2),
-                behavior: "smooth"
-              });
-            });
-          });
-        }
+if (isActive && linksContainer) {
+  // Διπλό RAF για να βεβαιωθούμε ότι ο browser έχει τελειώσει με το στυλ
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const linkOffset = link.offsetLeft; 
+      linksContainer.scrollTo({
+        left: linkOffset - (linksContainer.clientWidth / 2),
+        behavior: "smooth"
+      });
+    });
+  });
+}
       });
     };
 
