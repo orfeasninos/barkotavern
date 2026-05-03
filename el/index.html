@@ -2,14 +2,6 @@
 <html lang="el">
 
 <head>
-  <link rel="preload" as="image" href="/assets/images/background-mobile.webp" media="(max-width: 1023px)"
-    fetchpriority="high">
-  <link rel="preload" as="image" href="/assets/images/background-desktop.webp" media="(min-width: 1024px)"
-    fetchpriority="high">
-  <link rel="preload" href="/assets/fonts/playfair-display-v40-latin-regular.woff2" as="font" type="font/woff2"
-    crossorigin>
-  <link rel="preload" href="/assets/fonts/source-sans-3-v19-latin-regular.woff2" as="font" type="font/woff2"
-    crossorigin>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
@@ -169,7 +161,7 @@
 <body>
   <picture class="page-bg">
     <source srcset="/assets/images/background-desktop.webp" media="(min-width: 1024px)">
-    <img src="/assets/images/background-mobile.webp" alt="" aria-hidden="true" fetchpriority="high">
+    <img src="/assets/images/background-mobile.webp" alt="" aria-hidden="true">
   </picture>
   <div class="info-bar">
     ⏰ Καθημερινά ανοιχτά: <strong>13:00 – 00:00</strong>
@@ -252,7 +244,6 @@
       <h2>Κριτικές επισκεπτών</h2>
       <div class="reviews-grid">
         <div class="sk-ww-google-reviews" data-embed-id="25667099"></div>
-        <script src="https://widgets.sociablekit.com/google-reviews/widget.js" defer></script>
       </div>
       <a class="home-button"
         href="https://www.google.gr/maps/place/Barko+tavern+restaurant/@36.7283479,24.4464016,17z/data=!4m8!3m7!1s0x1498df472dfb6355:0x2cd14b966d368b5f!8m2!3d36.7283479!4d24.4464016!9m1!1b1!16s%2Fg%2F11btyk6by8?entry=ttu&g_ep=EgoyMDI2MDIwMS4wIKXMDSoASAFQAw%3D%3D"
@@ -373,6 +364,27 @@
     </div>
   </div>
   <script src="/main.js" defer></script>
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const reviewsSection = document.querySelector('.reviews-section');
+    let widgetLoaded = false;
+    if (reviewsSection && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting && !widgetLoaded) {
+            widgetLoaded = true;
+            const script = document.createElement('script');
+            script.src = "https://widgets.sociablekit.com/google-reviews/widget.js";
+            script.defer = true;
+            document.body.appendChild(script);
+            observer.disconnect();
+          }
+        });
+      }, { rootMargin: "300px" });
+      observer.observe(reviewsSection);
+    }
+  });
+</script>
 </body>
 
 </html>
