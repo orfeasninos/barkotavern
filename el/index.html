@@ -42,15 +42,12 @@
   <meta property="og:locale:alternate" content="en_US">
   <meta property="og:locale:alternate" content="fr_FR">
   <meta property="og:locale:alternate" content="it_IT">
-<!-- Ασύγχρονη φόρτωση του CSS -->
-<link rel="stylesheet" href="/style.css" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="/home.css" media="print" onload="this.media='all'">
-
-<!-- Backup για χρήστες που έχουν κλειστό το JavaScript -->
-<noscript>
-  <link rel="stylesheet" href="/style.css">
-  <link rel="stylesheet" href="/home.css">
-</noscript>
+  <link rel="stylesheet" href="/style.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="/home.css" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/home.css">
+  </noscript>
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
   <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png">
@@ -169,6 +166,19 @@
       position: relative;
       overflow: hidden;
       cursor: default;
+    }
+
+    .info-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 9000;
+      text-align: center;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      color: #f3e7a5;
     }
   </style>
 </head>
