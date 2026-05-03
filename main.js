@@ -135,7 +135,8 @@
 
     const update = () => {
       state.rafScrollPending = false;
-      topBtn.style.display = window.scrollY > 400 ? "flex" : "none";
+      // Αντί για .style.display, παίζουμε με class
+      document.body.classList.toggle("is-scrolled", window.scrollY > 400);
     };
 
     window.addEventListener("scroll", () => {
@@ -212,9 +213,9 @@
     window.addEventListener("resize", apply, { passive: true });
   }
 
- /* =========================================================
-      MENU PAGE: active category (Barko Optimized - No Reflow)
-     ========================================================= */
+  /* =========================================================
+       MENU PAGE: active category (Barko Optimized - No Reflow)
+      ========================================================= */
   function initMenuCategoryActive(state) {
     const menuSections = document.querySelectorAll(".menu-category");
     const menuLinks = document.querySelectorAll(".menu-links-list a");
@@ -234,13 +235,14 @@
 
         // Scroll μόνο αν υπάρχει ανάγκη και πάντα μέσα σε requestAnimationFrame
         if (isActive && linksContainer) {
+          // Διπλό RAF για να βεβαιωθούμε ότι ο browser έχει τελειώσει με το στυλ
           requestAnimationFrame(() => {
-            // Χρησιμοποιούμε μια πιο απλή προσέγγιση για το scroll
-            // που δεν "παγώνει" τον browser στην αρχή.
-            const linkOffset = link.offsetLeft; 
-            linksContainer.scrollTo({
-              left: linkOffset - (linksContainer.clientWidth / 2),
-              behavior: "smooth"
+            requestAnimationFrame(() => {
+              const linkOffset = link.offsetLeft;
+              linksContainer.scrollTo({
+                left: linkOffset - (linksContainer.clientWidth / 2),
+                behavior: "smooth"
+              });
             });
           });
         }
