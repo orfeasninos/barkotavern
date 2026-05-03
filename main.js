@@ -319,14 +319,6 @@
     });
 
     menuSections.forEach((sec) => menuObserver.observe(sec));
-
-    // initial (refresh mid-page)
-    const initial = [...menuSections]
-      .map((s) => ({ s, top: s.getBoundingClientRect().top }))
-      .filter((x) => x.top < window.innerHeight * 0.55)
-      .sort((a, b) => b.top - a.top)[0];
-
-    if (initial?.s?.id) setActive(initial.s.id);
   }
 
 
