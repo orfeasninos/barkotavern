@@ -231,11 +231,10 @@
     window.addEventListener("resize", apply, { passive: true });
   }
 
-  /* =========================================================
-     MENU PAGE: active category (IntersectionObserver)
-  ========================================================= */
+ /* =========================================================
+      MENU PAGE: active category (Barko Optimized - No Reflow)
+     ========================================================= */
   function initMenuCategoryActive(state) {
-    const sidebar = document.querySelector(".menu-sidebar");
     const menuSections = document.querySelectorAll(".menu-category");
     const menuLinks = document.querySelectorAll(".menu-links-list a");
     const linksContainer = document.querySelector(".menu-links-list");
@@ -243,85 +242,44 @@
     if (!menuSections.length || !menuLinks.length || !("IntersectionObserver" in window)) return;
 
     let lastActiveId = null;
-    let rafPending = false;
 
     const setActive = (id) => {
+      if (lastActiveId === id) return;
+      lastActiveId = id;
+
       menuLinks.forEach((link) => {
         const isActive = link.getAttribute("href") === `#${id}`;
         link.classList.toggle("active", isActive);
 
-        if (!isActive) return;
-
-        const mobileNow =
-          state.mqMobile.matches || sidebar?.classList.contains("menu-sidebar--mobile");
-
-        if (!linksContainer || rafPending) return;
-
-        rafPending = true;
-        requestAnimationFrame(() => {
-          rafPending = false;
-
-          if (mobileNow) {
-            // center horizontal chips
-            const left =
-              link.offsetLeft - linksContainer.clientWidth / 2 + link.clientWidth / 2;
-            linksContainer.scrollTo({ left, behavior: "smooth" });
-          } else {
-            // center vertical list
-            const cRect = linksContainer.getBoundingClientRect();
-            const lRect = link.getBoundingClientRect();
-            const current = linksContainer.scrollTop;
-            const offset = lRect.top - cRect.top - cRect.height / 2 + lRect.height / 2;
-
+        // Scroll μόνο αν υπάρχει ανάγκη και πάντα μέσα σε requestAnimationFrame
+        if (isActive && linksContainer) {
+          requestAnimationFrame(() => {
+            // Χρησιμοποιούμε μια πιο απλή προσέγγιση για το scroll
+            // που δεν "παγώνει" τον browser στην αρχή.
+            const linkOffset = link.offsetLeft; 
             linksContainer.scrollTo({
-              top: Math.max(0, current + offset),
-              behavior: "smooth",
+              left: linkOffset - (linksContainer.clientWidth / 2),
+              behavior: "smooth"
             });
-          }
-        });
+          });
+        }
       });
     };
 
     const menuObserver = new IntersectionObserver((entries) => {
-      const hits = entries.filter((e) => e.isIntersecting);
-      if (!hits.length) return;
-
-      // near-bottom lock (avoid wrong last highlight)
-      const nearBottom =
-        window.scrollY + window.innerHeight >=
-        document.documentElement.scrollHeight - 40;
-
-      if (nearBottom) {
-        const lastId = "drinks"; // άλλαξε αν το τελευταίο σου section έχει άλλο id
-        if (lastActiveId !== lastId) {
-          lastActiveId = lastId;
-          setActive(lastId);
-        }
-        return;
+      // Παίρνουμε το πρώτο στοιχείο που μπαίνει στο "οπτικό πεδίο"
+      const visible = entries.find(e => e.isIntersecting);
+      if (visible) {
+        setActive(visible.target.id);
       }
-
-      // choose closest to focus point
-      const focusY = window.innerHeight * 0.35;
-      hits.sort((a, b) => {
-        const da = Math.abs(a.boundingClientRect.top - focusY);
-        const db = Math.abs(b.boundingClientRect.top - focusY);
-        return da - db;
-      });
-
-      const id = hits[0].target.id;
-      if (!id || id === lastActiveId) return;
-
-      lastActiveId = id;
-      setActive(id);
     }, {
-      rootMargin: "-30% 0px -55% 0px",
-      threshold: [0.01, 0.08, 0.15],
+      // Αυξάνουμε το margin για να πιάνει το section πριν φτάσει τέρμα πάνω
+      rootMargin: "-20% 0px -60% 0px",
+      threshold: 0.01
     });
 
     menuSections.forEach((sec) => menuObserver.observe(sec));
   }
-
-
 
   /* =========================================================
      PRICES JSON (1 φορά)
