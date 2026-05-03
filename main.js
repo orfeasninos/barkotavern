@@ -123,29 +123,20 @@
     });
   }
 
-  /* =========================================================
-     SECTION REVEAL (fail-safe)
-  ========================================================= */
+/* =========================================================
+      SECTION REVEAL (Performance Optimized)
+   ========================================================= */
   function initSectionReveal(state) {
     const sections = document.querySelectorAll(".section");
     if (!sections.length) return;
 
-    // Mobile: show immediately
-    if (state.isMobile) {
+    // Mobile ή browsers χωρίς υποστήριξη: Εμφάνιση αμέσως χωρίς υπολογισμούς
+    if (state.isMobile || !("IntersectionObserver" in window)) {
       sections.forEach((sec) => sec.classList.add("section-visible"));
       return;
     }
 
-    if (!("IntersectionObserver" in window)) {
-      sections.forEach((sec) => sec.classList.add("section-visible"));
-      return;
-    }
-
-    const revealNowIfInView = (el) => {
-      const r = el.getBoundingClientRect();
-      if (r.top < window.innerHeight * 0.92) el.classList.add("section-visible");
-    };
-
+    // Χρησιμοποιούμε ΜΟΝΟ τον Observer που είναι asynchronous και δεν μπλοκάρει το main thread
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -153,16 +144,15 @@
           revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.08, rootMargin: "0px 0px -10% 0px" });
+    }, { 
+      threshold: 0.05, // Μόλις φανεί το 5% του section
+      rootMargin: "0px 0px -50px 0px" // Ξεκινάει λίγο πριν μπει στην οθόνη
+    });
 
     sections.forEach((sec) => {
       sec.classList.add("section-hidden");
-      revealNowIfInView(sec);
       revealObserver.observe(sec);
     });
-
-    requestAnimationFrame(() => sections.forEach(revealNowIfInView));
-    setTimeout(() => sections.forEach(revealNowIfInView), 250);
   }
 
   /* =========================================================
