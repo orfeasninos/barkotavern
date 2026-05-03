@@ -982,10 +982,13 @@ header::after {
   }
 
   .lang-options {
+    position: absolute;
+    left: 35%;
+    transform: translateX(-50%);
     flex-direction: row;
-    gap: 8px;
+    gap: 15px;
     top: 120%;
-    min-width: 120px;
+    min-width: 150px;
     padding: 0.5rem;
   }
 
