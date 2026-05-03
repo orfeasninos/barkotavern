@@ -8,7 +8,6 @@
   "use strict";
   document.addEventListener("DOMContentLoaded", () => {
     const state = createState();
-    initTheme(state);
     initActiveNavLink();
     initScrollTop(state);
     initBurgerMenu(state);
@@ -101,24 +100,6 @@
 
     gtag("js", new Date());
     gtag("config", GA_ID);
-  }
-
-  /* =========================================================
-     THEME
-  ========================================================= */
-  function initTheme(state) {
-    const themeToggle = document.getElementById("theme-toggle");
-    themeToggle.addEventListener("click", () => {
-      const y = window.scrollY;
-      document.body.classList.toggle("dark");
-      const isDark = document.body.classList.contains("dark");
-      themeToggle.textContent = isDark ? "☀️" : "🌙";
-      localStorage.setItem("theme", isDark ? "dark" : "light");
-      requestAnimationFrame(() => window.scrollTo(0, y));
-    });
-    state.mqMobile.addEventListener?.("change", (e) => {
-      state.isMobile = e.matches;
-    });
   }
 
   /* =========================================================
