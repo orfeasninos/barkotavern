@@ -384,27 +384,30 @@
     </div>
   </div>
   <script src="/main.js" defer></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const reviewsSection = document.querySelector('.reviews-section');
-      let widgetLoaded = false;
-      if (reviewsSection && 'IntersectionObserver' in window) {
-        const observer = new IntersectionObserver(function (entries, observer) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting && !widgetLoaded) {
-              widgetLoaded = true;
-              const script = document.createElement('script');
-              script.src = "https://widgets.sociablekit.com/google-reviews/widget.js";
-              script.defer = true;
-              document.body.appendChild(script);
-              observer.disconnect();
-            }
-          });
-        }, { rootMargin: "300px" });
-        observer.observe(reviewsSection);
-      }
-    });
-  </script>
+<script>
+  // Χρησιμοποιούμε load αντί για DOMContentLoaded για να αφήσουμε το LCP να ολοκληρωθεί
+  window.addEventListener("load", function () {
+    const reviewsSection = document.querySelector('.reviews-section');
+    let widgetLoaded = false;
+    
+    if (reviewsSection && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(function (entries, observer) {
+        entries.forEach(function (entry) {
+          // Φορτώνουμε ΜΟΝΟ αν ο χρήστης φτάσει στα reviews
+          if (entry.isIntersecting && !widgetLoaded) {
+            widgetLoaded = true;
+            const script = document.createElement('script');
+            script.src = "https://widgets.sociablekit.com/google-reviews/widget.js";
+            script.defer = true;
+            document.body.appendChild(script);
+            observer.disconnect();
+          }
+        });
+      }, { rootMargin: "200px" }); // Μικρότερο margin για να μην "τρέχει" νωρίς
+      observer.observe(reviewsSection);
+    }
+  });
+</script>
 </body>
 
 </html>
