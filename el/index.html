@@ -165,7 +165,7 @@
 <body>
   <picture class="page-bg">
     <source srcset="/assets/images/background-desktop.webp" media="(min-width: 1024px)">
-    <img src="/assets/images/background-mobile.webp" alt="" aria-hidden="true" fetchpriority="high" decoding="async">
+    <img src="/assets/images/background-mobile.webp" alt="" aria-hidden="true" fetchpriority="high">
   </picture>
   <div class="info-bar">
     ⏰ Καθημερινά ανοιχτά: <strong>13:00 – 00:00</strong>
@@ -226,7 +226,7 @@
             ντομάτες</p>
         </div>
         <div class="menu-item">
-          <img src="/assets/images/skordolazana.webp" alt="Σκορδολάζανα Μήλου" width="300" height="200" loading="lazy">
+          <img src="/assets/images/kokoras.webp" alt="Σκορδολάζανα Μήλου" width="300" height="200" loading="lazy">
           <h3>Σκορδολάζανα Μήλου</h3>
           <p>Παραδοσιακή συνταγή της Μήλου με χειροποίητα ζυμαρικά, Μηλέικο μπελτέ και την παραδοσιακή σάλτσα σκόρδου
           </p>
@@ -367,18 +367,6 @@
       </div>
     </div>
   </div>
-  <script src="/main.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const widget = document.getElementById("review-widget");
-      const close = document.getElementById("close-review");
-      setTimeout(() => {
-        widget.style.display = "block";
-      }, 1000);
-      close.onclick = () => {
-        widget.style.display = "none";
-      };
-    });
-  </script>
+  <script src="/main.js" defer></script>
 </body>
 </html>
