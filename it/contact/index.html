@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Contatti | Barko Tavern</title>
+  <meta name="description"
+    content="Contatta il Barko Tavern ad Adamas, Milos. Prenotazioni, domande o commenti.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/contact.css">
+</head>
+
+<body>
+  <picture class="page-bg">
+    <source srcset="/assets/images/background-desktop.webp" media="(min-width: 1024px)">
+    <img src="/assets/images/background-mobile.webp" alt="" aria-hidden="true" fetchpriority="high" decoding="async">
+  </picture>
+
+  <div class="info-bar">
+    ⏰ Aperto tutti i giorni: <strong>13:00 – 00:00</strong>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <a href="/it/">
+          <img src="/assets/images/logo.webp" alt="Barko Tavern Logo">
+        </a>
+      </div>
+      <div class="header-right">
+        <div class="burger-menu" id="burger-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <nav class="header-nav" id="mobile-nav">
+          <ul>
+            <li><a href="/it/">Home</a></li>
+            <li><a href="/it/restaurant/">Il ristorante</a></li>
+            <li><a href="/it/menu/">Menu</a></li>
+            <li><a href="/it/gallery/">Foto</a></li>
+            <li><a href="/it/contact/">Contatti</a></li>
+            <li class="nav-controls">
+              <button class="theme-toggle" id="theme-toggle" aria-label="Attiva/disattiva modalità scura">🌙</button>
+              <div class="language-switcher">
+                <div class="lang-current">
+                  <img src="/assets/images/it.webp" alt="Italiano">
+                  <span class="lang-arrow">▾</span>
+                </div>
+                <div class="lang-options">
+                  <a href="/el/contact"><img src="/assets/images/gr.webp" alt="Ελληνικά"></a>
+                  <a href="/en/contact"><img src="/assets/images/en.webp" alt="English"></a>
+                  <a href="/fr/contact"><img src="/assets/images/fr.webp" alt="Français"></a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- SEZIONE CONTATTI -->
+  <section id="contact" class="section contact-section">
+    <div class="container">
+      <h2>Contatti</h2>
+      <p>Inviaci un messaggio per domande o commenti.</p>
+
+      <form id="contactForm" action="https://formsubmit.co/orfeasninos5@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Messaggio dal sito Barko Tavern">
+        <input type="hidden" name="_captcha" value="false">
+
+        <label for="name">Nome:</label>
+        <input type="text" name="name" placeholder="Il tuo nome" required>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" placeholder="La tua email" required>
+
+        <label for="message">Messaggio:</label>
+        <textarea name="message" placeholder="Il tuo messaggio" rows="6" required></textarea>
+
+        <button type="submit" id="submit-btn">Invia</button>
+        <p id="form-message" style="display:none; margin-top:10px; font-weight:700;"></p>
+      </form>
+
+      <div class="map-container">
+        <p>📞 <a href="tel:+302287022660">+30 22870 22660</a></p>
+        <p>📧 <a href="mailto:barkomilos@gmail.com">barkomilos@gmail.com</a></p>
+        <p>📍 <a
+            href="https://www.google.com/maps/place/Barko+tavern+restaurant/@36.7283522,24.4438267,17z/data=!3m1!4b1!4m6!3m5!1s0x1498df472dfb6355:0x2cd14b966d368b5f!8m2!3d36.7283479!4d24.4464016!16s%2Fg%2F11btyk6by8?entry=ttu&g_ep=EgoyMDI2MDEyMS4wIKXMDSoASAFQAw%3D%3D"
+            target="_blank" rel="noopener noreferrer">Adamas, Milos</a></p>
+        <p>⏰ 13:00 - 00:00</p>
+        <iframe width="600" height="400" style="border:0; width: 100%;" loading="lazy" allowfullscreen
+          src="https://maps.google.com/maps?q=Barko%20Tavern%2C%20Adamas%2C%20Milos%2C%20Greece&t=m&z=13&output=embed">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="premium-footer">
+    <div class="premium-footer-container">
+      <div class="footer-brand">
+        <img src="/assets/images/logo.webp" alt="Barko Tavern Logo">
+        <p>Cucina casalinga • Ricette tradizionali • Milos</p>
+      </div>
+      <div class="footer-links" id="footer-nav">
+        <h3>Navigazione</h3>
+        <a href="/it/">Home</a>
+        <a href="/it/restaurant/">Il ristorante</a>
+        <a href="/it/menu/">Menu</a>
+        <a href="/it/gallery/">Foto</a>
+        <a href="/it/contact/">Contatti</a>
+      </div>
+      <div class="footer-contact">
+        <h3>Contatti</h3>
+        <a href="https://www.google.com/maps/place/Barko+tavern+restaurant/@36.7283522,24.4438267,17z/data=!3m1!4b1!4m6!3m5!1s0x1498df472dfb6355:0x2cd14b966d368b5f!8m2!3d36.7283479!4d24.4464016!16s%2Fg%2F11btyk6by8?entry=ttu&g_ep=EgoyMDI2MDEyMS4wIKXMDSoASAFQAw%3D%3D"
+          target="_blank" rel="noopener noreferrer">
+          <span>📍</span>
+          <span>Adamas, Milos</span>
+        </a>
+        <a href="tel:+302287022660">
+          <span>📞</span>
+          <span>+30 22870 22660</span>
+        </a>
+        <a href="mailto:barkomilos@gmail.com">
+          <span>📧</span>
+          <span>barkomilos@gmail.com</span>
+        </a>
+        <div class="footer-review">
+          <a href="https://www.google.com/maps/place/Barko+tavern+restaurant/@36.7283522,24.4438267,17z/data=!3m1!4b1!4m6!3m5!1s0x1498df472dfb6355:0x2cd14b966d368b5f!8m2!3d36.7283479!4d24.4464016!16s%2Fg%2F11btyk6by8?entry=ttu&g_ep=EgoyMDI2MDEyMS4wIKXMDSoASAFQAw%3D%3D"
+            target="_blank" rel="noopener noreferrer">
+            <img src="/assets/images/google-maps.webp" alt="Google Maps">
+          </a>
+          <a href="https://www.tripadvisor.com.gr/Restaurant_Review-g635606-d2205464-Reviews-Taverna_Barko-Adamas_Milos_Cyclades_South_Aegean.html"
+            target="_blank" rel="noopener noreferrer">
+            <img src="/assets/images/tripadvisor.webp" alt="TripAdvisor">
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 <strong>Barko Tavern</strong> • Tutti i diritti riservati
+      • <a href="/it/privacy/" class="footer-legal">Informativa sulla privacy</a>
+    </div>
+    <div class="footer-shimmer"></div>
+    <div class="footer-credit">
+      Website design &amp; development by <a href="mailto:orfeasninos5@gmail.com">Orfeas Ninos</a>
+    </div>
+  </footer>
+
+  <script src="/main.js"></script>
+  <script>
+    const form = document.getElementById("contactForm");
+    const message = document.getElementById("form-message");
+    const submitBtn = document.getElementById("submit-btn");
+    const originalBtnText = submitBtn.textContent;
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Invio in corso...";
+      const data = new FormData(form);
+
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          message.style.display = "block";
+          message.style.color = "green";
+          message.textContent = "Messaggio inviato con successo!";
+          form.reset();
+        } else {
+          throw new Error("Errore di invio");
+        }
+      } catch (err) {
+        message.style.display = "block";
+        message.style.color = "red";
+        message.textContent = "Si è verificato un problema. Riprova.";
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalBtnText;
+      }
+    });
+  </script>
+
+</body>
+
+</html>
