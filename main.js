@@ -27,7 +27,6 @@
       loadPrices();
     }
     initDishModal();
-    initVisualViewportBgSync();
   });
 
   /* =========================
@@ -429,34 +428,4 @@
       }
     });
   }
-
-  /* =========================================================
-     VISUAL VIEWPORT BG SYNC (fix address bar gaps)
-  ========================================================= */
-function initVisualViewportBgSync() {
-  const bg = document.querySelector(".page-bg");
-  if (!bg || !window.visualViewport) return;
-  
-  let rafPending = false;
-  
-  const sync = () => {
-    if (rafPending) return;
-    
-    // 1. ΔΙΑΒΑΖΟΥΜΕ τις διαστάσεις ΕΞΩ από το requestAnimationFrame
-    const vh = window.visualViewport.height;
-    const vTop = window.visualViewport.offsetTop;
-    
-    rafPending = true;
-    
-    // 2. ΓΡΑΦΟΥΜΕ τα styles ΜΕΣΑ στο requestAnimationFrame
-    requestAnimationFrame(() => {
-      bg.style.height = vh + "px";
-      bg.style.top = vTop + "px";
-      rafPending = false;
-    });
-  };
-  
-  window.visualViewport.addEventListener("resize", sync);
-  window.visualViewport.addEventListener("scroll", sync);
-}
 })();
