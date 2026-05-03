@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-  <link rel="preload" as="image" href="/assets/images/background-mobile.webp" fetchpriority="high">
+  <!-- Preload για κινητά (οθόνες έως 1023px) -->
+<link rel="preload" as="image" href="/assets/images/background-mobile.webp" media="(max-width: 1023px)" fetchpriority="high">
+
+<!-- Preload για Desktop (οθόνες από 1024px και πάνω) -->
+<link rel="preload" as="image" href="/assets/images/background-desktop.webp" media="(min-width: 1024px)" fetchpriority="high">
   <link rel="preload" href="/assets/fonts/playfair-display-v40-latin-regular.woff2" as="font" type="font/woff2"
     crossorigin>
   <link rel="preload" href="/assets/fonts/source-sans-3-v19-latin-regular.woff2" as="font" type="font/woff2"
