@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="el">
-
 <head>
-  <link rel="preload" href="/assets/fonts/playfair-display-v40-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/assets/fonts/source-sans-3-v19-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" href="/assets/images/logo.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="/assets/images/background-mobile.webp" fetchpriority="high">
+  <link rel="preload" href="/assets/fonts/playfair-display-v40-latin-regular.woff2" as="font" type="font/woff2"
+    crossorigin>
+  <link rel="preload" href="/assets/fonts/source-sans-3-v19-latin-regular.woff2" as="font" type="font/woff2"
+    crossorigin>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
@@ -140,7 +141,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 0;
+      z-index: -1;
       object-fit: cover;
     }
 
@@ -164,7 +165,7 @@
 <body>
   <picture class="page-bg">
     <source srcset="/assets/images/background-desktop.webp" media="(min-width: 1024px)">
-    <img src="/assets/images/background-mobile.webp" alt="" aria-hidden="true">
+    <img src="/assets/images/background-mobile.webp" alt="" aria-hidden="true" fetchpriority="high" decoding="async">
   </picture>
   <div class="info-bar">
     ⏰ Καθημερινά ανοιχτά: <strong>13:00 – 00:00</strong>
@@ -173,7 +174,7 @@
     <div class="header-container">
       <div class="logo">
         <a href="/el/">
-          <img src="/assets/images/logo.webp" alt="Barko Tavern Logo" width="400" height="100" fetchpriority="high" decoding="sync">
+          <img src="/assets/images/logo.webp" alt="Barko Tavern Logo" width="400" height="100">
         </a>
       </div>
       <div class="header-right">
@@ -225,13 +226,13 @@
             ντομάτες</p>
         </div>
         <div class="menu-item">
-          <img src="/assets/images/kokoras.webp" alt="Σκορδολάζανα Μήλου" width="300" height="200" loading="lazy">
+          <img src="/assets/images/skordolazana.webp" alt="Σκορδολάζανα Μήλου" width="300" height="200" loading="lazy">
           <h3>Σκορδολάζανα Μήλου</h3>
           <p>Παραδοσιακή συνταγή της Μήλου με χειροποίητα ζυμαρικά, Μηλέικο μπελτέ και την παραδοσιακή σάλτσα σκόρδου
           </p>
         </div>
         <div class="menu-item">
-          <img src="/assets/images/kokoras.webp" alt="Πιταράκια Μήλου" width="300" height="200" loading="lazy">
+          <img src="/assets/images/pitarakia.webp" alt="Πιταράκια Μήλου" width="300" height="200" loading="lazy">
           <h3>Πιταράκια Μήλου</h3>
           <p>Παραδοσιακή Μηλέικη συνταγή. Γεμιστά με ντόπιο τυρί, κρεμμύδι και μυρωδικά</p>
         </div>
@@ -247,6 +248,7 @@
       <h2>Κριτικές επισκεπτών</h2>
       <div class="reviews-grid">
         <div class="sk-ww-google-reviews" data-embed-id="25667099"></div>
+        <script src="https://widgets.sociablekit.com/google-reviews/widget.js" defer></script>
       </div>
       <a class="home-button"
         href="https://www.google.gr/maps/place/Barko+tavern+restaurant/@36.7283479,24.4464016,17z/data=!4m8!3m7!1s0x1498df472dfb6355:0x2cd14b966d368b5f!8m2!3d36.7283479!4d24.4464016!9m1!1b1!16s%2Fg%2F11btyk6by8?entry=ttu&g_ep=EgoyMDI2MDIwMS4wIKXMDSoASAFQAw%3D%3D"
@@ -326,11 +328,11 @@
         </a>
         <div class="footer-review">
           <a href="https://www.google.com/maps/place/Barko+tavern+restaurant/@36.7283522,24.4438267,17z/data=!3m1!4b1!4m6!3m5!1s0x1498df472dfb6355:0x2cd14b966d368b5f!8m2!3d36.7283479!4d24.4464016!16s%2Fg%2F11btyk6by8?entry=ttu&g_ep=EgoyMDI2MDEyMS4wIKXMDSoASAFQAw%3D%3D"
-            target="_blank" rel="noopener noreferrer">
+          target="_blank" rel="noopener noreferrer">
             <img src="/assets/images/google-maps.webp" alt="Google Maps">
           </a>
           <a href="https://www.tripadvisor.com.gr/Restaurant_Review-g635606-d2205464-Reviews-Taverna_Barko-Adamas_Milos_Cyclades_South_Aegean.html"
-            target="_blank" rel="noopener noreferrer">
+          target="_blank" rel="noopener noreferrer">
             <img src="/assets/images/tripadvisor.webp" alt="TripAdvisor">
           </a>
         </div>
@@ -348,8 +350,7 @@
   <div class="dish-modal" id="dishModal">
     <div class="dish-modal-content">
       <button class="modal-close">&times;</button>
-      <img id="modalImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
-        alt="Εικόνα πιάτου">
+      <img id="modalImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Εικόνα πιάτου">
       <h3 id="modalTitle">Modal title</h3>
       <p id="modalText"></p>
     </div>
@@ -366,28 +367,18 @@
       </div>
     </div>
   </div>
-  <script src="/main.js" defer></script>
+  <script src="/main.js"></script>
   <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const reviewsSection = document.querySelector('.reviews-section');
-    let widgetLoaded = false;
-    if (reviewsSection && 'IntersectionObserver' in window) {
-      const observer = new IntersectionObserver(function(entries, observer) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting && !widgetLoaded) {
-            widgetLoaded = true;
-            const script = document.createElement('script');
-            script.src = "https://widgets.sociablekit.com/google-reviews/widget.js";
-            script.defer = true;
-            document.body.appendChild(script);
-            observer.disconnect();
-          }
-        });
-      }, { rootMargin: "300px" });
-      observer.observe(reviewsSection);
-    }
-  });
-</script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const widget = document.getElementById("review-widget");
+      const close = document.getElementById("close-review");
+      setTimeout(() => {
+        widget.style.display = "block";
+      }, 1000);
+      close.onclick = () => {
+        widget.style.display = "none";
+      };
+    });
+  </script>
 </body>
-
 </html>

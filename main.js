@@ -436,16 +436,17 @@
   function initVisualViewportBgSync() {
     const bg = document.querySelector(".page-bg");
     if (!bg || !window.visualViewport) return;
-
-    const vv = window.visualViewport;
+    let rafPending = false;
     const sync = () => {
-      bg.style.height = vv.height + "px";
-      bg.style.width = vv.width + "px";
-      bg.style.top = vv.offsetTop + "px";
+      if (rafPending) return;
+      rafPending = true;
+      requestAnimationFrame(() => {
+        bg.style.height = window.visualViewport.height + "px";
+        bg.style.top = window.visualViewport.offsetTop + "px";
+        rafPending = false;
+      });
     };
-
-    sync();
-    vv.addEventListener("resize", sync);
-    vv.addEventListener("scroll", sync);
+    window.visualViewport.addEventListener("resize", sync);
+    window.visualViewport.addEventListener("scroll", sync);
   }
 })();
