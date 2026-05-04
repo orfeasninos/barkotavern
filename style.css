@@ -821,6 +821,36 @@ header::after {
   z-index: 5;
 }
 
+.sticky-cta {
+  position: fixed;
+  bottom: 40px;
+  right: 10px;
+  width: auto;
+  display: flex;
+  z-index: 9999;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cta-btn {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #fff;
+  border-radius: 99px;
+}
+
+.cta-btn.call {
+  background: #b3b600;
+}
+
+.cta-btn.map {
+  background: #006907;
+}
+
+
 /* =========================================================
    Reduced motion
 ========================================================= */
@@ -1366,8 +1396,7 @@ header::after {
     box-shadow: 0 22px 55px rgba(0, 0, 0, .20);
   }
 
-  body .home-button:hover,
-  body .scroll-top:hover {
+  body .home-button:hover {
     transform: translateY(-2px);
     filter: brightness(1.02);
     background: var(--gold);
