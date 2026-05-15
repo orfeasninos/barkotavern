@@ -92,17 +92,28 @@ for (const category in grouped) {
             </a>
         </li>`;
 
-    menuHtml += `
-        <section class="menu-category" id="${catId}">
-            <h3>${translatedCategory}</h3> <!-- Πρόσθεσα το h3 που έλειπε στο δικό σου snippet -->
-            <ul class="menu-items">
-                ${grouped[category].map(item => {
+menuHtml += `
+    <section class="menu-category" id="${catId}">
+        <h3>${translatedCategory}</h3>
+        <ul class="menu-items">
+            ${(() => {
+                let currentSub = ""; // Μεταβλητή για να θυμόμαστε την υποκατηγορία
+                return grouped[category].map(item => {
+                    let subHeader = "";
+                    
+                    // Αν υπάρχει στήλη Subcategory στο Excel και είναι διαφορετική από την προηγούμενη
+                    if (item.Subcategory && item.Subcategory.trim() !== "" && item.Subcategory !== currentSub) {
+                        currentSub = item.Subcategory;
+                        subHeader = `<h4 class="menu-subcategory-title">${currentSub}</h4>`;
+                    }
+
                     const name = item[`Name_${currentLang}`] || item.Name_EN;
                     const desc = item[`Description_${currentLang}`] || item.Description_EN;
                     const hasImage = item.Image && item.Image.trim() !== '';
                     const price = item.Price ? parseFloat(item.Price.toString().replace(',', '.')).toFixed(2) : "0.00";
 
                     return `
+                        ${subHeader} <!-- Εδώ μπαίνει ο τίτλος της υποκατηγορίας αν άλλαξε -->
                         <li class="${hasImage ? '' : 'no-image'}">
                             ${hasImage ? `<img src="${item.Image}" data-modal-img="${item['Image-large'] || item.Image}" alt="${name}" loading="lazy">` : ''}
                             <div class="dish">
@@ -111,9 +122,10 @@ for (const category in grouped) {
                             </div>
                             <span class="price">${price}€</span>
                         </li>`;
-                }).join('')}
-            </ul>
-        </section>`;
+                }).join('');
+            })()}
+        </ul>
+    </section>`;
 }
 
     // Τοποθέτηση στα containers

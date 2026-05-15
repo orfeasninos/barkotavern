@@ -228,9 +228,9 @@
   white-space: nowrap;
 }
 
-#drinks h4, #bottled-wines h4 {
+#drinks h4 {
   grid-column: 1 / -1;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   margin-top: 1.5rem;
   color: #105020;
   padding: .25rem .75rem;
@@ -263,6 +263,18 @@
     font-family: inherit;
     color: #000000;
     font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.menu-subcategory-title {
+    width: 100%;
+    grid-column: 1 / -1;
+    font-size: 1.2rem;
+    margin: 25px 0 10px 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #d4af37;
+    text-transform: uppercase;
+    font-style: italic;
     letter-spacing: 1px;
 }
 
