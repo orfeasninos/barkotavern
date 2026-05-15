@@ -13,8 +13,8 @@ async function loadMenu() {
                 if (results.data.length > 0) {
                     renderMenu(results.data);
                     const state = { mqMobile: window.matchMedia("(max-width: 768px)") };
-            initMenuSidebarLayout(state);
-            initMenuCategoryActive(state);
+                    initMenuSidebarLayout(state);
+                    initMenuCategoryActive(state);
                 } else {
                     console.error("The Sheet is empty or headers don't match.");
                 }
@@ -31,8 +31,6 @@ async function loadMenu() {
 
 const currentLang = document.documentElement.lang.toUpperCase() || 'EN';
 
-// Ορισμός εικόνων για τις κατηγορίες (μπορείς να τις αλλάξεις εδώ)
-// Τα κλειδιά ΠΡΕΠΕΙ να είναι ίδια με την κολόνα "Category" του Excel
 const categoryImages = {
     "Ορεκτικά": "../../assets/images/pitarakia.webp",
     "Σαλάτες": "../../assets/images/xoriatiki.webp",
@@ -55,6 +53,16 @@ const categoryTranslations = {
     "Ποτά": { EL: "Ποτά", IT: "Bevande", FR: "Boissons", EN: "Drinks" }
 };
 
+const subcategoryTranslations = {
+    "Νερό": {EL: "Νερό", IT: "Acqua", FR: "Eau", EN: "Water"},
+    "Αναψυκτικά": {EL: "Αναψυκτικά", IT: "Bibite", FR: "Boissons Gazeuses", EN: "Soft Drinks"},
+    "Ποτά": {EL: "Ποτά", IT: "Bevande", FR: "Boissons", EN: "Drinks"},
+    "Μπύρες": {EL: "Μπύρες", IT: "Birre", FR: "Bières", EN: "Beers"},
+    "Ούζο": {EL: "Ούζο", IT: "Ouzo", FR: "Ouzo", EN: "Ouzo"},
+    "Τσίπουρο": {EL: "Τσίπουρο", IT: "Tsipouro", FR: "Tsipouro", EN: "Tsipouro"},
+    "Κρασί": {EL: "Κρασί", IT: "Vino", FR: "Vin", EN: "Wine"}
+};
+
 function renderMenu(data) {
     const menuContainer = document.getElementById('menu-container');
     const sidebarContainer = document.querySelector('.menu-links-list');
@@ -72,27 +80,27 @@ function renderMenu(data) {
     let menuHtml = '';
     let sidebarHtml = '';
 
-for (const category in grouped) {
-    const cleanKey = category.trim(); // "Ορεκτικά"
-    // 1. Βρίσκει τη μετάφραση βάσει του ελληνικού κλειδιού
-    const entry = categoryTranslations[cleanKey];
-    const translatedCategory = (entry && entry[currentLang]) ? entry[currentLang] : cleanKey;
+    for (const category in grouped) {
+        const cleanKey = category.trim(); // "Ορεκτικά"
+        // 1. Βρίσκει τη μετάφραση βάσει του ελληνικού κλειδιού
+        const entry = categoryTranslations[cleanKey];
+        const translatedCategory = (entry && entry[currentLang]) ? entry[currentLang] : cleanKey;
 
-    // 2. Βρίσκει την εικόνα βάσει του ελληνικού κλειδιού
-    const catImg = categoryImages[cleanKey] || '';
+        // 2. Βρίσκει την εικόνα βάσει του ελληνικού κλειδιού
+        const catImg = categoryImages[cleanKey] || '';
 
-    // 3. Δημιουργεί ένα ID στα αγγλικά για το URL (προαιρετικό αλλά καλό για το SEO)
-    // Αν το entry[EN] υπάρχει, το ID θα είναι "appetizers", αλλιώς "ορεκτικά"
-    const catId = (entry && entry.EN) ? entry.EN.toLowerCase().replace(/\s+/g, '-') : cleanKey;
+        // 3. Δημιουργεί ένα ID στα αγγλικά για το URL (προαιρετικό αλλά καλό για το SEO)
+        // Αν το entry[EN] υπάρχει, το ID θα είναι "appetizers", αλλιώς "ορεκτικά"
+        const catId = (entry && entry.EN) ? entry.EN.toLowerCase().replace(/\s+/g, '-') : cleanKey;
 
-    sidebarHtml += `
+        sidebarHtml += `
         <li>
             <a href="#${catId}" class="category-card" style="background-image:url('${catImg}')">
                 <span>${translatedCategory}</span>
             </a>
         </li>`;
 
-menuHtml += `
+        menuHtml += `
     <section class="menu-category" id="${catId}">
         <h3>${translatedCategory}</h3>
         <ul class="menu-items">
@@ -100,11 +108,14 @@ menuHtml += `
                 let currentSub = ""; // Μεταβλητή για να θυμόμαστε την υποκατηγορία
                 return grouped[category].map(item => {
                     let subHeader = "";
-                    
-                    // Αν υπάρχει στήλη Subcategory στο Excel και είναι διαφορετική από την προηγούμενη
                     if (item.Subcategory && item.Subcategory.trim() !== "" && item.Subcategory !== currentSub) {
-                        currentSub = item.Subcategory;
-                        subHeader = `<h4 class="menu-subcategory-title">${currentSub}</h4>`;
+                        currentSub = item.Subcategory.trim();
+
+                        // Ψάχνουμε τη μετάφραση στο Map
+                        const subEntry = subcategoryTranslations[currentSub];
+                        const translatedSub = (subEntry && subEntry[currentLang]) ? subEntry[currentLang] : currentSub;
+
+                        subHeader = `<h4 class="menu-subcategory-title">${translatedSub}</h4>`;
                     }
 
                     const name = item[`Name_${currentLang}`] || item.Name_EN;
@@ -126,40 +137,40 @@ menuHtml += `
             })()}
         </ul>
     </section>`;
-}
+    }
 
     // Τοποθέτηση στα containers
     if (menuContainer) menuContainer.innerHTML = menuHtml;
     if (sidebarContainer) sidebarContainer.innerHTML = sidebarHtml;
 }
 loadMenu();
- /* =========================================================
-     MENU PAGE: sidebar move on mobile
-  ========================================================= */
-  function initMenuSidebarLayout(state) {
+/* =========================================================
+    MENU PAGE: sidebar move on mobile
+ ========================================================= */
+function initMenuSidebarLayout(state) {
     const wrapper = document.querySelector(".menu-grid-wrapper");
     const sidebar = document.querySelector(".menu-sidebar");
     const main = document.querySelector(".menu-main");
     if (!wrapper || !sidebar || !main) return;
 
     const apply = () => {
-      const mobileNow = state.mqMobile.matches;
-      sidebar.classList.toggle("menu-sidebar--mobile", mobileNow);
+        const mobileNow = state.mqMobile.matches;
+        sidebar.classList.toggle("menu-sidebar--mobile", mobileNow);
 
-      // keep sidebar first (above menu) on mobile (and also consistent on desktop)
-      if (sidebar.parentElement === wrapper && wrapper.firstElementChild !== sidebar) {
-        wrapper.insertBefore(sidebar, main);
-      }
+        // keep sidebar first (above menu) on mobile (and also consistent on desktop)
+        if (sidebar.parentElement === wrapper && wrapper.firstElementChild !== sidebar) {
+            wrapper.insertBefore(sidebar, main);
+        }
     };
 
     apply();
     window.addEventListener("resize", apply, { passive: true });
-  }
+}
 
- /* =========================================================
-      MENU PAGE: active category (Barko Optimized - No Reflow)
-     ========================================================= */
-  function initMenuCategoryActive(state) {
+/* =========================================================
+     MENU PAGE: active category (Barko Optimized - No Reflow)
+    ========================================================= */
+function initMenuCategoryActive(state) {
     const menuSections = document.querySelectorAll(".menu-category");
     const menuLinks = document.querySelectorAll(".menu-links-list a");
     const linksContainer = document.querySelector(".menu-links-list");
@@ -169,40 +180,40 @@ loadMenu();
     let lastActiveId = null;
 
     const setActive = (id) => {
-      if (lastActiveId === id) return;
-      lastActiveId = id;
+        if (lastActiveId === id) return;
+        lastActiveId = id;
 
-      menuLinks.forEach((link) => {
-        const isActive = link.getAttribute("href") === `#${id}`;
-        link.classList.toggle("active", isActive);
+        menuLinks.forEach((link) => {
+            const isActive = link.getAttribute("href") === `#${id}`;
+            link.classList.toggle("active", isActive);
 
-        // Scroll μόνο αν υπάρχει ανάγκη και πάντα μέσα σε requestAnimationFrame
-if (isActive && linksContainer) {
-  // Διπλό RAF για να βεβαιωθούμε ότι ο browser έχει τελειώσει με το στυλ
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      const linkOffset = link.offsetLeft; 
-      linksContainer.scrollTo({
-        left: linkOffset - (linksContainer.clientWidth / 2),
-        behavior: "smooth"
-      });
-    });
-  });
-}
-      });
+            // Scroll μόνο αν υπάρχει ανάγκη και πάντα μέσα σε requestAnimationFrame
+            if (isActive && linksContainer) {
+                // Διπλό RAF για να βεβαιωθούμε ότι ο browser έχει τελειώσει με το στυλ
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        const linkOffset = link.offsetLeft;
+                        linksContainer.scrollTo({
+                            left: linkOffset - (linksContainer.clientWidth / 2),
+                            behavior: "smooth"
+                        });
+                    });
+                });
+            }
+        });
     };
 
     const menuObserver = new IntersectionObserver((entries) => {
-      // Παίρνουμε το πρώτο στοιχείο που μπαίνει στο "οπτικό πεδίο"
-      const visible = entries.find(e => e.isIntersecting);
-      if (visible) {
-        setActive(visible.target.id);
-      }
+        // Παίρνουμε το πρώτο στοιχείο που μπαίνει στο "οπτικό πεδίο"
+        const visible = entries.find(e => e.isIntersecting);
+        if (visible) {
+            setActive(visible.target.id);
+        }
     }, {
-      // Αυξάνουμε το margin για να πιάνει το section πριν φτάσει τέρμα πάνω
-      rootMargin: "-20% 0px -60% 0px",
-      threshold: 0.01
+        // Αυξάνουμε το margin για να πιάνει το section πριν φτάσει τέρμα πάνω
+        rootMargin: "-20% 0px -60% 0px",
+        threshold: 0.01
     });
 
     menuSections.forEach((sec) => menuObserver.observe(sec));
-  }
+}

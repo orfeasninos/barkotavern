@@ -115,7 +115,7 @@
   border: 1px solid rgba(212, 175, 55, 0.16);
   transition: transform var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease);
   min-width: 0;
-
+  scroll-margin-top: 120px;
   position: relative;
   overflow: hidden;
 }
