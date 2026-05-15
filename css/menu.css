@@ -115,7 +115,7 @@
   border: 1px solid rgba(212, 175, 55, 0.16);
   transition: transform var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease);
   min-width: 0;
-  scroll-margin-top: 120px;
+  scroll-margin-top: calc(var(--header-h));
   position: relative;
   overflow: hidden;
 }
@@ -228,14 +228,6 @@
   white-space: nowrap;
 }
 
-#drinks h4 {
-  grid-column: 1 / -1;
-  font-size: 1.25rem;
-  margin-top: 1.5rem;
-  color: #105020;
-  padding: .25rem .75rem;
-}
-
 .menu-loader-wrapper {
     display: flex;
     flex-direction: column;
@@ -276,6 +268,7 @@
     text-transform: uppercase;
     font-style: italic;
     letter-spacing: 1px;
+    color: #105020;
 }
 
 @media (max-width: 1024px) {
@@ -362,5 +355,4 @@
     width: 80px;
     height: 80px;
   }
-
 }
