@@ -370,7 +370,7 @@ body.dark .sk-post {
     margin: 0 !important;
   }
 
-  .sk-wrapper.masonry::-webkit-scrollbar {
+  .sk-ww-google-reviews .sk-wrapper.masonry::-webkit-scrollbar {
     display: none;
   }
 }
