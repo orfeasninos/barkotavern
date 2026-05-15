@@ -1050,7 +1050,8 @@ header::after {
     padding: 0.7rem;
     border-radius: 1.25rem;
     scrollbar-width: none;
-    max-height: calc(100vh - var(--header-h) - 180px);
+    max-height: calc(100vh - var(--header-h) - 120px);
+    min-height: 50px;
   }
 
   .menu-links-list::-webkit-scrollbar {
