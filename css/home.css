@@ -342,96 +342,35 @@ body.dark .sk-post {
 }
 
 @media (max-width: 800px) {
+  .reviews-section .container {
+    overflow: hidden;
+    padding: 0 15px;
+  }
 
   .sk-ww-google-reviews .sk-wrapper.masonry,
   .sk-ww-google-reviews .sk-wrapper.js-masonry {
     display: flex !important;
     flex-wrap: nowrap !important;
-    gap: 12px !important;
     overflow-x: auto !important;
-    overflow-y: hidden !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    height: auto !important;
-    padding-bottom: 8px !important;
     scroll-snap-type: x mandatory;
+    gap: 12px !important;
     -webkit-overflow-scrolling: touch;
+    padding-bottom: 15px !important;
   }
 
   .sk-ww-google-reviews .sk-masonry-item,
   .sk-ww-google-reviews .js-masonry-item {
-    flex: 0 0 88% !important;
-    width: 88% !important;
-    max-width: 88% !important;
-    min-width: 88% !important;
+    flex: 0 0 85% !important;
+    width: 85% !important;
+    max-width: 85% !important;
+    min-width: 85% !important;
     position: static !important;
-    inset: auto !important;
-    top: auto !important;
-    left: auto !important;
     transform: none !important;
-    margin: 0 !important;
-    scroll-snap-align: start !important;
-  }
-
-  .sk-ww-google-reviews .sk-masonry-item>*,
-  .sk-ww-google-reviews .js-masonry-item>* {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    overflow: hidden !important;
-  }
-
-  .sk-ww-google-reviews .sk-post,
-  .sk-ww-google-reviews .sk-posts-container,
-  .sk-ww-google-reviews .sk-details,
-  .sk-ww-google-reviews .sk-text {
-    min-width: 0 !important;
-    max-width: 100% !important;
-  }
-
-  .sk-ww-google-reviews .sk-wrapper.masonry::-webkit-scrollbar,
-  .sk-ww-google-reviews .sk-wrapper.js-masonry::-webkit-scrollbar {
-    display: none;
-  }
-
-  .sk-ww-google-reviews,
-  .sk-ww-google-reviews .sk-google-reviews,
-  .sk-ww-google-reviews .sk-posts-container,
-  .sk-ww-google-reviews .sk-wrapper.masonry,
-  .sk-ww-google-reviews .sk-wrapper.js-masonry {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    overflow-x: hidden !important;
-  }
-
-  .sk-ww-google-reviews .sk-masonry-item,
-  .sk-ww-google-reviews .js-masonry-item {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
+    scroll-snap-align: center !important;
     margin: 0 !important;
   }
 
-  .reviews-section .container {
-    overflow: hidden;
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-
-  .reviews-grid {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    gap: 12px;
-    padding: 2px 0 10px;
-    max-width: 100%;
-    scrollbar-width: none;
-    scroll-snap-type: x mandatory;
-  }
-
-  .reviews-grid::-webkit-scrollbar {
+  .sk-wrapper.masonry::-webkit-scrollbar {
     display: none;
   }
 }
