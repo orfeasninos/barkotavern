@@ -292,26 +292,53 @@ body.dark .sk-post {
   overflow: hidden !important;
 }
 
-@media (max-width: 800px) {
+.contact-section p {
+  text-align: center;
+  margin-bottom: 0.5rem;
+  font-weight: 650;
+  color: #33692d;
+}
 
-  .sk-ww-google-reviews,
-  .sk-ww-google-reviews .sk-google-reviews,
-  .sk-ww-google-reviews .sk-posts-container,
-  .sk-ww-google-reviews .sk-wrapper.masonry,
-  .sk-ww-google-reviews .sk-wrapper.js-masonry {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    overflow-x: hidden !important;
+.map-container {
+  margin-top: 1rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, var(--paper), var(--paper-2)),
+    radial-gradient(circle at 20% 0%, rgba(212, 175, 55, 0.12), transparent 55%),
+    radial-gradient(circle at 100% 70%, rgba(15, 107, 111, 0.10), transparent 60%);
+  padding: 1rem;
+  border: 1px solid rgba(212, 175, 55, 0.16);
+  box-shadow: var(--shadow-sm);
+}
+
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
   }
 
-  .sk-ww-google-reviews .sk-masonry-item,
-  .sk-ww-google-reviews .js-masonry-item {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    margin: 0 !important;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
+
+.hero-eyebrow {
+  animation: fadeUp 0.7s ease both;
+}
+
+.hero h1 {
+  animation: fadeUp 0.7s ease 0.15s both;
+}
+
+.hero-sub {
+  animation: fadeUp 0.7s ease 0.28s both;
+}
+
+.hero-cta {
+  animation: fadeUp 0.7s ease 0.42s both;
 }
 
 @media (max-width: 800px) {
@@ -366,35 +393,23 @@ body.dark .sk-post {
   .sk-ww-google-reviews .sk-wrapper.js-masonry::-webkit-scrollbar {
     display: none;
   }
-}
 
-.contact-section p {
-  text-align: center;
-  margin-bottom: 0.5rem;
-  font-weight: 650;
-  color: #33692d;
-}
-
-.map-container {
-  margin-top: 1rem;
-  border-radius: 1rem;
-  overflow: hidden;
-  background:
-    linear-gradient(180deg, var(--paper), var(--paper-2)),
-    radial-gradient(circle at 20% 0%, rgba(212, 175, 55, 0.12), transparent 55%),
-    radial-gradient(circle at 100% 70%, rgba(15, 107, 111, 0.10), transparent 60%);
-  padding: 1rem;
-  border: 1px solid rgba(212, 175, 55, 0.16);
-  box-shadow: var(--shadow-sm);
-}
-
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
+  .sk-ww-google-reviews,
+  .sk-ww-google-reviews .sk-google-reviews,
+  .sk-ww-google-reviews .sk-posts-container,
+  .sk-ww-google-reviews .sk-wrapper.masonry,
+  .sk-ww-google-reviews .sk-wrapper.js-masonry {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: hidden !important;
   }
 
-  .hero-eyebrow { animation: fadeUp 0.7s ease both; }
-  .hero h1      { animation: fadeUp 0.7s ease 0.15s both; }
-  .hero-sub     { animation: fadeUp 0.7s ease 0.28s both; }
-  .hero-cta     { animation: fadeUp 0.7s ease 0.42s both; }
+  .sk-ww-google-reviews .sk-masonry-item,
+  .sk-ww-google-reviews .js-masonry-item {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+  }
+}
