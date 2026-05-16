@@ -8,7 +8,6 @@ async function loadMenu() {
             header: true,
             skipEmptyLines: true,
             complete: function (results) {
-                console.log("Data from Google Sheets:", results.data); // Δες εδώ αν έρχονται τα δεδομένα
                 if (results.data.length > 0) {
                     renderMenu(results.data);
                     const state = { mqMobile: window.matchMedia("(max-width: 768px)") };
@@ -143,19 +142,23 @@ function initMenuCategoryActive(state) {
     if (window.activeMenuObserver) {
         window.activeMenuObserver.disconnect();
     }
+
     const menuSections = document.querySelectorAll(".menu-category");
     const menuLinks = document.querySelectorAll(".menu-links-list a");
     const linksContainer = document.querySelector(".menu-links-list");
     const desktopContainer = document.querySelector(".menu-sidebar");
+
     if (!menuSections.length || !menuLinks.length || !("IntersectionObserver" in window)) return;
+
     let lastActiveId = null;
+
     const setActive = (id) => {
         if (lastActiveId === id) return;
         lastActiveId = id;
-                console.log("🎯 Active Category Changed To:", id);
         menuLinks.forEach((link) => {
             const isActive = link.getAttribute("href") === `#${id}`;
             link.classList.toggle("active", isActive);
+
             if (isActive) {
                 requestAnimationFrame(() => {
                     requestAnimationFrame(() => {
@@ -181,27 +184,43 @@ function initMenuCategoryActive(state) {
             }
         });
     };
-    const menuObserver = new IntersectionObserver(() => {
-        let activeId = null;
-        let minDistance = Infinity;
-        const targetLine = 120; 
-        menuSections.forEach((sec) => {
-            const rect = sec.getBoundingClientRect();
-            if (rect.top <= targetLine + 50 && rect.bottom >= targetLine) {
-                const distance = Math.abs(rect.top - targetLine);
-                if (distance < minDistance) {
-                    minDistance = distance;
-                    activeId = sec.id;
-                }
+
+    const menuObserver = new IntersectionObserver((entries) => {
+        // Στο mobile παίρνουμε το section που έχει μπει περισσότερο στην οθόνη
+        // Στο desktop κρατάμε τη λογική με το targetLine που σου δούλευε
+        if (state.mqMobile && state.mqMobile.matches) {
+            const visibleSection = entries.find(entry => entry.isIntersecting);
+            if (visibleSection) {
+                setActive(visibleSection.target.id);
             }
-        });
-        if (activeId) {
-            setActive(activeId);
+        } else {
+            let activeId = null;
+            let minDistance = Infinity;
+            const targetLine = 120;
+
+            menuSections.forEach((sec) => {
+                const rect = sec.getBoundingClientRect();
+                if (rect.top <= targetLine + 50 && rect.bottom >= targetLine) {
+                    const distance = Math.abs(rect.top - targetLine);
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        activeId = sec.id;
+                    }
+                }
+            });
+
+            if (activeId) {
+                setActive(activeId);
+            }
         }
     }, {
-        rootMargin: "-10% 0px -40% 0px",
-        threshold: 0.01
+        // Καθαρίζουμε τα margins για το κινητό και βάζουμε threshold 0.3 (30%)
+        rootMargin: state.mqMobile && state.mqMobile.matches ? "0px" : "-10% 0px -40% 0px",
+        // ΑΛΛΑΓΗ: Ρίχνουμε το threshold στο 0.1 (10%) για να "πιάνει" αμέσως και τις Σαλάτες!
+        threshold: state.mqMobile && state.mqMobile.matches ? 0.1 : 0.01
     });
+
     menuSections.forEach((sec) => menuObserver.observe(sec));
+
     window.activeMenuObserver = menuObserver;
 }
