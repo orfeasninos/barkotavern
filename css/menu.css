@@ -56,7 +56,6 @@
 }
 
 .menu-sidebar h2 {
-  font-family: var(--font-body);
   font-size: 0.68rem;
   font-weight: 500;
   letter-spacing: 0.22em;
@@ -127,6 +126,7 @@
 #menu-container {
   background: var(--cream);
   padding: 3rem 2.8rem 5rem;
+  border-radius: 20px;
   min-height: 100%;
 }
 
@@ -136,7 +136,6 @@
 }
 
 .menu-category>h3 {
-  font-family: var(--font-display);
   font-size: 2.6rem;
   font-weight: 400;
   font-style: italic;
@@ -164,7 +163,6 @@
 
 .menu-subcategory-title {
   grid-column: 1 / -1;
-  font-family: var(--font-body);
   font-size: 0.7rem;
   font-weight: 500;
   letter-spacing: 0.18em;
@@ -252,7 +250,6 @@
   flex-direction: column;
   justify-content: center;
   min-width: 0;
-  font-family: var(--font-display);
   font-size: 1.08rem;
   font-weight: 500;
   color: var(--text-dark);
@@ -260,7 +257,6 @@
 }
 
 .menu-items>li .dish p {
-  font-family: var(--font-body);
   font-size: 0.75rem;
   font-weight: 300;
   color: var(--text-muted);
@@ -272,7 +268,6 @@
 }
 
 .menu-items>li .price {
-  font-family: var(--font-display);
   font-size: 1rem;
   font-weight: 600;
   color: var(--olive-mid);
@@ -334,7 +329,6 @@
   padding: 6rem 2rem;
   gap: 1.2rem;
   color: var(--text-muted);
-  font-family: var(--font-body);
   font-size: 0.82rem;
   letter-spacing: 0.05em;
 }

@@ -275,11 +275,7 @@ header {
   isolation: isolate;
   backdrop-filter: var(--blur);
   -webkit-backdrop-filter: var(--blur);
-  background: linear-gradient(180deg,
-      rgba(47, 58, 37, 0.92) 0%,
-      rgba(40, 48, 32, 0.86) 55%,
-      rgba(20, 25, 18, 0.82) 100%);
-  border-bottom: 1px solid rgba(212, 175, 55, 0.22);
+  background:linear-gradient(40deg, #1e2e14 0%, var(--olive) 100%);
   box-shadow:
     0 18px 60px rgba(0, 0, 0, 0.35),
     inset 0 1px 0 rgba(255, 255, 255, 0.10);
@@ -419,7 +415,7 @@ header::after {
   gap: 8px;
   padding: 8px 10px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
+  background: linear-gradient(8deg, #1e2e14 0%, var(--olive) 100%);
   border: 1px solid rgba(212, 175, 55, 0.18);
   box-shadow: 0 14px 34px rgba(0, 0, 0, .22), inset 0 1px 0 rgba(255, 255, 255, .10);
   transition: transform var(--dur-2) var(--ease), background var(--dur-2) var(--ease);
@@ -446,7 +442,7 @@ header::after {
   position: absolute;
   top: 100%;
   right: 0;
-  background: rgba(47, 58, 37, 0.95);
+  background: linear-gradient(168deg, #1e2e14 0%, var(--olive) 100%);
   border-radius: 10px;
   padding: .55rem;
   display: none;
@@ -503,7 +499,7 @@ header::after {
 .premium-footer {
   position: relative;
   overflow: hidden;
-  background: rgba(40, 48, 32, 0.9);
+  background: linear-gradient(168deg, #1e2e14 0%, var(--olive) 100%);
   color: #FAF9F6;
   padding: 5rem 1.5rem 3rem;
   font-family: var(--font-body);
