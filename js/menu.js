@@ -140,39 +140,68 @@ function initMenuSidebarLayout(state) {
 }
 
 function initMenuCategoryActive(state) {
+    if (window.activeMenuObserver) {
+        window.activeMenuObserver.disconnect();
+    }
     const menuSections = document.querySelectorAll(".menu-category");
     const menuLinks = document.querySelectorAll(".menu-links-list a");
     const linksContainer = document.querySelector(".menu-links-list");
+    const desktopContainer = document.querySelector(".menu-sidebar");
     if (!menuSections.length || !menuLinks.length || !("IntersectionObserver" in window)) return;
     let lastActiveId = null;
     const setActive = (id) => {
         if (lastActiveId === id) return;
         lastActiveId = id;
+                console.log("🎯 Active Category Changed To:", id);
         menuLinks.forEach((link) => {
             const isActive = link.getAttribute("href") === `#${id}`;
             link.classList.toggle("active", isActive);
-            if (isActive && linksContainer) {
+            if (isActive) {
                 requestAnimationFrame(() => {
                     requestAnimationFrame(() => {
-                        const linkOffset = link.offsetLeft;
-                        linksContainer.scrollTo({
-                            left: linkOffset - (linksContainer.clientWidth / 2),
-                            behavior: "smooth"
-                        });
+                        if (state.mqMobile && state.mqMobile.matches) {
+                            if (linksContainer) {
+                                const linkOffsetLeft = link.offsetLeft;
+                                linksContainer.scrollTo({
+                                    left: linkOffsetLeft - (linksContainer.clientWidth / 2) + (link.clientWidth / 2),
+                                    behavior: "smooth"
+                                });
+                            }
+                        } else {
+                            if (desktopContainer) {
+                                const linkOffsetTop = link.offsetTop;
+                                desktopContainer.scrollTo({
+                                    top: linkOffsetTop - (desktopContainer.clientHeight / 2) + (link.clientHeight / 2),
+                                    behavior: "smooth"
+                                });
+                            }
+                        }
                     });
                 });
             }
         });
     };
-
-    const menuObserver = new IntersectionObserver((entries) => {
-        const visible = entries.find(e => e.isIntersecting);
-        if (visible) {
-            setActive(visible.target.id);
+    const menuObserver = new IntersectionObserver(() => {
+        let activeId = null;
+        let minDistance = Infinity;
+        const targetLine = 120; 
+        menuSections.forEach((sec) => {
+            const rect = sec.getBoundingClientRect();
+            if (rect.top <= targetLine + 50 && rect.bottom >= targetLine) {
+                const distance = Math.abs(rect.top - targetLine);
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    activeId = sec.id;
+                }
+            }
+        });
+        if (activeId) {
+            setActive(activeId);
         }
     }, {
-        rootMargin: "-20% 0px -60% 0px",
+        rootMargin: "-10% 0px -40% 0px",
         threshold: 0.01
     });
     menuSections.forEach((sec) => menuObserver.observe(sec));
+    window.activeMenuObserver = menuObserver;
 }
