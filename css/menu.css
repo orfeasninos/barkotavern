@@ -1,10 +1,28 @@
+:root {
+  --gold: #d4af37;
+  --olive: #2a3a1e;
+  --olive-mid: #3d5229;
+  --olive-light: #5a7a3a;
+  --gold-light: #e8c97a;
+  --gold-pale: #f5e9c8;
+  --cream: #faf6ee;
+  --cream-dark: #efe6d3;
+  --warm-white: #fffdf8;
+  --stone: #8a7d6b;
+  --stone-light: #c8b9a8;
+  --text-dark: #1e1a14;
+  --text-mid: #4a3f32;
+  --text-muted: #7a6e62;
+  --card-radius: 13px;
+  --sidebar-w: 210px;
+  --shadow-card: 0 2px 12px rgba(42, 58, 30, 0.07), 0 1px 3px rgba(42, 58, 30, 0.05);
+  --shadow-hover: 0 8px 28px rgba(42, 58, 30, 0.13), 0 2px 6px rgba(42, 58, 30, 0.07);
+  --transition: 0.26s cubic-bezier(0.4, 0, 0.2, 1);
+}
 .menu-section {
   color: var(--text-dark);
 }
 
-/* ════════════════════════════════════════════════════════════
-   LAYOUT
-   ════════════════════════════════════════════════════════════ */
 .menu-grid-wrapper {
   display: grid;
   grid-template-columns: var(--sidebar-w) 1fr;
@@ -13,9 +31,6 @@
   margin: 0 auto;
 }
 
-/* ════════════════════════════════════════════════════════════
-   SIDEBAR
-   ════════════════════════════════════════════════════════════ */
 .menu-sidebar {
   background: linear-gradient(168deg, #1e2e14 0%, var(--olive) 100%);
   padding: 2rem 0 3rem;
@@ -52,7 +67,6 @@
   margin-bottom: 0.6rem;
 }
 
-/* ── Sidebar list ────────────────────────────────────────── */
 .menu-links-list {
   list-style: none;
   margin: 0;
@@ -62,7 +76,6 @@
   gap: 4px;
 }
 
-/* JS produces: <a class="category-card" style="background-image:url(...)"> */
 .menu-links-list .category-card {
   display: flex;
   align-items: center;
@@ -78,7 +91,6 @@
   height: 64px;
 }
 
-/* Dark overlay so text is always readable */
 .menu-links-list .category-card::before {
   content: '';
   position: absolute;
@@ -108,27 +120,21 @@
   background: rgba(0, 0, 0, 0.55);
 }
 
-/* Active: gold inset left border */
 .menu-links-list .category-card.active {
   box-shadow: inset 3px 0 0 var(--gold);
 }
 
-/* ════════════════════════════════════════════════════════════
-   MAIN CONTENT AREA
-   ════════════════════════════════════════════════════════════ */
 #menu-container {
   background: var(--cream);
   padding: 3rem 2.8rem 5rem;
   min-height: 100%;
 }
 
-/* ── Category section ────────────────────────────────────── */
 .menu-category {
   margin-bottom: 4rem;
   scroll-margin-top: 1.5rem;
 }
 
-/* Section title h3 */
 .menu-category>h3 {
   font-family: var(--font-display);
   font-size: 2.6rem;
@@ -143,7 +149,6 @@
   position: relative;
 }
 
-/* Gold ornament dot on the divider */
 .menu-category>h3::after {
   content: '✦';
   position: absolute;
@@ -157,7 +162,6 @@
   font-style: normal;
 }
 
-/* ── Subcategory heading h4 ──────────────────────────────── */
 .menu-subcategory-title {
   grid-column: 1 / -1;
   font-family: var(--font-body);
@@ -181,7 +185,6 @@
   background: rgba(138, 125, 107, 0.15);
 }
 
-/* ── Items grid ──────────────────────────────────────────── */
 .menu-items {
   list-style: none;
   margin: 1.8rem 0 0;
@@ -192,7 +195,6 @@
   align-items: start;
 }
 
-/* ── Single item card <li> ───────────────────────────────── */
 .menu-items>li {
   background: var(--warm-white);
   border-radius: var(--card-radius);
@@ -209,9 +211,6 @@
   transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
 }
 
-
-
-/* Gold shimmer on hover */
 .menu-items>li::before {
   content: '';
   position: absolute;
@@ -225,8 +224,6 @@
   z-index: 1;
 }
 
-
-/* ── Image ───────────────────────────────────────────────── */
 .menu-items>li img {
   width: 100px;
   min-width: 100px;
@@ -239,7 +236,6 @@
   transition: transform 0.48s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* No-image: thin gold accent strip instead */
 .menu-items>li.no-image::after {
   content: '';
   width: 4px;
@@ -249,7 +245,6 @@
   order: -1;
 }
 
-/* ── .dish wrapper ───────────────────────────────────────── */
 .menu-items>li .dish {
   flex: 1;
   padding: 0.85rem 0.9rem 0.75rem;
@@ -276,7 +271,6 @@
   overflow: hidden;
 }
 
-/* ── Price span ──────────────────────────────────────────── */
 .menu-items>li .price {
   font-family: var(--font-display);
   font-size: 1rem;
@@ -289,9 +283,6 @@
   flex-shrink: 0;
 }
 
-/* ════════════════════════════════════════════════════════════
-   STAGGER ANIMATION
-   ════════════════════════════════════════════════════════════ */
 @keyframes item-in {
   to {
     opacity: 1;
@@ -335,9 +326,6 @@
   animation-delay: 0.36s;
 }
 
-/* ════════════════════════════════════════════════════════════
-   LOADER
-   ════════════════════════════════════════════════════════════ */
 .menu-loader-wrapper {
   display: flex;
   flex-direction: column;
@@ -366,9 +354,6 @@
   }
 }
 
-/* ════════════════════════════════════════════════════════════
-   RESPONSIVE
-   ════════════════════════════════════════════════════════════ */
 @media (max-width: 1024px) {
   :root {
     --sidebar-w: 185px;

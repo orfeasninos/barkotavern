@@ -15,6 +15,9 @@
 }
 
 :root {
+  --r-sm: 0.9rem;
+  --r-md: 1.25rem;
+  --r-lg: 2rem;
   --r-xl: 2.6rem;
   --font-title: 'Playfair Display', Georgia, serif;
   --font-body: 'Source Sans 3', sans-serif;
@@ -26,19 +29,6 @@
   --gold: #d4af37;
   --gold-2: #f3e7a5;
   --ink: #0D2E0B;
-  --olive: #2a3a1e;
-  --olive-mid: #3d5229;
-  --olive-light: #5a7a3a;
-  --gold-light: #e8c97a;
-  --gold-pale: #f5e9c8;
-  --cream: #faf6ee;
-  --cream-dark: #efe6d3;
-  --warm-white: #fffdf8;
-  --stone: #8a7d6b;
-  --stone-light: #c8b9a8;
-  --text-dark: #1e1a14;
-  --text-mid: #4a3f32;
-  --text-muted: #7a6e62;
   --paper: rgba(255, 255, 255, 0.70);
   --paper-2: rgba(255, 255, 255, 0.50);
   --blur: blur(10px);
@@ -52,11 +42,6 @@
   --wrap: 1200px;
   --gold-glow: 0 10px 26px rgba(212, 175, 55, .16);
   --ornament-line: linear-gradient(90deg, transparent, rgba(212, 175, 55, .75), rgba(243, 231, 165, .70), rgba(212, 175, 55, .75), transparent);
-  --card-radius: 13px;
-  --sidebar-w: 210px;
-  --shadow-card: 0 2px 12px rgba(42, 58, 30, 0.07), 0 1px 3px rgba(42, 58, 30, 0.05);
-  --shadow-hover: 0 8px 28px rgba(42, 58, 30, 0.13), 0 2px 6px rgba(42, 58, 30, 0.07);
-  --transition: 0.26s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
