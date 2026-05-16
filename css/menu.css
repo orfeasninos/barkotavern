@@ -111,7 +111,7 @@
 
 .menu-category {
   margin-bottom: 4rem;
-  scroll-margin-top: 1.5rem;
+  scroll-margin-top: var(--header-h);
 }
 
 .menu-category>h3 {
@@ -389,6 +389,10 @@
 
   #menu-container {
     padding: 1.8rem 1rem 3rem;
+  }
+
+  .menu-category {
+    scroll-margin-top: calc(var(--header-h) + 100px);
   }
 
   .menu-category>h3 {

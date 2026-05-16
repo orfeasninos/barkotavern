@@ -4,7 +4,6 @@ async function loadMenu() {
     try {
         const response = await fetch(SHEET_URL);
         const csvText = await response.text();
-
         Papa.parse(csvText, {
             header: true,
             skipEmptyLines: true,
@@ -28,9 +27,7 @@ async function loadMenu() {
         console.error("Fetch error:", error);
     }
 }
-
 const currentLang = document.documentElement.lang.toUpperCase() || 'EN';
-
 const categoryImages = {
     "Ορεκτικά": "../../assets/images/pitarakia.webp",
     "Σαλάτες": "../../assets/images/xoriatiki.webp",
@@ -41,7 +38,6 @@ const categoryImages = {
     "Κρασιά": "../../assets/images/krasia.jpg",
     "Ποτά": "../../assets/images/drinks.webp"
 };
-
 const categoryTranslations = {
     "Ορεκτικά": { EL: "Ορεκτικά", IT: "Antipasti", FR: "Entrées", EN: "Appetizers" },
     "Σαλάτες": { EL: "Σαλάτες", IT: "Insalate", FR: "Salades", EN: "Salads" },
@@ -52,54 +48,40 @@ const categoryTranslations = {
     "Κρασιά": { EL: "Κρασιά", IT: "Vini", FR: "Vins", EN: "Wines" },
     "Ποτά": { EL: "Ποτά", IT: "Bevande", FR: "Boissons", EN: "Drinks" }
 };
-
 const subcategoryTranslations = {
-    "Νερό": {EL: "Νερό", IT: "Acqua", FR: "Eau", EN: "Water"},
-    "Αναψυκτικά": {EL: "Αναψυκτικά", IT: "Bibite", FR: "Boissons Gazeuses", EN: "Soft Drinks"},
-    "Ποτά": {EL: "Ποτά", IT: "Bevande", FR: "Boissons", EN: "Drinks"},
-    "Μπύρες": {EL: "Μπύρες", IT: "Birre", FR: "Bières", EN: "Beers"},
-    "Ούζο": {EL: "Ούζο", IT: "Ouzo", FR: "Ouzo", EN: "Ouzo"},
-    "Τσίπουρο": {EL: "Τσίπουρο", IT: "Tsipouro", FR: "Tsipouro", EN: "Tsipouro"},
-    "Κρασί": {EL: "Κρασί", IT: "Vino", FR: "Vin", EN: "Wine"}
+    "Νερό": { EL: "Νερό", IT: "Acqua", FR: "Eau", EN: "Water" },
+    "Αναψυκτικά": { EL: "Αναψυκτικά", IT: "Bibite", FR: "Boissons Gazeuses", EN: "Soft Drinks" },
+    "Ποτά": { EL: "Ποτά", IT: "Bevande", FR: "Boissons", EN: "Drinks" },
+    "Μπύρες": { EL: "Μπύρες", IT: "Birre", FR: "Bières", EN: "Beers" },
+    "Ούζο": { EL: "Ούζο", IT: "Ouzo", FR: "Ouzo", EN: "Ouzo" },
+    "Τσίπουρο": { EL: "Τσίπουρο", IT: "Tsipouro", FR: "Tsipouro", EN: "Tsipouro" },
+    "Κρασί": { EL: "Κρασί", IT: "Vino", FR: "Vin", EN: "Wine" }
 };
-
 function renderMenu(data) {
     const menuContainer = document.getElementById('menu-container');
     const sidebarContainer = document.querySelector('.menu-links-list');
-
     const currentLang = document.documentElement.lang.toUpperCase() || 'EN';
     if (currentLang.length > 2) currentLang = 'EN';
-    // 1. Ομαδοποίηση
     const grouped = data.reduce((acc, item) => {
         const cat = item.Category || "Other";
         if (!acc[cat]) acc[cat] = [];
         acc[cat].push(item);
         return acc;
     }, {});
-
     let menuHtml = '';
     let sidebarHtml = '';
-
     for (const category in grouped) {
-        const cleanKey = category.trim(); // "Ορεκτικά"
-        // 1. Βρίσκει τη μετάφραση βάσει του ελληνικού κλειδιού
+        const cleanKey = category.trim();
         const entry = categoryTranslations[cleanKey];
         const translatedCategory = (entry && entry[currentLang]) ? entry[currentLang] : cleanKey;
-
-        // 2. Βρίσκει την εικόνα βάσει του ελληνικού κλειδιού
         const catImg = categoryImages[cleanKey] || '';
-
-        // 3. Δημιουργεί ένα ID στα αγγλικά για το URL (προαιρετικό αλλά καλό για το SEO)
-        // Αν το entry[EN] υπάρχει, το ID θα είναι "appetizers", αλλιώς "ορεκτικά"
         const catId = (entry && entry.EN) ? entry.EN.toLowerCase().replace(/\s+/g, '-') : cleanKey;
-
         sidebarHtml += `
         <li>
             <a href="#${catId}" class="category-card" style="background-image:url('${catImg}')">
                 <span>${translatedCategory}</span>
             </a>
         </li>`;
-
         menuHtml += `
     <section class="menu-category" id="${catId}">
         <h3>${translatedCategory}</h3>
@@ -110,19 +92,14 @@ function renderMenu(data) {
                     let subHeader = "";
                     if (item.Subcategory && item.Subcategory.trim() !== "" && item.Subcategory !== currentSub) {
                         currentSub = item.Subcategory.trim();
-
-                        // Ψάχνουμε τη μετάφραση στο Map
                         const subEntry = subcategoryTranslations[currentSub];
                         const translatedSub = (subEntry && subEntry[currentLang]) ? subEntry[currentLang] : currentSub;
-
                         subHeader = `<h4 class="menu-subcategory-title">${translatedSub}</h4>`;
                     }
-
                     const name = item[`Name_${currentLang}`] || item.Name_EN;
                     const desc = item[`Description_${currentLang}`] || item.Description_EN;
                     const hasImage = item.Image && item.Image.trim() !== '';
                     const price = item.Price ? parseFloat(item.Price.toString().replace(',', '.')).toFixed(2) : "0.00";
-
                     return `
                         ${subHeader} <!-- Εδώ μπαίνει ο τίτλος της υποκατηγορίας αν άλλαξε -->
                         <li class="${hasImage ? '' : 'no-image'}">
@@ -138,15 +115,11 @@ function renderMenu(data) {
         </ul>
     </section>`;
     }
-
-    // Τοποθέτηση στα containers
     if (menuContainer) menuContainer.innerHTML = menuHtml;
     if (sidebarContainer) sidebarContainer.innerHTML = sidebarHtml;
 }
 loadMenu();
-/* =========================================================
-    MENU PAGE: sidebar move on mobile
- ========================================================= */
+
 function initMenuSidebarLayout(state) {
     const wrapper = document.querySelector(".menu-grid-wrapper");
     const sidebar = document.querySelector(".menu-sidebar");
@@ -157,7 +130,6 @@ function initMenuSidebarLayout(state) {
         const mobileNow = state.mqMobile.matches;
         sidebar.classList.toggle("menu-sidebar--mobile", mobileNow);
 
-        // keep sidebar first (above menu) on mobile (and also consistent on desktop)
         if (sidebar.parentElement === wrapper && wrapper.firstElementChild !== sidebar) {
             wrapper.insertBefore(sidebar, main);
         }
@@ -167,29 +139,19 @@ function initMenuSidebarLayout(state) {
     window.addEventListener("resize", apply, { passive: true });
 }
 
-/* =========================================================
-     MENU PAGE: active category (Barko Optimized - No Reflow)
-    ========================================================= */
 function initMenuCategoryActive(state) {
     const menuSections = document.querySelectorAll(".menu-category");
     const menuLinks = document.querySelectorAll(".menu-links-list a");
     const linksContainer = document.querySelector(".menu-links-list");
-
     if (!menuSections.length || !menuLinks.length || !("IntersectionObserver" in window)) return;
-
     let lastActiveId = null;
-
     const setActive = (id) => {
         if (lastActiveId === id) return;
         lastActiveId = id;
-
         menuLinks.forEach((link) => {
             const isActive = link.getAttribute("href") === `#${id}`;
             link.classList.toggle("active", isActive);
-
-            // Scroll μόνο αν υπάρχει ανάγκη και πάντα μέσα σε requestAnimationFrame
             if (isActive && linksContainer) {
-                // Διπλό RAF για να βεβαιωθούμε ότι ο browser έχει τελειώσει με το στυλ
                 requestAnimationFrame(() => {
                     requestAnimationFrame(() => {
                         const linkOffset = link.offsetLeft;
@@ -204,16 +166,13 @@ function initMenuCategoryActive(state) {
     };
 
     const menuObserver = new IntersectionObserver((entries) => {
-        // Παίρνουμε το πρώτο στοιχείο που μπαίνει στο "οπτικό πεδίο"
         const visible = entries.find(e => e.isIntersecting);
         if (visible) {
             setActive(visible.target.id);
         }
     }, {
-        // Αυξάνουμε το margin για να πιάνει το section πριν φτάσει τέρμα πάνω
         rootMargin: "-20% 0px -60% 0px",
         threshold: 0.01
     });
-
     menuSections.forEach((sec) => menuObserver.observe(sec));
 }

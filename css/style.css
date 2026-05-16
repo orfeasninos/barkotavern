@@ -1318,7 +1318,7 @@ header::after {
     transform: scale(1.08);
     filter: saturate(1.15) contrast(1.08);
   }
-  a :active {
+  a:active {
     text-decoration: none;
   }
 }

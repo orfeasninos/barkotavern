@@ -1,17 +1,6 @@
 <!DOCTYPE html>
 <html lang="el">
-
 <head>
-  <link rel="preload" as="image" href="/assets/images/logo.webp" fetchpriority="high">
-  <link rel="preload" as="image" href="/assets/images/background-mobile.webp" fetchpriority="high">
-  <link rel="preload" href="/assets/fonts/playfair-display-v40-latin-regular.woff2" as="font" type="font/woff2"
-    crossorigin>
-  <link rel="preload" href="/assets/fonts/source-sans-3-v19-latin-regular.woff2" as="font" type="font/woff2"
-    crossorigin>
-  <link rel="preload" href="/assets/css/style.css" as="style">
-  <link rel="preload" href="/assets/css/home.css" as="style">
-  <link rel="stylesheet" href="/assets/css/style.css" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="/assets/css/home.css" media="print" onload="this.media='all'">
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
@@ -133,52 +122,6 @@
   ]
 }
 </script>
-  <style>
-    body,
-    html {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-    }
-
-    .page-bg {
-      position: absolute;
-      inset: 0;
-      left: 0;
-      width: 100vw;
-      height: 100dvh;
-      z-index: 0;
-      object-fit: cover;
-    }
-
-    .hero {
-      background: #1e2d18;
-      color: #f0ede4;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 3rem 2rem;
-      position: relative;
-      overflow: hidden;
-      cursor: default;
-    }
-
-    .info-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 9000;
-      text-align: center;
-      font-size: 13px;
-      letter-spacing: 0.1em;
-      font-weight: 700;
-      color: #f3e7a5;
-    }
-  </style>
 </head>
 
 <body>
@@ -305,7 +248,7 @@
       <p>⏰ 13:00 - 00:00</p>
       <div class="map-container">
         <h2>Βρείτε μας στον χάρτη</h2>
-        <iframe width="600" height="400" style="border:0; width: 100%;" loading="lazy" allowfullscreen loading="lazy"
+        <iframe title="Google Maps" width="600" height="400" style="border:0; width: 100%;" loading="lazy" allowfullscreen
           src="https://maps.google.com/maps?q=Barko%20Tavern%2C%20Adamas%2C%20Milos%2C%20Greece&t=m&z=13&output=embed"> 
         </iframe>
       </div>
