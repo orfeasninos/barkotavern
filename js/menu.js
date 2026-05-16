@@ -147,14 +147,20 @@ function initMenuCategoryActive(state) {
     const menuLinks = document.querySelectorAll(".menu-links-list a");
     const linksContainer = document.querySelector(".menu-links-list");
     const desktopContainer = document.querySelector(".menu-sidebar");
-
+    
     if (!menuSections.length || !menuLinks.length || !("IntersectionObserver" in window)) return;
-
+    
     let lastActiveId = null;
+    // 1. FIX: Flag που δείχνει αν αυτή τη στιγμή γίνεται scroll από κλικ
+    let isClickScrolling = false; 
+    let clickTimeout = null;
 
     const setActive = (id) => {
         if (lastActiveId === id) return;
         lastActiveId = id;
+        
+        console.log("🎯 Active Category Changed To:", id);
+
         menuLinks.forEach((link) => {
             const isActive = link.getAttribute("href") === `#${id}`;
             link.classList.toggle("active", isActive);
@@ -185,18 +191,29 @@ function initMenuCategoryActive(state) {
         });
     };
 
-    const menuObserver = new IntersectionObserver((entries) => {
-        // Στο mobile παίρνουμε το section που έχει μπει περισσότερο στην οθόνη
-        // Στο desktop κρατάμε τη λογική με το targetLine που σου δούλευε
+    const menuObserver = new IntersectionObserver(() => {
+        // 2. FIX: Αν το scroll προέρχεται από κλικ, αγνόησε τα ενδιάμεσα sections!
+        if (isClickScrolling) return;
+
+        let activeId = null;
+
         if (state.mqMobile && state.mqMobile.matches) {
-            const visibleSection = entries.find(entry => entry.isIntersecting);
-            if (visibleSection) {
-                setActive(visibleSection.target.id);
-            }
-        } else {
-            let activeId = null;
             let minDistance = Infinity;
-            const targetLine = 120;
+            const mobileHeaderHeight = 170; 
+
+            menuSections.forEach((sec) => {
+                const rect = sec.getBoundingClientRect();
+                if (rect.bottom > mobileHeaderHeight) {
+                    const distance = Math.abs(rect.top - mobileHeaderHeight);
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        activeId = sec.id;
+                    }
+                }
+            });
+        } else {
+            let minDistance = Infinity;
+            const targetLine = 120; 
 
             menuSections.forEach((sec) => {
                 const rect = sec.getBoundingClientRect();
@@ -208,19 +225,39 @@ function initMenuCategoryActive(state) {
                     }
                 }
             });
+        }
 
-            if (activeId) {
-                setActive(activeId);
-            }
+        if (activeId) {
+            setActive(activeId);
         }
     }, {
-        // Καθαρίζουμε τα margins για το κινητό και βάζουμε threshold 0.3 (30%)
-        rootMargin: state.mqMobile && state.mqMobile.matches ? "0px" : "-10% 0px -40% 0px",
-        // ΑΛΛΑΓΗ: Ρίχνουμε το threshold στο 0.1 (10%) για να "πιάνει" αμέσως και τις Σαλάτες!
-        threshold: state.mqMobile && state.mqMobile.matches ? 0.1 : 0.01
+        rootMargin: "0px",
+        threshold: [0, 0.2, 0.5, 0.8, 1.0]
     });
 
     menuSections.forEach((sec) => menuObserver.observe(sec));
+
+    // 3. FIX: Ακούμε τα κλικ στα links για να ενεργοποιήσουμε το "μπλόκο"
+    menuLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+            // Παίρνουμε το ID του προορισμού (π.χ. "epidorpia")
+            const targetId = link.getAttribute("href").substring(1);
+            
+            // Ενεργοποιούμε το μπλόκο στον Observer
+            isClickScrolling = true;
+            
+            // Ανάβουμε αμέσως το σωστό link χωρίς να περιμένουμε το scroll
+            setActive(targetId);
+
+            // Ακυρώνουμε τυχόν προηγούμενο timeout
+            clearTimeout(clickTimeout);
+
+            // Μόλις τελειώσει το smooth scroll (περίπου 800ms), ξανανοίγουμε τον Observer
+            clickTimeout = setTimeout(() => {
+                isClickScrolling = false;
+            }, 800); 
+        });
+    });
 
     window.activeMenuObserver = menuObserver;
 }
