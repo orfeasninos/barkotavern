@@ -802,16 +802,15 @@ body.dark .sk-ww-google-reviews {
   .btn-outline:hover {
     background: var(--olive-mid);
     color: var(--gold-light);
-    transform: translateY(-2px);
   }
 
   .contact-list li a:hover {
     color: var(--olive-mid);
-    transform: scale(1.05);
+    transform: scale(1.01);
   }
 
   .contact-review-links img:hover {
-    transform: scale(1.20);
+    transform: scale(1.10);
   }
 }
 
