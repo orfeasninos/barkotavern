@@ -853,11 +853,11 @@ header::after {
 }
 
 .cta-btn.call {
-  background: #b3b600;
+  background: var(--gold);
 }
 
 .cta-btn.map {
-  background: #006907;
+  background: var(--olive);
 }
 
 
