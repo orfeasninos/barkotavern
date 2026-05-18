@@ -255,11 +255,6 @@ body.dark .sk-post {
 @keyframes dotPulse{0%,100%{transform:scale(1);opacity:.65}50%{transform:scale(1.4);opacity:1}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 
-/* ═══════════════════════════════════════════════════════════
-   SECTION SYSTEM
-   Reset .section & .container from style.css
-   Dividers = SVG elements in HTML, NOT clip-path
-═══════════════════════════════════════════════════════════ */
 .section {
   margin: 0 !important;
   padding: 0 !important;
@@ -282,7 +277,6 @@ body.dark .sk-post {
 }
 .section .container::after { display: none !important; }
 
-/* SVG divider between sections */
 .divider {
   display: block;
   width: 100%;
@@ -296,6 +290,7 @@ body.dark .sk-post {
   display: block;
   width: 100%;
   height: auto;
+  height: clamp(50px, 6vw, 90px);
 }
 
 /* Section label — small uppercase above headings */
@@ -608,7 +603,7 @@ body.dark .sk-post {
 
 /* ─── HOVER ─────────────────────────────────────────────── */
 @media (hover:hover) and (pointer:fine) {
-  .hero-cta.primary:hover { transform:translateY(-3px);box-shadow:0 18px 44px rgba(212,175,55,.52),inset 0 1px 0 rgba(255,255,255,.50); }
+  .hero-cta.primary:hover {box-shadow:0 18px 44px rgba(212,175,55,.52),inset 0 1px 0 rgba(255,255,255,.50); }
   .hero-cta.secondary:hover { transform:translateY(-3px);background:rgba(212,175,55,.10);border-color:rgba(212,175,55,.60);color:#fff; }
   .menu-item:hover { transform:translateY(-6px);box-shadow:0 20px 48px rgba(42,58,30,0.15); }
   .menu-item:hover img { transform:scale(1.06); }
@@ -659,7 +654,6 @@ body.dark .sk-post {
   .contact-section>.container>h2 { font-size:1.9rem; }
   .sticky-cta { bottom:20px;right:10px; }
   .cta-btn { width:44px;height:44px; }
-  .divider { display:none; }
 }
 @media (max-width: 380px) {
   .hero h1 { font-size:clamp(3.2rem,19vw,4.5rem); }
@@ -672,3 +666,4 @@ body.dark .sk-post {
   .hero-eyebrow,.hero h1,.hero-sub,.hero-actions,.hero-ornament { opacity:1;animation:none;transform:none; }
   .orb,.hero-grain,.ornament-dot { animation:none; }
 }
+

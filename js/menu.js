@@ -155,7 +155,6 @@ function initMenuCategoryActive(state) {
     if (!menuSections.length || !menuLinks.length || !("IntersectionObserver" in window)) return;
     
     let lastActiveId = null;
-    // 1. FIX: Flag που δείχνει αν αυτή τη στιγμή γίνεται scroll από κλικ
     let isClickScrolling = false; 
     let clickTimeout = null;
 
@@ -195,71 +194,54 @@ function initMenuCategoryActive(state) {
         });
     };
 
-    const menuObserver = new IntersectionObserver(() => {
-        // 2. FIX: Αν το scroll προέρχεται από κλικ, αγνόησε τα ενδιάμεσα sections!
-        if (isClickScrolling) return;
-
+    // Γεωμετρικός έλεγχος: Ποιο section βρίσκεται κάτω από τη γραμμή του Header
+    const checkActiveSection = () => {
         let activeId = null;
+        
+        const isMobile = state.mqMobile && state.mqMobile.matches;
+        const targetLine = isMobile ? 175 : 120; 
 
-        if (state.mqMobile && state.mqMobile.matches) {
-            let minDistance = Infinity;
-            const mobileHeaderHeight = 170; 
-
-            menuSections.forEach((sec) => {
-                const rect = sec.getBoundingClientRect();
-                if (rect.bottom > mobileHeaderHeight) {
-                    const distance = Math.abs(rect.top - mobileHeaderHeight);
-                    if (distance < minDistance) {
-                        minDistance = distance;
-                        activeId = sec.id;
-                    }
-                }
-            });
-        } else {
-            let minDistance = Infinity;
-            const targetLine = 120; 
-
-            menuSections.forEach((sec) => {
-                const rect = sec.getBoundingClientRect();
-                if (rect.top <= targetLine + 50 && rect.bottom >= targetLine) {
-                    const distance = Math.abs(rect.top - targetLine);
-                    if (distance < minDistance) {
-                        minDistance = distance;
-                        activeId = sec.id;
-                    }
-                }
-            });
-        }
+        menuSections.forEach((sec) => {
+            const rect = sec.getBoundingClientRect();
+            
+            // Ένα section είναι ενεργό αν η γραμμή targetLine βρίσκεται ανάμεσα στο top και το bottom του
+            // Προσθέτουμε ένα tolerance 20px για άμεση απόκριση και στις δύο κατευθύνσεις (scroll up/down)
+            if (rect.top <= targetLine + 20 && rect.bottom >= targetLine - 20) {
+                activeId = sec.id;
+            }
+        });
 
         if (activeId) {
             setActive(activeId);
         }
+    };
+
+    const menuObserver = new IntersectionObserver(() => {
+        // Αν το scroll προέρχεται από κλικ, αγνοούμε τα ενδιάμεσα περάσματα
+        if (isClickScrolling) return;
+        checkActiveSection();
     }, {
-        rootMargin: "0px",
-        threshold: [0, 0.2, 0.5, 0.8, 1.0]
+        // Κόβουμε το header (175px στο κινητό, 120px στο desktop) για να "ακούει" σωστά το scroll
+        rootMargin: state.mqMobile && state.mqMobile.matches ? "-175px 0px -60% 0px" : "-10% 0px -40% 0px",
+        threshold: 0.01
     });
 
     menuSections.forEach((sec) => menuObserver.observe(sec));
 
-    // 3. FIX: Ακούμε τα κλικ στα links για να ενεργοποιήσουμε το "μπλόκο"
     menuLinks.forEach((link) => {
         link.addEventListener("click", (e) => {
-            // Παίρνουμε το ID του προορισμού (π.χ. "epidorpia")
             const targetId = link.getAttribute("href").substring(1);
             
-            // Ενεργοποιούμε το μπλόκο στον Observer
             isClickScrolling = true;
-            
-            // Ανάβουμε αμέσως το σωστό link χωρίς να περιμένουμε το scroll
             setActive(targetId);
 
-            // Ακυρώνουμε τυχόν προηγούμενο timeout
             clearTimeout(clickTimeout);
 
-            // Μόλις τελειώσει το smooth scroll (περίπου 800ms), ξανανοίγουμε τον Observer
+            // 400ms είναι υπεραρκετά για να ολοκληρωθεί το jump χωρίς να πνίγει το μετέπειτα scroll
             clickTimeout = setTimeout(() => {
                 isClickScrolling = false;
-            }, 800); 
+                checkActiveSection(); // Τελική επιβεβαίωση θέσης μόλις σταματήσει το scroll του κλικ
+            }, 400); 
         });
     });
 
