@@ -404,7 +404,6 @@ body.dark .sk-ww-google-reviews {
 .divider svg {
   display: block;
   width: 100%;
-  height: auto;
   height: clamp(50px, 6vw, 90px);
 }
 
@@ -588,7 +587,7 @@ body.dark .sk-ww-google-reviews {
 }
 
 .about-section::before {
-  content: 'B';
+  content: '';
   position: absolute;
   right: -0.05em;
   top: -0.1em;
@@ -637,7 +636,6 @@ body.dark .sk-ww-google-reviews {
   align-items: center;
   gap: 0.55rem;
   padding: 0.48rem 1rem;
-  border: 1px solid rgba(212, 175, 55, 0.28);
   border-radius: 999px;
   font-size: 0.70rem;
   letter-spacing: 0.20em;
@@ -809,8 +807,7 @@ body.dark .sk-ww-google-reviews {
 
   .contact-list li a:hover {
     color: var(--olive-mid);
-        transform: scale(1.05);
-
+    transform: scale(1.05);
   }
 
   .contact-review-links img:hover {
@@ -818,19 +815,19 @@ body.dark .sk-ww-google-reviews {
   }
 }
 
-  .hero-cta:active {
+.hero-cta:active {
     transform: scale(0.97);
+    box-shadow: 0 18px 44px rgba(212, 175, 55, .52), inset 0 1px 0 rgba(255, 255, 255, .50);
   }
 
-  .menu-item:active {
-    transform: translateY(-3px);
+  .menu-item:active img {
+    transform: scale(1.06);
   }
 
   .btn-outline:active {
     transform: scale(0.97);
   }
 
-/* ─── RESPONSIVE ────────────────────────────────────────── */
 @media (max-width: 960px) {
   .about-layout {
     grid-template-columns: 1fr;
@@ -943,11 +940,6 @@ body.dark .sk-ww-google-reviews {
 
   .contact-section>.container>h2 {
     font-size: 1.9rem;
-  }
-
-  .sticky-cta {
-    bottom: 20px;
-    right: 10px;
   }
 }
 
