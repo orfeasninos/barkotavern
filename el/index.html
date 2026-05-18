@@ -364,27 +364,7 @@
     </a>
   </div>
   <script src="/js/main.js" defer></script>
-  <script>
-    window.addEventListener("load", function () {
-      const reviewsSection = document.querySelector('.reviews-section');
-      let widgetLoaded = false;
-      if (reviewsSection && 'IntersectionObserver' in window) {
-        const observer = new IntersectionObserver(function (entries, obs) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting && !widgetLoaded) {
-              widgetLoaded = true;
-              const s = document.createElement('script');
-              s.src = "https://widgets.sociablekit.com/google-reviews/widget.js";
-              s.defer = true;
-              document.body.appendChild(s);
-              obs.disconnect();
-            }
-          });
-        }, { rootMargin: "200px" });
-        observer.observe(reviewsSection);
-      }
-    });
-  </script>
+  <script src="https://widgets.sociablekit.com/google-reviews/widget.js" defer></script>
 </body>
 
 </html>

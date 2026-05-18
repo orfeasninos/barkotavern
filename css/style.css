@@ -1058,7 +1058,3 @@ header::after {
     font-size: .82rem;
   }
 }
-
-* {
-  outline: 1px solid red !important;
-}
