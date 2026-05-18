@@ -156,7 +156,6 @@ function initMenuCategoryActive(state) {
     
     let lastActiveId = null;
     let isClickScrolling = false; 
-    let clickTimeout = null;
 
     const setActive = (id) => {
         if (lastActiveId === id) return;
@@ -203,6 +202,7 @@ function initMenuCategoryActive(state) {
         menuSections.forEach((sec) => {
             const rect = sec.getBoundingClientRect();
             
+            // Έλεγχος αν η γραμμή του header βρίσκεται μέσα στα όρια του section
             if (rect.top <= targetLine + 20 && rect.bottom >= targetLine - 20) {
                 activeId = sec.id;
             }
@@ -214,6 +214,7 @@ function initMenuCategoryActive(state) {
     };
 
     const menuObserver = new IntersectionObserver(() => {
+        // Αν το scroll είναι από κλικ, ο observer δεν κάνει τίποτα στην πορεία
         if (isClickScrolling) return;
         checkActiveSection();
     }, {
@@ -223,24 +224,28 @@ function initMenuCategoryActive(state) {
 
     menuSections.forEach((sec) => menuObserver.observe(sec));
 
+    // Διαχείριση των Κλικ
     menuLinks.forEach((link) => {
         link.addEventListener("click", (e) => {
             const targetId = link.getAttribute("href").substring(1);
             
             isClickScrolling = true;
             setActive(targetId);
-
-            clearTimeout(clickTimeout);
-
-            clickTimeout = setTimeout(() => {
-                isClickScrolling = false;
-                checkActiveSection(); 
-            }, 400); 
         });
     });
 
-    // FIX: Εκτελούμε έναν έλεγχο αμέσως τώρα, ώστε να ανάψει η πρώτη κατηγορία 
-    // (Ορεκτικά) ακαριαία με το που φορτώνει η σελίδα, χωρίς να περιμένουμε scroll.
+    // FIX: Όταν το smooth scroll τελειώσει ΕΝΤΕΛΩΣ, ξεκλειδώνουμε τον observer 
+    // και κάνουμε verify τη θέση. Λειτουργεί τόσο για window (mobile) όσο και για containers.
+    const handleScrollEnd = () => {
+        if (isClickScrolling) {
+            isClickScrolling = false;
+            checkActiveSection();
+        }
+    };
+
+    window.addEventListener("scrollend", handleScrollEnd);
+
+    // Αρχικός έλεγχος κατά το load
     checkActiveSection();
 
     window.activeMenuObserver = menuObserver;
