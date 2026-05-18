@@ -143,118 +143,109 @@ function initMenuSidebarLayout(state) {
 }
 
 function initMenuCategoryActive(state) {
-    if (window.activeMenuObserver) {
-        window.activeMenuObserver.disconnect();
-    }
-
-    const menuSections = document.querySelectorAll(".menu-category");
-    const menuLinks = document.querySelectorAll(".menu-links-list a");
+    const menuSections = Array.from(document.querySelectorAll(".menu-category"));
+    const menuLinks = Array.from(document.querySelectorAll(".menu-links-list a"));
     const linksContainer = document.querySelector(".menu-links-list");
     const desktopContainer = document.querySelector(".menu-sidebar");
     
-    if (!menuSections.length || !menuLinks.length || !("IntersectionObserver" in window)) return;
+    if (!menuSections.length || !menuLinks.length) return;
     
     let lastActiveId = null;
     let isClickScrolling = false; 
+    let clickTimeout = null;
+    let ticking = false;
 
     const setActive = (id) => {
         if (lastActiveId === id) return;
         lastActiveId = id;
         
-        console.log("🎯 Active Category Changed To:", id);
-
         menuLinks.forEach((link) => {
             const isActive = link.getAttribute("href") === `#${id}`;
             link.classList.toggle("active", isActive);
 
             if (isActive) {
                 requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-                        if (state.mqMobile && state.mqMobile.matches) {
-                            if (linksContainer) {
-                                const linkOffsetLeft = link.offsetLeft;
-                                linksContainer.scrollTo({
-                                    left: linkOffsetLeft - (linksContainer.clientWidth / 2) + (link.clientWidth / 2),
-                                    behavior: "smooth"
-                                });
-                            }
-                        } else {
-                            if (desktopContainer) {
-                                const linkOffsetTop = link.offsetTop;
-                                desktopContainer.scrollTo({
-                                    top: linkOffsetTop - (desktopContainer.clientHeight / 2) + (link.clientHeight / 2),
-                                    behavior: "smooth"
-                                });
-                            }
-                        }
-                    });
+                    if (state.mqMobile && state.mqMobile.matches && linksContainer) {
+                        const linkOffsetLeft = link.offsetLeft;
+                        linksContainer.scrollTo({
+                            left: linkOffsetLeft - (linksContainer.clientWidth / 2) + (link.clientWidth / 2),
+                            behavior: "smooth"
+                        });
+                    } else if (desktopContainer) {
+                        const linkOffsetTop = link.offsetTop;
+                        desktopContainer.scrollTo({
+                            top: linkOffsetTop - (desktopContainer.clientHeight / 2) + (link.clientHeight / 2),
+                            behavior: "smooth"
+                        });
+                    }
                 });
             }
         });
     };
 
-const checkActiveSection = () => {
-        let activeId = null;
-        
-        const isMobile = state.mqMobile && state.mqMobile.matches;
-        const targetLine = isMobile ? 175 : 120; 
+    const updateOnScroll = () => {
+        if (isClickScrolling) return;
 
-        // FIX για την τελευταία κατηγορία (Ποτά): 
-        // Αν ο χρήστης έχει σκρολλάρει μέχρι το τέρμα κάτω της σελίδας
-        const isAtBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 10);
-
-        if (isAtBottom && menuSections.length > 0) {
-            // Ανάβουμε αυτόματα το τελευταίο section του μενού
-            activeId = menuSections[menuSections.length - 1].id;
-        } else {
-            // Αλλιώς, τρέχει ο κανονικός γεωμετρικός έλεγχος για τα ενδιάμεσα sections
-            menuSections.forEach((sec) => {
-                const rect = sec.getBoundingClientRect();
-                if (rect.top <= targetLine + 20 && rect.bottom >= targetLine - 20) {
-                    activeId = sec.id;
-                }
-            });
+        // 1. Έλεγχος: Είμαστε στον απόλυτο πάτο της σελίδας; (Για τα Ποτά)
+        if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 10) {
+            setActive(menuSections[menuSections.length - 1].id);
+            return;
         }
 
-        if (activeId) {
-            setActive(activeId);
+        const isMobile = state.mqMobile && state.mqMobile.matches;
+        // Η γραμμή που "κόβει" το header (175px mobile, 120px desktop)
+        const targetLine = isMobile ? 175 : 120; 
+        let currentActiveId = null;
+
+        // 2. Μαθηματικός Έλεγχος: Σκανάρουμε από το τελευταίο section προς το πρώτο.
+        // Βρίσκουμε το πρώτο section που η κορυφή του έχει περάσει ή ακουμπάει τη γραμμή.
+        for (let i = menuSections.length - 1; i >= 0; i--) {
+            const rect = menuSections[i].getBoundingClientRect();
+            if (rect.top <= targetLine + 20) {
+                currentActiveId = menuSections[i].id;
+                break;
+            }
+        }
+
+        // 3. Fallback: Αν είμαστε τέρμα πάνω και κανένα δεν έπιασε, ανάβουμε το 1ο.
+        if (!currentActiveId && menuSections.length > 0) {
+            currentActiveId = menuSections[0].id;
+        }
+
+        if (currentActiveId) {
+            setActive(currentActiveId);
         }
     };
 
-    const menuObserver = new IntersectionObserver(() => {
-        // Αν το scroll είναι από κλικ, ο observer δεν κάνει τίποτα στην πορεία
-        if (isClickScrolling) return;
-        checkActiveSection();
-    }, {
-        rootMargin: state.mqMobile && state.mqMobile.matches ? "-175px 0px -60% 0px" : "-10% 0px -40% 0px",
-        threshold: 0.01
+    // Βάζουμε τον κλασικό scroll listener αλλά βελτιστοποιημένο για επιδόσεις
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                updateOnScroll();
+                ticking = false;
+            });
+            ticking = true;
+        }
     });
 
-    menuSections.forEach((sec) => menuObserver.observe(sec));
-
-    // Διαχείριση των Κλικ
     menuLinks.forEach((link) => {
         link.addEventListener("click", (e) => {
             const targetId = link.getAttribute("href").substring(1);
             
+            // Κλειδώνουμε αυστηρά το scroll update
             isClickScrolling = true;
             setActive(targetId);
+
+            clearTimeout(clickTimeout);
+
+            // Δίνουμε 800ms στον browser να κάνει την κίνηση με την ησυχία του.
+            // Στο τέλος ΔΕΝ κάνουμε re-check, απλά του επιτρέπουμε να ξανακούει το χέρι σου.
+            clickTimeout = setTimeout(() => {
+                isClickScrolling = false;
+            }, 800); 
         });
     });
 
-    // FIX: Όταν το smooth scroll τελειώσει ΕΝΤΕΛΩΣ, ξεκλειδώνουμε τον observer 
-    // και κάνουμε verify τη θέση. Λειτουργεί τόσο για window (mobile) όσο και για containers.
-    const handleScrollEnd = () => {
-        if (isClickScrolling) {
-            isClickScrolling = false;
-            checkActiveSection();
-        }
-    };
-
-    window.addEventListener("scrollend", handleScrollEnd);
-
-    // Αρχικός έλεγχος κατά το load
-    checkActiveSection();
-
-    window.activeMenuObserver = menuObserver;
+    // Αρχικό τρέξιμο
+    updateOnScroll();
 }
