@@ -1,52 +1,18 @@
-/* ==========================================================================
-   RESTAURANT PAGE SPECIFIC STYLES (Το Εστιατόριο)
-   ========================================================================== */
-
-/* --- Hero Section στην κορυφή της σελίδας --- */
 .hero-welcome {
-  min-height: 48vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
   padding-top: calc(var(--header-h) + 1rem);
-  /* Χρήση του gradients/χρωμάτων του header για απόλυτη συνοχή */
-  background: linear-gradient(40deg, #1e2e14 0%, var(--olive) 100%);
   text-align: center;
-  color: #fff;
   box-shadow: var(--shadow-md);
-}
-
-/* Διακοσμητικά Luminous Orbs στο φόντο (αντίστοιχα με την αρχική σελίδα) */
-.hero-welcome::before {
-  content: "";
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(214, 175, 55, 0.15) 0%, transparent 75%);
-  top: -20%;
-  right: -10%;
-  filter: blur(60px);
-  pointer-events: none;
-}
-
-.hero-welcome::after {
-  content: "";
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(58, 90, 34, 0.5) 0%, transparent 70%);
-  bottom: -15%;
-  left: -10%;
-  filter: blur(50px);
-  pointer-events: none;
 }
 
 .welcome-box {
   position: relative;
   z-index: 2;
-  padding: 2rem 1.5rem;
   max-width: 800px;
   animation: fadeUp 0.9s var(--ease) forwards;
 }
@@ -54,19 +20,9 @@
 .welcome-box h1 {
   font-family: var(--font-title);
   font-size: clamp(2.5rem, 5.5vw, 4.2rem);
-  color: #fff;
-  margin-top: 0.4rem;
+  color: #000000;
   font-weight: 400;
   text-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
-}
-
-.welcome-box span {
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gold);
-  display: block;
 }
 
 /* --- Ρυθμίσεις των Sections και Εναλλαγές Χρωμάτων --- */
@@ -177,12 +133,17 @@
     font-size: 2.3rem;
   }
 
-  .welcome-box span {
-    font-size: 0.78rem;
-    letter-spacing: 0.16em;
-  }
-
   .dish-gallery {
     grid-template-columns: 1fr; /* Μία φωτό ανά σειρά στα πολύ μικρά κινητά */
   }
+}
+
+.page-bg {
+  width: 100vw;
+  height: 100vh;
+  object-fit:cover;
+  top: 0px;
+  left: 0px;
+  position:absolute;
+  z-index: -1;
 }
