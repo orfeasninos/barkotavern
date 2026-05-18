@@ -193,20 +193,28 @@ function initMenuCategoryActive(state) {
         });
     };
 
-    const checkActiveSection = () => {
+const checkActiveSection = () => {
         let activeId = null;
         
         const isMobile = state.mqMobile && state.mqMobile.matches;
         const targetLine = isMobile ? 175 : 120; 
 
-        menuSections.forEach((sec) => {
-            const rect = sec.getBoundingClientRect();
-            
-            // Έλεγχος αν η γραμμή του header βρίσκεται μέσα στα όρια του section
-            if (rect.top <= targetLine + 20 && rect.bottom >= targetLine - 20) {
-                activeId = sec.id;
-            }
-        });
+        // FIX για την τελευταία κατηγορία (Ποτά): 
+        // Αν ο χρήστης έχει σκρολλάρει μέχρι το τέρμα κάτω της σελίδας
+        const isAtBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 10);
+
+        if (isAtBottom && menuSections.length > 0) {
+            // Ανάβουμε αυτόματα το τελευταίο section του μενού
+            activeId = menuSections[menuSections.length - 1].id;
+        } else {
+            // Αλλιώς, τρέχει ο κανονικός γεωμετρικός έλεγχος για τα ενδιάμεσα sections
+            menuSections.forEach((sec) => {
+                const rect = sec.getBoundingClientRect();
+                if (rect.top <= targetLine + 20 && rect.bottom >= targetLine - 20) {
+                    activeId = sec.id;
+                }
+            });
+        }
 
         if (activeId) {
             setActive(activeId);
