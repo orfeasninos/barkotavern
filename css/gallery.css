@@ -45,3 +45,29 @@
     height: 100%;
   }
 }
+
+@media (hover: hover) and (pointer:fine ) {
+    .dish-gallery img:hover {
+    transform: translateY(-6px) scale(1.01);
+    filter: saturate(1.12) contrast(1.06);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .gallery-item {
+    transition: transform 700ms var(--ease-2), box-shadow 700ms var(--ease-2);
+  }
+
+  .gallery-item:hover {
+    box-shadow: var(--shadow-xl);
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.08);
+    filter: saturate(1.15) contrast(1.08);
+  }
+
+  .review-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 55px rgba(0, 0, 0, .20);
+  }
+}
