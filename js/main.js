@@ -26,31 +26,38 @@
   }
 
   function initConsent() {
-    const KEY = "barko_cookie_choice";
-    const banner = document.getElementById("consentBanner");
-    const accept = document.getElementById("consentAccept");
-    const reject = document.getElementById("consentReject");
-    if (!banner || !accept || !reject) return;
-    const choice = localStorage.getItem(KEY);
-    if (!choice) {
+  const KEY = "barko_cookie_choice";
+  const banner = document.getElementById("consentBanner");
+  const accept = document.getElementById("consentAccept");
+  const reject = document.getElementById("consentReject");
+  
+  if (!banner || !accept || !reject) return;
+  
+  const choice = localStorage.getItem(KEY);
+  if (!choice) {
+    setTimeout(() => {
       banner.classList.add("show");
-    }
-    accept.addEventListener("click", () => {
-      localStorage.setItem(KEY, "accepted");
-      banner.classList.remove("show");
-      loadAnalytics();
-    });
-    reject.addEventListener("click", () => {
-      localStorage.setItem(KEY, "rejected");
-      disableAnalytics();
-      banner.classList.remove("show");
-    });
-    if (choice === "accepted") {
-      loadAnalytics();
-    } else if (choice === "rejected") {
-      disableAnalytics();
-    }
+    }, 3000); 
   }
+  
+  accept.addEventListener("click", () => {
+    localStorage.setItem(KEY, "accepted");
+    banner.classList.remove("show");
+    loadAnalytics();
+  });
+  
+  reject.addEventListener("click", () => {
+    localStorage.setItem(KEY, "rejected");
+    disableAnalytics();
+    banner.classList.remove("show");
+  });
+  
+  if (choice === "accepted") {
+    loadAnalytics();
+  } else if (choice === "rejected") {
+    disableAnalytics();
+  }
+}
 
   function disableAnalytics() {
     const GA_ID = "G-W5LVLHN94F";
