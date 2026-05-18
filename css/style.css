@@ -289,7 +289,7 @@ header::after {
 .header-nav ul li a {
   font-family: var(--font-title);
   position: relative;
-  color: rgba(255, 255, 255, 0.92);
+  color: var(--gold-2);
   font-size: 13px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -316,7 +316,7 @@ header::after {
 }
 
 .header-nav ul li a.active {
-  color: #fff;
+  color:var(--gold);
   background: rgba(212, 175, 55, 0.16);
   box-shadow:
     0 12px 32px rgba(0, 0, 0, .20),
@@ -834,7 +834,6 @@ header::after {
   }
 
   .header-nav ul li a:hover {
-    color: #fff;
     background: rgba(212, 175, 55, 0.16);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.12);
   }
