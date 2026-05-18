@@ -53,6 +53,7 @@
   --shadow-xl: 0 30px 70px rgba(0, 0, 0, 0.22);
   --ring: 0 0 0 3px rgb(17, 104, 0);
   --header-h: 120px;
+  --header-h-mobile: 92px;
   --wrap: 1200px;
   --gold-glow: 0 10px 26px rgba(212, 175, 55, .16);
   --ornament-line: linear-gradient(90deg, transparent, rgba(212, 175, 55, .75), rgba(243, 231, 165, .70), rgba(212, 175, 55, .75), transparent);
@@ -1056,5 +1057,11 @@ header::after {
     right: 14px;
     padding: .65rem 1rem;
     font-size: .82rem;
+  }
+}
+
+@media (max-height: 720px) {
+  header {
+    height: var(--header-h-mobile);
   }
 }
