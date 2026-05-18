@@ -1251,12 +1251,7 @@ header::after {
 ========================= */
 @media (hover:none) and (pointer:coarse) {
   .menu-items li:active {
-    transform: translateY(-2px);
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.16);
-  }
-
-  .menu-category:active {
-    transform: translateY(-3px);
   }
 
   .menu-item:active {
@@ -1265,8 +1260,7 @@ header::after {
   }
 
   .category-card:active {
-    transform: translateY(-4px);
-    filter: saturate(1.05);
+    filter: saturate(1.15);
   }
 
   p a:active {
