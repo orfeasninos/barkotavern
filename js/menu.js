@@ -194,7 +194,6 @@ function initMenuCategoryActive(state) {
         });
     };
 
-    // Γεωμετρικός έλεγχος: Ποιο section βρίσκεται κάτω από τη γραμμή του Header
     const checkActiveSection = () => {
         let activeId = null;
         
@@ -204,8 +203,6 @@ function initMenuCategoryActive(state) {
         menuSections.forEach((sec) => {
             const rect = sec.getBoundingClientRect();
             
-            // Ένα section είναι ενεργό αν η γραμμή targetLine βρίσκεται ανάμεσα στο top και το bottom του
-            // Προσθέτουμε ένα tolerance 20px για άμεση απόκριση και στις δύο κατευθύνσεις (scroll up/down)
             if (rect.top <= targetLine + 20 && rect.bottom >= targetLine - 20) {
                 activeId = sec.id;
             }
@@ -217,11 +214,9 @@ function initMenuCategoryActive(state) {
     };
 
     const menuObserver = new IntersectionObserver(() => {
-        // Αν το scroll προέρχεται από κλικ, αγνοούμε τα ενδιάμεσα περάσματα
         if (isClickScrolling) return;
         checkActiveSection();
     }, {
-        // Κόβουμε το header (175px στο κινητό, 120px στο desktop) για να "ακούει" σωστά το scroll
         rootMargin: state.mqMobile && state.mqMobile.matches ? "-175px 0px -60% 0px" : "-10% 0px -40% 0px",
         threshold: 0.01
     });
@@ -237,13 +232,16 @@ function initMenuCategoryActive(state) {
 
             clearTimeout(clickTimeout);
 
-            // 400ms είναι υπεραρκετά για να ολοκληρωθεί το jump χωρίς να πνίγει το μετέπειτα scroll
             clickTimeout = setTimeout(() => {
                 isClickScrolling = false;
-                checkActiveSection(); // Τελική επιβεβαίωση θέσης μόλις σταματήσει το scroll του κλικ
+                checkActiveSection(); 
             }, 400); 
         });
     });
+
+    // FIX: Εκτελούμε έναν έλεγχο αμέσως τώρα, ώστε να ανάψει η πρώτη κατηγορία 
+    // (Ορεκτικά) ακαριαία με το που φορτώνει η σελίδα, χωρίς να περιμένουμε scroll.
+    checkActiveSection();
 
     window.activeMenuObserver = menuObserver;
 }
