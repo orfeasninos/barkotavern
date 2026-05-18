@@ -351,7 +351,7 @@ body.dark .sk-ww-google-reviews {
 
 .sk-ww-google-reviews .sk-masonry-item>*,
 .sk-ww-google-reviews .js-masonry-item>* {
-  height: 450px !important;
+  height: 400px !important;
   display: flex !important;
   flex-direction: column !important;
   overflow: hidden !important;
