@@ -423,6 +423,18 @@
   }
 }
 
+.menu-links-list .category-card:active::before {
+  background: linear-gradient(90deg, rgba(16, 26, 8, 0.55) 0%, rgba(16, 26, 8, 0.25) 100%);
+}
+
+.menu-items>li:active::before {
+  opacity: 1;
+}
+
+.menu-items>li:active img {
+  transform: scale(1.07);
+}
+
 @media (hover:hover) and (pointer: fine) {
   .menu-links-list .category-card:hover::before {
     background: linear-gradient(90deg, rgba(16, 26, 8, 0.55) 0%, rgba(16, 26, 8, 0.25) 100%);
@@ -431,12 +443,6 @@
   .menu-links-list .category-card:hover span,
   .menu-links-list .category-card.active span {
     color: var(--gold-light);
-  }
-
-  .menu-items>li:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-hover);
-    border-color: rgba(201, 168, 76, 0.36);
   }
 
   .menu-items>li:hover::before {
