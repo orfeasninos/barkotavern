@@ -54,7 +54,11 @@ const subcategoryTranslations = {
     "Μπύρες": { EL: "Μπύρες", IT: "Birre", FR: "Bières", EN: "Beers" },
     "Ούζο": { EL: "Ούζο", IT: "Ouzo", FR: "Ouzo", EN: "Ouzo" },
     "Τσίπουρο": { EL: "Τσίπουρο", IT: "Tsipouro", FR: "Tsipouro", EN: "Tsipouro" },
-    "Κρασί": { EL: "Κρασί", IT: "Vino", FR: "Vin", EN: "Wine" }
+    "Κρασί": { EL: "Κρασί", IT: "Vino", FR: "Vin", EN: "Wine" },
+    "Αφρώδες": {EL: "Αφρώδες", IT: "Spumante", FR: "Pétillant", EN: "Sparkling" },
+    "Λευκό": { EL: "Λευκό", IT: "Bianco", FR: "Blanc", EN: "White" },
+    "Ροζέ": { EL: "Ροζέ", IT: "Rosato", FR: "Rosé", EN: "Rosé" },
+    "Κόκκινο": { EL: "Κόκκινο", IT: "Rosso", FR: "Rouge", EN: "Red" }
 };
 function renderMenu(data) {
     const menuContainer = document.getElementById('menu-container');
