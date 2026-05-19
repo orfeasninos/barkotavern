@@ -1,149 +1,445 @@
+/* ============================================================
+   restaurant.css — Barko Tavern · Restaurant Page
+   ============================================================ */
+
+
+/* ============================================================
+   § 0  TOKENS
+   ============================================================ */
+:root {
+  --rs-serif:       "Playfair Display", "Didot", "Georgia", serif;
+  --rs-sans:        system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --rs-ink:         var(--ink, #132411);
+  --rs-gold:        var(--ornament-line, #c5a880);
+  --rs-gold-dim:    rgba(197, 168, 128, 0.18);
+  --rs-gold-mid:    rgba(197, 168, 128, 0.48);
+  --rs-cream:       var(--cream, #fdfbf4);
+  --rs-cream-dark:  var(--cream-dark, #f4f0e5);
+  --rs-text:        var(--text-dark, #2b2a26);
+
+  --rs-py:          clamp(4rem, 7.5vw, 7rem);
+  --rs-px:          clamp(1.5rem, 5vw, 3.5rem);
+
+  --rs-h2:          clamp(2.8rem, 5.5vw, 5rem);
+  --rs-lead:        clamp(1.05rem, 1.6vw, 1.35rem);
+  --rs-body:        clamp(1rem, 1.05vw, 1.08rem);
+
+  --rs-ease:        cubic-bezier(0.25, 1, 0.5, 1);
+  --rs-ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+/* ============================================================
+   § 1  HERO  (original cinematic style, untouched header)
+   ============================================================ */
 .hero-welcome {
-  min-height: 100vh;
+  position: relative;
+  min-height: 88dvh;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  overflow: hidden;
-  padding-top: calc(var(--header-h) + 1rem);
+  padding-block-start: calc(var(--header-h, 90px) + 2rem);
+  padding-inline: 1.5rem;
   text-align: center;
-  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  background-color: var(--rs-ink);
+  isolation: isolate;
 }
 
+/* Background + Ken Burns */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+  animation: rs-heroZoom 22s var(--rs-ease) infinite alternate;
+}
+
+/* Multi-layer vignette */
+.hero-welcome::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at 50% 40%, rgba(19,36,17,.08) 0%, rgba(19,36,17,.70) 100%),
+    linear-gradient(to bottom,
+      rgba(0,0,0,.40) 0%,
+      rgba(0,0,0,.06) 45%,
+      rgba(0,0,0,.54) 100%);
+}
+
+/* Gold line at bottom */
+.hero-welcome::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--rs-gold) 50%, transparent);
+  z-index: 1;
+}
+
+/* Text wrapper */
 .welcome-box {
   position: relative;
-  z-index: 2;
-  max-width: 800px;
-  animation: fadeUp 0.9s var(--ease) forwards;
+  z-index: 1;
+  width: 100%;
+  max-width: 860px;
+  opacity: 0;
+  transform: translateY(22px);
+  animation: rs-heroReveal 1.5s var(--rs-ease-out) 0.15s forwards;
+}
+
+/* Eyebrow */
+.welcome-box span {
+  display: inline-block;
+  font-family: var(--rs-sans);
+  font-size: clamp(0.6rem, 1vw, 0.75rem);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.38em;
+  color: rgba(252, 250, 242, 0.80);
+  margin-bottom: 1.75rem;
+  padding: 0.55rem 1.75rem;
+  border-block: 1px solid var(--rs-gold-mid);
+  background: rgba(19, 36, 17, 0.30);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .welcome-box h1 {
-  font-family: var(--font-title);
-  font-size: clamp(2.5rem, 5.5vw, 4.2rem);
-  color: #000000;
+  font-family: var(--rs-serif);
+  font-size: clamp(3rem, 8.5vw, 6.5rem);
   font-weight: 400;
-  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  text-shadow: 0 6px 40px rgba(0,0,0,.45);
+  margin: 0;
 }
 
-/* --- Ρυθμίσεις των Sections και Εναλλαγές Χρωμάτων --- */
+
+/* ============================================================
+   § 2  SECTION SHELLS
+   ============================================================ */
+.section {
+  padding-block: var(--rs-py);
+}
+
 .history-section,
 .cuisine-section {
-  background-color: var(--cream); /* Απαλό κρεμ φόντο */
+  background-color: var(--rs-cream);
 }
 
 .location-section,
 .hospitality-section {
-  background-color: var(--cream-dark); /* Ελαφρώς πιο σκούρο κρεμ για οπτικό διαχωρισμό */
-  border-top: 1px solid rgba(42, 58, 30, 0.05);
-  border-bottom: 1px solid rgba(42, 58, 30, 0.05);
+  background-color: var(--rs-cream-dark);
+  border-block: 1px solid rgba(42, 58, 30, 0.055);
 }
 
-/* Κομψοί Τίτλοι με τη χρυσή διακοσμητική γραμμή */
-.section h2 {
-  font-family: var(--font-title);
-  font-size: clamp(2rem, 4vw, 2.6rem);
-  color: var(--ink);
-  text-align: center;
-  margin-bottom: 2.2rem;
-  font-weight: 400;
-  position: relative;
-}
 
-.section h2::after {
-  content: "";
-  display: block;
-  width: 90px;
-  height: 2px;
-  background: var(--ornament-line);
-  margin: 0.9rem auto 0;
-  opacity: 0.8;
-}
-
-/* Διαμόρφωση Παραγράφων */
-.section p {
-  color: var(--text-dark);
-  margin-bottom: 1.4rem;
-  text-align: justify;
-}
-
-/* Ανάδειξη της πρώτης παραγράφου ως lead text */
-.section p:first-of-type {
-  font-size: clamp(1.1rem, 1.25vw, 1.2rem);
-  color: var(--olive);
-  font-style: italic;
-  text-align: center;
-  max-width: 68ch;
-  margin-bottom: 2rem;
-}
-
-/* --- Layout για τις Γκαλερί Εικόνων (.dish-gallery) --- */
-.dish-gallery {
+/* ============================================================
+   § 3  INNER GRID
+   ============================================================ */
+.section .container {
+  width: 100%;
+  max-width: 1340px;
+  margin-inline: auto;
+  padding-inline: var(--rs-px);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.8rem;
-  margin-top: 3.5rem;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 2rem;
+  row-gap: 3rem;
+  align-items: start;
+}
+
+
+/* ============================================================
+   § 4  HEADINGS  — outline stroke + EST tag
+   ============================================================ */
+.section h2 {
+  grid-column: 1 / -1;
+  font-family: var(--rs-serif);
+  font-size: var(--rs-h2);
+  font-weight: 300;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1.4rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid var(--rs-gold-dim);
+}
+
+/* Stroke — desktop only */
+@media (min-width: 769px) {
+  .section h2 {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--rs-ink);
+  }
+}
+
+/* EST. 1993 tag */
+.section h2::after {
+  content: "— EST. 1993";
+  font-family: var(--rs-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.30em;
+  color: var(--rs-gold);
+  -webkit-text-stroke: 0;
+  flex-shrink: 0;
+  margin-bottom: 0.5rem;
+}
+
+/* Direction per section */
+.history-section h2,
+.cuisine-section h2 {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.location-section h2,
+.hospitality-section h2 {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+
+/* ============================================================
+   § 5  PARAGRAPHS  —  Z-pattern
+   ODD  sections → lead col 1-5  | body col 7-12
+   EVEN sections → body col 1-6  | lead col 8-12
+   ============================================================ */
+
+/* Lead */
+.section p:first-of-type {
+  font-family: var(--rs-serif);
+  font-size: var(--rs-lead);
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--rs-ink);
+  margin: 0;
+  padding-left: 1.4rem;
+  border-left: 2px solid var(--rs-gold);
+  border-radius: 0;
+}
+
+/* Body */
+.section p:not(:first-of-type) {
+  font-family: var(--rs-sans);
+  font-size: var(--rs-body);
+  line-height: 1.88;
+  color: var(--rs-text);
+  opacity: 0.82;
+  margin: 0;
+}
+
+/* ODD */
+.history-section p:first-of-type,
+.cuisine-section p:first-of-type {
+  grid-column: 1 / span 5;
+  align-self: center;
+}
+
+.history-section p:not(:first-of-type),
+.cuisine-section p:not(:first-of-type) {
+  grid-column: 7 / span 6;
+  align-self: center;
+}
+
+/* EVEN */
+.location-section p:first-of-type,
+.hospitality-section p:first-of-type {
+  grid-column: 8 / span 5;
+  border-left: none;
+  border-right: 2px solid var(--rs-gold);
+  border-radius: 0;
+  padding-left: 0;
+  padding-right: 1.4rem;
+  text-align: right;
+  align-self: center;
+}
+
+.location-section p:not(:first-of-type),
+.hospitality-section p:not(:first-of-type) {
+  grid-column: 1 / span 6;
+  align-self: center;
+}
+
+
+/* ============================================================
+   § 6  BENTO GALLERY
+   ============================================================ */
+.dish-gallery {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
 }
 
 .dish-gallery img {
+  display: block;
   width: 100%;
-  height: 280px;
+  height: 100%;
   object-fit: cover;
-  border-radius: var(--card-radius);
-  box-shadow: var(--shadow-card);
-  transition: transform var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease);
-  filter: saturate(1.02) contrast(1.02);
+  border-radius: 2px;
+  filter: saturate(1.02) brightness(0.97);
+  transition:
+    transform  0.9s var(--rs-ease),
+    filter     0.9s var(--rs-ease),
+    box-shadow 0.9s var(--rs-ease);
+  will-change: transform;
 }
 
-/* Hover εφέ για τις εικόνες */
+.dish-gallery img:nth-child(1) {
+  grid-column: 1 / span 7;
+  aspect-ratio: 16 / 9;
+}
+
+.dish-gallery img:nth-child(2) {
+  grid-column: 8 / span 5;
+  aspect-ratio: 4 / 3;
+}
+
+.dish-gallery img:nth-child(3) {
+  grid-column: 1 / -1;
+  height: 360px;
+  object-position: center 60%;
+}
+
 @media (hover: hover) {
+  .dish-gallery img { cursor: zoom-in; }
+
   .dish-gallery img:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-hover);
+    transform: scale(1.018);
+    filter: saturate(1.06) brightness(1.02);
+    box-shadow: 0 12px 40px rgba(19, 36, 17, 0.13);
+    position: relative;
+    z-index: 1;
   }
 }
 
-/* --- Responsive Προσαρμογές --- */
-@media (max-width: 800px) {
-  .hero-welcome {
-    min-height: 38vh;
-    padding-top: calc(var(--header-h-mobile) + 1rem);
+
+/* ============================================================
+   § 7  KEYFRAMES
+   ============================================================ */
+@keyframes rs-heroZoom {
+  from { transform: scale(1.02) translate(0, 0); }
+  to   { transform: scale(1.10) translate(-1.2%, -0.6%); }
+}
+
+@keyframes rs-heroReveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ============================================================
+   § 8  RESPONSIVE
+   ============================================================ */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  :root { --rs-py: 5rem; }
+
+  .dish-gallery img:nth-child(1) { grid-column: 1 / span 6; aspect-ratio: 4/3; }
+  .dish-gallery img:nth-child(2) { grid-column: 7 / span 6; aspect-ratio: 4/3; }
+  .dish-gallery img:nth-child(3) { height: 260px; }
+
+  .history-section p:first-of-type,
+  .cuisine-section p:first-of-type,
+  .location-section p:first-of-type,
+  .hospitality-section p:first-of-type {
+    grid-column: 1 / -1;
+    border-left: 2px solid var(--rs-gold);
+    border-right: none;
+    border-radius: 0;
+    padding-left: 1.4rem;
+    padding-right: 0;
+    text-align: left;
+    align-self: auto;
   }
+
+  .history-section p:not(:first-of-type),
+  .cuisine-section p:not(:first-of-type),
+  .location-section p:not(:first-of-type),
+  .hospitality-section p:not(:first-of-type) {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    align-self: auto;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  :root { --rs-py: 3.5rem; }
+
+  .hero-welcome { min-height: 62dvh; }
+
+  .section h2 {
+    font-size: clamp(2rem, 8.5vw, 2.8rem) !important;
+    color: var(--rs-ink) !important;
+    -webkit-text-stroke: 0 !important;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    text-align: left !important;
+    justify-content: flex-start !important;
+    padding-bottom: 1.25rem;
+  }
+
+  .section h2::after { margin-bottom: 0; }
 
   .section .container {
-    padding: 4.5rem 1.2rem;
-  }
-
-  .section p {
-    text-align: left; /* Καλύτερη αναγνωσιμότητα στα κινητά */
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
   }
 
   .dish-gallery {
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.2rem;
-    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 0;
   }
-  
+
+  .dish-gallery img,
+  .dish-gallery img:nth-child(1),
+  .dish-gallery img:nth-child(2),
+  .dish-gallery img:nth-child(3) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* Small phones */
+@media (max-width: 400px) {
+  .hero-welcome  { min-height: 55dvh; }
+  .welcome-box h1 { font-size: 2.4rem; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg img,
+  .welcome-box,
   .dish-gallery img {
-    height: 220px;
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
   }
-}
-
-@media (max-width: 480px) {
-  .welcome-box h1 {
-    font-size: 2.3rem;
-  }
-
-  .dish-gallery {
-    grid-template-columns: 1fr; /* Μία φωτό ανά σειρά στα πολύ μικρά κινητά */
-  }
-}
-
-.page-bg {
-  width: 100vw;
-  height: 100vh;
-  object-fit:cover;
-  top: 0px;
-  left: 0px;
-  position:absolute;
-  z-index: -1;
 }
