@@ -51,7 +51,7 @@
   <link rel="manifest" href="/assets/favicons/site.webmanifest">
 
   <!-- Structured Data -->
-  <script type="application/ld+json">
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -62,20 +62,54 @@
       "name": "Barko Tavern",
       "inLanguage": "el"
     },
-
     {
       "@type": "WebPage",
       "@id": "https://barkotavernmilos.com/el/gallery/#webpage",
       "url": "https://barkotavernmilos.com/el/gallery/",
-      "mainEntity": { "@id": "https://barkotavernmilos.com/el/#restaurant" },
-      "name": "Φωτογραφίες | Barko Tavern",
+      "name": "Φωτογραφίες | Barko Tavern – Φωτογραφίες από πιάτα & χώρο στη Μήλο",
       "inLanguage": "el",
-      "isPartOf": {
-        "@id": "https://barkotavernmilos.com/el/#website"
+      "isPartOf": { "@id": "https://barkotavernmilos.com/el/#website" },
+      "about": { "@id": "https://barkotavernmilos.com/el/#restaurant" },
+      "mainEntity": { "@id": "https://barkotavernmilos.com/el/#restaurant" }
+    },
+    {
+      "@type": "Restaurant",
+      "@id": "https://barkotavernmilos.com/el/#restaurant",
+      "name": "Barko",
+      "url": "https://barkotavernmilos.com/el/",
+      "image": "https://barkotavernmilos.com/assets/images/og-barko-1200x630.jpg",
+      "telephone": "+30 22870 22660", 
+      "servesCuisine": ["Ελληνική","Μεσογειακή"], 
+      "priceRange": "€€",
+      "address": { 
+        "@type": "PostalAddress", 
+        "streetAddress": "Αδάμαντας", 
+        "addressLocality": "Αδάμαντας", 
+        "addressRegion": "Μήλος", 
+        "postalCode": "84800", 
+        "addressCountry": "GR" 
       },
-      "about": {
-        "@id": "https://barkotavernmilos.com/el/#restaurant"
-      }
+      "geo": { 
+        "@type": "GeoCoordinates", 
+        "latitude": 36.7283479, 
+        "longitude": 24.4464016 
+      },
+      "openingHoursSpecification": [{ 
+        "@type": "OpeningHoursSpecification", 
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], 
+        "opens": "13:00", 
+        "closes": "00:00" 
+      }],
+      "aggregateRating": { 
+        "@type": "AggregateRating", 
+        "ratingValue": "4.3", 
+        "reviewCount": "565", 
+        "bestRating": "5" 
+      },
+      "sameAs": [
+        "https://www.tripadvisor.com.gr/Restaurant_Review-g635606-d2205464-Reviews-Taverna_Barko-Adamas_Milos_Cyclades_South_Aegean.html",
+        "https://maps.app.goo.gl/gdWjLgHUEqUsAybK7"
+      ]
     },
     {
       "@type": "BreadcrumbList",
