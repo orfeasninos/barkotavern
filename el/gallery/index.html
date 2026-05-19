@@ -151,77 +151,21 @@
       </div>
     </div>
   </header>
-
-  <!-- GALLERY -->
-  <section class="section">
-    <div class="container">
-      <h2>Τα πιάτα μας</h2>
-      <div class="gallery-grid">
-        <div class="gallery-item">
-          <img src="/assets/images/kokoras.webp" data-modal-img="/assets/images/kokoras@2x.webp"
-            alt="Κόκορας κοκκινιστός με χειροποίητες χυλοπίτες" loading="lazy">
-        </div>
-        <div class="gallery-item">
-          <img src="/assets/images/makaronia-me-kima.webp" data-modal-img="/assets/images/makaronia-me-kima@2x.webp"
-            alt="Μακαρόνια με κιμά" loading="lazy">
-        </div>
-        <div class="gallery-item">
-          <img src="/assets/images/kalamarakia.webp" data-modal-img="/assets/images/kalamarakia@2x.webp"
-            alt="Καλαμάρι τηγανητό" loading="lazy">
-        </div>
-        <div class="gallery-item">
-          <img src="/assets/images/kolokithokeftedes.webp" data-modal-img="/assets/images/kolokithokeftedes@2x.webp"
-            alt="Κολοκυθοκεφτέδες με τζατζίκι" loading="lazy">
-        </div>
-        <div class="gallery-item">
-          <img src="/assets/images/pitarakia.webp" data-modal-img="/assets/images/pitarakia@2x.webp" alt="Πιτάρακια"
-            loading="lazy">
-        </div>
-        <div class="gallery-item">
-          <img src="/assets/images/patates.webp" data-modal-img="/assets/images/patates@2x.webp" alt="Πατάτες τηγανητές"
-            loading="lazy">
-        </div>
-        <div class="gallery-item">
-          <img src="/assets/images/revithokeftedes.webp" data-modal-img="/assets/images/revithokeftedes@2x.webp"
-            alt="Ρεβυθοκεφτέδες" loading="lazy">
-        </div>
-        <div class="gallery-item">
-          <img src="/assets/images/feta-meli.webp" data-modal-img="/assets/images/feta-meli@2x.webp"
-            alt="Φέτα τηγανητή σε φύλλο κρούστας με σουσάμι και μέλι" loading="lazy">
-        </div>
-        <div class="gallery-item">
-          <img src="/assets/images/revithokeftedes.webp" data-modal-img="/assets/images/revithokeftedes@2x.webp"
-            alt="Ρεβυθοκεφτέδες" loading="lazy">
-        </div>
-        <div class="gallery-item">
-          <img src="/assets/images/revithokeftedes.webp" data-modal-img="/assets/images/revithokeftedes@2x.webp"
-            alt="Ρεβυθοκεφτέδες" loading="lazy">
-        </div>
-        <div class="gallery-item">
-          <img src="/assets/images/revithokeftedes.webp" data-modal-img="/assets/images/revithokeftedes@2x.webp"
-            alt="Ρεβυθοκεφτέδες" loading="lazy">
-        </div>
-        <div class="gallery-item">
-          <img src="/assets/images/revithokeftedes.webp" data-modal-img="/assets/images/revithokeftedes@2x.webp"
-            alt="Ρεβυθοκεφτέδες" loading="lazy">
-        </div>
+  <main>
+<section class="section">
+  <div class="container">
+    <h2>Τα πιάτα μας</h2>
+    
+    <div id="gallery-container" class="gallery-grid">
+      <div class="gallery-loader-wrapper container">
+        <div class="spinner"></div>
+        <p>Φορτώνουμε τις φωτογραφίες μας...</p>
       </div>
     </div>
-  </section>
-  <section class="section">
-    <div class="container">
-      <h2>Ο χώρος μας</h2>
-      <div class="gallery-grid">
-        <div class="gallery-item">
-          <img src="/assets/images/background-desktop.webp" alt="Ο χώρος του Barko Tavern στη Μήλο">
-        </div>
-        <div class="gallery-item">
-          <img src="/assets/images/background-mobile.webp" alt="Ο χώρος του Barko Tavern στη Μήλο">
-        </div>
-      </div>
-    </div>
-  </section>
 
+  </div>
+</section>
+  </main>
   <!-- FOOTER -->
   <footer class="premium-footer">
     <div class="premium-footer-container">
@@ -295,18 +239,17 @@
       </div>
     </div>
   </div>
-    <div class="sticky-cta">
-  <a href="tel:+302287022660" class="cta-btn call">
-    📞
-  </a>
-  <a href="https://maps.google.com/?q=Barko+Tavern+Milos" 
-     target="_blank" 
-     class="cta-btn map">
-    <img src="/assets/images/google-maps.webp" alt="Google Maps" width="20" height="20">
-  </a>
-</div>
+  <div class="sticky-cta">
+    <a href="tel:+302287022660" class="cta-btn call">
+      📞
+    </a>
+    <a href="https://maps.google.com/?q=Barko+Tavern+Milos" target="_blank" class="cta-btn map">
+      <img src="/assets/images/google-maps.webp" alt="Google Maps" width="20" height="20">
+    </a>
+  </div>
   <script src="/js/main.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+  <script src="/js/gallery.js"></script>
 </body>
 
 </html>

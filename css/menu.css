@@ -210,6 +210,7 @@
   flex-shrink: 0;
   background: var(--cream-dark);
   transition: transform 0.48s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 10px;
 }
 
 .menu-items>li.no-image::after {
