@@ -30,7 +30,7 @@ const currentLang = document.documentElement.lang.toUpperCase() || 'EN';
 const categoryImages = {
     "Ορεκτικά": "../../assets/images/pitarakia.webp",
     "Σαλάτες": "../../assets/images/xoriatiki.webp",
-    "Μαγειρευτά": "../../assets/images/kokoras.webp",
+    "Μαγειρευτά": "../../assets/images/kokoras-lazania-home.webp",
     "Της ώρας": "../../assets/images/tis-ora.webp",
     "Θαλασσινά": "../../assets/images/kalamarakia.webp",
     "Επιδόρπια": "../../assets/images/sokolatopita.webp",
@@ -97,7 +97,7 @@ function renderMenu(data) {
                         currentSub = item.Subcategory.trim();
                         const subEntry = subcategoryTranslations[currentSub];
                         const translatedSub = (subEntry && subEntry[currentLang]) ? subEntry[currentLang] : currentSub;
-                        subHeader = `<h4 class="menu-subcategory-title">${translatedSub}</h4>`;
+                        subHeader = `<li class="menu-subcategory-title">${translatedSub}</li>`;
                     }
                     const name = item[`Name_${currentLang}`] || item.Name_EN;
                     const desc = item[`Description_${currentLang}`] || item.Description_EN;
