@@ -823,6 +823,15 @@ body.dark .sk-ww-google-reviews {
   transform: scale(1.06);
 }
 
+.contact-list li a:active {
+  color: var(--olive-mid);
+  transform: scale(1.01);
+}
+
+.contact-review-links img:active {
+  transform: scale(1.10);
+}
+
 .btn-outline:active {
   transform: scale(0.97);
   background: var(--olive-mid);
