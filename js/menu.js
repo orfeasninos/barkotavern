@@ -27,18 +27,17 @@ async function loadMenu() {
     }
 }
 const currentLang = document.documentElement.lang.toUpperCase() || 'EN';
-/*
+
 const categoryImages = {
-    "Ορεκτικά": "../../assets/images/pitarakia.webp",
-    "Σαλάτες": "../../assets/images/xoriatiki.webp",
-    "Μαγειρευτά": "../../assets/images/kokoras-lazania-home.webp",
-    "Της ώρας": "../../assets/images/tis-ora.webp",
-    "Θαλασσινά": "../../assets/images/kalamarakia.webp",
-    "Επιδόρπια": "../../assets/images/sokolatopita.webp",
-    "Κρασιά": "../../assets/images/krasia.jpg",
-    "Ποτά": "../../assets/images/drinks.webp"
+    "Ορεκτικά": "../../assets/images/.webp",
+    "Σαλάτες": "../../assets/images/.webp",
+    "Μαγειρευτά": "../../assets/images/.webp",
+    "Της ώρας": "../../assets/images/.webp",
+    "Θαλασσινά": "../../assets/images/.webp",
+    "Επιδόρπια": "../../assets/images/.webp",
+    "Κρασιά": "../../assets/images/.jpg",
+    "Ποτά": "../../assets/images/.webp"
 };
-*/
 const categoryTranslations = {
     "Ορεκτικά": { EL: "Ορεκτικά", IT: "Antipasti", FR: "Entrées", EN: "Appetizers" },
     "Σαλάτες": { EL: "Σαλάτες", IT: "Insalate", FR: "Salades", EN: "Salads" },
