@@ -13,9 +13,9 @@
   <meta name="google-site-verification" content="GvQB1BZCKx3jy9dTrjIHMJ237iDLwxJjFs3eHY3mVU4">
   <meta name="theme-color" content="#132411">
   <!-- SEO -->
-  <title>Gallery | Barko Tavern – Photos of Dishes & Venue in Milos</title>
+  <title>Gallery | Barko Tavern – Photos of dishes & venue in Milos</title>
   <meta name="description"
-    content="Browse photos from Barko Tavern in Adamas, Milos: traditional Miloan dishes, seafood, appetizers, and the atmosphere of the taverna.">
+    content="Browse photos of Barko Tavern in Adamas, Milos: traditional dishes from the island, seafood, starters and the atmosphere of the taverna.">
   <meta name="robots" content="index, follow">
 
   <!-- Hreflang -->
@@ -51,7 +51,7 @@
   <link rel="manifest" href="/assets/favicons/site.webmanifest">
 
   <!-- Structured Data -->
-  <script type="application/ld+json">
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -62,20 +62,48 @@
       "name": "Barko Tavern",
       "inLanguage": "en"
     },
-
     {
       "@type": "WebPage",
       "@id": "https://barkotavernmilos.com/en/gallery/#webpage",
       "url": "https://barkotavernmilos.com/en/gallery/",
-      "mainEntity": { "@id": "https://barkotavernmilos.com/en/#restaurant" },
-      "name": "Gallery | Barko Tavern",
+      "name": "Gallery | Barko Tavern – Photos of dishes & venue in Milos",
       "inLanguage": "en",
-      "isPartOf": {
-        "@id": "https://barkotavernmilos.com/en/#website"
+      "isPartOf": { "@id": "https://barkotavernmilos.com/en/#website" },
+      "about": { "@id": "https://barkotavernmilos.com/en/#restaurant" },
+      "mainEntity": { "@id": "https://barkotavernmilos.com/en/#restaurant" }
+    },
+    {
+      "@type": "Restaurant",
+      "@id": "https://barkotavernmilos.com/en/#restaurant",
+      "name": "Barko",
+      "url": "https://barkotavernmilos.com/en/",
+      "image": "https://barkotavernmilos.com/assets/images/og-barko-1200x630.jpg",
+      "telephone": "+30 22870 22660",
+      "servesCuisine": ["Greek","Mediterranean"],
+      "priceRange": "€€",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Επαρχιακή Οδός Λιμανιού Αδάμαντα-Τρυπητής",
+        "addressLocality": "Adamas",
+        "addressRegion": "South Aegean",
+        "postalCode": "84800",
+        "addressCountry": "GR"
       },
-      "about": {
-        "@id": "https://barkotavernmilos.com/en/#restaurant"
-      }
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 36.7283479,
+        "longitude": 24.4464016
+      },
+      "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        "opens": "13:00",
+        "closes": "00:00"
+      }],
+      "sameAs": [
+        "https://www.tripadvisor.com.gr/Restaurant_Review-g635606-d2205464-Reviews-Taverna_Barko-Adamas_Milos_Cyclades_South_Aegean.html",
+        "https://maps.app.goo.gl/gdWjLgHUEqUsAybK7"
+      ]
     },
     {
       "@type": "BreadcrumbList",
@@ -103,46 +131,49 @@
 
 <body>
   <div class="info-bar">
-    ⏰ Open daily: <strong>13:00 – 00:00</strong>
+    ⏰<strong>13:00 – 00:00</strong>
   </div>
-  <!-- HEADER -->
   <header>
     <div class="header-container">
-      <!-- LOGO -->
       <div class="logo">
         <a href="/en/">
-          <img src="/assets/images/logo.webp" alt="Barko Tavern Logo">
+          <img src="/assets/images/logo.webp" alt="Barko Tavern Logo" width="400" height="100" fetchpriority="high"
+            decoding="async" loading="eager">
         </a>
       </div>
-
-      <!-- BURGER MENU & NAV -->
       <div class="header-right">
-
-        <!-- Burger button -->
-        <div class="burger-menu" id="burger-menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-
-        <!-- Nav links + language -->
+        <button class="burger-menu"
+        id="burger-menu"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-nav">
+          <span></span><span></span><span></span>
+        </button>
         <nav class="header-nav" id="mobile-nav">
           <ul>
             <li><a href="/en/">Home</a></li>
             <li><a href="/en/restaurant/">The Restaurant</a></li>
             <li><a href="/en/menu/">Menu</a></li>
-            <li><a href="/en/gallery/">Gallery</a></li>
+            <li><a href="/en/gallery/" class="active">Gallery</a></li>
             <li><a href="/en/contact/">Contact</a></li>
             <li class="nav-controls">
               <div class="language-switcher">
                 <div class="lang-current">
-                  <img src="/assets/images/en.webp" alt="English">
+                  <img
+                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 30'%3E%3Cpath fill='%23012169' d='M0 0h60v30H0z'/%3E%3Cpath stroke='%23fff' stroke-width='6' d='M0 0l60 30M0 30l60-30'/%3E%3Cpath stroke='%23C8102E' stroke-width='2' d='M0 0l60 30M0 30l60-30'/%3E%3Cpath stroke='%23fff' stroke-width='10' d='M30 0v30M0 15h60'/%3E%3Cpath stroke='%23C8102E' stroke-width='6' d='M30 0v30M0 15h60'/%3E%3C/svg%3E"
+                    alt="UK Flag" style="width: 28px; height: 18px;">
                   <span class="lang-arrow">▾</span>
                 </div>
                 <div class="lang-options">
-                  <a href="/el/gallery/"><img src="/assets/images/gr.webp" alt="Ελληνικά"></a>
-                  <a href="/it/gallery/"><img src="/assets/images/it.webp" alt="Italiano"></a>
-                  <a href="/fr/gallery/"><img src="/assets/images/fr.webp" alt="Français"></a>
+                  <a href="/el/gallery/"><img
+                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 341'%3E%3Cpath fill='%23fff' d='M0 0h512v341H0z'/%3E%3Cpath fill='%23005bae' d='M0 0h512v37.9H0zm0 75.8h512v37.9H0zm0 75.8h512v37.9H0zm0 75.8h512v37.9H0zm0 75.8h512v37.9H0z'/%3E%3Crect width='189.6' height='189.6' fill='%23005bae' rx='0' ry='0'/%3E%3Cpath fill='%23fff' d='M75.8 0h37.9v189.6H75.8z'/%3E%3Cpath fill='%23fff' d='M0 75.8h189.6v37.9H0z'/%3E%3C/svg%3E"
+                      alt="Greece Flag" style="width: 28px; height: 18px;"></a>
+                  <a href="/it/gallery/"><img
+                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 341'%3E%3Cpath fill='%23fff' d='M0 0h512v341H0z'/%3E%3Cpath fill='%23009246' d='M0 0h170.7v341H0z'/%3E%3Cpath fill='%23ce2b37' d='M341.3 0H512v341H341.3z'/%3E%3C/svg%3E"
+                      alt="Italy Flag" style="width: 28px; height: 18px;"></a>
+                  <a href="/fr/gallery/"><img
+                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 341'%3E%3Cpath fill='%23fff' d='M0 0h512v341H0z'/%3E%3Cpath fill='%23002395' d='M0 0h170.7v341H0z'/%3E%3Cpath fill='%23ed2939' d='M341.3 0H512v341H341.3z'/%3E%3C/svg%3E"
+                      alt="France Flag" style="width: 28px; height: 18px;"></a>
                 </div>
               </div>
             </li>
@@ -154,7 +185,7 @@
   <main>
     <section class="section">
       <div class="container">
-        <h2>Our Dishes</h2>
+        <h2>Our dishes</h2>
         <div id="gallery-container" class="gallery-grid">
           <div class="gallery-loader-wrapper container">
             <div class="spinner"></div>
@@ -163,7 +194,7 @@
         </div>
       </div>
       <div class="container">
-        <h2>Our Venue</h2>
+        <h2>Our venue</h2>
         <div id="space-container" class="gallery-grid">
           <div class="gallery-item">
             <img src="/assets/images/space1.webp" alt="Barko venue in Milos" loading="lazy">
@@ -192,7 +223,7 @@
     <div class="premium-footer-container">
       <div class="footer-brand">
         <img src="/assets/images/logo.webp" alt="Barko Tavern Logo">
-        <p>Home-cooked food • Traditional recipes • Milos</p>
+        <p>Home cooking • Traditional recipes • Milos</p>
       </div>
       <div class="footer-links" id="footer-nav">
         <h3>Navigation</h3>
@@ -204,8 +235,7 @@
       </div>
       <div class="footer-contact">
         <h3>Contact</h3>
-        <a href="https://www.google.com/maps/place/Barko+tavern+restaurant/@36.7283522,24.4438267,17z/data=!3m1!4b1!4m6!3m5!1s0x1498df472dfb6355:0x2cd14b966d368b5f!8m2!3d36.7283479!4d24.4464016!16s%2Fg%2F11btyk6by8?entry=ttu&g_ep=EgoyMDI2MDEyMS4wIKXMDSoASAFQAw%3D%3D"
-          target="_blank" rel="noopener noreferrer">
+        <a href="https://maps.app.goo.gl/gdWjLgHUEqUsAybK7" target="_blank" rel="noopener noreferrer">
           <span>📍</span>
           <span>Adamas, Milos</span>
         </a>
@@ -218,8 +248,7 @@
           <span>barkomilos@gmail.com</span>
         </a>
         <div class="footer-review">
-          <a href="https://www.google.com/maps/place/Barko+tavern+restaurant/@36.7283522,24.4438267,17z/data=!3m1!4b1!4m6!3m5!1s0x1498df472dfb6355:0x2cd14b966d368b5f!8m2!3d36.7283479!4d24.4464016!16s%2Fg%2F11btyk6by8?entry=ttu&g_ep=EgoyMDI2MDEyMS4wIKXMDSoASAFQAw%3D%3D"
-            target="_blank" rel="noopener noreferrer">
+          <a href="https://maps.app.goo.gl/gdWjLgHUEqUsAybK7" target="_blank" rel="noopener noreferrer">
             <img src="/assets/images/google-maps.webp" alt="Google Maps">
           </a>
           <a href="https://www.tripadvisor.com.gr/Restaurant_Review-g635606-d2205464-Reviews-Taverna_Barko-Adamas_Milos_Cyclades_South_Aegean.html"
@@ -252,8 +281,8 @@
   <div id="consentBanner" class="consent">
     <div class="consent-box">
       <p>
-        We use analytics cookies to improve our website. You can choose to accept or reject them.
-        <a href="/en/privacy/"> Privacy Policy</a>
+        We use analytics cookies to improve our website. You can choose to accept or reject.
+        <a href="/en/privacy/">Privacy Policy</a>
       </p>
       <div class="consent-buttons">
         <button id="consentReject" class="btn-ghost">Reject</button>
@@ -265,7 +294,7 @@
     <a href="tel:+302287022660" class="cta-btn call">
       📞
     </a>
-    <a href="https://maps.google.com/?q=Barko+Tavern+Milos" target="_blank" class="cta-btn map">
+    <a href="https://maps.app.goo.gl/gdWjLgHUEqUsAybK7" target="_blank" class="cta-btn map">
       <img src="/assets/images/google-maps.webp" alt="Google Maps" width="20" height="20">
     </a>
   </div>

@@ -2,7 +2,6 @@
 <html lang="it">
 
 <head>
-  <link rel="preload" as="image" href="/assets/images/background-mobile.webp" fetchpriority="high">
   <link rel="preload" href="/assets/fonts/playfair-display-v40-latin-regular.woff2" as="font" type="font/woff2"
     crossorigin>
   <link rel="preload" href="/assets/fonts/source-sans-3-v19-latin-regular.woff2" as="font" type="font/woff2"
@@ -16,9 +15,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="google-site-verification" content="GvQB1BZCKx3jy9dTrjIHMJ237iDLwxJjFs3eHY3mVU4">
   <meta name="theme-color" content="#132411">
-  <title>Barko Tavern | Taverna tradizionale a Milos</title>
+  <title>Barko Tavern | Taverna Tradizionale a Milos</title>
   <meta name="description"
-    content="Taverna tradizionale ad Adamas, Milos. Ricette autentiche di Milos, cucina casalinga e calorosa ospitalità dal 1993.">
+    content="Taverna tradizionale ad Adamas, Milos. Ricette autentiche dell'isola, cucina casalinga e calorosa ospitalità dal 1993.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://barkotavernmilos.com/it/">
   <link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/">
@@ -39,8 +38,8 @@
   <meta property="og:locale:alternate" content="el_GR">
   <meta property="og:locale:alternate" content="en_US">
   <meta property="og:locale:alternate" content="fr_FR">
-  <link rel="stylesheet" href="/home.css">
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/home.css">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
   <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png">
@@ -49,158 +48,122 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": "WebSite",
-      "@id": "https://barkotavernmilos.com/it/#website",
-      "url": "https://barkotavernmilos.com/it/",
-      "name": "Barko Tavern",
-      "inLanguage": "it"
+    { 
+      "@type": "WebSite", 
+      "@id": "https://barkotavernmilos.com/it/#website", 
+      "url": "https://barkotavernmilos.com/it/", 
+      "name": "Barko Tavern", 
+      "inLanguage": "it" 
+    },
+    { 
+      "@type": "WebPage", 
+      "@id": "https://barkotavernmilos.com/it/#webpage", 
+      "url": "https://barkotavernmilos.com/it/", 
+      "name": "Barko | Taverna Tradizionale a Milos", 
+      "isPartOf": { "@id": "https://barkotavernmilos.com/it/#website" }, 
+      "about": { "@id": "https://barkotavernmilos.com/it/#restaurant" }, 
+      "mainEntity": { "@id": "https://barkotavernmilos.com/it/#restaurant" }, 
+      "inLanguage": "it" 
     },
     {
-      "@type": "WebPage",
-      "@id": "https://barkotavernmilos.com/it/#webpage",
-      "url": "https://barkotavernmilos.com/it/",
-      "name": "Barko | Taverna tradizionale a Milos",
-      "isPartOf": { "@id": "https://barkotavernmilos.com/it/#website" },
-      "about": { "@id": "https://barkotavernmilos.com/it/#restaurant" },
-      "mainEntity": { "@id": "https://barkotavernmilos.com/it/#restaurant" },
-      "inLanguage": "it"
-    },
-    {
-      "@type": "Restaurant",
+      "@type": "Restaurant", 
       "@id": "https://barkotavernmilos.com/it/#restaurant",
-      "name": "Barko",
+      "name": "Barko", 
       "url": "https://barkotavernmilos.com/it/",
       "image": "https://barkotavernmilos.com/assets/images/og-barko-1200x630.jpg",
-      "telephone": "+30 22870 22660",
-      "servesCuisine": ["Greca", "Mediterranea"],
+      "telephone": "+30 22870 22660", 
+      "servesCuisine": ["Greca","Mediterranea"], 
       "priceRange": "€€",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Adamas",
-        "addressLocality": "Adamas",
-        "addressRegion": "Milos",
-        "postalCode": "84800",
-        "addressCountry": "GR"
+      "address": { 
+        "@type": "PostalAddress", 
+        "streetAddress": "Επαρχιακή Οδός Λιμανιού Αδάμαντα-Τρυπητής", 
+        "addressLocality": "Adamas", 
+        "addressRegion": "Egeo Meridionale", 
+        "postalCode": "84800", 
+        "addressCountry": "GR" 
       },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 36.7283479,
-        "longitude": 24.4464016
+      "geo": { 
+        "@type": "GeoCoordinates", 
+        "latitude": 36.7283479, 
+        "longitude": 24.4464016 
       },
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-          "opens": "13:00",
-          "closes": "00:00"
-        }
-      ],
-      "hasMenu": {
-        "@type": "Menu",
-        "@id": "https://barkotavernmilos.com/it/menu#menu",
-        "url": "https://barkotavernmilos.com/it/menu/",
-        "name": "Menu Barko"
-      },
-      "menu": "https://barkotavernmilos.com/it/menu/",
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.3",
-        "reviewCount": "565",
-        "bestRating": "5"
+      "openingHoursSpecification": [{ 
+        "@type": "OpeningHoursSpecification", 
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], 
+        "opens": "13:00", 
+        "closes": "00:00" 
+      }],
+      "hasMenu": { 
+        "@type": "Menu", 
+        "@id": "https://barkotavernmilos.com/it/#menu", 
+        "url": "https://barkotavernmilos.com/it/menu/", 
+        "name": "Menu Barko" 
       },
       "sameAs": [
-        "https://maps.app.goo.gl/StZMkrWjXkuVHxUB8"
+        "https://www.tripadvisor.com.gr/Restaurant_Review-g635606-d2205464-Reviews-Taverna_Barko-Adamas_Milos_Cyclades_South_Aegean.html",
+        "https://maps.app.goo.gl/gdWjLgHUEqUsAybK7"
       ]
     },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://barkotavernmilos.com/it/#breadcrumbs",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://barkotavernmilos.com/it/"
-        }
-      ]
+    { 
+      "@type": "BreadcrumbList", 
+      "@id": "https://barkotavernmilos.com/it/#breadcrumbs", 
+      "itemListElement": [{ 
+        "@type": "ListItem", 
+        "position": 1, 
+        "name": "Home", 
+        "item": "https://barkotavernmilos.com/it/" 
+      }] 
     }
   ]
 }
 </script>
-  <style>
-    body,
-    html {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-    }
-
-    .page-bg {
-      position: absolute;
-      inset: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      object-fit: cover;
-    }
-
-    .hero {
-      background: #1e2d18;
-      color: #f0ede4;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 3rem 2rem;
-      position: relative;
-      overflow: hidden;
-      cursor: default;
-    }
-  </style>
 </head>
 
 <body>
-  <picture class="page-bg">
-    <source srcset="/assets/images/background-desktop.webp" media="(min-width: 1024px)">
-    <img src="/assets/images/background-mobile.webp" alt="" aria-hidden="true" fetchpriority="high" decoding="async">
-  </picture>
   <div class="info-bar">
-    ⏰ Aperto tutti i giorni: <strong>13:00 – 00:00</strong>
+    ⏰<strong>13:00 – 00:00</strong>
   </div>
   <header>
     <div class="header-container">
       <div class="logo">
         <a href="/it/">
-          <img src="/assets/images/logo.webp" alt="Barko Tavern Logo" width="400" height="100">
+          <img src="/assets/images/logo.webp" alt="Barko Tavern Logo" width="400" height="100" fetchpriority="high"
+            decoding="async" loading="eager">
         </a>
       </div>
       <div class="header-right">
-        <div class="burger-menu" id="burger-menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
+        <button class="burger-menu"
+        id="burger-menu"
+        aria-label="Apri il menu"
+        aria-expanded="false"
+        aria-controls="mobile-nav">
+          <span></span><span></span><span></span>
+        </button>
         <nav class="header-nav" id="mobile-nav">
           <ul>
-            <li><a href="/it/">Home</a></li>
+            <li><a href="/it/" class="active">Home</a></li>
             <li><a href="/it/restaurant/">Il ristorante</a></li>
             <li><a href="/it/menu/">Menu</a></li>
-            <li><a href="/it/gallery/">Foto</a></li>
+            <li><a href="/it/gallery/">Galleria</a></li>
             <li><a href="/it/contact/">Contatti</a></li>
             <li class="nav-controls">
               <div class="language-switcher">
                 <div class="lang-current">
-                  <img src="/assets/images/it.webp" alt="Italiano">
+                  <img
+                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 341'%3E%3Cpath fill='%23fff' d='M0 0h512v341H0z'/%3E%3Cpath fill='%23009246' d='M0 0h170.7v341H0z'/%3E%3Cpath fill='%23ce2b37' d='M341.3 0H512v341H341.3z'/%3E%3C/svg%3E"
+                    alt="Italy Flag" style="width: 28px; height: 18px;">
                   <span class="lang-arrow">▾</span>
                 </div>
                 <div class="lang-options">
-                  <a href="/el/"><img src="/assets/images/gr.webp" alt="Ελληνικά"></a>
-                  <a href="/en/"><img src="/assets/images/en.webp" alt="English"></a>
-                  <a href="/fr/"><img src="/assets/images/fr.webp" alt="Français"></a>
+                  <a href="/el/"><img
+                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 341'%3E%3Cpath fill='%23fff' d='M0 0h512v341H0z'/%3E%3Cpath fill='%23005bae' d='M0 0h512v37.9H0zm0 75.8h512v37.9H0zm0 75.8h512v37.9H0zm0 75.8h512v37.9H0zm0 75.8h512v37.9H0z'/%3E%3Crect width='189.6' height='189.6' fill='%23005bae' rx='0' ry='0'/%3E%3Cpath fill='%23fff' d='M75.8 0h37.9v189.6H75.8z'/%3E%3Cpath fill='%23fff' d='M0 75.8h189.6v37.9H0z'/%3E%3C/svg%3E"
+                      alt="Greece Flag" style="width: 28px; height: 18px;"></a>
+                  <a href="/en/"><img
+                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 30'%3E%3Cpath fill='%23012169' d='M0 0h60v30H0z'/%3E%3Cpath stroke='%23fff' stroke-width='6' d='M0 0l60 30M0 30l60-30'/%3E%3Cpath stroke='%23C8102E' stroke-width='2' d='M0 0l60 30M0 30l60-30'/%3E%3Cpath stroke='%23fff' stroke-width='10' d='M30 0v30M0 15h60'/%3E%3Cpath stroke='%23C8102E' stroke-width='6' d='M30 0v30M0 15h60'/%3E%3C/svg%3E"
+                      alt="UK Flag" style="width: 28px; height: 18px;"></a>
+                  <a href="/fr/"><img
+                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 341'%3E%3Cpath fill='%23fff' d='M0 0h512v341H0z'/%3E%3Cpath fill='%23002395' d='M0 0h170.7v341H0z'/%3E%3Cpath fill='%23ed2939' d='M341.3 0H512v341H341.3z'/%3E%3C/svg%3E"
+                      alt="France Flag" style="width: 28px; height: 18px;"></a>
                 </div>
               </div>
             </li>
@@ -209,98 +172,199 @@
       </div>
     </div>
   </header>
-  <section class="hero">
-    <span class="hero-eyebrow">Adamas · Milos · Dal 1993</span>
-    <h1>Barko<br><em>Taverna</em></h1>
-    <p class="hero-sub">Sapori greci autentici ad Adamas, Milos</p>
-    <a href="/it/menu/" class="hero-cta">Menu →</a>
-  </section>
-  <section id="menu" class="section menu-section">
-    <div class="container has-bottom-cta">
-      <h2>Piatti tradizionali di Milos</h2>
-      <div class="home-grid">
-        <div class="menu-item">
-          <img src="/assets/images/kokoras.webp" alt="Gallo di Milos" width="300" height="200" loading="lazy">
-          <h3>Gallo di Milos</h3>
-          <p>Ricetta tradizionale di Milos con gallo locale, pasta fatta a mano e salsa di pomodoro con pomodori freschi
-            del posto</p>
-        </div>
-        <div class="menu-item">
-          <img src="/assets/images/skordolazana.webp" alt="Skordolazana di Milos" width="300" height="200" loading="lazy">
-          <h3>Skordolazana di Milos</h3>
-          <p>Ricetta tradizionale di Milos con pasta fatta a mano, concentrato di pomodoro locale e la tradizionale salsa
-            all'aglio</p>
-        </div>
-        <div class="menu-item">
-          <img src="/assets/images/pitarakia.webp" alt="Pitarakia di Milos" width="300" height="200" loading="lazy">
-          <h3>Pitarakia di Milos</h3>
-          <p>Ricetta tradizionale di Milos. Ripieni di formaggio locale, cipolla ed erbe aromatiche</p>
+  <main>
+    <section class="hero">
+      <div class="hero-canvas" aria-hidden="true">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="hero-lines"></div>
+        <div class="hero-grain"></div>
+      </div>
+      <div class="hero-inner">
+        <span class="hero-eyebrow">Adamas · Milos · Dal 1993</span>
+        <h1>Barko<em>Taverna</em></h1>
+        <p class="hero-sub">Sapori greci autentici ad Adamas, Milos</p>
+        <div class="hero-actions">
+          <a href="/it/menu/" class="hero-cta">Vedi il menu</a>
         </div>
       </div>
-      <a class="home-button" href="/it/menu/">
-        <span class="btn-text">Menu</span>
-        <span class="menu-icon" aria-hidden="true"></span>
-      </a>
-    </div>
-  </section>
-  <section class="section reviews-section">
-    <div class="container has-bottom-cta">
-      <h2>Recensioni degli ospiti</h2>
-      <div class="reviews-grid">
-        <div class="sk-ww-google-reviews" data-embed-id="25667099"></div>
-        <script src="https://widgets.sociablekit.com/google-reviews/widget.js" defer></script>
+      <div class="hero-ornament" aria-hidden="true">
+        <span class="ornament-line"></span>
+        <span class="ornament-dot"></span>
+        <span class="ornament-line"></span>
       </div>
-      <a class="home-button"
-        href="https://www.google.gr/maps/place/Barko+tavern+restaurant/@36.7283479,24.4464016,17z/data=!4m8!3m7!1s0x1498df472dfb6355:0x2cd14b966d368b5f!8m2!3d36.7283479!4d24.4464016!9m1!1b1!16s%2Fg%2F11btyk6by8?entry=ttu&g_ep=EgoyMDI2MDIwMS4wIKXMDSoASAFQAw%3D%3D"
-        target="_blank" rel="noopener noreferrer" aria-label="Leggi tutte le recensioni su Google">
-        <span class="btn-text">Tutte le recensioni</span>
-        <img src="/assets/images/google-maps.webp" alt="Google Maps" width="25" height="25">
-      </a>
-    </div>
-  </section>
-  <section id="about" class="section about-section">
-    <div class="container has-bottom-cta">
-      <h2>La nostra storia</h2>
-      <div>
-        <p>
-          Siamo una taverna di famiglia ad Adamas, Milos, e ci piace mantenere le cose semplici.
-          Cuciniamo come abbiamo imparato a casa: con ingredienti di qualità, sapori genuini e senza fretta.
-          Dal 1993, ci prendiamo cura che ogni piatto abbia il carattere della cucina greca e di Milos.
-          Che veniate per un pranzo rilassato o una cena in compagnia, vogliamo che vi sentiate a vostro agio — come
-          seduti
-          al tavolo degli amici.
-        </p>
+    </section>
+    <section id="menu" class="section menu-section">
+      <div class="container">
+        <div class="menu-section-head">
+          <h2>
+            <span class="section-label">La nostra cucina</span>
+            Piatti tradizionali <em>di Milos</em>
+          </h2>
+          <a href="/it/menu/" class="btn-outline">Menu completo →</a>
+        </div>
+        <div class="home-grid">
+          <div class="menu-item">
+            <img src="/assets/images/pitarakia.webp" alt="Pitarakia di Milos" width="300" height="200" loading="lazy">
+            <div class="menu-item-body">
+              <h3>Pitarakia di Milos</h3>
+              <p>Ripieni di formaggio locale, cipolla ed erbe aromatiche — una ricetta autenticamente miliana</p>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-body">
+              <h3>Skordolazana di Milos</h3>
+              <p>Pasta fatta a mano con la conserva di pomodoro miliana e il tradizionale sugo all'aglio di Milos</p>
+            </div>
+          </div>
+          <div class="menu-item">
+            <img src="/assets/images/kokoras-lazania-home.webp" alt="Gallo di Milos" width="300" height="200"
+              loading="lazy">
+            <div class="menu-item-body">
+              <h3>Gallo di Milos</h3>
+              <p>Ricetta tradizionale con gallo locale, pasta fatta a mano e sugo di pomodoro con pomodori locali</p>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-body">
+              <h3>Agnello al limone</h3>
+              <p>Un piatto autentico di agnello al limone con patate, secondo la ricetta tradizionale di Milos</p>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-body">
+              <h3>Moussaka</h3>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-body">
+              <h3>Foglie di vite ripiene</h3>
+            </div>
+          </div>
+        </div>
       </div>
-      <a class="home-button" href="/it/restaurant/">
-        <span class="btn-text">Il ristorante 🍽️</span>
-      </a>
-    </div>
-  </section>
-  <section id="contact" class="section contact-section">
-    <div class="container has-bottom-cta">
-      <h2>Contatti</h2>
-      <p>📞 <a href="tel:+302287022660">+30 22870 22660</a></p>
-      <p>📧 <a href="mailto:barkomilos@gmail.com">barkomilos@gmail.com</a></p>
-      <p>📍 <a
-          href="https://www.google.com/maps/place/Barko+tavern+restaurant/@36.7283522,24.4438267,17z/data=!3m1!4b1!4m6!3m5!1s0x1498df472dfb6355:0x2cd14b966d368b5f!8m2!3d36.7283479!4d24.4464016!16s%2Fg%2F11btyk6by8?entry=ttu&g_ep=EgoyMDI2MDEyMS4wIKXMDSoASAFQAw%3D%3D"
-          target="_blank" rel="noopener noreferrer">Adamas, Milos</a></p>
-      <p>⏰ 13:00 - 00:00</p>
-      <div class="map-container">
-        <h2>Trovaci sulla mappa</h2>
-        <iframe width="600" height="400" style="border:0; width: 100%;" loading="lazy" allowfullscreen
-          src="https://maps.google.com/maps?q=Barko%20Tavern%2C%20Adamas%2C%20Milos%2C%20Greece&t=m&z=13&output=embed">
-        </iframe>
+    </section>
+    <span class="divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 0 C320 44 640 18 960 48 C1180 82 1320 60 1440 38 L1440 80 L0 80 Z" fill="#0f1c0c" />
+        <path d="M0 0 C320 42 640 12 960 46 C1180 80 1320 56 1440 36 L1440 0 L0 0 Z" fill="#faf6ee" />
+      </svg>
+    </span>
+    <div class="band-dark">
+      <div class="band-inner">
+        <div class="stat-item">
+          <span class="stat-number">1993</span>
+          <span class="stat-label">Anno di fondazione</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">565+</span>
+          <span class="stat-label">Recensioni su Google</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">4.3★</span>
+          <span class="stat-label">Valutazione media</span>
+        </div>
       </div>
-      <a class="home-button" href="tel:+302287022660">
-        <span class="btn-text">Chiamaci per prenotare 📞</span>
-      </a>
     </div>
-  </section>
-  <!-- FOOTER -->
+    <section class="section reviews-section">
+      <div class="container">
+        <div class="reviews-head">
+          <h2>Cosa dicono i nostri ospiti</h2>
+          <a class="btn-outline" href="https://maps.app.goo.gl/gdWjLgHUEqUsAybK7" target="_blank"
+            rel="noopener noreferrer">
+            <img src="/assets/images/google-maps.webp" alt="Google Maps" width="16" height="16">
+            Tutte le recensioni
+          </a>
+        </div>
+        <div class="reviews-grid">
+          <div class="sk-ww-google-reviews" data-embed-id="25667099"></div>
+          <script src="https://widgets.sociablekit.com/google-reviews/widget.js"></script>
+        </div>
+      </div>
+    </section>
+    <span class="divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 0 C320 44 640 18 960 48 C1180 82 1320 60 1440 38 L1440 80 L0 80 Z" fill="#0f1c0c" />
+        <path d="M0 0 C320 42 640 12 960 46 C1180 80 1320 56 1440 36 L1440 0 L0 0 Z" fill="#faf6ee" />
+      </svg>
+    </span>
+    <section id="about" class="section about-section">
+      <div class="container">
+        <div class="about-layout">
+          <div class="about-left">
+            <span class="section-label" style="color:rgba(212,175,55,0.70);margin-bottom:1rem;">Dal 1993</span>
+            <h2>La nostra<em>storia</em></h2>
+            <div class="about-badge">⏰ 13:00 – 00:00 tutti i giorni</div>
+          </div>
+          <div class="about-right">
+            <p>Siamo una taverna di famiglia ad Adamas, Milos, e ci piace mantenere le cose semplici. Cuciniamo come
+              abbiamo imparato a casa: con buoni ingredienti, sapori genuini e senza fretta. Dal 1993, facciamo in modo
+              che ogni piatto abbia il carattere della cucina greca e di Milos. Che veniate per un pranzo rilassato o
+              per una serata in compagnia, vogliamo che vi sentiate a vostro agio — come se foste seduti al tavolo di
+              un amico.</p>
+            <a href="/it/restaurant/" class="btn-outline">Il ristorante →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <span class="divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 0 C320 44 640 18 960 48 C1180 82 1320 60 1440 38 L1440 80 L0 80 Z" fill="#0f1c0c" />
+        <path d="M0 0 C320 42 640 12 960 46 C1180 80 1320 56 1440 36 L1440 0 L0 0 Z" fill="#faf6ee" />
+      </svg>
+    </span>
+    <section id="contact" class="section contact-section">
+      <div class="container">
+        <h2>Contatti</h2>
+        <div class="contact-layout">
+          <div class="contact-details">
+            <h3>Trovaci</h3>
+            <div class="contact-hours">⏰ 13:00 – 00:00 · Tutti i giorni</div>
+            <ul class="contact-list">
+              <li style="white-space: nowrap;">
+                <a href="tel:+302287022660" style="display: inline-flex; align-items: center;">
+                  <span class="c-icon" style="margin-right: 8px;">📞</span> +30 22870 22660
+                </a>
+              </li>
+              <li style="white-space: nowrap;">
+                <a href="mailto:barkomilos@gmail.com" style="display: inline-flex; align-items: center;">
+                  <span class="c-icon" style="margin-right: 8px;">📧</span> barkomilos@gmail.com
+                </a>
+              </li>
+              <li style="white-space: nowrap;">
+                <a href="https://maps.app.goo.gl/gdWjLgHUEqUsAybK7" target="_blank" rel="noopener noreferrer"
+                  style="display: inline-flex; align-items: center;"
+                  aria-label="Visualizza la posizione di Barko Tavern ad Adamas, Milos su Google Maps">
+                  <span class="c-icon" style="margin-right: 8px;" aria-hidden="true">📍</span>
+                  Adamas, Milos
+                </a>
+              </li>
+            </ul>
+            <div class="contact-review-links">
+              <a href="https://maps.app.goo.gl/gdWjLgHUEqUsAybK7" target="_blank" rel="noopener noreferrer">
+                <img src="/assets/images/google-maps.webp" alt="Google Maps" width="32" height="32">
+              </a>
+              <a href="https://www.tripadvisor.com.gr/Restaurant_Review-g635606-d2205464-Reviews-Taverna_Barko-Adamas_Milos_Cyclades_South_Aegean.html"
+                target="_blank" rel="noopener noreferrer">
+                <img src="/assets/images/tripadvisor.webp" alt="TripAdvisor" width="32" height="32">
+              </a>
+            </div>
+          </div>
+          <div class="contact-map">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15211.220492110584!2d24.435416034145177!3d36.72820005738358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1498df472dfb6355%3A0x2cd14b966d368b5f!2sBarko%20tavern%20restaurant!5e0!3m2!1sit!2sgr!4v1779232552278!5m2!1sit!2sgr"
+              width="600" height="450" style="border:0;" allowfullscreen loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
   <footer class="premium-footer">
     <div class="premium-footer-container">
       <div class="footer-brand">
-        <img src="/assets/images/logo.webp" alt="Barko Tavern Logo">
+        <img src="/assets/images/logo.webp" alt="Barko Tavern Logo" width="130" height="100">
         <p>Cucina casalinga • Ricette tradizionali • Milos</p>
       </div>
       <div class="footer-links" id="footer-nav">
@@ -308,32 +372,23 @@
         <a href="/it/">Home</a>
         <a href="/it/restaurant/">Il ristorante</a>
         <a href="/it/menu/">Menu</a>
-        <a href="/it/gallery/">Foto</a>
+        <a href="/it/gallery/">Galleria</a>
         <a href="/it/contact/">Contatti</a>
       </div>
       <div class="footer-contact">
         <h3>Contatti</h3>
-        <a href="https://www.google.com/maps/place/Barko+tavern+restaurant/@36.7283522,24.4438267,17z/data=!3m1!4b1!4m6!3m5!1s0x1498df472dfb6355:0x2cd14b966d368b5f!8m2!3d36.7283479!4d24.4464016!16s%2Fg%2F11btyk6by8?entry=ttu&g_ep=EgoyMDI2MDEyMS4wIKXMDSoASAFQAw%3D%3D"
-          target="_blank" rel="noopener noreferrer">
-          <span>📍</span>
-          <span>Adamas, Milos</span>
-        </a>
-        <a href="tel:+302287022660">
-          <span>📞</span>
-          <span>+30 22870 22660</span>
-        </a>
-        <a href="mailto:barkomilos@gmail.com">
-          <span>📧</span>
-          <span>barkomilos@gmail.com</span>
-        </a>
+        <a href="https://maps.app.goo.gl/gdWjLgHUEqUsAybK7" target="_blank"
+          aria-label="Visualizza la posizione di Barko Tavern ad Adamas, Milos su Google Maps"
+          rel="noopener noreferrer"><span>📍</span><span>Adamas, Milos</span></a>
+        <a href="tel:+302287022660"><span>📞</span><span>+30 22870 22660</span></a>
+        <a href="mailto:barkomilos@gmail.com"><span>📧</span><span>barkomilos@gmail.com</span></a>
         <div class="footer-review">
-          <a href="https://www.google.com/maps/place/Barko+tavern+restaurant/@36.7283522,24.4438267,17z/data=!3m1!4b1!4m6!3m5!1s0x1498df472dfb6355:0x2cd14b966d368b5f!8m2!3d36.7283479!4d24.4464016!16s%2Fg%2F11btyk6by8?entry=ttu&g_ep=EgoyMDI2MDEyMS4wIKXMDSoASAFQAw%3D%3D"
-          target="_blank" rel="noopener noreferrer">
-            <img src="/assets/images/google-maps.webp" alt="Google Maps">
+          <a href="https://maps.app.goo.gl/gdWjLgHUEqUsAybK7" target="_blank" rel="noopener noreferrer">
+            <img src="/assets/images/google-maps.webp" alt="Google Maps" width="32" height="32">
           </a>
           <a href="https://www.tripadvisor.com.gr/Restaurant_Review-g635606-d2205464-Reviews-Taverna_Barko-Adamas_Milos_Cyclades_South_Aegean.html"
-          target="_blank" rel="noopener noreferrer">
-            <img src="/assets/images/tripadvisor.webp" alt="TripAdvisor">
+            target="_blank" rel="noopener noreferrer">
+            <img src="/assets/images/tripadvisor.webp" alt="TripAdvisor" width="32" height="32">
           </a>
         </div>
       </div>
@@ -350,16 +405,16 @@
   <div class="dish-modal" id="dishModal">
     <div class="dish-modal-content">
       <button class="modal-close">&times;</button>
-      <img id="modalImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Foto del piatto">
-      <h3 id="modalTitle">Titolo</h3>
+      <img id="modalImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+        alt="Immagine del piatto">
+      <h3 id="modalTitle">Modal title</h3>
       <p id="modalText"></p>
     </div>
   </div>
   <div id="consentBanner" class="consent">
     <div class="consent-box">
-      <p>
-        Utilizziamo cookie statistici per migliorare il nostro sito web. Puoi scegliere di accettare o rifiutare.
-        <a href="/it/privacy">Informativa sulla privacy</a>
+      <p>Utilizziamo cookie analitici per migliorare il nostro sito web.
+        <a href="/it/privacy/">Informativa sulla privacy</a>
       </p>
       <div class="consent-buttons">
         <button id="consentReject" class="btn-ghost">Rifiuta</button>
@@ -367,19 +422,13 @@
       </div>
     </div>
   </div>
-  <script src="/main.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const widget = document.getElementById("review-widget");
-      const close = document.getElementById("close-review");
-      setTimeout(() => {
-        widget.style.display = "block";
-      }, 1000);
-      close.onclick = () => {
-        widget.style.display = "none";
-      };
-    });
-  </script>
+  <div class="sticky-cta">
+    <a href="tel:+302287022660" class="cta-btn call">📞</a>
+    <a href="https://maps.app.goo.gl/gdWjLgHUEqUsAybK7" target="_blank" class="cta-btn map" rel="noopener noreferrer">
+      <img src="/assets/images/google-maps.webp" alt="Google Maps" width="20" height="20">
+    </a>
+  </div>
+  <script src="/js/main.js" defer></script>
 </body>
 
 </html>
