@@ -27,6 +27,7 @@ async function loadMenu() {
     }
 }
 const currentLang = document.documentElement.lang.toUpperCase() || 'EN';
+/*
 const categoryImages = {
     "Ορεκτικά": "../../assets/images/pitarakia.webp",
     "Σαλάτες": "../../assets/images/xoriatiki.webp",
@@ -37,11 +38,12 @@ const categoryImages = {
     "Κρασιά": "../../assets/images/krasia.jpg",
     "Ποτά": "../../assets/images/drinks.webp"
 };
+*/
 const categoryTranslations = {
     "Ορεκτικά": { EL: "Ορεκτικά", IT: "Antipasti", FR: "Entrées", EN: "Appetizers" },
     "Σαλάτες": { EL: "Σαλάτες", IT: "Insalate", FR: "Salades", EN: "Salads" },
     "Μαγειρευτά": { EL: "Μαγειρευτά", IT: "Piatti Caldi", FR: "Plats Cuisinés", EN: "Hot Dishes" },
-    "Της ώρας": { EL: "Της ώρας", IT: "Del Giorno", FR: "Du Jour", EN: "Specials" },
+    "Της ώρας": { EL: "Της ώρας", IT: "Del Giorno", FR: "Du Jour", EN: "Greek cuisine" },
     "Θαλασσινά": { EL: "Θαλασσινά", IT: "Frutti di Mare", FR: "Fruits de Mer", EN: "Seafood" },
     "Επιδόρπια": { EL: "Επιδόρπια", IT: "Dolci", FR: "Desserts", EN: "Desserts" },
     "Κρασιά": { EL: "Κρασιά", IT: "Vini", FR: "Vins", EN: "Wines" },
