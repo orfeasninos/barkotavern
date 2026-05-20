@@ -76,9 +76,9 @@
       "priceRange": "€€",
       "address": { 
         "@type": "PostalAddress", 
-        "streetAddress": "Αδάμαντας", 
+        "streetAddress": "Επαρχιακή Οδός Λιμανιού Αδάμαντα-Τρυπητής", 
         "addressLocality": "Αδάμαντας", 
-        "addressRegion": "Μήλος", 
+        "addressRegion": "Νότιο Αιγαίο", 
         "postalCode": "84800", 
         "addressCountry": "GR" 
       },
@@ -98,12 +98,6 @@
         "@id": "https://barkotavernmilos.com/el/#menu", 
         "url": "https://barkotavernmilos.com/el/menu/", 
         "name": "Μενού Barko" 
-      },
-      "aggregateRating": { 
-        "@type": "AggregateRating", 
-        "ratingValue": "4.3", 
-        "reviewCount": "565", 
-        "bestRating": "5" 
       },
       "sameAs": [
         "https://www.tripadvisor.com.gr/Restaurant_Review-g635606-d2205464-Reviews-Taverna_Barko-Adamas_Milos_Cyclades_South_Aegean.html",
@@ -127,7 +121,7 @@
 
 <body>
   <div class="info-bar">
-    ⏰ Καθημερινά ανοιχτά: <strong>13:00 – 00:00</strong>
+    ⏰<strong>13:00 – 00:00</strong>
   </div>
   <header>
     <div class="header-container">
@@ -138,9 +132,13 @@
         </a>
       </div>
       <div class="header-right">
-        <div class="burger-menu" id="burger-menu">
+        <button class="burger-menu"
+        id="burger-menu"
+        aria-label="Άνοιγμα μενού"
+        aria-expanded="false"
+        aria-controls="mobile-nav">
           <span></span><span></span><span></span>
-        </div>
+        </button>
         <nav class="header-nav" id="mobile-nav">
           <ul>
             <li><a href="/el/" class="active">Αρχική</a></li>
@@ -423,7 +421,7 @@
   <div id="consentBanner" class="consent">
     <div class="consent-box">
       <p>Χρησιμοποιούμε cookies στατιστικών για να βελτιώνουμε το website μας.
-        <a href="/el/privacy"> Πολιτική απορρήτου</a>
+        <a href="/el/privacy/"> Πολιτική απορρήτου</a>
       </p>
       <div class="consent-buttons">
         <button id="consentReject" class="btn-ghost">Απόρριψη</button>

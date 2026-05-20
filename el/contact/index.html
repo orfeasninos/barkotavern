@@ -17,26 +17,24 @@
 
 <body>
   <div class="info-bar">
-    ⏰ Καθημερινά ανοιχτά: <strong>13:00 – 00:00</strong>
+    ⏰<strong>13:00 – 00:00</strong>
   </div>
-
-  <!-- HEADER -->
   <header>
     <div class="header-container">
       <div class="logo">
         <a href="/el/">
-          <img src="/assets/images/logo.webp" alt="Barko Tavern Logo">
+          <img src="/assets/images/logo.webp" alt="Barko Tavern Logo" width="400" height="100" fetchpriority="high"
+            decoding="async" loading="eager">
         </a>
       </div>
       <div class="header-right">
-        <div class="burger-menu" id="burger-menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
+        <button class="burger-menu" id="burger-menu" aria-label="Άνοιγμα μενού" aria-expanded="false"
+          aria-controls="mobile-nav">
+          <span></span><span></span><span></span>
+        </button>
         <nav class="header-nav" id="mobile-nav">
           <ul>
-            <li><a href="/el/">Αρχική</a></li>
+            <li><a href="/el/" class="active">Αρχική</a></li>
             <li><a href="/el/restaurant/">Το εστιατόριο</a></li>
             <li><a href="/el/menu/">Μενού</a></li>
             <li><a href="/el/gallery/">Φωτογραφίες</a></li>
@@ -44,13 +42,21 @@
             <li class="nav-controls">
               <div class="language-switcher">
                 <div class="lang-current">
-                  <img src="/assets/images/gr.webp" alt="Ελληνικά">
+                  <img
+                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 341'%3E%3Cpath fill='%23fff' d='M0 0h512v341H0z'/%3E%3Cpath fill='%23005bae' d='M0 0h512v37.9H0zm0 75.8h512v37.9H0zm0 75.8h512v37.9H0zm0 75.8h512v37.9H0zm0 75.8h512v37.9H0z'/%3E%3Crect width='189.6' height='189.6' fill='%23005bae' rx='0' ry='0'/%3E%3Cpath fill='%23fff' d='M75.8 0h37.9v189.6H75.8z'/%3E%3Cpath fill='%23fff' d='M0 75.8h189.6v37.9H0z'/%3E%3C/svg%3E"
+                    alt="Greece Flag" style="width: 28px; height: 18px;">
                   <span class="lang-arrow">▾</span>
                 </div>
                 <div class="lang-options">
-                  <a href="/en/contact"><img src="/assets/images/en.webp" alt="English"></a>
-                  <a href="/it/contact"><img src="/assets/images/it.webp" alt="Italiano"></a>
-                  <a href="/fr/contact"><img src="/assets/images/fr.webp" alt="Français"></a>
+                  <a href="/en/"><img
+                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 30'%3E%3Cpath fill='%23012169' d='M0 0h60v30H0z'/%3E%3Cpath stroke='%23fff' stroke-width='6' d='M0 0l60 30M0 30l60-30'/%3E%3Cpath stroke='%23C8102E' stroke-width='2' d='M0 0l60 30M0 30l60-30'/%3E%3Cpath stroke='%23fff' stroke-width='10' d='M30 0v30M0 15h60'/%3E%3Cpath stroke='%23C8102E' stroke-width='6' d='M30 0v30M0 15h60'/%3E%3C/svg%3E"
+                      alt="UK Flag" style="width: 28px; height: 18px;"></a>
+                  <a href="/it/"><img
+                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 341'%3E%3Cpath fill='%23fff' d='M0 0h512v341H0z'/%3E%3Cpath fill='%23009246' d='M0 0h170.7v341H0z'/%3E%3Cpath fill='%23ce2b37' d='M341.3 0H512v341H341.3z'/%3E%3C/svg%3E"
+                      alt="Italy Flag" style="width: 28px; height: 18px;"></a>
+                  <a href="/fr/"><img
+                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 341'%3E%3Cpath fill='%23fff' d='M0 0h512v341H0z'/%3E%3Cpath fill='%23002395' d='M0 0h170.7v341H0z'/%3E%3Cpath fill='%23ed2939' d='M341.3 0H512v341H341.3z'/%3E%3C/svg%3E"
+                      alt="France Flag" style="width: 28px; height: 18px;"></a>
                 </div>
               </div>
             </li>
@@ -86,13 +92,13 @@
       <div class="map-container">
         <p>📞 <a href="tel:+302287022660">+30 22870 22660</a></p>
         <p>📧 <a href="mailto:barkomilos@gmail.com">barkomilos@gmail.com</a></p>
-        <p>📍 <a
-            href="https://www.google.com/maps/place/Barko+tavern+restaurant/@36.7283522,24.4438267,17z/data=!3m1!4b1!4m6!3m5!1s0x1498df472dfb6355:0x2cd14b966d368b5f!8m2!3d36.7283479!4d24.4464016!16s%2Fg%2F11btyk6by8?entry=ttu&g_ep=EgoyMDI2MDEyMS4wIKXMDSoASAFQAw%3D%3D"
-            target="_blank" rel="noopener noreferrer">Αδάμαντας, Μήλος</a></p>
+        <p>📍 <a href="https://maps.app.goo.gl/gdWjLgHUEqUsAybK7" target="_blank" rel="noopener noreferrer">Αδάμαντας,
+            Μήλος</a></p>
         <p>⏰ 13:00 - 00:00</p>
-        <iframe width="600" height="400" style="border:0; width: 100%;" loading="lazy" allowfullscreen
-          src="https://maps.google.com/maps?q=Barko%20Tavern%2C%20Adamas%2C%20Milos%2C%20Greece&t=m&z=13&output=embed">
-        </iframe>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15211.220492110584!2d24.435416034145177!3d36.72820005738358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1498df472dfb6355%3A0x2cd14b966d368b5f!2sBarko%20tavern%20restaurant!5e0!3m2!1sel!2sgr!4v1779232552278!5m2!1sel!2sgr"
+          width="600" height="450" style="border:0;" allowfullscreen loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </section>
@@ -114,8 +120,7 @@
       </div>
       <div class="footer-contact">
         <h3>Επικοινωνία</h3>
-        <a href="https://www.google.com/maps/place/Barko+tavern+restaurant/@36.7283522,24.4438267,17z/data=!3m1!4b1!4m6!3m5!1s0x1498df472dfb6355:0x2cd14b966d368b5f!8m2!3d36.7283479!4d24.4464016!16s%2Fg%2F11btyk6by8?entry=ttu&g_ep=EgoyMDI2MDEyMS4wIKXMDSoASAFQAw%3D%3D"
-          target="_blank" rel="noopener noreferrer">
+        <a href="https://maps.app.goo.gl/gdWjLgHUEqUsAybK7" target="_blank" rel="noopener noreferrer">
           <span>📍</span>
           <span>Αδάμαντας, Μήλος</span>
         </a>
@@ -128,8 +133,7 @@
           <span>barkomilos@gmail.com</span>
         </a>
         <div class="footer-review">
-          <a href="https://www.google.com/maps/place/Barko+tavern+restaurant/@36.7283522,24.4438267,17z/data=!3m1!4b1!4m6!3m5!1s0x1498df472dfb6355:0x2cd14b966d368b5f!8m2!3d36.7283479!4d24.4464016!16s%2Fg%2F11btyk6by8?entry=ttu&g_ep=EgoyMDI2MDEyMS4wIKXMDSoASAFQAw%3D%3D"
-            target="_blank" rel="noopener noreferrer">
+          <a href="https://maps.app.goo.gl/gdWjLgHUEqUsAybK7" target="_blank" rel="noopener noreferrer">
             <img src="/assets/images/google-maps.webp" alt="Google Maps">
           </a>
           <a href="https://www.tripadvisor.com.gr/Restaurant_Review-g635606-d2205464-Reviews-Taverna_Barko-Adamas_Milos_Cyclades_South_Aegean.html"
@@ -149,15 +153,13 @@
     </div>
   </footer>
   <div class="sticky-cta">
-  <a href="tel:+302287022660" class="cta-btn call">
-    📞
-  </a>
-  <a href="https://maps.google.com/?q=Barko+Tavern+Milos" 
-     target="_blank" 
-     class="cta-btn map">
-    <img src="/assets/images/google-maps.webp" alt="Google Maps" width="20" height="20">
-  </a>
-</div>
+    <a href="tel:+302287022660" class="cta-btn call">
+      📞
+    </a>
+    <a href="https://maps.app.goo.gl/gdWjLgHUEqUsAybK7" target="_blank" class="cta-btn map">
+      <img src="/assets/images/google-maps.webp" alt="Google Maps" width="20" height="20">
+    </a>
+  </div>
   <script src="/js/main.js"></script>
   <script>
     const form = document.getElementById("contactForm");
