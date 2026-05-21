@@ -69,8 +69,8 @@
   <section id="contact" class="section contact-section">
     <div class="container">
       <h1>Κράτηση</h1>
-      <p>Για την καλύτερη εξυπηρέτησή σας, παρακαλείστε να κάνετε κράτηση σε περίπτωση που </p>
-      <form id="contactForm">
+      <p>Για την καλύτερη εξυπηρέτησή σας, παρακαλείστε να κάνετε κράτηση για τραπέζι άνω των 8 ατόμων </p>
+      <form id="contactForm" novalidate>
         <div class="form-group">
           <label for="form-name">Όνομα</label>
           <input type="text" id="form-name" name="Name" placeholder="Ονοματεπώνυμο" minlength="3" required>
@@ -81,7 +81,7 @@
         </div>
         <div class="form-group">
           <label for="form-phone">Τηλέφωνο</label>
-          <input type="tel" id="form-phone" name="Phone" placeholder="" required>
+          <input type="tel" id="form-phone" name="Phone" placeholder="" pattern="^\+?[0-9]{7,15}$" required>
         </div>
         <div class="form-row">
           <div class="form-group">
@@ -92,7 +92,6 @@
             <label for="form-time">Ώρα</label>
             <select id="form-time" name="Time" required>
               <option value="" disabled selected hidden>Επιλέξτε ώρα</option>
-              <!-- Μεσημέρι / Απόγευμα -->
               <option value="13:00">13:00</option>
               <option value="13:15">13:15</option>
               <option value="13:30">13:30</option>
@@ -125,18 +124,15 @@
             </select>
           </div>
         </div>
-
         <div class="form-group">
           <label for="form-guests">Άτομα</label>
-          <input type="number" id="form-guests" name="Guests" min="1" max="20" placeholder="Πλήθος ατόμων" required>
+          <input type="number" id="form-guests" name="Guests" min="1" max="15" placeholder="Πλήθος ατόμων" required>
         </div>
-
         <div class="form-group">
           <label for="form-comments">Σχόλια / Ιδιαίτερες Προτιμήσεις</label>
-          <textarea id="form-comments" name="Comments"
-            placeholder="Πώς μπορούμε να κάνουμε την εμπειρία σας καλύτερη;"></textarea>
+          <textarea id="form-comments" name="Comments" rows="3"
+            placeholder="Πώς μπορούμε να κάνουμε την εμπειρία σας καλύτερη;" ></textarea>
         </div>
-
         <button type="submit" id="submit-btn">Κράτηση Τραπεζιού</button>
         <div id="form-message"></div>
       </form>
@@ -217,11 +213,65 @@
     const form = document.getElementById('contactForm')
     const submitBtn = document.getElementById('submit-btn')
     const formMessage = document.getElementById('form-message')
+
+    // Συνάρτηση που επιστρέφει custom μήνυμα ανάλογα με το λάθος
+    function getCustomErrorMessage() {
+      const nameInput = document.getElementById('form-name')
+      const emailInput = document.getElementById('form-email')
+      const phoneInput = document.getElementById('form-phone')
+      const dateInput = document.getElementById('Date')
+      const timeInput = document.getElementById('form-time')
+      const guestsInput = document.getElementById('form-guests')
+
+      // Έλεγχος Ονόματος
+      if (nameInput.validity.valueMissing) return 'Παρακαλώ εισάγετε το ονοματεπώνυμό σας.'
+      if (nameInput.validity.tooShort) return 'Το όνομα πρέπει να είναι τουλάχιστον 3 χαρακτήρες.'
+
+      // Έλεγχος Email
+      if (emailInput.validity.valueMissing) return 'Το email είναι υποχρεωτικό.'
+      if (emailInput.validity.typeMismatch) return 'Η διεύθυνση email δεν είναι έγκυρη (π.χ. name@example.com).'
+
+      // Έλεγχος Τηλεφώνου (Διεθνές Μορφότυπο)
+      if (phoneInput.validity.valueMissing) return 'Το τηλέφωνο είναι υποχρεωτικό για την επιβεβαίωση.'
+      if (phoneInput.validity.patternMismatch) return 'Εισάγετε το τηλέφωνο ξεκινώντας με + ακολουθούμενο από τον κωδικό χώρας και τον αριθμό, χωρίς κενά ή παύλες (π.χ. +3069XXXXXXXX για Ελλάδα ή +44XXXXXXXXXX για Ηνωμένο Βασίλειο)'
+
+      // Έλεγχος Ημερομηνίας
+      if (dateInput.validity.valueMissing) return 'Παρακαλώ επιλέξτε ημερομηνία για την κράτηση.'
+
+      const selectedDate = new Date(dateInput.value)
+      const today = new Date()
+      today.setHours(0, 0, 0, 0)
+      if (selectedDate < today) return 'Δεν μπορείτε να επιλέξετε ημερομηνία στο παρελθόν.'
+
+      // Έλεγχος Ώρας
+      if (timeInput.validity.valueMissing) return 'Παρακαλώ επιλέξτε ώρα κράτησης.'
+
+      // Έλεγχος Ατόμων
+      if (guestsInput.validity.valueMissing) return 'Παρακαλώ ορίστε τον αριθμό των ατόμων.'
+      if (guestsInput.validity.rangeUnderflow || guestsInput.validity.rangeOverflow) {
+        return 'Ο αριθμός των ατόμων πρέπει να είναι μεταξύ 1 και 30.'
+      }
+
+      return null
+    }
+
     form.addEventListener('submit', e => {
       e.preventDefault()
+      formMessage.innerText = ''
+
+      // Εκτέλεση του custom validation
+      const errorReason = getCustomErrorMessage()
+
+      if (errorReason) {
+        formMessage.style.color = '#b32424' // Το κόκκινο χρώμα σου
+        formMessage.innerText = errorReason
+        return // Σταματάει την αποστολή στο Spreadsheet
+      }
+
+      // Αν όλα είναι σωστά, ξεκινάει η αποστολή
       submitBtn.disabled = true
       submitBtn.innerText = 'ΑΠΟΣΤΟΛΗ...'
-      formMessage.innerText = ''
+
       fetch(scriptURL, { method: 'POST', body: new FormData(form) })
         .then(response => response.json())
         .then(data => {
