@@ -73,15 +73,15 @@
       <form id="contactForm" novalidate>
         <div class="form-group">
           <label for="form-name">Όνομα</label>
-          <input type="text" id="form-name" name="Name" placeholder="Ονοματεπώνυμο" minlength="3" required>
+          <input type="text" id="form-name" name="Name" placeholder="Ονοματεπώνυμο" minlength="3" autocomplete="family-name" required>
         </div>
         <div class="form-group">
           <label for="form-email">Email</label>
-          <input type="email" id="form-email" name="Email" placeholder="example@email.com" required>
+          <input type="email" id="form-email" name="Email" placeholder="example@email.com" autocomplete="email" required>
         </div>
         <div class="form-group">
           <label for="form-phone">Τηλέφωνο</label>
-          <input type="tel" id="form-phone" name="Phone" placeholder="" pattern="^\+?[0-9]{7,15}$" required>
+          <input type="tel" id="form-phone" name="Phone" placeholder="ex.(+30)6969696969" autocomplete="tel" inputmode="tel" pattern="^\+?[0-9]{7,15}$" required>
         </div>
         <div class="form-row">
           <div class="form-group">
@@ -126,27 +126,59 @@
         </div>
         <div class="form-group">
           <label for="form-guests">Άτομα</label>
-          <input type="number" id="form-guests" name="Guests" min="1" max="15" placeholder="Πλήθος ατόμων" required>
+          <input type="number" id="form-guests" name="Guests" min="1" max="15" placeholder="Πλήθος ατόμων" inputmode="numeric" required>
         </div>
         <div class="form-group">
           <label for="form-comments">Σχόλια / Ιδιαίτερες Προτιμήσεις</label>
-          <textarea id="form-comments" name="Comments" rows="3"
+          <textarea id="form-comments" name="Comments" rows="3" autocomplete="off" maxlength="500"
             placeholder="Πώς μπορούμε να κάνουμε την εμπειρία σας καλύτερη;" ></textarea>
         </div>
         <button type="submit" id="submit-btn">Κράτηση Τραπεζιού</button>
         <div id="form-message"></div>
       </form>
-      <div class="map-container">
-        <p>📞 <a href="tel:+302287022660">+30 22870 22660</a></p>
-        <p>📧 <a href="mailto:barkomilos@gmail.com">barkomilos@gmail.com</a></p>
-        <p>📍 <a href="https://maps.app.goo.gl/gdWjLgHUEqUsAybK7" target="_blank" rel="noopener noreferrer">Αδάμαντας,
-            Μήλος</a></p>
-        <p>⏰ 13:00 - 00:00</p>
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15211.220492110584!2d24.435416034145177!3d36.72820005738358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1498df472dfb6355%3A0x2cd14b966d368b5f!2sBarko%20tavern%20restaurant!5e0!3m2!1sel!2sgr!4v1779232552278!5m2!1sel!2sgr"
-          width="600" height="450" style="border:0;" allowfullscreen loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
+
+              <div class="contact-layout">
+          <div class="contact-details">
+            <h3>Βρείτε μας</h3>
+            <div class="contact-hours">⏰ 13:00 – 00:00 · Καθημερινά</div>
+            <ul class="contact-list">
+              <li style="white-space: nowrap;">
+                <a href="tel:+302287022660" style="display: inline-flex; align-items: center;">
+                  <span class="c-icon" style="margin-right: 8px;">📞</span> +30 22870 22660
+                </a>
+              </li>
+              <li style="white-space: nowrap;">
+                <a href="mailto:barkomilos@gmail.com" style="display: inline-flex; align-items: center;">
+                  <span class="c-icon" style="margin-right: 8px;">📧</span> barkomilos@gmail.com
+                </a>
+              </li>
+              <li style="white-space: nowrap;">
+                <a href="https://maps.app.goo.gl/gdWjLgHUEqUsAybK7" target="_blank" rel="noopener noreferrer"
+                  style="display: inline-flex; align-items: center;"
+                  aria-label="Δείτε την τοποθεσία του Barko Tavern στον Αδάμαντα Μήλου στο Google Maps">
+
+                  <span class="c-icon" style="margin-right: 8px;" aria-hidden="true">📍</span>
+                  Αδάμαντας, Μήλος
+                </a>
+              </li>
+            </ul>
+            <div class="contact-review-links">
+              <a href="https://maps.app.goo.gl/gdWjLgHUEqUsAybK7" target="_blank" rel="noopener noreferrer">
+                <img src="/assets/images/google-maps.webp" alt="Google Maps" width="32" height="32">
+              </a>
+              <a href="https://www.tripadvisor.com.gr/Restaurant_Review-g635606-d2205464-Reviews-Taverna_Barko-Adamas_Milos_Cyclades_South_Aegean.html"
+                target="_blank" rel="noopener noreferrer">
+                <img src="/assets/images/tripadvisor.webp" alt="TripAdvisor" width="32" height="32">
+              </a>
+            </div>
+          </div>
+          <div class="contact-map">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15211.220492110584!2d24.435416034145177!3d36.72820005738358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1498df472dfb6355%3A0x2cd14b966d368b5f!2sBarko%20tavern%20restaurant!5e0!3m2!1sel!2sgr!4v1779232552278!5m2!1sel!2sgr"
+              width="600" height="450" style="border:0;" allowfullscreen loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
     </div>
   </section>
 
@@ -249,7 +281,7 @@
       // Έλεγχος Ατόμων
       if (guestsInput.validity.valueMissing) return 'Παρακαλώ ορίστε τον αριθμό των ατόμων.'
       if (guestsInput.validity.rangeUnderflow || guestsInput.validity.rangeOverflow) {
-        return 'Ο αριθμός των ατόμων πρέπει να είναι μεταξύ 1 και 30.'
+        return 'Ο αριθμός των ατόμων πρέπει να είναι μεταξύ 1 και 15.'
       }
 
       return null
