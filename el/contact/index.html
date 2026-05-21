@@ -72,23 +72,82 @@
       <h2>Επικοινωνία</h2>
       <p>Στείλτε μας μήνυμα για ερωτήσεις ή σχόλια.</p>
 
-      <form id="contactForm" action="https://formsubmit.co/orfeasninos5@gmail.com" method="POST">
-        <input type="hidden" name="_subject" value="Μήνυμα από το site Barko Tavern">
-        <input type="hidden" name="_captcha" value="false">
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="form-name">Όνομα</label>
+          <input type="text" id="form-name" name="Name" placeholder="Ονοματεπώνυμο" required>
+        </div>
 
-        <label for="name">Όνομα:</label>
-        <input type="text" name="name" placeholder="Το όνομά σας" required>
+        <div class="form-group">
+          <label for="form-email">Email</label>
+          <input type="email" id="form-email" name="Email" placeholder="example@email.com" required>
+        </div>
 
-        <label for="email">Email:</label>
-        <input type="email" name="email" placeholder="Το email σας" required>
+        <div class="form-group">
+          <label for="form-phone">Τηλέφωνο</label>
+          <input type="tel" id="form-phone" name="Phone" placeholder="69XXXXXXXX" required>
+        </div>
 
-        <label for="message">Μήνυμα:</label>
-        <textarea name="message" placeholder="Το μήνυμά σας" rows="6" required></textarea>
+        <!-- Row για Ημερομηνία και Ώρα μαζί -->
+        <!-- Row για Ημερομηνία και Ώρα μαζί -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="form-date">Ημερομηνία</label>
+            <input type="date" id="form-date" name="Date" required>
+          </div>
+          <div class="form-group">
+            <label for="form-time">Ώρα</label>
+            <select id="form-time" name="Time" required>
+              <option value="" disabled selected hidden>Επιλέξτε ώρα</option>
+              <!-- Μεσημέρι / Απόγευμα -->
+              <option value="13:00">13:00</option>
+              <option value="13:15">13:15</option>
+              <option value="13:30">13:30</option>
+              <option value="13:45">13:45</option>
+              <option value="14:00">14:00</option>
+              <option value="14:15">14:15</option>
+              <option value="14:30">14:30</option>
+              <option value="14:45">14:45</option>
+              <option value="15:00">15:00</option>
+              <option value="15:15">15:15</option>
+              <option value="15:30">15:30</option>
+              <option value="15:45">15:45</option>
+              <option value="16:00">16:00</option>
+              <option value="16:15">16:15</option>
+              <option value="16:30">16:30</option>
+              <option value="16:45">16:45</option>
+              <!-- Απόγευμα / Βράδυ -->
+              <option value="17:00">17:00</option>
+              <option value="17:15">17:15</option>
+              <option value="17:30">17:30</option>
+              <option value="17:45">17:45</option>
+              <option value="18:00">18:00</option>
+              <option value="18:15">18:15</option>
+              <option value="18:30">18:30</option>
+              <option value="18:45">18:45</option>
+              <option value="19:00">19:00</option>
+              <option value="19:15">19:15</option>
+              <option value="19:30">19:30</option>
+              <option value="19:45">19:45</option>
+              <option value="20:00">20:00</option>
+            </select>
+          </div>
+        </div>
 
-        <button type="submit" id="submit-btn">Αποστολή</button>
-        <p id="form-message" style="display:none; margin-top:10px; font-weight:700;"></p>
+        <div class="form-group">
+          <label for="form-guests">Άτομα</label>
+          <input type="number" id="form-guests" name="Guests" min="1" max="30" placeholder="Πλήθος ατόμων" required>
+        </div>
+
+        <div class="form-group">
+          <label for="form-comments">Σχόλια / Ιδιαίτερες Προτιμήσεις</label>
+          <textarea id="form-comments" name="Comments"
+            placeholder="Πώς μπορούμε να κάνουμε την εμπειρία σας καλύτερη;"></textarea>
+        </div>
+
+        <button type="submit" id="submit-btn">Κράτηση Τραπεζιού</button>
+        <div id="form-message"></div>
       </form>
-
       <div class="map-container">
         <p>📞 <a href="tel:+302287022660">+30 22870 22660</a></p>
         <p>📧 <a href="mailto:barkomilos@gmail.com">barkomilos@gmail.com</a></p>
@@ -162,41 +221,47 @@
   </div>
   <script src="/js/main.js"></script>
   <script>
-    const form = document.getElementById("contactForm");
-    const message = document.getElementById("form-message");
-    const submitBtn = document.getElementById("submit-btn");
-    const originalBtnText = submitBtn.textContent;
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzt3wFfzLyMuiPjYUSwEFcARLKLwNxaDnyRgjc5dGaN-kycwhYs4wiFyFrGLmaPh-E/exec'
+    const form = document.getElementById('contactForm')
+    const submitBtn = document.getElementById('submit-btn')
+    const formMessage = document.getElementById('form-message')
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      submitBtn.disabled = true;
-      submitBtn.textContent = "Αποστολή...";
-      const data = new FormData(form);
+    form.addEventListener('submit', e => {
+      e.preventDefault()
 
-      try {
-        const response = await fetch(form.action, {
-          method: "POST",
-          body: data,
-          headers: { 'Accept': 'application/json' }
-        });
+      submitBtn.disabled = true
+      submitBtn.innerText = 'ΑΠΟΣΤΟΛΗ...'
+      formMessage.innerText = ''
 
-        if (response.ok) {
-          message.style.display = "block";
-          message.style.color = "green";
-          message.textContent = "Το μήνυμα στάλθηκε επιτυχώς!";
-          form.reset();
-        } else {
-          throw new Error("Σφάλμα αποστολής");
-        }
-      } catch (err) {
-        message.style.display = "block";
-        message.style.color = "red";
-        message.textContent = "Υπήρξε πρόβλημα. Προσπαθήστε ξανά.";
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalBtnText;
-      }
-    });
+      fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+        .then(response => response.json()) // <--- ΑΥΤΟ ΕΙΝΑΙ ΤΟ ΚΛΕΙΔΙ: Μετατρέπει την απάντηση σε JSON
+        .then(data => {
+          submitBtn.disabled = false
+          submitBtn.innerText = 'ΚΡΑΤΗΣΗ ΤΡΑΠΕΖΙΟΥ'
+
+          // Ελέγχουμε τι απάντηση μας έδωσε το Google Script
+          if (data.result === 'success') {
+            formMessage.style.color = '#33692d' // Πράσινο
+            formMessage.innerText = 'Η κράτησή σας καταχωρήθηκε επιτυχώς!'
+            form.reset()
+          }
+          else if (data.result === 'full') {
+            formMessage.style.color = '#b32424' // Κόκκινο
+            formMessage.innerText = data.message // Εμφανίζει το "Δυστυχώς δεν υπάρχουν διαθέσιμα τραπέζια..."
+          }
+          else {
+            formMessage.style.color = '#b32424'
+            formMessage.innerText = 'Παρουσιάστηκε πρόβλημα. Παρακαλώ δοκιμάστε ξανά.'
+          }
+        })
+        .catch(error => {
+          submitBtn.disabled = false
+          submitBtn.innerText = 'ΚΡΑΤΗΣΗ ΤΡΑΠΕΖΙΟΥ'
+          formMessage.style.color = '#b32424'
+          formMessage.innerText = 'Παρουσιάστηκε πρόβλημα σύνδεσης. Παρακαλώ δοκιμάστε ξανά.'
+          console.error('Error!', error.message)
+        })
+    })
   </script>
 
 </body>
