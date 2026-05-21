@@ -8,7 +8,7 @@
   <meta name="description"
     content="Επικοινωνήστε με το Barko Tavern στον Αδάμαντα Μήλου. Κρατήσεις, ερωτήσεις ή σχόλια.">
   <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/css/contact.css">
+  <link rel="stylesheet" href="/css/reservations.css">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
   <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png">
@@ -38,7 +38,7 @@
             <li><a href="/el/restaurant/">Το εστιατόριο</a></li>
             <li><a href="/el/menu/">Μενού</a></li>
             <li><a href="/el/gallery/">Φωτογραφίες</a></li>
-            <li><a href="/el/contact/">Επικοινωνία</a></li>
+            <li><a href="/el/reservations/">Κρατήσεις</a></li>
             <li class="nav-controls">
               <div class="language-switcher">
                 <div class="lang-current">
@@ -48,13 +48,13 @@
                   <span class="lang-arrow">▾</span>
                 </div>
                 <div class="lang-options">
-                  <a href="/en/contact/"><img
+                  <a href="/en/reservations/"><img
                       src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 30'%3E%3Cpath fill='%23012169' d='M0 0h60v30H0z'/%3E%3Cpath stroke='%23fff' stroke-width='6' d='M0 0l60 30M0 30l60-30'/%3E%3Cpath stroke='%23C8102E' stroke-width='2' d='M0 0l60 30M0 30l60-30'/%3E%3Cpath stroke='%23fff' stroke-width='10' d='M30 0v30M0 15h60'/%3E%3Cpath stroke='%23C8102E' stroke-width='6' d='M30 0v30M0 15h60'/%3E%3C/svg%3E"
                       alt="UK Flag" style="width: 28px; height: 18px;"></a>
-                  <a href="/it/contact/"><img
+                  <a href="/it/reservations/"><img
                       src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 341'%3E%3Cpath fill='%23fff' d='M0 0h512v341H0z'/%3E%3Cpath fill='%23009246' d='M0 0h170.7v341H0z'/%3E%3Cpath fill='%23ce2b37' d='M341.3 0H512v341H341.3z'/%3E%3C/svg%3E"
                       alt="Italy Flag" style="width: 28px; height: 18px;"></a>
-                  <a href="/fr/contact/"><img
+                  <a href="/fr/reservations/"><img
                       src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 341'%3E%3Cpath fill='%23fff' d='M0 0h512v341H0z'/%3E%3Cpath fill='%23002395' d='M0 0h170.7v341H0z'/%3E%3Cpath fill='%23ed2939' d='M341.3 0H512v341H341.3z'/%3E%3C/svg%3E"
                       alt="France Flag" style="width: 28px; height: 18px;"></a>
                 </div>
@@ -65,7 +65,6 @@
       </div>
     </div>
   </header>
-
   <section id="contact" class="section contact-section">
     <div class="container">
       <h1>Κράτηση</h1>
@@ -73,15 +72,18 @@
       <form id="contactForm" novalidate>
         <div class="form-group">
           <label for="form-name">Όνομα</label>
-          <input type="text" id="form-name" name="Name" placeholder="Ονοματεπώνυμο" minlength="3" autocomplete="family-name" required>
+          <input type="text" id="form-name" name="Name" placeholder="Ονοματεπώνυμο" minlength="3"
+            autocomplete="family-name" required>
         </div>
         <div class="form-group">
           <label for="form-email">Email</label>
-          <input type="email" id="form-email" name="Email" placeholder="example@email.com" autocomplete="email" required>
+          <input type="email" id="form-email" name="Email" placeholder="example@email.com" autocomplete="email"
+            required>
         </div>
         <div class="form-group">
           <label for="form-phone">Τηλέφωνο</label>
-          <input type="tel" id="form-phone" name="Phone" placeholder="ex.(+30)6969696969" autocomplete="tel" inputmode="tel" pattern="^\+?[0-9]{7,15}$" required>
+          <input type="tel" id="form-phone" name="Phone" placeholder="ex.(+30)6969696969" autocomplete="tel"
+            inputmode="tel" pattern="^\+?[0-9]{7,15}$" required>
         </div>
         <div class="form-row">
           <div class="form-group">
@@ -126,63 +128,60 @@
         </div>
         <div class="form-group">
           <label for="form-guests">Άτομα</label>
-          <input type="number" id="form-guests" name="Guests" min="1" max="15" placeholder="Πλήθος ατόμων" inputmode="numeric" required>
+          <input type="number" id="form-guests" name="Guests" min="1" max="15" placeholder="Πλήθος ατόμων"
+            inputmode="numeric" required>
         </div>
         <div class="form-group">
-          <label for="form-comments">Σχόλια / Ιδιαίτερες Προτιμήσεις</label>
+          <label for="form-comments">Σχόλια</label>
           <textarea id="form-comments" name="Comments" rows="3" autocomplete="off" maxlength="500"
-            placeholder="Πώς μπορούμε να κάνουμε την εμπειρία σας καλύτερη;" ></textarea>
+            placeholder="Πώς μπορούμε να κάνουμε την εμπειρία σας καλύτερη;"></textarea>
         </div>
         <button type="submit" id="submit-btn">Κράτηση Τραπεζιού</button>
         <div id="form-message"></div>
       </form>
-
-              <div class="contact-layout">
-          <div class="contact-details">
-            <h3>Βρείτε μας</h3>
-            <div class="contact-hours">⏰ 13:00 – 00:00 · Καθημερινά</div>
-            <ul class="contact-list">
-              <li style="white-space: nowrap;">
-                <a href="tel:+302287022660" style="display: inline-flex; align-items: center;">
-                  <span class="c-icon" style="margin-right: 8px;">📞</span> +30 22870 22660
-                </a>
-              </li>
-              <li style="white-space: nowrap;">
-                <a href="mailto:barkomilos@gmail.com" style="display: inline-flex; align-items: center;">
-                  <span class="c-icon" style="margin-right: 8px;">📧</span> barkomilos@gmail.com
-                </a>
-              </li>
-              <li style="white-space: nowrap;">
-                <a href="https://maps.app.goo.gl/gdWjLgHUEqUsAybK7" target="_blank" rel="noopener noreferrer"
-                  style="display: inline-flex; align-items: center;"
-                  aria-label="Δείτε την τοποθεσία του Barko Tavern στον Αδάμαντα Μήλου στο Google Maps">
-
-                  <span class="c-icon" style="margin-right: 8px;" aria-hidden="true">📍</span>
-                  Αδάμαντας, Μήλος
-                </a>
-              </li>
-            </ul>
-            <div class="contact-review-links">
-              <a href="https://maps.app.goo.gl/gdWjLgHUEqUsAybK7" target="_blank" rel="noopener noreferrer">
-                <img src="/assets/images/google-maps.webp" alt="Google Maps" width="32" height="32">
+      <div class="contact-layout">
+        <div class="contact-details">
+          <h3>Βρείτε μας</h3>
+          <div class="contact-hours">⏰ 13:00 – 00:00 · Καθημερινά</div>
+          <ul class="contact-list">
+            <li style="white-space: nowrap;">
+              <a href="tel:+302287022660" style="display: inline-flex; align-items: center;">
+                <span class="c-icon" style="margin-right: 8px;">📞</span> +30 22870 22660
               </a>
-              <a href="https://www.tripadvisor.com.gr/Restaurant_Review-g635606-d2205464-Reviews-Taverna_Barko-Adamas_Milos_Cyclades_South_Aegean.html"
-                target="_blank" rel="noopener noreferrer">
-                <img src="/assets/images/tripadvisor.webp" alt="TripAdvisor" width="32" height="32">
+            </li>
+            <li style="white-space: nowrap;">
+              <a href="mailto:barkomilos@gmail.com" style="display: inline-flex; align-items: center;">
+                <span class="c-icon" style="margin-right: 8px;">📧</span> barkomilos@gmail.com
               </a>
-            </div>
-          </div>
-          <div class="contact-map">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15211.220492110584!2d24.435416034145177!3d36.72820005738358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1498df472dfb6355%3A0x2cd14b966d368b5f!2sBarko%20tavern%20restaurant!5e0!3m2!1sel!2sgr!4v1779232552278!5m2!1sel!2sgr"
-              width="600" height="450" style="border:0;" allowfullscreen loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </li>
+            <li style="white-space: nowrap;">
+              <a href="https://maps.app.goo.gl/gdWjLgHUEqUsAybK7" target="_blank" rel="noopener noreferrer"
+                style="display: inline-flex; align-items: center;"
+                aria-label="Δείτε την τοποθεσία του Barko Tavern στον Αδάμαντα Μήλου στο Google Maps">
+                <span class="c-icon" style="margin-right: 8px;" aria-hidden="true">📍</span>
+                Αδάμαντας, Μήλος
+              </a>
+            </li>
+          </ul>
+          <div class="contact-review-links">
+            <a href="https://maps.app.goo.gl/gdWjLgHUEqUsAybK7" target="_blank" rel="noopener noreferrer">
+              <img src="/assets/images/google-maps.webp" alt="Google Maps" width="32" height="32">
+            </a>
+            <a href="https://www.tripadvisor.com.gr/Restaurant_Review-g635606-d2205464-Reviews-Taverna_Barko-Adamas_Milos_Cyclades_South_Aegean.html"
+              target="_blank" rel="noopener noreferrer">
+              <img src="/assets/images/tripadvisor.webp" alt="TripAdvisor" width="32" height="32">
+            </a>
           </div>
         </div>
+        <div class="contact-map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15211.220492110584!2d24.435416034145177!3d36.72820005738358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1498df472dfb6355%3A0x2cd14b966d368b5f!2sBarko%20tavern%20restaurant!5e0!3m2!1sel!2sgr!4v1779232552278!5m2!1sel!2sgr"
+            width="600" height="450" style="border:0;" allowfullscreen loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
     </div>
   </section>
-
-  <!-- FOOTER -->
   <footer class="premium-footer">
     <div class="premium-footer-container">
       <div class="footer-brand">
@@ -195,7 +194,7 @@
         <a href="/el/restaurant/">Το εστιατόριο</a>
         <a href="/el/menu/">Μενού</a>
         <a href="/el/gallery/">Φωτογραφίες</a>
-        <a href="/el/contact/">Επικοινωνία</a>
+        <a href="/el/reservations/">Κρατήσεις</a>
       </div>
       <div class="footer-contact">
         <h3>Επικοινωνία</h3>
@@ -245,8 +244,6 @@
     const form = document.getElementById('contactForm')
     const submitBtn = document.getElementById('submit-btn')
     const formMessage = document.getElementById('form-message')
-
-    // Συνάρτηση που επιστρέφει custom μήνυμα ανάλογα με το λάθος
     function getCustomErrorMessage() {
       const nameInput = document.getElementById('form-name')
       const emailInput = document.getElementById('form-email')
@@ -254,63 +251,42 @@
       const dateInput = document.getElementById('Date')
       const timeInput = document.getElementById('form-time')
       const guestsInput = document.getElementById('form-guests')
-
-      // Έλεγχος Ονόματος
       if (nameInput.validity.valueMissing) return 'Παρακαλώ εισάγετε το ονοματεπώνυμό σας.'
       if (nameInput.validity.tooShort) return 'Το όνομα πρέπει να είναι τουλάχιστον 3 χαρακτήρες.'
-
-      // Έλεγχος Email
       if (emailInput.validity.valueMissing) return 'Το email είναι υποχρεωτικό.'
-      if (emailInput.validity.typeMismatch) return 'Η διεύθυνση email δεν είναι έγκυρη (π.χ. name@example.com).'
-
-      // Έλεγχος Τηλεφώνου (Διεθνές Μορφότυπο)
+      if (emailInput.validity.typeMismatch) return 'Η διεύθυνση email δεν είναι έγκυρη.'
       if (phoneInput.validity.valueMissing) return 'Το τηλέφωνο είναι υποχρεωτικό για την επιβεβαίωση.'
-      if (phoneInput.validity.patternMismatch) return 'Εισάγετε το τηλέφωνο ξεκινώντας με + ακολουθούμενο από τον κωδικό χώρας και τον αριθμό, χωρίς κενά ή παύλες (π.χ. +3069XXXXXXXX για Ελλάδα ή +44XXXXXXXXXX για Ηνωμένο Βασίλειο)'
-
-      // Έλεγχος Ημερομηνίας
+      if (phoneInput.validity.patternMismatch) return 'Εισάγετε το τηλέφωνο χωρίς κενά ή παύλες'
       if (dateInput.validity.valueMissing) return 'Παρακαλώ επιλέξτε ημερομηνία για την κράτηση.'
-
       const selectedDate = new Date(dateInput.value)
       const today = new Date()
       today.setHours(0, 0, 0, 0)
       if (selectedDate < today) return 'Δεν μπορείτε να επιλέξετε ημερομηνία στο παρελθόν.'
-
-      // Έλεγχος Ώρας
       if (timeInput.validity.valueMissing) return 'Παρακαλώ επιλέξτε ώρα κράτησης.'
-
-      // Έλεγχος Ατόμων
       if (guestsInput.validity.valueMissing) return 'Παρακαλώ ορίστε τον αριθμό των ατόμων.'
       if (guestsInput.validity.rangeUnderflow || guestsInput.validity.rangeOverflow) {
         return 'Ο αριθμός των ατόμων πρέπει να είναι μεταξύ 1 και 15.'
       }
-
       return null
     }
-
     form.addEventListener('submit', e => {
       e.preventDefault()
       formMessage.innerText = ''
-
-      // Εκτέλεση του custom validation
       const errorReason = getCustomErrorMessage()
-
       if (errorReason) {
-        formMessage.style.color = '#b32424' // Το κόκκινο χρώμα σου
+        formMessage.style.color = '#b32424'
         formMessage.innerText = errorReason
-        return // Σταματάει την αποστολή στο Spreadsheet
+        return
       }
-
-      // Αν όλα είναι σωστά, ξεκινάει η αποστολή
       submitBtn.disabled = true
       submitBtn.innerText = 'ΑΠΟΣΤΟΛΗ...'
-
       fetch(scriptURL, { method: 'POST', body: new FormData(form) })
         .then(response => response.json())
         .then(data => {
           submitBtn.disabled = false
           submitBtn.innerText = 'ΚΡΑΤΗΣΗ ΤΡΑΠΕΖΙΟΥ'
           if (data.result === 'success') {
-            formMessage.style.color = '#33692d' // Πράσινο
+            formMessage.style.color = '#33692d'
             formMessage.innerText = 'Η κράτησή σας καταχωρήθηκε επιτυχώς!'
             form.reset()
           }
@@ -332,7 +308,6 @@
         })
     })
   </script>
-
 </body>
 
 </html>
