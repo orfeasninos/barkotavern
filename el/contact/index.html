@@ -48,13 +48,13 @@
                   <span class="lang-arrow">▾</span>
                 </div>
                 <div class="lang-options">
-                  <a href="/en/"><img
+                  <a href="/en/contact/"><img
                       src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 30'%3E%3Cpath fill='%23012169' d='M0 0h60v30H0z'/%3E%3Cpath stroke='%23fff' stroke-width='6' d='M0 0l60 30M0 30l60-30'/%3E%3Cpath stroke='%23C8102E' stroke-width='2' d='M0 0l60 30M0 30l60-30'/%3E%3Cpath stroke='%23fff' stroke-width='10' d='M30 0v30M0 15h60'/%3E%3Cpath stroke='%23C8102E' stroke-width='6' d='M30 0v30M0 15h60'/%3E%3C/svg%3E"
                       alt="UK Flag" style="width: 28px; height: 18px;"></a>
-                  <a href="/it/"><img
+                  <a href="/it/contact/"><img
                       src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 341'%3E%3Cpath fill='%23fff' d='M0 0h512v341H0z'/%3E%3Cpath fill='%23009246' d='M0 0h170.7v341H0z'/%3E%3Cpath fill='%23ce2b37' d='M341.3 0H512v341H341.3z'/%3E%3C/svg%3E"
                       alt="Italy Flag" style="width: 28px; height: 18px;"></a>
-                  <a href="/fr/"><img
+                  <a href="/fr/contact/"><img
                       src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 341'%3E%3Cpath fill='%23fff' d='M0 0h512v341H0z'/%3E%3Cpath fill='%23002395' d='M0 0h170.7v341H0z'/%3E%3Cpath fill='%23ed2939' d='M341.3 0H512v341H341.3z'/%3E%3C/svg%3E"
                       alt="France Flag" style="width: 28px; height: 18px;"></a>
                 </div>
@@ -66,34 +66,27 @@
     </div>
   </header>
 
-  <!-- CONTACT SECTION -->
   <section id="contact" class="section contact-section">
     <div class="container">
-      <h2>Επικοινωνία</h2>
-      <p>Στείλτε μας μήνυμα για ερωτήσεις ή σχόλια.</p>
-
+      <h1>Κράτηση</h1>
+      <p>Για την καλύτερη εξυπηρέτησή σας, παρακαλείστε να κάνετε κράτηση σε περίπτωση που </p>
       <form id="contactForm">
         <div class="form-group">
           <label for="form-name">Όνομα</label>
-          <input type="text" id="form-name" name="Name" placeholder="Ονοματεπώνυμο" required>
+          <input type="text" id="form-name" name="Name" placeholder="Ονοματεπώνυμο" minlength="3" required>
         </div>
-
         <div class="form-group">
           <label for="form-email">Email</label>
           <input type="email" id="form-email" name="Email" placeholder="example@email.com" required>
         </div>
-
         <div class="form-group">
           <label for="form-phone">Τηλέφωνο</label>
-          <input type="tel" id="form-phone" name="Phone" placeholder="69XXXXXXXX" required>
+          <input type="tel" id="form-phone" name="Phone" placeholder="" required>
         </div>
-
-        <!-- Row για Ημερομηνία και Ώρα μαζί -->
-        <!-- Row για Ημερομηνία και Ώρα μαζί -->
         <div class="form-row">
           <div class="form-group">
-            <label for="form-date">Ημερομηνία</label>
-            <input type="date" id="form-date" name="Date" required>
+            <label for="Date">Ημερομηνία</label>
+            <input type="date" id="Date" name="Date" min="2026-06-01" required>
           </div>
           <div class="form-group">
             <label for="form-time">Ώρα</label>
@@ -116,7 +109,6 @@
               <option value="16:15">16:15</option>
               <option value="16:30">16:30</option>
               <option value="16:45">16:45</option>
-              <!-- Απόγευμα / Βράδυ -->
               <option value="17:00">17:00</option>
               <option value="17:15">17:15</option>
               <option value="17:30">17:30</option>
@@ -136,7 +128,7 @@
 
         <div class="form-group">
           <label for="form-guests">Άτομα</label>
-          <input type="number" id="form-guests" name="Guests" min="1" max="30" placeholder="Πλήθος ατόμων" required>
+          <input type="number" id="form-guests" name="Guests" min="1" max="20" placeholder="Πλήθος ατόμων" required>
         </div>
 
         <div class="form-group">
@@ -225,29 +217,24 @@
     const form = document.getElementById('contactForm')
     const submitBtn = document.getElementById('submit-btn')
     const formMessage = document.getElementById('form-message')
-
     form.addEventListener('submit', e => {
       e.preventDefault()
-
       submitBtn.disabled = true
       submitBtn.innerText = 'ΑΠΟΣΤΟΛΗ...'
       formMessage.innerText = ''
-
       fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-        .then(response => response.json()) // <--- ΑΥΤΟ ΕΙΝΑΙ ΤΟ ΚΛΕΙΔΙ: Μετατρέπει την απάντηση σε JSON
+        .then(response => response.json())
         .then(data => {
           submitBtn.disabled = false
           submitBtn.innerText = 'ΚΡΑΤΗΣΗ ΤΡΑΠΕΖΙΟΥ'
-
-          // Ελέγχουμε τι απάντηση μας έδωσε το Google Script
           if (data.result === 'success') {
             formMessage.style.color = '#33692d' // Πράσινο
             formMessage.innerText = 'Η κράτησή σας καταχωρήθηκε επιτυχώς!'
             form.reset()
           }
           else if (data.result === 'full') {
-            formMessage.style.color = '#b32424' // Κόκκινο
-            formMessage.innerText = data.message // Εμφανίζει το "Δυστυχώς δεν υπάρχουν διαθέσιμα τραπέζια..."
+            formMessage.style.color = '#b32424'
+            formMessage.innerText = data.message
           }
           else {
             formMessage.style.color = '#b32424'
