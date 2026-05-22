@@ -687,6 +687,7 @@ body.dark .sk-ww-google-reviews {
   font-style: italic;
   color: var(--text-muted);
   margin-bottom: 1.4rem;
+  margin-top: 50px;
 }
 
 .contact-hours {
