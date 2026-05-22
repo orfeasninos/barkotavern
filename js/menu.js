@@ -26,7 +26,6 @@ async function loadMenu() {
         console.error("Fetch error:", error);
     }
 }
-const currentLang = document.documentElement.lang.toUpperCase() || 'EN';
 
 const categoryImages = {
     "Ορεκτικά": "../../assets/images/.webp",
@@ -64,7 +63,7 @@ const subcategoryTranslations = {
 function renderMenu(data) {
     const menuContainer = document.getElementById('menu-container');
     const sidebarContainer = document.querySelector('.menu-links-list');
-    const currentLang = document.documentElement.lang.toUpperCase() || 'EN';
+    let currentLang = document.documentElement.lang.toUpperCase() || 'EN';
     if (currentLang.length > 2) currentLang = 'EN';
     const grouped = data.reduce((acc, item) => {
         const cat = item.Category || "Other";

@@ -776,9 +776,8 @@ header::after {
 
 
 @media (prefers-reduced-motion: reduce) {
-  .premium-footer-container {
+  .footer-shimmer {
     opacity: 0;
-    animation: fadeInFooter 1.2s forwards 0.3s;
   }
 }
 

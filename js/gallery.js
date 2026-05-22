@@ -58,7 +58,6 @@ function renderGallery(data) {
         }
     });
 
-    // Η γραμμή αυτή αντικαθιστά ακαριαία τον loader με τις εικόνες
     galleryContainer.innerHTML = galleryHtml;
 }
 
@@ -69,5 +68,4 @@ function showError(message) {
     }
 }
 
-// Άμεση εκτέλεση
 loadGallery();

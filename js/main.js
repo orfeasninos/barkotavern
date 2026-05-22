@@ -140,17 +140,15 @@ function initDishModal() {
     modal.classList.add("open");
   };
   document.addEventListener("click", (e) => {
-    // 1. Για τα πιάτα στο MENU PAGE (δυναμικά από Google Sheets)
     const li = e.target.closest(".menu-items li");
     if (li && !e.target.closest("a")) {
       const img = li.querySelector("img");
       if (!img) return;
-      const title = li.querySelector(".dish h4") || li.querySelector("h3");
-      const text = li.querySelector(".dish p") || li.querySelector("p");
+      const title = li.querySelector(".dish");
       openModal({
         src: img.dataset.modalImg || img.src,
         title: title?.textContent || "",
-        text: text?.textContent || "",
+        text: "",
       });
       return;
     }
