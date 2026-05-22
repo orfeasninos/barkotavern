@@ -37,9 +37,10 @@
 
 .gallery-loader-wrapper {
   grid-column: 1 / -1;
-    text-align: center;
-    display: block;
-  margin: 4rem auto; 
+  text-align: center;
+  display: block;
+  margin: 4rem auto;
+  min-height: 100vh;
 }
 
 .spinner {
@@ -49,7 +50,7 @@
   border-top-color: var(--gold);
   border-radius: 50%;
   animation: spin 0.85s linear infinite;
-    margin: 0 auto 1.5rem auto;
+  margin: 0 auto 1.5rem auto;
 
 }
 
@@ -65,8 +66,8 @@
   }
 }
 
-@media (hover: hover) and (pointer:fine ) {
-    .dish-gallery img:hover {
+@media (hover: hover) and (pointer:fine) {
+  .dish-gallery img:hover {
     transform: translateY(-6px) scale(1.01);
     filter: saturate(1.12) contrast(1.06);
     box-shadow: var(--shadow-xl);

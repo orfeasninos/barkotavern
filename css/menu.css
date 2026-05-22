@@ -106,7 +106,7 @@
   background: var(--cream);
   padding: 3rem 2.8rem 5rem;
   border-radius: 20px;
-  min-height: 100%;
+  min-height: 100vh;
 }
 
 .menu-category {
