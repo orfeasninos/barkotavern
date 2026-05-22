@@ -680,7 +680,7 @@ header::after {
 }
 
 .dish-modal-content {
-  background: #fffdf8;
+  background: var(--cream-dark);
   border-radius: 1.8rem;
   padding: 2rem;
   max-width: 1200px;

@@ -484,6 +484,7 @@ body.dark .sk-ww-google-reviews {
   flex: 1;
   display: flex;
   flex-direction: column;
+  background: var(--cream-dark);
 }
 
 .menu-item-body h3 {
