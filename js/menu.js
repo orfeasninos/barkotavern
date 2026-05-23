@@ -28,16 +28,17 @@ async function loadMenu() {
 }
 
 const categoryImages = {
-    "Ορεκτικά": "../../assets/images/.webp",
-    "Σαλάτες": "../../assets/images/.webp",
-    "Μαγειρευτά": "../../assets/images/.webp",
-    "Της ώρας": "../../assets/images/.webp",
-    "Θαλασσινά": "../../assets/images/.webp",
-    "Επιδόρπια": "../../assets/images/.webp",
-    "Κρασιά": "../../assets/images/.jpg",
+    "Ορεκτικά": "../../assets/images/patates.webp",
+    "Σαλάτες": "../../assets/images/xwriatikh.webp",
+    "Μαγειρευτά": "../../assets/images/kokoras-lazania-home.webp",
+    "Της ώρας": "../../assets/images/mprizola.webp",
+    "Θαλασσινά": "../../assets/images/xtapodi.webp",
+    "Επιδόρπια": "../../assets/images/koufeto.webp",
+    "Κρασιά": "../../assets/images/.webp",
     "Ποτά": "../../assets/images/.webp"
 };
 const categoryTranslations = {
+    "Πιάτο Ημέρας": { EL: "Πιάτο Ημέρας", IT: "Piatto del giorno", FR: "Plat du jour", EN: "Dish of the day" },
     "Ορεκτικά": { EL: "Ορεκτικά", IT: "Antipasti", FR: "Entrées", EN: "Appetizers" },
     "Σαλάτες": { EL: "Σαλάτες", IT: "Insalate", FR: "Salades", EN: "Salads" },
     "Μαγειρευτά": { EL: "Μαγειρευτά", IT: "Piatti Caldi", FR: "Plats Cuisinés", EN: "Hot Dishes" },

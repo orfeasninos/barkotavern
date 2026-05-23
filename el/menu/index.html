@@ -41,14 +41,14 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
   <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png">
   <link rel="manifest" href="/assets/favicons/site.webmanifest">
-  <script type="application/ld+json">
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "WebSite",
-      "@id": "https://barkotavernmilos.com/el/#website",
-      "url": "https://barkotavernmilos.com/el/",
+      "@id": "https://barkotavernmilos.com/#website",
+      "url": "https://barkotavernmilos.com/",
       "name": "Barko Tavern",
       "inLanguage": "el"
     },
@@ -58,14 +58,14 @@
       "url": "https://barkotavernmilos.com/el/menu/",
       "name": "Μενού | Barko Tavern – Παραδοσιακά Μηλέικα Πιάτα",
       "inLanguage": "el",
-      "isPartOf": { "@id": "https://barkotavernmilos.com/el/#website" },
-      "about": { "@id": "https://barkotavernmilos.com/el/#restaurant" },
+      "isPartOf": { "@id": "https://barkotavernmilos.com/#website" },
+      "about": { "@id": "https://barkotavernmilos.com/el/menu/#menu" },
       "mainEntity": { "@id": "https://barkotavernmilos.com/el/menu/#menu" }
     },
     {
       "@type": "Restaurant",
-      "@id": "https://barkotavernmilos.com/el/#restaurant",
-      "name": "Barko",
+      "@id": "https://barkotavernmilos.com/#restaurant",
+      "name": "Μπάρκο",
       "url": "https://barkotavernmilos.com/el/",
       "image": "https://barkotavernmilos.com/assets/images/og-barko-1200x630.jpg",
       "telephone": "+30 22870 22660", 
@@ -90,6 +90,19 @@
         "opens": "13:00", 
         "closes": "00:00" 
       }],
+      "acceptsReservations": "Yes",
+      "potentialAction": {
+        "@type": "ReserveAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://barkotavernmilos.com/el/reservations/",
+          "inLanguage": "el"
+        },
+        "result": {
+          "@type": "FoodEstablishmentReservation",
+          "name": "Κράτηση Τραπεζιού"
+        }
+      },
       "sameAs": [
         "https://www.tripadvisor.com.gr/Restaurant_Review-g635606-d2205464-Reviews-Taverna_Barko-Adamas_Milos_Cyclades_South_Aegean.html",
         "https://maps.app.goo.gl/gdWjLgHUEqUsAybK7"
@@ -102,7 +115,7 @@
       "description": "Ανακαλύψτε παραδοσιακά ελληνικά πιάτα, θαλασσινά, κρεατικά της ώρας και τοπικές σπεσιαλιτέ στο Barko Tavern στη Μήλο.",
       "inLanguage": "el",
       "url": "https://barkotavernmilos.com/el/menu/",
-      "isPartOf": { "@id": "https://barkotavernmilos.com/el/#restaurant" },
+      "isPartOf": { "@id": "https://barkotavernmilos.com/#restaurant" },
       "hasMenuSection": [
         { "@type": "MenuSection", "name": "Ορεκτικά" },
         { "@type": "MenuSection", "name": "Σαλάτες" },

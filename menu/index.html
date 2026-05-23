@@ -56,10 +56,10 @@
       "@type": "WebPage",
       "@id": "https://barkotavernmilos.com/menu/#webpage",
       "url": "https://barkotavernmilos.com/menu/",
-      "name": "Menu | Barko Tavern – Traditional Milos Dishes",
+      "name": "Our Menu | Barko Tavern – Traditional Local Dishes",
       "inLanguage": "en",
       "isPartOf": { "@id": "https://barkotavernmilos.com/#website" },
-      "about": { "@id": "https://barkotavernmilos.com/#restaurant" },
+      "about": { "@id": "https://barkotavernmilos.com/menu/#menu" },
       "mainEntity": { "@id": "https://barkotavernmilos.com/menu/#menu" }
     },
     {
@@ -68,28 +68,41 @@
       "name": "Barko",
       "url": "https://barkotavernmilos.com/",
       "image": "https://barkotavernmilos.com/assets/images/og-barko-1200x630.jpg",
-      "telephone": "+30 22870 22660",
-      "servesCuisine": ["Greek", "Mediterranean"],
+      "telephone": "+30 22870 22660", 
+      "servesCuisine": ["Greek","Mediterranean"], 
       "priceRange": "€€",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Επαρχιακή Οδός Λιμανιού Αδάμαντα-Τρυπητής",
-        "addressLocality": "Adamas",
-        "addressRegion": "South Aegean",
-        "postalCode": "84800",
-        "addressCountry": "GR"
+      "address": { 
+        "@type": "PostalAddress", 
+        "streetAddress": "Eparchial Road Adamas-Trypiti Port", 
+        "addressLocality": "Adamas", 
+        "addressRegion": "South Aegean", 
+        "postalCode": "84800", 
+        "addressCountry": "GR" 
       },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 36.7283479,
-        "longitude": 24.4464016
+      "geo": { 
+        "@type": "GeoCoordinates", 
+        "latitude": 36.7283479, 
+        "longitude": 24.4464016 
       },
-      "openingHoursSpecification": [{
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-        "opens": "13:00",
-        "closes": "00:00"
+      "openingHoursSpecification": [{ 
+        "@type": "OpeningHoursSpecification", 
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], 
+        "opens": "13:00", 
+        "closes": "00:00" 
       }],
+      "acceptsReservations": "Yes",
+      "potentialAction": {
+        "@type": "ReserveAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://barkotavernmilos.com/reservations/",
+          "inLanguage": "en"
+        },
+        "result": {
+          "@type": "FoodEstablishmentReservation",
+          "name": "Book a Table"
+        }
+      },
       "sameAs": [
         "https://www.tripadvisor.com.gr/Restaurant_Review-g635606-d2205464-Reviews-Taverna_Barko-Adamas_Milos_Cyclades_South_Aegean.html",
         "https://maps.app.goo.gl/gdWjLgHUEqUsAybK7"
@@ -99,32 +112,32 @@
       "@type": "Menu",
       "@id": "https://barkotavernmilos.com/menu/#menu",
       "name": "Barko Tavern Menu",
-      "description": "Discover traditional Greek dishes, seafood, à la minute meats and local specialties at Barko Tavern in Milos.",
+      "description": "Discover traditional Greek dishes, fresh seafood, grilled meats and local specialties at Barko Tavern in Milos.",
       "inLanguage": "en",
       "url": "https://barkotavernmilos.com/menu/",
       "isPartOf": { "@id": "https://barkotavernmilos.com/#restaurant" },
       "hasMenuSection": [
         { "@type": "MenuSection", "name": "Appetizers" },
         { "@type": "MenuSection", "name": "Salads" },
-        { "@type": "MenuSection", "name": "Cooked Dishes" },
-        { "@type": "MenuSection", "name": "À La Minute" },
+        { "@type": "MenuSection", "name": "Traditional Dishes" },
+        { "@type": "MenuSection", "name": "Grilled Meats" },
         { "@type": "MenuSection", "name": "Seafood" },
         { "@type": "MenuSection", "name": "Desserts" },
-        { "@type": "MenuSection", "name": "Wines" },
-        { "@type": "MenuSection", "name": "Drinks" }
+        { "@type": "MenuSection", "name": "Wine List" },
+        { "@type": "MenuSection", "name": "Drinks & Beverages" }
       ]
     },
     {
       "@type": "BreadcrumbList",
       "@id": "https://barkotavernmilos.com/menu/#breadcrumbs",
       "itemListElement": [
-        {
+        { 
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
           "item": "https://barkotavernmilos.com/"
         },
-        {
+        { 
           "@type": "ListItem",
           "position": 2,
           "name": "Menu",
