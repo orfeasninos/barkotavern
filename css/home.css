@@ -968,3 +968,19 @@ body.dark .sk-ww-google-reviews {
     font-size: 2.8rem;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .orb-1, .orb-2, .orb-3 {
+    animation: none !important;
+  }
+  
+  .ornament-dot {
+    animation: none !important;
+  }
+
+  .hero-eyebrow, .hero h1, .hero-sub, .hero-actions, .hero-ornament {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
