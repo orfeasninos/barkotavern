@@ -40,9 +40,9 @@ async function loadMenu() {
 }
 const categoryImages = {
     "Ορεκτικά": "../../assets/images/patates.webp",
-    "Σαλάτες": "../../assets/images/xwriatikh.webp",
+    "Σαλάτες": "../../assets/images/ntakos.webp",
     "Μαγειρευτά": "../../assets/images/kokoras-lazania-home.webp",
-    "Της ώρας": "../../assets/images/mprizola.webp",
+    "Της ώρας": "../../assets/images/souvlaki-kotopoulo.webp",
     "Θαλασσινά": "../../assets/images/xtapodi.webp",
     "Επιδόρπια": "../../assets/images/koufeto.webp",
     "Κρασιά": "../../assets/images/.webp",
