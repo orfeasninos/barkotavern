@@ -134,7 +134,7 @@
 
 <body>
   <div class="info-bar">
-    ⏰<strong>13:00 – 00:00</strong>
+    &#128337;<strong>13:00 – 00:00</strong>
   </div>
   <header>
     <div class="header-container">
@@ -182,10 +182,18 @@
       </div>
     </div>
   </header>
+    <div class="bk-hero">
+    <span class="bk-hero-tag">Barko Tavern · Milos</span>
+    <h1>Κρατήστε το τραπέζι σας</h1>
+    <p>Απολαύστε αυθεντική ελληνική κουζίνα στο λιμάνι της Αδάμαντας. Κάντε κράτηση και εξασφαλίστε τη θέση σας.</p>
+    <div class="bk-hero-pills">
+      <div class="bk-pill"><i class="ti ti-clock" aria-hidden="true"></i>&#128337; 13:00 – 00:00 καθημερινά</div>
+      <div class="bk-pill"><i class="ti ti-users" aria-hidden="true"></i>&#128101; Κράτηση για έως 15 άτομα</div>
+      <div class="bk-pill"><i class="ti ti-map-pin" aria-hidden="true"></i> &#128205;Αδάμαντας, Μήλος</div>
+    </div>
+  </div>
   <section id="contact" class="section contact-section">
     <div class="container">
-      <h1>Κράτηση</h1>
-      <p>Για την καλύτερη εξυπηρέτησή σας, παρακαλείστε να κάνετε κράτηση για τραπέζι άνω των 8 ατόμων </p>
       <form id="contactForm" novalidate>
         <div class="form-group">
           <label for="form-name">Όνομα</label>
@@ -253,7 +261,14 @@
           <textarea id="form-comments" name="Comments" rows="3" autocomplete="off" maxlength="500"
             placeholder="Πώς μπορούμε να κάνουμε την εμπειρία σας καλύτερη;"></textarea>
         </div>
+        <div style="display:none;">
+          <input type="text" name="website" id="website">
+        </div>
+
+        <input type="hidden" name="ts" id="form-ts">
+        <input type="hidden" name="token" id="form-token">
         <button type="submit" id="submit-btn">Κράτηση Τραπεζιού</button>
+        <p>Το τραπέζι σας θα παραμείνει διαθέσιμο για 15 λεπτά από την ώρα κράτησης.</p>
         <div id="form-message"></div>
       </form>
       <div class="contact-layout">
@@ -398,43 +413,53 @@
       return null
     }
     form.addEventListener('submit', e => {
-      e.preventDefault()
-      formMessage.innerText = ''
-      const errorReason = getCustomErrorMessage()
+      e.preventDefault();
+      formMessage.innerText = '';
+
+      // 1. Ενημέρωση των κρυφών πεδίων ΠΡΙΝ την αποστολή
+      document.getElementById('form-ts').value = Date.now();
+      document.getElementById('form-token').value = "bk_" + Math.random().toString(36).substr(2, 9);
+      document.getElementById('website').value = ""; // Διαβεβαίωση ότι το honeypot είναι άδειο
+
+      const errorReason = getCustomErrorMessage();
       if (errorReason) {
-        formMessage.style.color = '#b32424'
-        formMessage.innerText = errorReason
-        return
+        formMessage.style.color = '#b32424';
+        formMessage.innerText = errorReason;
+        return;
       }
-      submitBtn.disabled = true
-      submitBtn.innerText = 'ΑΠΟΣΤΟΛΗ...'
+
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'ΑΠΟΣΤΟΛΗ...';
+
+      // 2. Αποστολή των δεδομένων
       fetch(scriptURL, { method: 'POST', body: new FormData(form) })
         .then(response => response.json())
         .then(data => {
-          submitBtn.disabled = false
-          submitBtn.innerText = 'ΚΡΑΤΗΣΗ ΤΡΑΠΕΖΙΟΥ'
+          submitBtn.disabled = false;
+          submitBtn.innerText = 'ΚΡΑΤΗΣΗ ΤΡΑΠΕΖΙΟΥ';
+
           if (data.result === 'success') {
-            formMessage.style.color = '#33692d'
-            formMessage.innerText = 'Η κράτησή σας καταχωρήθηκε επιτυχώς!'
-            form.reset()
-          }
-          else if (data.result === 'full') {
-            formMessage.style.color = '#b32424'
-            formMessage.innerText = data.message
-          }
-          else {
-            formMessage.style.color = '#b32424'
-            formMessage.innerText = 'Παρουσιάστηκε πρόβλημα. Παρακαλώ δοκιμάστε ξανά.'
+            formMessage.style.color = '#33692d';
+            formMessage.innerText = 'Η κράτησή σας καταχωρήθηκε επιτυχώς!';
+            form.reset();
+          } else if (data.result === 'full') {
+            formMessage.style.color = '#b32424';
+            formMessage.innerText = data.message;
+          } else {
+            // Εδώ βλέπουμε ποιο είναι το σφάλμα από τον server
+            console.error('Server rejection:', data);
+            formMessage.style.color = '#b32424';
+            formMessage.innerText = 'Παρουσιάστηκε πρόβλημα (Κωδικός: ' + (data.reason || 'σφάλμα') + ')';
           }
         })
         .catch(error => {
-          submitBtn.disabled = false
-          submitBtn.innerText = 'ΚΡΑΤΗΣΗ ΤΡΑΠΕΖΙΟΥ'
-          formMessage.style.color = '#b32424'
-          formMessage.innerText = 'Παρουσιάστηκε πρόβλημα σύνδεσης. Παρακαλώ δοκιμάστε ξανά.'
-          console.error('Error!', error.message)
-        })
-    })
+          submitBtn.disabled = false;
+          submitBtn.innerText = 'ΚΡΑΤΗΣΗ ΤΡΑΠΕΖΙΟΥ';
+          formMessage.style.color = '#b32424';
+          formMessage.innerText = 'Παρουσιάστηκε πρόβλημα σύνδεσης.';
+          console.error('Error!', error.message);
+        });
+    });
   </script>
 </body>
 

@@ -1,8 +1,63 @@
+.bk-hero {
+  background: var(--olive-mid);
+  padding: 3rem 2rem 2.5rem;
+  text-align: center;
+  position: relative;
+  border-bottom: 3px solid #c9a84c;
+}
+
+.bk-hero-tag {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #c9a84c;
+  margin-bottom: 1rem;
+}
+
+.bk-hero h1 {
+  font-size: 32px;
+  font-weight: 500;
+  color: #f5f0e8;
+  margin: 0 0 0.75rem;
+  letter-spacing: 1px;
+}
+
+.bk-hero p {
+  color: #b8c9a8;
+  font-size: 14px;
+  max-width: 420px;
+  margin: 0 auto 1.5rem;
+  line-height: 1.7;
+}
+
+.bk-hero-pills {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.bk-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(201, 168, 76, 0.15);
+  border: 0.5px solid rgba(201, 168, 76, 0.4);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 12px;
+  color: #c9a84c;
+}
+
+.bk-pill i {
+  font-size: 14px;
+}
+
 .contact-section p {
-  font-weight: 600;
-  color: var(--olive);
+  color: #888;
   font-family: var(--font-body);
-  font-size: 1.05rem;
+  font-size: 12px;
 }
 
 #contactForm {
@@ -86,7 +141,6 @@ button[type="submit"] {
 }
 
 #form-message {
-  margin-top: 0.5rem;
   font-weight: 600;
   color: #33692d;
   text-align: center;
