@@ -1,15 +1,6 @@
-/* ============================================================
-   restaurant.css — Barko Tavern · Restaurant Page
-   ============================================================ */
-
-
-/* ============================================================
-   § 0  TOKENS
-   ============================================================ */
 :root {
   --rs-serif:       "Playfair Display", "Didot", "Georgia", serif;
   --rs-sans:        system-ui, -apple-system, "Segoe UI", sans-serif;
-
   --rs-ink:         var(--ink, #132411);
   --rs-gold:        var(--ornament-line, #c5a880);
   --rs-gold-dim:    rgba(197, 168, 128, 0.18);
@@ -17,25 +8,19 @@
   --rs-cream:       var(--cream, #fdfbf4);
   --rs-cream-dark:  var(--cream-dark, #f4f0e5);
   --rs-text:        var(--text-dark, #2b2a26);
-
   --rs-py:          clamp(4rem, 7.5vw, 7rem);
   --rs-px:          clamp(1.5rem, 5vw, 3.5rem);
-
   --rs-h2:          clamp(2.8rem, 5.5vw, 5rem);
-  --rs-lead:        clamp(1.05rem, 1.6vw, 1.35rem);
-  --rs-body:        clamp(1rem, 1.05vw, 1.08rem);
-
+  --rs-lead:        clamp(1.2rem, 1.9vw, 1.55rem); 
+  --rs-body:        clamp(1.05rem, 1.2vw, 1.18rem);
   --rs-ease:        cubic-bezier(0.25, 1, 0.5, 1);
   --rs-ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --rs-ease-expo:   cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-
-/* ============================================================
-   § 1  HERO  (original cinematic style, untouched header)
-   ============================================================ */
 .hero-welcome {
   position: relative;
-  min-height: 88dvh;
+  min-height: 95dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,7 +32,6 @@
   isolation: isolate;
 }
 
-/* Background + Ken Burns */
 .hero-bg {
   position: absolute;
   inset: 0;
@@ -63,7 +47,6 @@
   animation: rs-heroZoom 22s var(--rs-ease) infinite alternate;
 }
 
-/* Multi-layer vignette */
 .hero-welcome::before {
   content: "";
   position: absolute;
@@ -77,7 +60,6 @@
       rgba(0,0,0,.54) 100%);
 }
 
-/* Gold line at bottom */
 .hero-welcome::after {
   content: "";
   position: absolute;
@@ -88,7 +70,6 @@
   z-index: 1;
 }
 
-/* Text wrapper */
 .welcome-box {
   position: relative;
   z-index: 1;
@@ -99,7 +80,6 @@
   animation: rs-heroReveal 1.5s var(--rs-ease-out) 0.15s forwards;
 }
 
-/* Eyebrow */
 .welcome-box span {
   display: inline-block;
   font-family: var(--rs-sans);
@@ -127,10 +107,46 @@
   margin: 0;
 }
 
+.rs-reveal {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition:
+    opacity   0.9s var(--rs-ease-expo),
+    transform 0.9s var(--rs-ease-expo);
+}
 
-/* ============================================================
-   § 2  SECTION SHELLS
-   ============================================================ */
+.rs-reveal[data-delay="1"] { transition-delay: 0.15s; }
+.rs-reveal[data-delay="2"] { transition-delay: 0.30s; }
+.rs-reveal[data-delay="3"] { transition-delay: 0.45s; }
+
+.rs-reveal.rs-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.location-section .rs-reveal,
+.hospitality-section .rs-reveal {
+  transform: translateX(60px);
+}
+
+.location-section .rs-reveal.rs-visible,
+.hospitality-section .rs-reveal.rs-visible {
+  transform: translateX(0);
+}
+
+.rs-reveal-child > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity   0.7s var(--rs-ease-expo),
+    transform 0.7s var(--rs-ease-expo);
+}
+
+.rs-reveal-child.rs-visible > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0s;    }
+.rs-reveal-child.rs-visible > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.12s; }
+.rs-reveal-child.rs-visible > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.24s; }
+
+
 .section {
   padding-block: var(--rs-py);
 }
@@ -146,9 +162,13 @@
   border-block: 1px solid rgba(42, 58, 30, 0.055);
 }
 
+.section + .section {
+  border-top: 1px solid var(--rs-gold-dim);
+}
+
 
 /* ============================================================
-   § 3  INNER GRID
+   § 4  INNER GRID
    ============================================================ */
 .section .container {
   width: 100%;
@@ -164,7 +184,7 @@
 
 
 /* ============================================================
-   § 4  HEADINGS  — outline stroke + EST tag
+   § 5  HEADINGS
    ============================================================ */
 .section h2 {
   grid-column: 1 / -1;
@@ -181,17 +201,9 @@
   gap: 1.4rem;
   padding-bottom: 1.75rem;
   border-bottom: 1px solid var(--rs-gold-dim);
+  transition: color 0.5s var(--rs-ease), -webkit-text-stroke 0.5s var(--rs-ease);
 }
 
-/* Stroke — desktop only */
-@media (min-width: 769px) {
-  .section h2 {
-    color: transparent;
-    -webkit-text-stroke: 1px var(--rs-ink);
-  }
-}
-
-/* EST. 1993 tag */
 .section h2::after {
   content: "— EST. 1993";
   font-family: var(--rs-sans);
@@ -204,7 +216,18 @@
   margin-bottom: 0.5rem;
 }
 
-/* Direction per section */
+@media (min-width: 769px) {
+  .section h2 {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--rs-ink);
+  }
+
+  .section h2:hover {
+    color: var(--rs-ink);
+    -webkit-text-stroke: 1px transparent;
+  }
+}
+
 .history-section h2,
 .cuisine-section h2 {
   justify-content: flex-start;
@@ -219,35 +242,62 @@
 
 
 /* ============================================================
-   § 5  PARAGRAPHS  —  Z-pattern
-   ODD  sections → lead col 1-5  | body col 7-12
-   EVEN sections → body col 1-6  | lead col 8-12
+   § 6  PARAGRAPHS
    ============================================================ */
 
-/* Lead */
+/* Lead — more presence */
 .section p:first-of-type {
   font-family: var(--rs-serif);
   font-size: var(--rs-lead);
+  font-weight: 500;             /* ↑ was implicitly 400 — now has real weight */
   font-style: italic;
-  line-height: 1.55;
+  line-height: 1.5;
   color: var(--rs-ink);
   margin: 0;
-  padding-left: 1.4rem;
-  border-left: 2px solid var(--rs-gold);
-  border-radius: 0;
+  padding-left: 1.6rem;
+  border-left: 3px solid var(--rs-gold);  /* ↑ was 2px */
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: -4px;
+    top: 0.15em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--rs-gold);
+  }
 }
 
-/* Body */
+/* Body — readable, full opacity */
 .section p:not(:first-of-type) {
   font-family: var(--rs-sans);
   font-size: var(--rs-body);
-  line-height: 1.88;
+  line-height: 1.95;
   color: var(--rs-text);
-  opacity: 0.82;
+  opacity: 1;
   margin: 0;
+  letter-spacing: 0.012em;
+  text-align: justify;
+  text-align-last: left;       
+  hyphens: auto;               
+  -webkit-hyphens: auto;
+  hyphenate-limit-chars: 6 3 3;
+  word-spacing: 0.02em;
 }
 
-/* ODD */
+.section p:not(:first-of-type)::first-letter {
+  font-family: var(--rs-serif);
+  font-size: 3.8em;
+  font-weight: 400;
+  line-height: 0.82;
+  float: left;
+  margin-right: 0.1em;
+  margin-top: 0.06em;
+  color: var(--rs-ink);
+}
+
 .history-section p:first-of-type,
 .cuisine-section p:first-of-type {
   grid-column: 1 / span 5;
@@ -260,17 +310,20 @@
   align-self: center;
 }
 
-/* EVEN */
 .location-section p:first-of-type,
 .hospitality-section p:first-of-type {
   grid-column: 8 / span 5;
   border-left: none;
-  border-right: 2px solid var(--rs-gold);
-  border-radius: 0;
+  border-right: 3px solid var(--rs-gold);
   padding-left: 0;
-  padding-right: 1.4rem;
+  padding-right: 1.6rem;
   text-align: right;
   align-self: center;
+
+  &::before {
+    left: auto;
+    right: -4px;
+  }
 }
 
 .location-section p:not(:first-of-type),
@@ -279,10 +332,6 @@
   align-self: center;
 }
 
-
-/* ============================================================
-   § 6  BENTO GALLERY
-   ============================================================ */
 .dish-gallery {
   grid-column: 1 / -1;
   display: grid;
@@ -305,21 +354,9 @@
   will-change: transform;
 }
 
-.dish-gallery img:nth-child(1) {
-  grid-column: 1 / span 7;
-  aspect-ratio: 16 / 9;
-}
-
-.dish-gallery img:nth-child(2) {
-  grid-column: 8 / span 5;
-  aspect-ratio: 4 / 3;
-}
-
-.dish-gallery img:nth-child(3) {
-  grid-column: 1 / -1;
-  height: 360px;
-  object-position: center 60%;
-}
+.dish-gallery img:nth-child(1) { grid-column: 1 / span 7; aspect-ratio: 16 / 9; }
+.dish-gallery img:nth-child(2) { grid-column: 8 / span 5; aspect-ratio: 4 / 3; }
+.dish-gallery img:nth-child(3) { grid-column: 1 / -1; height: 360px; object-position: center 60%; }
 
 @media (hover: hover) {
   .dish-gallery img { cursor: zoom-in; }
@@ -333,10 +370,6 @@
   }
 }
 
-
-/* ============================================================
-   § 7  KEYFRAMES
-   ============================================================ */
 @keyframes rs-heroZoom {
   from { transform: scale(1.02) translate(0, 0); }
   to   { transform: scale(1.10) translate(-1.2%, -0.6%); }
@@ -346,12 +379,6 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-
-/* ============================================================
-   § 8  RESPONSIVE
-   ============================================================ */
-
-/* Tablet */
 @media (max-width: 1024px) {
   :root { --rs-py: 5rem; }
 
@@ -364,13 +391,13 @@
   .location-section p:first-of-type,
   .hospitality-section p:first-of-type {
     grid-column: 1 / -1;
-    border-left: 2px solid var(--rs-gold);
+    border-left: 3px solid var(--rs-gold);
     border-right: none;
-    border-radius: 0;
-    padding-left: 1.4rem;
+    padding-left: 1.6rem;
     padding-right: 0;
     text-align: left;
     align-self: auto;
+    &::before { left: -4px; right: auto; }
   }
 
   .history-section p:not(:first-of-type),
@@ -383,7 +410,6 @@
   }
 }
 
-/* Mobile */
 @media (max-width: 768px) {
   :root { --rs-py: 3.5rem; }
 
@@ -426,14 +452,19 @@
   }
 }
 
-/* Small phones */
 @media (max-width: 400px) {
   .hero-welcome  { min-height: 55dvh; }
   .welcome-box h1 { font-size: 2.4rem; }
 }
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
+  .rs-reveal,
+  .rs-reveal-child > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
   .hero-bg img,
   .welcome-box,
   .dish-gallery img {
@@ -443,3 +474,8 @@
     opacity: 1 !important;
   }
 }
+
+main {
+  overflow-x: hidden;
+}
+
