@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#132411">
   <title>Reservations | Barko Tavern Milos</title>
-  <meta name="description" content="Book your table online at Barko Tavern in Adamas, Milos.">
+  <meta name="description" content="Book a table online at Barko Tavern in Adamas, Milos.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://barkotavernmilos.com/reservations/">
   <link rel="alternate" hreflang="el" href="https://barkotavernmilos.com/el/reservations/">
@@ -21,7 +21,7 @@
   <link rel="alternate" hreflang="x-default" href="https://barkotavernmilos.com/reservations/">
   <meta property="og:title" content="Reservations | Barko Tavern Milos">
   <meta property="og:site_name" content="Barko Tavern">
-  <meta property="og:description" content="Book your table online at Barko Tavern in Adamas, Milos.">
+  <meta property="og:description" content="Book a table online at Barko Tavern in Adamas, Milos.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://barkotavernmilos.com/reservations/">
   <meta property="og:image" content="https://barkotavernmilos.com/assets/images/og-barko-1200x630.jpg">
@@ -129,12 +129,12 @@
     }
   ]
 }
-  </script>
+</script>
 </head>
 
 <body>
   <div class="info-bar">
-    ⏰<strong>13:00 – 00:00</strong>
+    &#128337;<strong>13:00 – 00:00</strong>
   </div>
   <header>
     <div class="header-container">
@@ -151,7 +151,7 @@
         </button>
         <nav class="header-nav" id="mobile-nav">
           <ul>
-            <li><a href="/" class="active">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="/restaurant/">The Restaurant</a></li>
             <li><a href="/menu/">Menu</a></li>
             <li><a href="/gallery/">Gallery</a></li>
@@ -182,10 +182,23 @@
       </div>
     </div>
   </header>
+  <div class="bk-hero">
+    <span class="bk-hero-tag">Barko Tavern · Milos</span>
+    <h1>Reserve Your Table</h1>
+    <p>Enjoy authentic Greek cuisine at the port of Adamas. Make a reservation and secure your spot.</p>
+    <div class="bk-hero-pills">
+      <div class="bk-pill"><i class="ti ti-clock" aria-hidden="true"></i>&#128337; 13:00 – 00:00 daily</div>
+      <div class="bk-pill"><i class="ti ti-users" aria-hidden="true"></i>&#128101; Reservations for up to 15 guests</div>
+      <div class="bk-pill"><i class="ti ti-map-pin" aria-hidden="true"></i> &#128205;Adamas, Milos</div>
+    </div>
+  </div>
+  <div class="bk-divider">
+    <div class="bk-divider-line"></div>
+    <span style="color: #c9a84c;">&#9875;&#65038;</span>
+    <div class="bk-divider-line"></div>
+  </div>
   <section id="contact" class="section contact-section">
     <div class="container">
-      <h1>Reservation</h1>
-      <p>For the best experience, we kindly ask you to make a reservation for groups of more than 8 people.</p>
       <form id="contactForm" novalidate>
         <div class="form-group">
           <label for="form-name">Name</label>
@@ -205,7 +218,7 @@
         <div class="form-row">
           <div class="form-group">
             <label for="Date">Date</label>
-            <input type="date" id="Date" name="Date" min="2026-06-01" required>
+            <input type="date" id="Date" name="Date" required>
           </div>
           <div class="form-group">
             <label for="form-time">Time</label>
@@ -249,11 +262,18 @@
             inputmode="numeric" required>
         </div>
         <div class="form-group">
-          <label for="form-comments">Comments / Special Requests</label>
+          <label for="form-comments">Comments</label>
           <textarea id="form-comments" name="Comments" rows="3" autocomplete="off" maxlength="500"
             placeholder="How can we make your experience even better?"></textarea>
         </div>
-        <button type="submit" id="submit-btn">Book a Table</button>
+        <div style="display:none;">
+          <input type="text" name="website" id="website">
+        </div>
+
+        <input type="hidden" name="ts" id="form-ts">
+        <input type="hidden" name="token" id="form-token">
+        <button type="submit" id="submit-btn">Reserve a Table</button>
+        <p>Your table will be held for 15 minutes from the reservation time.</p>
         <div id="form-message"></div>
       </form>
       <div class="contact-layout">
@@ -267,14 +287,14 @@
               </a>
             </li>
             <li style="white-space: nowrap;">
-              <a href="mailto:barkomilos@gmail.com" style="display: inline-flex; align-items: center;">
-                <span class="c-icon" style="margin-right: 8px;">📧</span> barkomilos@gmail.com
+              <a href="mailto:barkotavernmilos@gmail.com" style="display: inline-flex; align-items: center;">
+                <span class="c-icon" style="margin-right: 8px;">📧</span> barkotavernmilos@gmail.com
               </a>
             </li>
             <li style="white-space: nowrap;">
               <a href="https://maps.app.goo.gl/gdWjLgHUEqUsAybK7" target="_blank" rel="noopener noreferrer"
                 style="display: inline-flex; align-items: center;"
-                aria-label="View Barko Tavern location in Adamas, Milos on Google Maps">
+                aria-label="View Barko Tavern's location in Adamas, Milos on Google Maps">
                 <span class="c-icon" style="margin-right: 8px;" aria-hidden="true">📍</span>
                 Adamas, Milos
               </a>
@@ -323,9 +343,9 @@
           <span>📞</span>
           <span>+30 22870 22660</span>
         </a>
-        <a href="mailto:barkomilos@gmail.com">
+        <a href="mailto:barkotavernmilos@gmail.com">
           <span>📧</span>
-          <span>barkomilos@gmail.com</span>
+          <span>barkotavernmilos@gmail.com</span>
         </a>
         <div class="footer-review">
           <a href="https://maps.app.goo.gl/gdWjLgHUEqUsAybK7" target="_blank" rel="noopener noreferrer">
@@ -347,6 +367,17 @@
       Website design &amp; development by <a href="mailto:orfeasninos5@gmail.com">Orfeas Ninos</a>
     </div>
   </footer>
+  <div id="consentBanner" class="consent">
+    <div class="consent-box">
+      <p>We use analytics cookies to improve our website.
+        <a href="/privacy/">Privacy Policy</a>
+      </p>
+      <div class="consent-buttons">
+        <button id="consentReject" class="btn-ghost">Decline</button>
+        <button id="consentAccept" class="btn-primary">Accept</button>
+      </div>
+    </div>
+  </div>
   <div class="sticky-cta">
     <a href="tel:+302287022660" class="cta-btn call">
       📞
@@ -357,7 +388,7 @@
   </div>
   <script src="/js/main.js"></script>
   <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzt3wFfzLyMuiPjYUSwEFcARLKLwNxaDnyRgjc5dGaN-kycwhYs4wiFyFrGLmaPh-E/exec'
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzz3F2tVj5fiStvyopmd9kLAGxSlBAcaR-53w47S5pDusJ1nE3C1pGp1fF-Iq4ePNNh/exec'
     const form = document.getElementById('contactForm')
     const submitBtn = document.getElementById('submit-btn')
     const formMessage = document.getElementById('form-message')
@@ -373,7 +404,7 @@
       if (emailInput.validity.valueMissing) return 'Email is required.'
       if (emailInput.validity.typeMismatch) return 'Please enter a valid email address.'
       if (phoneInput.validity.valueMissing) return 'Phone number is required for confirmation.'
-      if (phoneInput.validity.patternMismatch) return 'Please enter your phone number without spaces or dashes.'
+      if (phoneInput.validity.patternMismatch) return 'Enter your phone number without spaces or dashes.'
       if (dateInput.validity.valueMissing) return 'Please select a date for your reservation.'
       const selectedDate = new Date(dateInput.value)
       const today = new Date()
@@ -387,43 +418,50 @@
       return null
     }
     form.addEventListener('submit', e => {
-      e.preventDefault()
-      formMessage.innerText = ''
-      const errorReason = getCustomErrorMessage()
+      e.preventDefault();
+      formMessage.innerText = '';
+
+      document.getElementById('form-ts').value = Date.now();
+      document.getElementById('form-token').value = "bk_" + Math.random().toString(36).substr(2, 9);
+      document.getElementById('website').value = "";
+
+      const errorReason = getCustomErrorMessage();
       if (errorReason) {
-        formMessage.style.color = '#b32424'
-        formMessage.innerText = errorReason
-        return
+        formMessage.style.color = '#b32424';
+        formMessage.innerText = errorReason;
+        return;
       }
-      submitBtn.disabled = true
-      submitBtn.innerText = 'SENDING...'
+
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'SENDING...';
+
       fetch(scriptURL, { method: 'POST', body: new FormData(form) })
         .then(response => response.json())
         .then(data => {
-          submitBtn.disabled = false
-          submitBtn.innerText = 'BOOK A TABLE'
+          submitBtn.disabled = false;
+          submitBtn.innerText = 'RESERVE A TABLE';
+
           if (data.result === 'success') {
-            formMessage.style.color = '#33692d'
-            formMessage.innerText = 'Your reservation has been submitted successfully!'
-            form.reset()
-          }
-          else if (data.result === 'full') {
-            formMessage.style.color = '#b32424'
-            formMessage.innerText = data.message
-          }
-          else {
-            formMessage.style.color = '#b32424'
-            formMessage.innerText = 'Something went wrong. Please try again.'
+            formMessage.style.color = '#33692d';
+            formMessage.innerText = 'Your reservation has been submitted successfully!';
+            form.reset();
+          } else if (data.result === 'full') {
+            formMessage.style.color = '#b32424';
+            formMessage.innerText = data.message;
+          } else {
+            console.error('Server rejection:', data);
+            formMessage.style.color = '#b32424';
+            formMessage.innerText = 'An error occurred (Code: ' + (data.reason || 'error') + ')';
           }
         })
         .catch(error => {
-          submitBtn.disabled = false
-          submitBtn.innerText = 'BOOK A TABLE'
-          formMessage.style.color = '#b32424'
-          formMessage.innerText = 'A connection error occurred. Please try again.'
-          console.error('Error!', error.message)
-        })
-    })
+          submitBtn.disabled = false;
+          submitBtn.innerText = 'RESERVE A TABLE';
+          formMessage.style.color = '#b32424';
+          formMessage.innerText = 'A connection error occurred.';
+          console.error('Error!', error.message);
+        });
+    });
   </script>
 </body>
 
