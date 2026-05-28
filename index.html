@@ -39,6 +39,10 @@
   <meta property="og:locale:alternate" content="el_GR">
   <meta property="og:locale:alternate" content="fr_FR">
   <meta property="og:locale:alternate" content="it_IT">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Κρατήσεις | Barko Tavern Μήλος">
+  <meta name="twitter:description" content="Κάντε online κράτηση στο Barko Tavern στον Αδάμαντα Μήλου.">
+  <meta name="twitter:image" content="https://barkotavernmilos.com/assets/images/og-barko-1200x630.jpg">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/home.css">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
@@ -254,7 +258,8 @@
             </div>
           </div>
           <div class="menu-item">
-            <img src="/assets/images/kouneli-home.webp" alt="Wine-braised rabbit" width="300" height="200" loading="lazy">
+            <img src="/assets/images/kouneli-home.webp" alt="Wine-braised rabbit" width="300" height="200"
+              loading="lazy">
             <div class="menu-item-body">
               <h3>Wine-braised rabbit</h3>
             </div>
@@ -421,8 +426,7 @@
   <div class="dish-modal" id="dishModal">
     <div class="dish-modal-content">
       <button class="modal-close">&times;</button>
-      <img id="modalImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
-        alt="Dish image">
+      <img id="modalImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Dish image">
       <h3 id="modalTitle">Modal title</h3>
       <p id="modalText"></p>
     </div>
@@ -446,26 +450,26 @@
   </div>
   <script src="/js/main.js" defer></script>
   <script>
-  window.addEventListener("load", function () {
-    const reviewsSection = document.querySelector('.reviews-section');
-    let widgetLoaded = false;
-    if (reviewsSection && 'IntersectionObserver' in window) {
-      const observer = new IntersectionObserver(function (entries, observer) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting && !widgetLoaded) {
-            widgetLoaded = true;
-            const script = document.createElement('script');
-            script.src = "https://widgets.sociablekit.com/google-reviews/widget.js";
-            script.defer = true;
-            document.body.appendChild(script);
-            observer.disconnect();
-          }
-        });
-      }, { rootMargin: "200px" });
-      observer.observe(reviewsSection);
-    }
-  });
-</script>
+    window.addEventListener("load", function () {
+      const reviewsSection = document.querySelector('.reviews-section');
+      let widgetLoaded = false;
+      if (reviewsSection && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(function (entries, observer) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting && !widgetLoaded) {
+              widgetLoaded = true;
+              const script = document.createElement('script');
+              script.src = "https://widgets.sociablekit.com/google-reviews/widget.js";
+              script.defer = true;
+              document.body.appendChild(script);
+              observer.disconnect();
+            }
+          });
+        }, { rootMargin: "200px" });
+        observer.observe(reviewsSection);
+      }
+    });
+  </script>
 </body>
 
 </html>
