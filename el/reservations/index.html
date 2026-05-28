@@ -269,9 +269,9 @@
         <div style="display:none;">
           <input type="text" name="website" id="website">
         </div>
-
         <input type="hidden" name="ts" id="form-ts">
         <input type="hidden" name="token" id="form-token">
+        <input type="hidden" id="form-user-id" name="user_id" value="">
         <button type="submit" id="submit-btn">Κράτηση Τραπεζιού</button>
         <p>Το τραπέζι σας θα παραμείνει διαθέσιμο για 15 λεπτά από την ώρα κράτησης.</p>
         <div id="form-message"></div>
@@ -421,10 +421,18 @@
       e.preventDefault();
       formMessage.innerText = '';
 
-      // 1. Ενημέρωση των κρυφών πεδίων ΠΡΙΝ την αποστολή
+      // --- SECURITY FINGERPRINTING ---
+      let userId = localStorage.getItem('bk_user_id');
+      if (!userId) {
+        userId = 'user_' + Math.random().toString(36).substr(2, 9);
+        localStorage.setItem('bk_user_id', userId);
+      }
+      document.getElementById('form-user-id').value = userId;
+      // -------------------------------
+
       document.getElementById('form-ts').value = Date.now();
       document.getElementById('form-token').value = "bk_" + Math.random().toString(36).substr(2, 9);
-      document.getElementById('website').value = ""; // Διαβεβαίωση ότι το honeypot είναι άδειο
+      document.getElementById('website').value = "";
 
       const errorReason = getCustomErrorMessage();
       if (errorReason) {
@@ -436,7 +444,6 @@
       submitBtn.disabled = true;
       submitBtn.innerText = 'ΑΠΟΣΤΟΛΗ...';
 
-      // 2. Αποστολή των δεδομένων
       fetch(scriptURL, { method: 'POST', body: new FormData(form) })
         .then(response => response.json())
         .then(data => {
@@ -447,14 +454,12 @@
             formMessage.style.color = '#33692d';
             formMessage.innerText = 'Η κράτησή σας καταχωρήθηκε επιτυχώς!';
             form.reset();
-          } else if (data.result === 'full') {
+          } else if (data.reason === 'rate_limited') {
             formMessage.style.color = '#b32424';
-            formMessage.innerText = data.message;
+            formMessage.innerText = 'Παρακαλώ περιμένετε λίγα δευτερόλεπτα πριν την επόμενη κράτηση.';
           } else {
-            // Εδώ βλέπουμε ποιο είναι το σφάλμα από τον server
-            console.error('Server rejection:', data);
             formMessage.style.color = '#b32424';
-            formMessage.innerText = 'Παρουσιάστηκε πρόβλημα (Κωδικός: ' + (data.reason || 'σφάλμα') + ')';
+            formMessage.innerText = 'Παρουσιάστηκε πρόβλημα. Παρακαλώ δοκιμάστε ξανά.';
           }
         })
         .catch(error => {
@@ -462,7 +467,6 @@
           submitBtn.innerText = 'ΚΡΑΤΗΣΗ ΤΡΑΠΕΖΙΟΥ';
           formMessage.style.color = '#b32424';
           formMessage.innerText = 'Παρουσιάστηκε πρόβλημα σύνδεσης.';
-          console.error('Error!', error.message);
         });
     });
   </script>
