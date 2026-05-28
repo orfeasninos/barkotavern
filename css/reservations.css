@@ -54,6 +54,22 @@
   font-size: 14px;
 }
 
+.bk-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem 2rem 0;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.bk-divider-line {
+  flex: 1;
+  height: 0.5px;
+  background: #c9a84c;
+  opacity: 0.4;
+}
+
 .contact-section p {
   color: #888;
   font-family: var(--font-body);
