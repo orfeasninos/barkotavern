@@ -387,11 +387,12 @@
     </a>
   </div>
   <script src="/js/main.js"></script>
-  <script>
+<script>
     const scriptURL = 'https://script.google.com/macros/s/AKfycbzz3F2tVj5fiStvyopmd9kLAGxSlBAcaR-53w47S5pDusJ1nE3C1pGp1fF-Iq4ePNNh/exec'
     const form = document.getElementById('contactForm')
     const submitBtn = document.getElementById('submit-btn')
     const formMessage = document.getElementById('form-message')
+
     function getCustomErrorMessage() {
       const nameInput = document.getElementById('form-name')
       const emailInput = document.getElementById('form-email')
@@ -399,24 +400,40 @@
       const dateInput = document.getElementById('Date')
       const timeInput = document.getElementById('form-time')
       const guestsInput = document.getElementById('form-guests')
+
       if (nameInput.validity.valueMissing) return 'Παρακαλώ εισάγετε το ονοματεπώνυμό σας.'
       if (nameInput.validity.tooShort) return 'Το όνομα πρέπει να είναι τουλάχιστον 3 χαρακτήρες.'
       if (emailInput.validity.valueMissing) return 'Το email είναι υποχρεωτικό.'
       if (emailInput.validity.typeMismatch) return 'Η διεύθυνση email δεν είναι έγκυρη.'
       if (phoneInput.validity.valueMissing) return 'Το τηλέφωνο είναι υποχρεωτικό για την επιβεβαίωση.'
-      if (phoneInput.validity.patternMismatch) return 'Εισάγετε το τηλέφωνο χωρίς κενά ή παύλες'
+      if (phoneInput.validity.patternMismatch) return 'Εισάγετε το τηλέφωνο χωρίς κενά ή παύλες.'
       if (dateInput.validity.valueMissing) return 'Παρακαλώ επιλέξτε ημερομηνία για την κράτηση.'
-      const selectedDate = new Date(dateInput.value)
-      const today = new Date()
-      today.setHours(0, 0, 0, 0)
-      if (selectedDate < today) return 'Δεν μπορείτε να επιλέξετε ημερομηνία στο παρελθόν.'
       if (timeInput.validity.valueMissing) return 'Παρακαλώ επιλέξτε ώρα κράτησης.'
+
+      // ==========================================
+      // ⏳ ΝΕΟΣ ΕΛΕΓΧΟΣ: ΟΡΙΟ 3 ΩΡΩΝ ΠΡΙΝ ΤΗΝ ΚΡΑΤΗΣΗ
+      // ==========================================
+      // Δημιουργούμε την ακριβή ημερομηνία και ώρα της κράτησης
+      const reservationDateTime = new Date(`${dateInput.value}T${timeInput.value}`);
+      const now = new Date(); // Η τρέχουσα ώρα του χρήστη
+
+      if (reservationDateTime < now) {
+        return 'Δεν μπορείτε να επιλέξετε ημερομηνία ή ώρα στο παρελθόν.';
+      }
+
+      const threeHoursInMs = 2 * 60 * 60 * 1000; // 3 ώρες μεταφρασμένες σε milliseconds
+      if (reservationDateTime - now < threeHoursInMs) {
+        return 'Οι online κρατήσεις πρέπει να γίνονται τουλάχιστον 3 ώρες νωρίτερα. Για άμεση κράτηση, παρακαλώ καλέστε μας στο τηλέφωνο.';
+      }
+      // ==========================================
+
       if (guestsInput.validity.valueMissing) return 'Παρακαλώ ορίστε τον αριθμό των ατόμων.'
       if (guestsInput.validity.rangeUnderflow || guestsInput.validity.rangeOverflow) {
         return 'Ο αριθμός των ατόμων πρέπει να είναι μεταξύ 1 και 15.'
       }
       return null
     }
+
     form.addEventListener('submit', e => {
       e.preventDefault();
       formMessage.innerText = '';
@@ -424,8 +441,8 @@
       // --- SECURITY FINGERPRINTING ---
       let userId = localStorage.getItem('bk_user_id');
       if (!userId) {
-        userId = 'user_' + Math.random().toString(36).substr(2, 9);
-        localStorage.setItem('bk_user_id', userId);
+          userId = 'user_' + Math.random().toString(36).substr(2, 9);
+          localStorage.setItem('bk_user_id', userId);
       }
       document.getElementById('form-user-id').value = userId;
       // -------------------------------
@@ -443,7 +460,7 @@
 
       submitBtn.disabled = true;
       submitBtn.innerText = 'ΑΠΟΣΤΟΛΗ...';
-
+      
       fetch(scriptURL, { method: 'POST', body: new FormData(form) })
         .then(response => response.json())
         .then(data => {
@@ -457,9 +474,13 @@
           } else if (data.reason === 'rate_limited') {
             formMessage.style.color = '#b32424';
             formMessage.innerText = 'Παρακαλώ περιμένετε λίγα δευτερόλεπτα πριν την επόμενη κράτηση.';
-          } else {
+          } else if (data.reason === 'quota_exceeded') {
             formMessage.style.color = '#b32424';
-            formMessage.innerText = 'Παρουσιάστηκε πρόβλημα. Παρακαλώ δοκιμάστε ξανά.';
+            formMessage.innerText = 'Έχετε ξεπεράσει το όριο επιτρεπόμενων κρατήσεων για σήμερα από αυτή τη συσκευή.';
+          } else {
+            console.error('Server rejection:', data);
+            formMessage.style.color = '#b32424';
+            formMessage.innerText = 'Παρουσιάστηκε πρόβλημα (Κωδικός: ' + (data.reason || 'σφάλμα') + ')';
           }
         })
         .catch(error => {
@@ -467,6 +488,7 @@
           submitBtn.innerText = 'ΚΡΑΤΗΣΗ ΤΡΑΠΕΖΙΟΥ';
           formMessage.style.color = '#b32424';
           formMessage.innerText = 'Παρουσιάστηκε πρόβλημα σύνδεσης.';
+          console.error('Error!', error.message);
         });
     });
   </script>
