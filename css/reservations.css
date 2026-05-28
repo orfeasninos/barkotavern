@@ -71,6 +71,7 @@
 }
 
 .contact-section p {
+  text-align: center;
   color: #888;
   font-family: var(--font-body);
   font-size: 12px;
