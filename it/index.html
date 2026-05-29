@@ -47,7 +47,6 @@
   <meta property="og:locale:alternate" content="en_US">
   <meta property="og:locale:alternate" content="fr_FR">
   <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/css/home.css">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
   <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png">
@@ -138,6 +137,9 @@
   ]
 }
 </script>
+  <style>
+    .hero::after,.hero::before{pointer-events:none;z-index:1;content:""}.hero h1,.hero-cta{font-family:var(--font-title)}.hero-cta,.hero-eyebrow{text-transform:uppercase}.hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:calc(var(--header-h) + 3rem) 1.5rem 7rem;background:#0b1608}.hero-canvas,.hero::after,.hero::before,.orb{position:absolute}.hero-canvas{inset:0;pointer-events:none;overflow:hidden}.orb{border-radius:50%;filter:blur(80px);opacity:.55;will-change:transform}.orb-1{width:700px;height:700px;background:radial-gradient(circle,rgba(58,90,34,.9) 0,transparent 70%);top:-20%;left:-15%;animation:18s ease-in-out infinite orbDrift1}.orb-2{width:500px;height:500px;background:radial-gradient(circle,rgba(212,175,55,.22) 0,transparent 70%);bottom:-10%;right:-10%;animation:22s ease-in-out infinite orbDrift2}.orb-3{width:400px;height:400px;background:radial-gradient(circle,rgba(80,120,48,.55) 0,transparent 70%);top:40%;right:20%;animation:16s ease-in-out infinite orbDrift3}@keyframes orbDrift1{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(60px,40px) scale(1.05)}66%{transform:translate(-30px,60px) scale(.96)}}@keyframes orbDrift2{0%,100%{transform:translate(0,0) scale(1)}40%{transform:translate(-50px,-40px) scale(1.08)}70%{transform:translate(20px,-60px) scale(.95)}}@keyframes orbDrift3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-40px,30px) scale(1.06)}}.hero::before{inset:0;background:radial-gradient(ellipse 75% 80% at 50% 50%,transparent 40%,rgba(0,0,0,.65) 100%)}.hero::after{bottom:0;left:0;right:0;height:220px;background:linear-gradient(to bottom,transparent,#0b1608 85%)}.hero-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center}.hero-eyebrow{font-size:.66rem;font-weight:500;letter-spacing:.36em;color:var(--gold);display:block;margin-bottom:2rem;opacity:0;animation:fadeUp .8s var(--ease) .2s forwards}.hero-eyebrow::before{content:"";display:block;width:40px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 1.2rem;opacity:.7}.hero h1{font-size:clamp(5rem, 13vw, 10rem);font-weight:400;line-height:.86;letter-spacing:-.02em;color:#fff;margin:0 0 1.8rem;opacity:0;animation:fadeUp .9s var(--ease) .35s forwards;text-shadow:0 2px 0 rgba(255,255,255,.06),0 8px 40px rgba(0,0,0,.6),0 0 80px rgba(90,130,58,.3)}.hero h1 em{display:block;font-style:italic;font-size:.48em;color:var(--gold-light);letter-spacing:.2em;margin-top:.22em;text-shadow:0 0 50px rgba(212,175,55,.45),0 4px 16px rgba(0,0,0,.5)}.hero-sub{font-size:clamp(.92rem, 1.6vw, 1.1rem);color:rgba(255,255,255,.65);letter-spacing:.04em;max-width:38ch;line-height:1.75;margin:0 auto 3rem;opacity:0;animation:fadeUp .9s var(--ease) .5s forwards}.hero-actions{display:flex;align-items:center;gap:1rem;opacity:0;animation:fadeUp .9s var(--ease) .65s forwards}.hero-cta{display:inline-flex;align-items:center;gap:.5rem;padding:.88rem 2.2rem;border-radius:999px;font-size:.92rem;font-weight:700;letter-spacing:.1em;text-decoration:none;transition:transform var(--dur-2) var(--ease),box-shadow var(--dur-2) var(--ease);background:linear-gradient(135deg,var(--gold) 0,#e8c84a 50%,var(--gold) 100%);color:#1a2612;box-shadow:0 10px 36px rgba(212,175,55,.4),inset 0 1px 0 rgba(255,255,255,.45)}.hero-ornament{position:absolute;bottom:2.8rem;z-index:2;display:flex;align-items:center;gap:.7rem;opacity:0;animation:fadeUp 1s var(--ease) 1s forwards}.ornament-line{display:block;width:48px;height:1px;background:linear-gradient(90deg,transparent,rgba(212,175,55,.55))}.ornament-line:last-child{background:linear-gradient(90deg,rgba(212,175,55,.55),transparent)}.ornament-dot{display:block;width:5px;height:5px;border-radius:50%;background:var(--gold);opacity:.65;animation:2.5s ease-in-out infinite dotPulse}@keyframes dotPulse{0%,100%{transform:scale(1);opacity:.65}50%{transform:scale(1.8);opacity:1}}@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+  </style>
 </head>
 
 <body>
@@ -454,26 +456,26 @@
   </div>
   <script src="/js/main.js" defer></script>
   <script>
-  window.addEventListener("load", function () {
-    const reviewsSection = document.querySelector('.reviews-section');
-    let widgetLoaded = false;
-    if (reviewsSection && 'IntersectionObserver' in window) {
-      const observer = new IntersectionObserver(function (entries, observer) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting && !widgetLoaded) {
-            widgetLoaded = true;
-            const script = document.createElement('script');
-            script.src = "https://widgets.sociablekit.com/google-reviews/widget.js";
-            script.defer = true;
-            document.body.appendChild(script);
-            observer.disconnect();
-          }
-        });
-      }, { rootMargin: "200px" });
-      observer.observe(reviewsSection);
-    }
-  });
-</script>
+    window.addEventListener("load", function () {
+      const reviewsSection = document.querySelector('.reviews-section');
+      let widgetLoaded = false;
+      if (reviewsSection && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(function (entries, observer) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting && !widgetLoaded) {
+              widgetLoaded = true;
+              const script = document.createElement('script');
+              script.src = "https://widgets.sociablekit.com/google-reviews/widget.js";
+              script.defer = true;
+              document.body.appendChild(script);
+              observer.disconnect();
+            }
+          });
+        }, { rootMargin: "200px" });
+        observer.observe(reviewsSection);
+      }
+    });
+  </script>
 </body>
 
 </html>
