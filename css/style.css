@@ -125,11 +125,9 @@ a {
 img,
 button,
 .burger-menu,
-.theme-toggle,
 .lang-current,
 .category-card,
-.info-bar,
-.info-bar strong {
+.info-bar {
   user-select: none;
   -webkit-user-drag: none;
 }
@@ -599,6 +597,11 @@ header::after {
   }
 }
 
+.map-icon, .trip-advisor-icon {
+  height: 32px;
+  width: 32px;
+}
+
 .consent {
   position: fixed;
   left: 20px;
@@ -823,6 +826,10 @@ header::after {
   .btn-primary:hover {
     transform: translateY(-2px);
   }
+
+  .map-icon:hover, .trip-advisor-icon:hover {
+    transform: scale(1.10);
+  }
 }
 
 .cta-btn:active {
@@ -851,6 +858,10 @@ header::after {
 .footer-links a:active::after,
 .footer-contact a:active::after {
   width: 40%;
+}
+
+.map-icon:active, .trip-advisor-icon:active {
+    transform: scale(1.15);
 }
 
 @media (max-width: 900px) {

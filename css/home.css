@@ -747,11 +747,6 @@ body.dark .sk-ww-google-reviews {
   align-items: center;
 }
 
-.map-icon, .trip-advisor-icon {
-  height: 32px;
-  width: 32px;
-}
-
 .contact-map {
   border-radius: 18px;
   overflow: hidden;
@@ -807,10 +802,6 @@ body.dark .sk-ww-google-reviews {
   .contact-list li a:hover {
     color: var(--olive-mid);
     transform: scale(1.03);
-  }
-
-  .contact-review-links svg:hover {
-    transform: scale(1.15);
   }
 }
 
