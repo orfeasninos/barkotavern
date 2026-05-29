@@ -747,11 +747,9 @@ body.dark .sk-ww-google-reviews {
   align-items: center;
 }
 
-.contact-review-links img {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+.map-icon, .trip-advisor-icon {
+  height: 32px;
+  width: 32px;
 }
 
 .contact-map {
@@ -808,11 +806,11 @@ body.dark .sk-ww-google-reviews {
 
   .contact-list li a:hover {
     color: var(--olive-mid);
-    transform: scale(1.01);
+    transform: scale(1.03);
   }
 
-  .contact-review-links img:hover {
-    transform: scale(1.10);
+  .contact-review-links svg:hover {
+    transform: scale(1.15);
   }
 }
 
@@ -827,11 +825,11 @@ body.dark .sk-ww-google-reviews {
 
 .contact-list li a:active {
   color: var(--olive-mid);
-  transform: scale(1.01);
+  transform: scale(1.03);
 }
 
-.contact-review-links img:active {
-  transform: scale(1.10);
+.contact-review-links svg:active {
+  transform: scale(1.15);
 }
 
 .btn-outline:active {
