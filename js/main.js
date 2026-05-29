@@ -64,23 +64,23 @@
     });
   }
 
-function initAnalytics() {
-  window.addEventListener('load', () => {
-    if (!document.getElementById('ga-gtag')) {
-      const s = document.createElement("script");
-      s.id = 'ga-gtag';
-      s.src = "https://www.googletagmanager.com/gtag/js?id=G-W5LVLHN94F";
-      s.async = true;
-      document.head.appendChild(s);
-      
-      // Το config πρέπει να τρέξει αφού φορτωθεί το script
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
-      gtag('config', 'G-W5LVLHN94F');
-    }
-  });
-}
+  function initAnalytics() {
+    window.addEventListener('load', () => {
+      if (!document.getElementById('ga-gtag')) {
+        const s = document.createElement("script");
+        s.id = 'ga-gtag';
+        s.src = "https://www.googletagmanager.com/gtag/js?id=G-W5LVLHN94F";
+        s.async = true;
+        document.head.appendChild(s);
+
+        // Το config πρέπει να τρέξει αφού φορτωθεί το script
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-W5LVLHN94F');
+      }
+    });
+  }
 
   function initActiveNavLink() {
     const navLinks = document.querySelectorAll(
@@ -140,6 +140,12 @@ function initAnalytics() {
       modalText.textContent = text || "";
       modalText.style.display = text ? "" : "none";
       modal.classList.add("open");
+      if (typeof gtag === 'function') {
+        gtag('event', 'view_dish', {
+          'dish_name': title,
+          'content_type': 'food_item'
+        });
+      }
     };
     document.addEventListener("click", (e) => {
       const li = e.target.closest(".menu-items li");
