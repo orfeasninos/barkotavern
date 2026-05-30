@@ -136,6 +136,12 @@
       modalText.textContent = text || "";
       modalText.style.display = text ? "" : "none";
       modal.classList.add("open");
+      if (typeof gtag === 'function') {
+        gtag('event', 'view_dish', {
+          'dish_name': title,
+          'content_type': 'food_item'
+        });
+      }
     };
     document.addEventListener("click", (e) => {
       const li = e.target.closest(".menu-items li");
