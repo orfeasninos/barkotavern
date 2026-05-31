@@ -124,62 +124,78 @@
   }
 
   function initDishModal() {
-    const modal = document.getElementById("dishModal");
-    const modalImg = document.getElementById("modalImg");
-    const modalTitle = document.getElementById("modalTitle");
-    const modalText = document.getElementById("modalText");
-    if (!modal || !modalImg || !modalTitle || !modalText) return;
-    const openModal = ({ src, title = "", text = "" }) => {
-      modalImg.src = src || "";
-      modalImg.alt = title || "Φωτογραφία πιάτου στο Barko Tavern";
-      modalTitle.textContent = title || "";
-      modalText.textContent = text || "";
-      modalText.style.display = text ? "" : "none";
-      modal.classList.add("open");
-      if (typeof gtag === 'function') {
-        gtag('event', 'view_dish', {
-          'dish_name': title,
-          'content_type': 'food_item'
-        });
-      }
-    };
-    document.addEventListener("click", (e) => {
-      const li = e.target.closest(".menu-items li");
-      if (li && !e.target.closest("a")) {
-        const img = li.querySelector("img");
-        if (!img) return;
-        const title = li.querySelector(".dish");
-        openModal({
-          src: img.dataset.modalImg || img.src,
-          title: title?.textContent || "",
-          text: "",
-        });
-        return;
-      }
-      const indexItem = e.target.closest(".menu-item");
-      if (indexItem) {
-        const img = indexItem.querySelector("img");
-        const title = indexItem.querySelector("h3");
-        const text = indexItem.querySelector("p");
-        openModal({
-          src: img?.src,
-          title: title?.textContent || "",
-          text: text?.textContent || "",
-        });
-        return;
-      }
-      const galleryImg = e.target.closest(".gallery-item img");
-      if (galleryImg) {
-        openModal({
-          src: galleryImg.dataset.modalImg || galleryImg.src,
-          title: galleryImg.alt,
-          text: "",
-        });
-        return;
-      }
-      if (e.target.classList.contains("dish-modal") || e.target.classList.contains("modal-close")) {
-        modal.classList.remove("open");
-      }
-    });
-  }
+  const modal = document.getElementById("dishModal");
+  const modalImg = document.getElementById("modalImg");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalText = document.getElementById("modalText");
+  
+  if (!modal || !modalImg || !modalTitle || !modalText) return;
+
+  const openModal = ({ src, title = "", text = "" }) => {
+    // ... (ο κώδικας που είχες ήδη)
+    modalImg.src = src || "";
+    modalImg.alt = title || "Φωτογραφία πιάτου στο Barko Tavern";
+    modalTitle.textContent = title || "";
+    modalText.textContent = text || "";
+    modalText.style.display = text ? "" : "none";
+    modal.classList.add("open");
+    
+    if (typeof gtag === 'function') {
+      gtag('event', 'view_dish', {
+        'dish_name': title,
+        'content_type': 'food_item'
+      });
+    }
+  };
+
+  // Event Listener για το κλείσιμο με το Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) {
+      modal.classList.remove('open');
+    }
+  });
+
+  document.addEventListener("click", (e) => {
+    // ... (ο κώδικας για τα clicks που είχες)
+    const li = e.target.closest(".menu-items li");
+    if (li && !e.target.closest("a")) {
+      const img = li.querySelector("img");
+      if (!img) return;
+      const title = li.querySelector(".dish");
+      openModal({
+        src: img.dataset.modalImg || img.src,
+        title: title?.textContent || "",
+        text: "",
+      });
+      return;
+    }
+    
+    const indexItem = e.target.closest(".menu-item");
+    if (indexItem) {
+      const img = indexItem.querySelector("img");
+      const title = indexItem.querySelector("h3");
+      const text = indexItem.querySelector("p");
+      openModal({
+        src: img?.src,
+        title: title?.textContent || "",
+        text: text?.textContent || "",
+      });
+      return;
+    }
+
+    const galleryImg = e.target.closest(".gallery-item img");
+    if (galleryImg) {
+      openModal({
+        src: galleryImg.dataset.modalImg || galleryImg.src,
+        title: galleryImg.alt,
+        text: "",
+      });
+      return;
+    }
+
+    if (e.target.classList.contains("dish-modal") || e.target.classList.contains("modal-close")) {
+      modal.classList.remove("open");
+    }
+  });
+}
 })();
