@@ -79,6 +79,7 @@
 
   .gallery-item:hover {
     box-shadow: var(--shadow-xl);
+    cursor: zoom-in;
   }
 
   .gallery-item:hover img {
