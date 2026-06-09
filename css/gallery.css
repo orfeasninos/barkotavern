@@ -35,6 +35,14 @@
   filter: saturate(1.06) contrast(1.04);
 }
 
+.error-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-muted, #888);
+  font-size: 0.95rem;
+}
+
 .gallery-loader-wrapper {
   grid-column: 1 / -1;
   text-align: center;

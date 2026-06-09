@@ -37,6 +37,10 @@ async function loadMenu() {
         });
     } catch (error) {
         console.error("Fetch error:", error);
+        const container = document.getElementById('menu-container');
+        const lang = (document.documentElement.lang || 'en').toLowerCase().slice(0, 2);
+        const msg = { el: "Αποτυχία σύνδεσης. Δοκιμάστε να ανανεώσετε τη σελίδα.", en: "Network connection failed. Try refreshing the page.", it: "Connessione di rete fallita. Ricarica la pagina.", fr: "Échec de la connexion réseau. Essayez de recharger la page." };
+        if (container) container.textContent = msg[lang] || msg.en;
     }
 }
 const categoryImages = {
@@ -137,7 +141,8 @@ function renderMenu(data) {
                     const imgUrl = escapeHTML(rawImg);
                     const largeImgUrl = escapeHTML(rawLargeImg);
 
-                    const price = item.Price ? parseFloat(item.Price.toString().replace(',', '.')).toFixed(2) : "0.00";
+                    const rawPrice = item.Price ? parseFloat(item.Price.toString().replace(',', '.')) : NaN;
+                    const price = !isNaN(rawPrice) ? rawPrice.toFixed(2) : null;
 
                     return `
                         ${subHeader}
@@ -147,7 +152,7 @@ function renderMenu(data) {
                                 ${name}
                                 ${desc ? `<p>${desc}</p>` : ''}
                             </div>
-                            <span class="price">${price}€</span>
+                            ${price !== null ? `<span class="price">${price}€</span>` : ''}
                         </li>`;
                 }).join('');
             })()}
