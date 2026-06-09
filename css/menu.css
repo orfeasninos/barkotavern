@@ -12,22 +12,17 @@
 
 .menu-sidebar {
   background: linear-gradient(168deg, #1e2e14 0%, var(--olive) 100%);
-  padding: 2rem 0 3rem;
+  padding: 1rem;
   position: sticky;
   top: calc(var(--header-h) + 32px);
   height: calc(100vh - var(--header-h) - 32px);
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width: none;
-  box-shadow: 4px 0 20px rgba(42, 58, 30, 0.15);
-  border-radius: 20px;
-  z-index: 10;
-}
-
-.menu-sidebar {
-  padding: 1rem;
   border: 1px solid rgba(212, 175, 55, 0.18);
   box-shadow: var(--shadow-lg);
+  border-radius: 20px;
+  z-index: 10;
 }
 
 .menu-sidebar::-webkit-scrollbar {
