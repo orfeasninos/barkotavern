@@ -22,7 +22,6 @@ async function loadMenu() {
                 if (results.data.length > 0) {
                     renderMenu(results.data);
                     const state = { mqMobile: window.matchMedia("(max-width: 768px)") };
-                    initMenuSidebarLayout(state);
                     initMenuCategoryActive(state);
                 } else {
                     console.error("The Sheet is empty or headers don't match.");
@@ -162,24 +161,7 @@ function renderMenu(data) {
 
 loadMenu();
 
-function initMenuSidebarLayout(state) {
-    const wrapper = document.querySelector(".menu-grid-wrapper");
-    const sidebar = document.querySelector(".menu-sidebar");
-    const main = document.querySelector(".menu-main");
-    if (!wrapper || !sidebar || !main) return;
 
-    const apply = () => {
-        const mobileNow = state.mqMobile.matches;
-        sidebar.classList.toggle("menu-sidebar--mobile", mobileNow);
-
-        if (sidebar.parentElement === wrapper && wrapper.firstElementChild !== sidebar) {
-            wrapper.insertBefore(sidebar, main);
-        }
-    };
-
-    apply();
-    window.addEventListener("resize", apply, { passive: true });
-}
 
 function initMenuCategoryActive(state) {
     const menuSections = Array.from(document.querySelectorAll(".menu-category"));
