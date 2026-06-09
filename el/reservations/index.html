@@ -457,7 +457,7 @@
       }
       const hoursInMs = 2 * 60 * 60 * 1000;
       if (reservationDateTime - now < hoursInMs) {
-        return 'Οι online κρατήσεις πρέπει να γίνονται τουλάχιστον 3 ώρες νωρίτερα. Για άμεση κράτηση, παρακαλώ καλέστε μας στο τηλέφωνο.';
+        return 'Οι online κρατήσεις πρέπει να γίνονται τουλάχιστον 2 ώρες νωρίτερα. Για άμεση κράτηση, παρακαλώ καλέστε μας στο τηλέφωνο.';
       }
       if (guestsInput.validity.valueMissing) return 'Παρακαλώ ορίστε τον αριθμό των ατόμων.'
       if (guestsInput.validity.rangeUnderflow || guestsInput.validity.rangeOverflow) {

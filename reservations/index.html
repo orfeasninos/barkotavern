@@ -458,7 +458,7 @@
       }
       const hoursInMs = 2 * 60 * 60 * 1000;
       if (reservationDateTime - now < hoursInMs) {
-        return 'Online reservations must be made at least 3 hours in advance. For an immediate reservation, please call us.';
+        return 'Online reservations must be made at least 2 hours in advance. For an immediate reservation, please call us.';
       }
       if (guestsInput.validity.valueMissing) return 'Please specify the number of guests.'
       if (guestsInput.validity.rangeUnderflow || guestsInput.validity.rangeOverflow) {

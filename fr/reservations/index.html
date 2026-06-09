@@ -457,7 +457,7 @@
       }
       const hoursInMs = 2 * 60 * 60 * 1000;
       if (reservationDateTime - now < hoursInMs) {
-        return 'Les réservations en ligne doivent être effectuées au moins 3 heures à l\'avance. Pour une réservation immédiate, veuillez nous appeler.';
+        return 'Les réservations en ligne doivent être effectuées au moins 2 heures à l\'avance. Pour une réservation immédiate, veuillez nous appeler.';
       }
       if (guestsInput.validity.valueMissing) return 'Veuillez indiquer le nombre de personnes.'
       if (guestsInput.validity.rangeUnderflow || guestsInput.validity.rangeOverflow) {

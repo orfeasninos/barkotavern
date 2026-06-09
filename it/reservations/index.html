@@ -457,7 +457,7 @@
       }
       const hoursInMs = 2 * 60 * 60 * 1000;
       if (reservationDateTime - now < hoursInMs) {
-        return 'Le prenotazioni online devono essere effettuate almeno 3 ore prima. Per una prenotazione immediata, ti preghiamo di chiamarci.';
+        return 'Le prenotazioni online devono essere effettuate almeno 2 ore prima. Per una prenotazione immediata, ti preghiamo di chiamarci.';
       }
       if (guestsInput.validity.valueMissing) return 'Indica il numero di persone.'
       if (guestsInput.validity.rangeUnderflow || guestsInput.validity.rangeOverflow) {
