@@ -132,9 +132,8 @@
   if (!modal || !modalImg || !modalTitle || !modalText) return;
 
   const openModal = ({ src, title = "", text = "" }) => {
-    // ... (ο κώδικας που είχες ήδη)
     modalImg.src = src || "";
-    modalImg.alt = title || "Φωτογραφία πιάτου στο Barko Tavern";
+    modalImg.alt = title || "";
     modalTitle.textContent = title || "";
     modalText.textContent = text || "";
     modalText.style.display = text ? "" : "none";
