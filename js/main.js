@@ -1,10 +1,9 @@
 (() => {
   "use strict";
   document.addEventListener("DOMContentLoaded", () => {
-    const state = createState();
     initActiveNavLink();
-    initBurgerMenu(state);
-    initLanguageDropdown(state);
+    initBurgerMenu();
+    initLanguageDropdown();
     initConsent();
     const btn = document.getElementById("openCookieSettings");
     if (btn) {
@@ -15,15 +14,6 @@
     }
     initDishModal();
   });
-
-  function createState() {
-    const mqMobile = window.matchMedia("(max-width: 768px)");
-    return {
-      mqMobile,
-      isMobile: mqMobile.matches,
-      rafScrollPending: false,
-    };
-  }
 
   function initConsent() {
     const KEY = "barko_cookie_choice";
@@ -98,12 +88,14 @@
     if (!burger || !mobileNav) return;
     burger.addEventListener("click", (e) => {
       e.stopPropagation();
-      mobileNav.classList.toggle("open");
+      const isOpen = mobileNav.classList.toggle("open");
+      burger.setAttribute("aria-expanded", isOpen);
     });
     mobileNav.addEventListener("click", (e) => e.stopPropagation());
     document.addEventListener("click", (e) => {
       if (!mobileNav.contains(e.target) && !burger.contains(e.target)) {
         mobileNav.classList.remove("open");
+        burger.setAttribute("aria-expanded", "false");
       }
     }, { passive: true });
   }
@@ -155,7 +147,6 @@
   });
 
   document.addEventListener("click", (e) => {
-    // ... (ο κώδικας για τα clicks που είχες)
     const li = e.target.closest(".menu-items li");
     if (li && !e.target.closest("a")) {
       const img = li.querySelector("img");

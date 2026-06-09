@@ -70,6 +70,7 @@ function renderGallery(data) {
     });
 
     galleryContainer.innerHTML = galleryHtml;
+    if (!galleryHtml) showError(getLangError('empty'));
 }
 
 function showError(message) {

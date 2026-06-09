@@ -471,16 +471,6 @@
     form.addEventListener('submit', e => {
       e.preventDefault();
       formMessage.innerText = '';
-      let userId = localStorage.getItem('bk_user_id');
-      if (!userId) {
-        userId = 'user_' + Math.random().toString(36).substr(2, 9);
-        localStorage.setItem('bk_user_id', userId);
-      }
-      document.getElementById('form-user-id').value = userId;
-
-      document.getElementById('form-ts').value = Date.now();
-      document.getElementById('form-token').value = "bk_" + Math.random().toString(36).substr(2, 9);
-      document.getElementById('website').value = "";
 
       const errorReason = getCustomErrorMessage();
       if (errorReason) {
@@ -488,6 +478,16 @@
         formMessage.innerText = errorReason;
         return;
       }
+
+      let userId = localStorage.getItem('bk_user_id');
+      if (!userId) {
+        userId = 'user_' + Math.random().toString(36).substr(2, 9);
+        localStorage.setItem('bk_user_id', userId);
+      }
+      document.getElementById('form-user-id').value = userId;
+      document.getElementById('form-ts').value = Date.now();
+      document.getElementById('form-token').value = "bk_" + Math.random().toString(36).substr(2, 9);
+      document.getElementById('website').value = "";
 
       submitBtn.disabled = true;
       submitBtn.innerText = 'SENDING...';
