@@ -31,7 +31,9 @@ async function loadMenu() {
             error: function (err) {
                 console.error("Error parsing CSV:", err);
                 const container = document.getElementById('menu-container');
-                if (container) container.textContent = "Προέκυψε σφάλμα στη φόρτωση.";
+                const lang = (document.documentElement.lang || 'en').toLowerCase().slice(0, 2);
+                const msg = { el: "Σφάλμα φόρτωσης μενού.", en: "Error loading menu.", it: "Errore nel caricamento del menu.", fr: "Erreur de chargement du menu." };
+                if (container) container.textContent = msg[lang] || msg.en;
             }
         });
     } catch (error) {
@@ -45,8 +47,8 @@ const categoryImages = {
     "Της ώρας": "../../assets/images/souvlaki-kotopoulo.webp",
     "Θαλασσινά": "../../assets/images/xtapodi.webp",
     "Επιδόρπια": "../../assets/images/koufeto.webp",
-    "Κρασιά": "../../assets/images/.webp",
-    "Ποτά": "../../assets/images/.webp"
+    "Κρασιά": "",
+    "Ποτά": ""
 };
 
 const categoryTranslations = {

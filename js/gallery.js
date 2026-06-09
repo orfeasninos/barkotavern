@@ -1,5 +1,16 @@
 const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTeetU-sTKeodCrslGkzITvyC7Ob4ayTf5HdLDqcEEueZfHw4QqzAxbapHBdWq0TYhR6fbvNuL8lqLT/pub?gid=0&single=true&output=csv';
 
+const GALLERY_ERRORS = {
+    empty:   { el: "Δεν βρέθηκαν φωτογραφίες.", en: "No photos found.", it: "Nessuna foto trovata.", fr: "Aucune photo trouvée." },
+    parse:   { el: "Σφάλμα φόρτωσης δεδομένων.", en: "Error loading data.", it: "Errore nel caricamento.", fr: "Erreur de chargement." },
+    network: { el: "Αποτυχία σύνδεσης στο δίκτυο.", en: "Network connection failed.", it: "Connessione di rete fallita.", fr: "Échec de la connexion réseau." }
+};
+function getLangError(type) {
+    const lang = (document.documentElement.lang || 'en').toLowerCase().slice(0, 2);
+    const map = GALLERY_ERRORS[type];
+    return (map && map[lang]) ? map[lang] : map.en;
+}
+
 async function loadGallery() {
     try {
         const response = await fetch(SHEET_URL);
@@ -18,17 +29,17 @@ async function loadGallery() {
                     renderGallery(results.data);
                 } else {
                     console.error("The Sheet is empty or headers don't match.");
-                    showError("Το μενού είναι άδειο.");
+                    showError(getLangError('empty'));
                 }
             },
             error: function (err) {
                 console.error("Error parsing CSV:", err);
-                showError("Προέκυψε σφάλμα στη φόρτωση των δεδομένων.");
+                showError(getLangError('parse'));
             }
         });
     } catch (error) {
         console.error("Fetch error:", error);
-        showError("Αποτυχία σύνδεσης στο δίκτυο.");
+        showError(getLangError('network'));
     }
 }
 
