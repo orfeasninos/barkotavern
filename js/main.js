@@ -12,7 +12,6 @@
     initHeroParallax();
     initCustomCursor();
     initCardTilt();
-    initMagneticCTA();
     const btn = document.getElementById("openCookieSettings");
     if (btn) {
       btn.addEventListener("click", () => {
@@ -276,8 +275,8 @@
     const loop = () => {
       rx = lerp(rx, mx, 0.12);
       ry = lerp(ry, my, 0.12);
-      dot.style.transform = `translate(${mx - 3.5}px, ${my - 3.5}px)`;
-      ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
+      dot.style.transform = `translate(calc(${mx}px - 50%), calc(${my}px - 50%))`;
+      ring.style.transform = `translate(calc(${rx}px - 50%), calc(${ry}px - 50%))`;
       rafId = requestAnimationFrame(loop);
     };
     rafId = requestAnimationFrame(loop);
@@ -305,6 +304,8 @@
 
     document.querySelectorAll('.menu-item').forEach(card => {
       card.addEventListener('mouseenter', () => {
+        // cancel fill-mode animation so our inline transform can take over
+        card.style.animation = 'none';
         card.style.transition = 'box-shadow 0.32s, border-color 0.32s, opacity 0.32s';
       });
       card.addEventListener('mousemove', (e) => {
@@ -316,30 +317,13 @@
         const tiltX = ((y - cy) / cy) * -7;
         const tiltY = ((x - cx) / cx) * 7;
 
-        card.style.transform = `perspective(900px) translateY(-7px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+        card.style.transform = `perspective(900px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
         card.style.setProperty('--sp-x', `${(x / rect.width * 100).toFixed(1)}%`);
         card.style.setProperty('--sp-y', `${(y / rect.height * 100).toFixed(1)}%`);
       });
       card.addEventListener('mouseleave', () => {
         card.style.transition = 'transform 0.55s cubic-bezier(0.23,1,0.32,1), box-shadow 0.32s, border-color 0.32s, opacity 0.32s';
         card.style.transform = '';
-      });
-    });
-  }
-
-  function initMagneticCTA() {
-    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    document.querySelectorAll('.hero-cta').forEach(btn => {
-      btn.addEventListener('mousemove', (e) => {
-        const rect = btn.getBoundingClientRect();
-        const dx = e.clientX - (rect.left + rect.width / 2);
-        const dy = e.clientY - (rect.top + rect.height / 2);
-        btn.style.transform = `translate(${dx * 0.28}px, ${dy * 0.28}px) scale(1.04)`;
-      });
-      btn.addEventListener('mouseleave', () => {
-        btn.style.transform = '';
       });
     });
   }
