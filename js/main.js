@@ -1,3 +1,5 @@
+if (localStorage.getItem("barko_theme") === "dark") document.documentElement.classList.add("dark");
+
 (() => {
   "use strict";
   document.addEventListener("DOMContentLoaded", () => {
