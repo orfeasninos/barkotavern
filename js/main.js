@@ -34,7 +34,7 @@
     if (!choice) {
       setTimeout(() => {
         banner.classList.add("show");
-      }, 3000);
+      }, 8000);
     }
 
     accept.addEventListener("click", () => {
