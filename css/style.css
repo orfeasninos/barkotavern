@@ -2230,6 +2230,10 @@ html.dark * {
     scrollbar-color: var(--gold) rgba(17, 26, 14, .8)
 }
 
+html.dark .sk-ww-google-reviews .sk-post {
+    background: var(--stone) !important;
+}
+
 /* restaurant.css: --rs-ink uses var(--ink) for headings + lead text */
 html.dark { --ink: #c8e8b0 }
 

@@ -306,25 +306,38 @@ if (localStorage.getItem("barko_theme") === "dark") document.documentElement.cla
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     document.querySelectorAll('.menu-item').forEach(card => {
+      let rafId = null;
+      let pendingX = 0, pendingY = 0, pendingW = 1, pendingH = 1;
+
       card.addEventListener('mouseenter', () => {
-        // cancel fill-mode animation so our inline transform can take over
         card.style.animation = 'none';
         card.style.transition = 'box-shadow 0.32s, border-color 0.32s, opacity 0.32s';
       });
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const cx = rect.width / 2;
-        const cy = rect.height / 2;
-        const tiltX = ((y - cy) / cy) * -7;
-        const tiltY = ((x - cx) / cx) * 7;
+        pendingX = e.clientX - rect.left;
+        pendingY = e.clientY - rect.top;
+        pendingW = rect.width;
+        pendingH = rect.height;
 
-        card.style.transform = `perspective(900px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-        card.style.setProperty('--sp-x', `${(x / rect.width * 100).toFixed(1)}%`);
-        card.style.setProperty('--sp-y', `${(y / rect.height * 100).toFixed(1)}%`);
+        if (rafId) return;
+        rafId = requestAnimationFrame(() => {
+          rafId = null;
+          const W = pendingW, H = pendingH;
+          const rawNx = (pendingX - W / 2) / (W / 2);
+          const rawNy = (pendingY - H / 2) / (H / 2);
+          // Tilt fades to 0 in the outer 25% so the card is flat at the border —
+          // prevents the perspective-shrunk hit area from triggering mouseleave loops
+          const absMax = Math.max(Math.abs(rawNx), Math.abs(rawNy));
+          const edgeT = Math.max(0, (Math.min(1, absMax) - 0.75) / 0.25);
+          const scale = 1 - edgeT * edgeT;
+          card.style.transform = `perspective(900px) rotateX(${rawNy * scale * -7}deg) rotateY(${rawNx * scale * 7}deg)`;
+          card.style.setProperty('--sp-x', `${(pendingX / W * 100).toFixed(1)}%`);
+          card.style.setProperty('--sp-y', `${(pendingY / H * 100).toFixed(1)}%`);
+        });
       });
       card.addEventListener('mouseleave', () => {
+        if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
         card.style.transition = 'transform 0.55s cubic-bezier(0.23,1,0.32,1), box-shadow 0.32s, border-color 0.32s, opacity 0.32s';
         card.style.transform = '';
       });
