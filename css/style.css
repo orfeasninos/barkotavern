@@ -563,7 +563,7 @@ body.dark .sk-ww-google-reviews {
     box-shadow: 0 2px 16px rgba(42, 58, 30, .06);
     display: flex;
     flex-direction: column;
-    transition: transform .28s var(--ease), box-shadow .28s var(--ease)
+    transition: transform .32s var(--ease), box-shadow .32s var(--ease), opacity 0.6s var(--ease)
 }
 
 .menu-item::after {
@@ -645,7 +645,8 @@ body.dark .sk-ww-google-reviews {
 
 .stat-item {
     text-align: center;
-    padding: 1rem 2rem
+    padding: 1rem 2rem;
+    transition: transform 0.32s var(--ease)
 }
 
 .stat-item+.stat-item::before {
@@ -860,7 +861,8 @@ body.dark .sk-ww-google-reviews {
 .contact-map {
     border-radius: 18px;
     border: 1px solid rgba(212, 175, 55, .14);
-    box-shadow: 0 8px 36px rgba(42, 58, 30, .12)
+    box-shadow: 0 8px 36px rgba(42, 58, 30, .12);
+    transition: transform 0.38s var(--ease), box-shadow 0.38s var(--ease), border-color 0.38s var(--ease)
 }
 
 .contact-map iframe {
@@ -1190,7 +1192,13 @@ header {
     backdrop-filter: var(--blur);
     -webkit-backdrop-filter: var(--blur);
     background: linear-gradient(40deg, #1e2e14 0, var(--olive) 100%);
-    box-shadow: 0 18px 60px rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .1)
+    box-shadow: 0 18px 60px rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .1);
+    transition: height 0.38s var(--ease), box-shadow 0.38s var(--ease), background 0.38s var(--ease)
+}
+
+header.scrolled {
+    height: var(--header-h-mobile);
+    box-shadow: 0 6px 30px rgba(0, 0, 0, .52), inset 0 1px 0 rgba(255, 255, 255, .07)
 }
 
 header::after {
@@ -1757,10 +1765,12 @@ header::after {
 
 @media (hover:hover) and (pointer:fine) {
     .hero-cta:hover {
+        transform: translateY(-3px);
         box-shadow: 0 18px 44px rgba(212, 175, 55, .52), inset 0 1px 0 rgba(255, 255, 255, .5)
     }
 
     .menu-item:hover {
+        transform: translateY(-5px);
         box-shadow: 0 20px 48px rgba(42, 58, 30, .15)
     }
 
@@ -1773,6 +1783,7 @@ header::after {
     }
 
     .btn-outline:hover {
+        transform: translateY(-2px);
         background: var(--olive-mid);
         color: var(--gold-light)
     }
@@ -1819,6 +1830,16 @@ header::after {
     .map-icon:hover,
     .trip-advisor-icon:hover {
         transform: scale(1.1)
+    }
+
+    .stat-item:hover {
+        transform: translateY(-5px)
+    }
+
+    .contact-map:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 22px 56px rgba(42, 58, 30, .22);
+        border-color: rgba(212, 175, 55, .28)
     }
 }
 
@@ -1951,4 +1972,36 @@ header::after {
     header {
         height: var(--header-h-mobile)
     }
+}
+
+@keyframes cardIn {
+    from {
+        opacity: 0;
+        transform: translateY(32px)
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+
+.card-visible {
+    animation: cardIn 0.65s var(--ease) both
+}
+
+@keyframes bandIn {
+    from {
+        opacity: 0;
+        transform: translateY(24px)
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+
+.band-reveal {
+    animation: bandIn 0.7s var(--ease) both
 }

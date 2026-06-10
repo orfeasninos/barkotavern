@@ -173,74 +173,81 @@ function initMenuCategoryActive(state) {
     const menuLinks = Array.from(document.querySelectorAll(".menu-links-list a"));
     const linksContainer = document.querySelector(".menu-links-list");
     const desktopContainer = document.querySelector(".menu-sidebar");
-    
+
     if (!menuSections.length || !menuLinks.length) return;
-    
+
     let lastActiveId = null;
-    let isClickScrolling = false; 
-    let clickTimeout = null;
+    let isClickScrolling = false;
+    let clickScrollTimer = null;
     let ticking = false;
+
+    // Dynamic target line: the point at which a section is considered "active".
+    // We use ~45% of viewport height on mobile so the active label switches when
+    // a section heading becomes the dominant element on screen (not just when its
+    // top pixel crosses the header line, which feels too late).
+    const getTargetLine = () => {
+        if (state.mqMobile?.matches) {
+            return window.innerHeight * 0.45;
+        }
+        return window.innerHeight * 0.4;
+    };
+
+    // Scroll the sidebar/mobile bar to keep the active link centered.
+    // Uses getBoundingClientRect() + scrollBy() for accuracy across layouts.
+    const scrollNavToLink = (link) => {
+        requestAnimationFrame(() => {
+            if (state.mqMobile?.matches && linksContainer) {
+                const cRect = linksContainer.getBoundingClientRect();
+                const lRect = link.getBoundingClientRect();
+                linksContainer.scrollBy({
+                    left: lRect.left - cRect.left - (linksContainer.clientWidth - lRect.width) / 2,
+                    behavior: "smooth"
+                });
+            } else if (desktopContainer) {
+                const cRect = desktopContainer.getBoundingClientRect();
+                const lRect = link.getBoundingClientRect();
+                desktopContainer.scrollBy({
+                    top: lRect.top - cRect.top - (desktopContainer.clientHeight - lRect.height) / 2,
+                    behavior: "smooth"
+                });
+            }
+        });
+    };
 
     const setActive = (id) => {
         if (lastActiveId === id) return;
         lastActiveId = id;
-        
         menuLinks.forEach((link) => {
             const isActive = link.getAttribute("href") === `#${id}`;
             link.classList.toggle("active", isActive);
-
-            if (isActive) {
-                requestAnimationFrame(() => {
-                    if (state.mqMobile && state.mqMobile.matches && linksContainer) {
-                        const linkOffsetLeft = link.offsetLeft;
-                        linksContainer.scrollTo({
-                            left: linkOffsetLeft - (linksContainer.clientWidth / 2) + (link.clientWidth / 2),
-                            behavior: "smooth"
-                        });
-                    } else if (desktopContainer) {
-                        const linkOffsetTop = link.offsetTop;
-                        desktopContainer.scrollTo({
-                            top: linkOffsetTop - (desktopContainer.clientHeight / 2) + (link.clientHeight / 2),
-                            behavior: "smooth"
-                        });
-                    }
-                });
-            }
+            if (isActive) scrollNavToLink(link);
         });
     };
 
     const updateOnScroll = () => {
         if (isClickScrolling) return;
 
-        if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 10) {
+        // At bottom of page, always activate the last section.
+        if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 5) {
             setActive(menuSections[menuSections.length - 1].id);
             return;
         }
 
-        const isMobile = state.mqMobile && state.mqMobile.matches;
-        const targetLine = isMobile ? 175 : 120; 
-        let currentActiveId = null;
-
+        const targetLine = getTargetLine();
+        // Walk backwards: first section whose top is at or above the target line wins.
+        let activeId = menuSections[0].id;
         for (let i = menuSections.length - 1; i >= 0; i--) {
-            const rect = menuSections[i].getBoundingClientRect();
-            if (rect.top <= targetLine + 20) {
-                currentActiveId = menuSections[i].id;
+            if (menuSections[i].getBoundingClientRect().top <= targetLine) {
+                activeId = menuSections[i].id;
                 break;
             }
         }
-
-        if (!currentActiveId && menuSections.length > 0) {
-            currentActiveId = menuSections[0].id;
-        }
-
-        if (currentActiveId) {
-            setActive(currentActiveId);
-        }
+        setActive(activeId);
     };
 
     window.addEventListener('scroll', () => {
         if (!ticking) {
-            window.requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
                 updateOnScroll();
                 ticking = false;
             });
@@ -249,19 +256,30 @@ function initMenuCategoryActive(state) {
     }, { passive: true });
 
     menuLinks.forEach((link) => {
-        link.addEventListener("click", (e) => {
+        link.addEventListener("click", () => {
             const targetId = link.getAttribute("href").substring(1);
-            
             isClickScrolling = true;
             setActive(targetId);
 
-            clearTimeout(clickTimeout);
-
-            clickTimeout = setTimeout(() => {
+            const unlock = () => {
+                clearTimeout(clickScrollTimer);
                 isClickScrolling = false;
-            }, 800); 
+            };
+
+            clearTimeout(clickScrollTimer);
+
+            // scrollend fires when the browser finishes smooth-scrolling.
+            // Fall back to a timeout for browsers that don't support it yet.
+            if ('onscrollend' in window) {
+                window.addEventListener('scrollend', unlock, { once: true });
+                clickScrollTimer = setTimeout(unlock, 1500);
+            } else {
+                clickScrollTimer = setTimeout(unlock, 1000);
+            }
         });
     });
 
-    updateOnScroll();
+    // Defer one frame so getBoundingClientRect() reflects the fully-rendered layout
+    // from renderMenu() before we determine the initial active section.
+    requestAnimationFrame(updateOnScroll);
 }

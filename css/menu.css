@@ -348,11 +348,16 @@
 
   .menu-sidebar {
     position: sticky;
-    top: calc(var(--header-h) - 40px);
+    top:calc(var(--header-h-mobile)  - 32px);
     height: auto;
     padding: 1rem 0 0;
     box-shadow: 0 4px 14px rgba(42, 58, 30, 0.18);
     z-index: 20;
+    transition: top 0.38s var(--ease);
+  }
+
+  body:has(header.scrolled) .menu-sidebar {
+    top:calc(var(--header-h-mobile)  - 50px);
   }
 
   .menu-sidebar h2 {

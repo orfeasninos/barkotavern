@@ -5,6 +5,9 @@
     initBurgerMenu();
     initLanguageDropdown();
     initConsent();
+    initHeaderScroll();
+    initScrollAnimations();
+    initCountUp();
     const btn = document.getElementById("openCookieSettings");
     if (btn) {
       btn.addEventListener("click", () => {
@@ -113,6 +116,107 @@
       document.querySelectorAll(".language-switcher")
         .forEach((ls) => ls.classList.remove("open"));
     });
+  }
+
+  function initHeaderScroll() {
+    const header = document.querySelector('header');
+    if (!header) return;
+    const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 80);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  function initScrollAnimations() {
+    if (!('IntersectionObserver' in window)) return;
+
+    const sections = document.querySelectorAll('.section');
+    if (sections.length) {
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove('section-hidden');
+            entry.target.classList.add('section-visible');
+            sectionObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+
+      sections.forEach(el => {
+        if (el.querySelector('.home-grid')) return;
+        el.classList.add('section-hidden');
+        sectionObserver.observe(el);
+      });
+    }
+
+    const grid = document.querySelector('.home-grid');
+    if (grid) {
+      const cards = Array.from(grid.querySelectorAll('.menu-item'));
+      cards.forEach(card => { card.style.opacity = '0'; });
+
+      const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          cards.forEach((card, i) => {
+            setTimeout(() => {
+              card.style.opacity = '';
+              card.classList.add('card-visible');
+            }, i * 80);
+          });
+          cardObserver.unobserve(entry.target);
+        });
+      }, { threshold: 0.05 });
+
+      cardObserver.observe(grid);
+    }
+
+    const bandDark = document.querySelector('.band-dark');
+    if (bandDark) {
+      const bandObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('band-reveal');
+            bandObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      bandDark.style.opacity = '0';
+      bandObserver.observe(bandDark);
+      bandDark.addEventListener('animationstart', () => { bandDark.style.opacity = ''; }, { once: true });
+    }
+  }
+
+  function initCountUp() {
+    if (!('IntersectionObserver' in window)) return;
+    const stats = document.querySelectorAll('.stat-number');
+    if (!stats.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const original = el.textContent.trim();
+        const match = original.match(/^([^\d]*)(\d[\d.]*)(.*)$/);
+        if (!match) return;
+        const [, prefix, numStr, suffix] = match;
+        const target = parseFloat(numStr);
+        if (isNaN(target)) return;
+        const isDecimal = numStr.includes('.');
+        const duration = 1300;
+        const startTime = performance.now();
+
+        const tick = (now) => {
+          const progress = Math.min((now - startTime) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const current = target * eased;
+          el.textContent = prefix + (isDecimal ? current.toFixed(1) : Math.round(current)) + suffix;
+          if (progress < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+        observer.unobserve(el);
+      });
+    }, { threshold: 0.6 });
+
+    stats.forEach(el => observer.observe(el));
   }
 
   function initDishModal() {
