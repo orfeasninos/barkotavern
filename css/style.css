@@ -280,10 +280,15 @@ a {
     display: block;
     font-style: italic;
     font-size: .48em;
-    color: var(--gold-light);
     letter-spacing: .2em;
     margin-top: .22em;
-    text-shadow: 0 0 50px rgba(212, 175, 55, .45), 0 4px 16px rgba(0, 0, 0, .5)
+    background: linear-gradient(90deg, var(--gold-light) 20%, #fffbe0 45%, var(--gold-2) 55%, var(--gold-light) 80%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 28px rgba(212, 175, 55, .5)) drop-shadow(0 4px 10px rgba(0, 0, 0, .45));
+    animation: goldShimmer 3.5s linear infinite 2s
 }
 
 .hero-sub {
@@ -314,10 +319,22 @@ a {
     font-size: .92rem;
     font-weight: 700;
     letter-spacing: .1em;
+    position: relative;
     transition: transform var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease);
     background: linear-gradient(135deg, var(--gold) 0, #e8c84a 50%, var(--gold) 100%);
     color: #1a2612;
     box-shadow: 0 10px 36px rgba(212, 175, 55, .4), inset 0 1px 0 rgba(255, 255, 255, .45)
+}
+
+.hero-cta::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 999px;
+    border: 1.5px solid rgba(212, 175, 55, .65);
+    opacity: 0;
+    pointer-events: none;
+    animation: ctaRing 2.8s ease-out infinite 2.2s
 }
 
 .hero-ornament {
@@ -563,7 +580,7 @@ body.dark .sk-ww-google-reviews {
     box-shadow: 0 2px 16px rgba(42, 58, 30, .06);
     display: flex;
     flex-direction: column;
-    transition: transform .32s var(--ease), box-shadow .32s var(--ease), opacity 0.6s var(--ease)
+    transition: transform .32s var(--ease), box-shadow .32s var(--ease), opacity 0.6s var(--ease), border-color .32s var(--ease)
 }
 
 .menu-item::after {
@@ -621,7 +638,8 @@ body.dark .sk-ww-google-reviews {
     transform: translate(-50%, -50%);
     width: 600px;
     height: 300px;
-    background: radial-gradient(ellipse, rgba(212, 175, 55, .07) 0, transparent 70%)
+    background: radial-gradient(ellipse, rgba(212, 175, 55, .07) 0, transparent 70%);
+    animation: bandPulse 4s ease-in-out infinite
 }
 
 .band-inner,
@@ -1151,13 +1169,13 @@ button:focus-visible {
 
 .section-hidden {
     opacity: 0;
-    transform: translateY(40px)
+    transform: translateY(36px) scale(.985)
 }
 
 .section-visible {
     opacity: 1;
-    transform: translateY(0);
-    transition: opacity .9s var(--ease), transform .9s var(--ease)
+    transform: translateY(0) scale(1);
+    transition: opacity .95s var(--ease), transform .95s var(--ease)
 }
 
 h1,
@@ -1771,7 +1789,8 @@ header::after {
 
     .menu-item:hover {
         transform: translateY(-5px);
-        box-shadow: 0 20px 48px rgba(42, 58, 30, .15)
+        box-shadow: 0 20px 48px rgba(42, 58, 30, .15);
+        border-color: rgba(212, 175, 55, .28)
     }
 
     .menu-item:hover img {
@@ -2004,4 +2023,61 @@ header::after {
 
 .band-reveal {
     animation: bandIn 0.7s var(--ease) both
+}
+
+/* === SCROLL PROGRESS BAR === */
+#scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-2), var(--gold));
+    transform-origin: left;
+    transform: scaleX(0);
+    z-index: 10001;
+    pointer-events: none
+}
+
+/* === HERO SHIMMER === */
+@keyframes goldShimmer {
+    0% {
+        background-position: 100% center
+    }
+
+    100% {
+        background-position: -100% center
+    }
+}
+
+/* === CTA PULSE RING === */
+@keyframes ctaRing {
+    0% {
+        opacity: 0;
+        transform: scale(.94)
+    }
+
+    20% {
+        opacity: .75
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.22)
+    }
+}
+
+/* === DARK BAND GLOW PULSE === */
+@keyframes bandPulse {
+
+    0%,
+    100% {
+        opacity: .7;
+        transform: translate(-50%, -50%) scale(1)
+    }
+
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.45)
+    }
 }
