@@ -20,6 +20,7 @@
       });
     }
     initDishModal();
+    initThemeToggle();
   });
 
   function initConsent() {
@@ -326,6 +327,20 @@
         card.style.transform = '';
       });
     });
+  }
+
+  function initThemeToggle() {
+    const btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    const html = document.documentElement;
+    const isDark = () => html.classList.contains('dark');
+    const apply = (dark) => {
+      html.classList.toggle('dark', dark);
+      localStorage.setItem('barko_theme', dark ? 'dark' : 'light');
+      btn.setAttribute('aria-pressed', String(dark));
+    };
+    btn.addEventListener('click', () => apply(!isDark()));
+    btn.setAttribute('aria-pressed', String(isDark()));
   }
 
   function initDishModal() {
