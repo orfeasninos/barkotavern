@@ -580,6 +580,8 @@ body.dark .sk-ww-google-reviews {
     box-shadow: 0 2px 16px rgba(42, 58, 30, .06);
     display: flex;
     flex-direction: column;
+    position: relative;
+    overflow: hidden;
     transition: transform .32s var(--ease), box-shadow .32s var(--ease), opacity 0.6s var(--ease), border-color .32s var(--ease)
 }
 
@@ -1746,7 +1748,11 @@ header::after {
     .orb-1,
     .orb-2,
     .orb-3,
-    .ornament-dot {
+    .ornament-dot,
+    .hero-grain,
+    .hero h1 em,
+    .hero-cta::after,
+    .band-dark::after {
         animation: none !important
     }
 
@@ -2080,4 +2086,88 @@ header::after {
         opacity: 1;
         transform: translate(-50%, -50%) scale(1.45)
     }
+}
+
+/* === HERO FILM GRAIN === */
+.hero-grain {
+    position: absolute;
+    inset: -60%;
+    width: 220%;
+    height: 220%;
+    pointer-events: none;
+    opacity: 0.055;
+    mix-blend-mode: screen;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 160px 160px;
+    animation: grainMove 0.45s steps(1) infinite
+}
+
+@keyframes grainMove {
+    0% { background-position: 0 0 }
+    25% { background-position: -28px -14px }
+    50% { background-position: 14px -26px }
+    75% { background-position: -14px 26px }
+}
+
+/* === CARD SPOTLIGHT (driven by JS --sp-x / --sp-y) === */
+.menu-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--sp-x, 50%) var(--sp-y, 50%), rgba(212, 175, 55, .10) 0%, transparent 65%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 2;
+    pointer-events: none;
+    border-radius: inherit
+}
+
+.menu-item:hover::before {
+    opacity: 1
+}
+
+/* === CUSTOM CURSOR === */
+.cursor-dot,
+.cursor-ring {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    will-change: transform;
+    top: 0;
+    left: 0
+}
+
+.cursor-dot {
+    width: 7px;
+    height: 7px;
+    background: var(--gold);
+    z-index: 99999;
+    transition: opacity 0.3s, width 0.3s var(--ease), height 0.3s var(--ease), background 0.3s
+}
+
+.cursor-ring {
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid rgba(212, 175, 55, .55);
+    z-index: 99998;
+    transition: opacity 0.3s, width 0.38s var(--ease), height 0.38s var(--ease), border-color 0.38s, border-width 0.38s
+}
+
+.cursor-dot.cursor-hover {
+    width: 4px;
+    height: 4px;
+    background: var(--gold-2)
+}
+
+.cursor-ring.cursor-hover {
+    width: 54px;
+    height: 54px;
+    border-color: rgba(212, 175, 55, .9);
+    border-width: 2px
+}
+
+.custom-cursor,
+.custom-cursor * {
+    cursor: none !important
 }

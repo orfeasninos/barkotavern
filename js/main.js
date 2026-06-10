@@ -10,6 +10,9 @@
     initScrollAnimations();
     initCountUp();
     initHeroParallax();
+    initCustomCursor();
+    initCardTilt();
+    initMagneticCTA();
     const btn = document.getElementById("openCookieSettings");
     if (btn) {
       btn.addEventListener("click", () => {
@@ -251,6 +254,94 @@
     }, { threshold: 0.6 });
 
     stats.forEach(el => observer.observe(el));
+  }
+
+  function initCustomCursor() {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const dot = document.createElement('div');
+    dot.className = 'cursor-dot';
+    const ring = document.createElement('div');
+    ring.className = 'cursor-ring';
+    document.body.append(dot, ring);
+    document.body.classList.add('custom-cursor');
+
+    let mx = -100, my = -100;
+    let rx = -100, ry = -100;
+    let rafId = null;
+
+    const lerp = (a, b, t) => a + (b - a) * t;
+
+    const loop = () => {
+      rx = lerp(rx, mx, 0.12);
+      ry = lerp(ry, my, 0.12);
+      dot.style.transform = `translate(${mx - 3.5}px, ${my - 3.5}px)`;
+      ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
+      rafId = requestAnimationFrame(loop);
+    };
+    rafId = requestAnimationFrame(loop);
+
+    window.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; }, { passive: true });
+
+    const hoverTargets = 'a, button, .menu-item, .hero-cta, .stat-item, .category-card, [role="button"]';
+    document.addEventListener('mouseover', (e) => {
+      if (e.target.closest(hoverTargets)) {
+        dot.classList.add('cursor-hover');
+        ring.classList.add('cursor-hover');
+      }
+    }, { passive: true });
+    document.addEventListener('mouseout', (e) => {
+      if (e.target.closest(hoverTargets)) {
+        dot.classList.remove('cursor-hover');
+        ring.classList.remove('cursor-hover');
+      }
+    }, { passive: true });
+  }
+
+  function initCardTilt() {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    document.querySelectorAll('.menu-item').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.transition = 'box-shadow 0.32s, border-color 0.32s, opacity 0.32s';
+      });
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const cx = rect.width / 2;
+        const cy = rect.height / 2;
+        const tiltX = ((y - cy) / cy) * -7;
+        const tiltY = ((x - cx) / cx) * 7;
+
+        card.style.transform = `perspective(900px) translateY(-7px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+        card.style.setProperty('--sp-x', `${(x / rect.width * 100).toFixed(1)}%`);
+        card.style.setProperty('--sp-y', `${(y / rect.height * 100).toFixed(1)}%`);
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transition = 'transform 0.55s cubic-bezier(0.23,1,0.32,1), box-shadow 0.32s, border-color 0.32s, opacity 0.32s';
+        card.style.transform = '';
+      });
+    });
+  }
+
+  function initMagneticCTA() {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    document.querySelectorAll('.hero-cta').forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const dx = e.clientX - (rect.left + rect.width / 2);
+        const dy = e.clientY - (rect.top + rect.height / 2);
+        btn.style.transform = `translate(${dx * 0.28}px, ${dy * 0.28}px) scale(1.04)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
+      });
+    });
   }
 
   function initDishModal() {
