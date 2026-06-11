@@ -327,9 +327,15 @@
 
 .dish-name {
   display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
+  align-items: center;
   gap: 0.3rem;
+}
+
+.diet-badges {
+  margin-left: auto;
+  display: flex;
+  gap: 0.25rem;
+  flex-shrink: 0;
 }
 
 .diet-badge {

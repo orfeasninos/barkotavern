@@ -186,7 +186,7 @@ function renderMenu(data) {
                         <li class="${imgUrl ? '' : 'no-image'}">
                             ${imgUrl ? `<img src="${imgUrl}" data-modal-img="${largeImgUrl}" alt="${name}" loading="lazy">` : ''}
                             <div class="dish">
-                                <span class="dish-name">${name}${dietBadges}</span>
+                                <span class="dish-name">${name}${dietBadges ? `<span class="diet-badges">${dietBadges}</span>` : ''}</span>
                                 ${desc ? `<p>${desc}</p>` : ''}
                             </div>
                             ${price !== null ? `<span class="price">${price}€</span>` : ''}
