@@ -304,6 +304,62 @@
   animation-delay: 0.36s;
 }
 
+.menu-diet-legend {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem 1.2rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+  padding: 0.7rem 1rem;
+  background: rgba(138, 125, 107, 0.07);
+  border-radius: 10px;
+  border: 1px solid rgba(138, 125, 107, 0.15);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+}
+
+.diet-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.dish-name {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.diet-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.28em;
+  border-radius: 4px;
+  vertical-align: middle;
+  flex-shrink: 0;
+  cursor: default;
+  line-height: 0;
+}
+
+.diet-v {
+  background: #2e7d32;
+  color: #fff;
+}
+
+.diet-vg {
+  background: #1b5e20;
+  color: #c8e6c9;
+}
+
+.diet-gf {
+  background: rgba(201, 168, 76, 0.18);
+  color: var(--olive-mid);
+  border: 1px solid rgba(201, 168, 76, 0.45);
+}
+
 .menu-loader-wrapper {
   display: flex;
   flex-direction: column;

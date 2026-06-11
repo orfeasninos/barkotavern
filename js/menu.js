@@ -66,6 +66,35 @@ const categoryTranslations = {
     "Ποτά": { EL: "Ποτά", IT: "Bevande", FR: "Boissons", EN: "Drinks" }
 };
 
+const dietarySVGs = {
+    V: `<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>`,
+    VG: `<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22V12"/><path d="M12 12c-2 0-5-2.5-5-5.5 2 0 5 2.5 5 5.5z"/><path d="M12 12c2 0 5-2.5 5-5.5-2 0-5 2.5-5 5.5z"/></svg>`,
+    GF: `<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="21" x2="21" y2="3"/><path d="M12 4v14"/><path d="M9 8c0-2 1.5-3.5 3-4"/><path d="M15 8c0-2-1.5-3.5-3-4"/><path d="M9 13c0-2 1.5-3.5 3-4"/><path d="M15 13c0-2-1.5-3.5-3-4"/></svg>`
+};
+
+const dietaryLabels = {
+    EN: { V: "Vegetarian", VG: "Vegan", GF: "Gluten-free" },
+    EL: { V: "Χορτοφαγικό", VG: "Vegan", GF: "Χωρίς Γλουτένη" },
+    IT: { V: "Vegetariano", VG: "Vegano", GF: "Senza Glutine" },
+    FR: { V: "Végétarien", VG: "Vegan", GF: "Sans Gluten" }
+};
+
+function buildDietBadges(item, lang) {
+    const labels = dietaryLabels[lang] || dietaryLabels.EN;
+    const isTruthy = v => v && v.trim() !== '' && v.trim() !== '0' && v.trim().toLowerCase() !== 'false';
+    let badges = '';
+    if (isTruthy(item.Vegetarian)) {
+        badges += `<span class="diet-badge diet-v" title="${labels.V}">${dietarySVGs.V}</span>`;
+    }
+    if (isTruthy(item.Vegan)) {
+        badges += `<span class="diet-badge diet-vg" title="${labels.VG}">${dietarySVGs.VG}</span>`;
+    }
+    if (isTruthy(item.GlutenFree)) {
+        badges += `<span class="diet-badge diet-gf" title="${labels.GF}">${dietarySVGs.GF}</span>`;
+    }
+    return badges;
+}
+
 const subcategoryTranslations = {
     "Νερό": { EL: "Νερό", IT: "Acqua", FR: "Eau", EN: "Water" },
     "Αναψυκτικά": { EL: "Αναψυκτικά", IT: "Bibite", FR: "Boissons Gazeuses", EN: "Soft Drinks" },
@@ -93,7 +122,13 @@ function renderMenu(data) {
         return acc;
     }, {});
 
-    let menuHtml = '';
+    const labels = dietaryLabels[currentLang] || dietaryLabels.EN;
+    let menuHtml = `
+    <div class="menu-diet-legend" aria-label="Dietary key">
+        <span class="diet-legend-item"><span class="diet-badge diet-v">${dietarySVGs.V}</span>${escapeHTML(labels.V)}</span>
+        <span class="diet-legend-item"><span class="diet-badge diet-vg">${dietarySVGs.VG}</span>${escapeHTML(labels.VG)}</span>
+        <span class="diet-legend-item"><span class="diet-badge diet-gf">${dietarySVGs.GF}</span>${escapeHTML(labels.GF)}</span>
+    </div>`;
     let sidebarHtml = '';
 
     for (const category in grouped) {
@@ -144,12 +179,14 @@ function renderMenu(data) {
                     const rawPrice = item.Price ? parseFloat(item.Price.toString().replace(',', '.')) : NaN;
                     const price = !isNaN(rawPrice) ? rawPrice.toFixed(2) : null;
 
+                    const dietBadges = buildDietBadges(item, currentLang);
+
                     return `
                         ${subHeader}
                         <li class="${imgUrl ? '' : 'no-image'}">
                             ${imgUrl ? `<img src="${imgUrl}" data-modal-img="${largeImgUrl}" alt="${name}" loading="lazy">` : ''}
                             <div class="dish">
-                                ${name}
+                                <span class="dish-name">${name}${dietBadges}</span>
                                 ${desc ? `<p>${desc}</p>` : ''}
                             </div>
                             ${price !== null ? `<span class="price">${price}€</span>` : ''}
