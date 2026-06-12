@@ -49,7 +49,7 @@ const categoryImages = {
     "Μαγειρευτά": "../../assets/images/kokoras-lazania-home.webp",
     "Της ώρας": "../../assets/images/souvlaki-kotopoulo.webp",
     "Θαλασσινά": "../../assets/images/xtapodi.webp",
-    "Επιδόρπια": "../../assets/images/koufeto.webp",
+    "Επιδόρπια": "../../assets/images/sokolatopita.webp",
     "Κρασιά": "",
     "Ποτά": ""
 };
@@ -217,11 +217,6 @@ function initMenuCategoryActive(state) {
     let isClickScrolling = false;
     let clickScrollTimer = null;
     let ticking = false;
-
-    // Dynamic target line: the point at which a section is considered "active".
-    // We use ~45% of viewport height on mobile so the active label switches when
-    // a section heading becomes the dominant element on screen (not just when its
-    // top pixel crosses the header line, which feels too late).
     const getTargetLine = () => {
         if (state.mqMobile?.matches) {
             return window.innerHeight * 0.45;
@@ -229,8 +224,6 @@ function initMenuCategoryActive(state) {
         return window.innerHeight * 0.4;
     };
 
-    // Scroll the sidebar/mobile bar to keep the active link centered.
-    // Uses getBoundingClientRect() + scrollBy() for accuracy across layouts.
     const scrollNavToLink = (link) => {
         requestAnimationFrame(() => {
             if (state.mqMobile?.matches && linksContainer) {
