@@ -18,6 +18,106 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
   <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png">
   <link rel="manifest" href="/assets/favicons/site.webmanifest">
+  <style>
+    .error-section {
+      border-bottom: 3px solid #c9a84c;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+    .error-inner {
+      max-width: 520px;
+    }
+    .error-code {
+      font-size: clamp(80px, 16vw, 140px);
+      font-weight: 700;
+      color: #c9a84c;
+      line-height: 1;
+      margin: 0 0 0.25rem;
+      letter-spacing: -4px;
+      font-family: var(--font-title);
+      opacity: 0.9;
+    }
+    .error-anchor {
+      color: var(--olive);
+      font-size: 2rem;
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+    .error-tag {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--olive);
+      margin-bottom: 1rem;
+    }
+    .error-title {
+      font-size: clamp(20px, 4vw, 28px);
+      font-weight: 400;
+      color: var(--olive);
+      margin: 0 0 0.75rem;
+      letter-spacing: 1px;
+      font-family: var(--font-title);
+    }
+    .error-subtitle {
+      color: var(--olive);
+      font-size: 14px;
+      line-height: 1.7;
+      margin: 0 0 2rem;
+    }
+    .error-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .error-btn-primary {
+      display: inline-block;
+      padding: 0.75rem 1.75rem;
+      border-radius: 999px;
+      background: #c9a84c;
+      color: #1b2416;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 8px 24px rgba(201, 168, 76, 0.3);
+    }
+    .error-btn-primary:hover {
+      background: #f0dc6d;
+      box-shadow: 0 12px 32px rgba(201, 168, 76, 0.45);
+    }
+    .error-btn-ghost {
+      display: inline-block;
+      padding: 0.75rem 1.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(201, 168, 76, 0.4);
+      background: rgba(201, 168, 76, 0.08);
+      color: #c9a84c;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .error-btn-ghost:hover {
+      background: rgba(201, 168, 76, 0.18);
+      border-color: rgba(201, 168, 76, 0.7);
+    }
+    .error-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 2rem 2rem 0;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+  </style>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="3e785d9a-c0dd-4c00-b85e-7a3e2e872c04"></script>
 </head>
 
@@ -82,21 +182,20 @@
     </div>
   </header>
   <main>
-    <div class="bk-hero">
-      <span class="bk-hero-tag">Barko Tavern · Milos</span>
-      <h1>404 – Page Not Found</h1>
-      <p>We searched the Aegean, but couldn't find this page.<br>It may have been moved or no longer exists.</p>
-      <div class="bk-hero-pills">
-        <a href="/" class="bk-pill" style="text-decoration:none;">&#8592; Back to Homepage</a>
-        <a href="/menu/" class="bk-pill" style="text-decoration:none;">&#128196; Menu</a>
-        <a href="/reservations/" class="bk-pill" style="text-decoration:none;">&#128337; Reservations</a>
+    <section class="error-section">
+      <div class="error-inner">
+        <span class="error-tag">Barko Tavern · Milos</span>
+        <div class="error-code">404</div>
+        <span class="error-anchor">&#9875;&#65038;</span>
+        <h1 class="error-title">Page Not Found</h1>
+        <p class="error-subtitle">We searched the Aegean, but couldn't find this page.<br>It may have been moved or no longer exists.</p>
+        <div class="error-actions">
+          <a href="/" class="error-btn-primary">&#8592; Back to Homepage</a>
+          <a href="/menu/" class="error-btn-ghost">Menu</a>
+          <a href="/reservations/" class="error-btn-ghost">Reserve a Table</a>
+        </div>
       </div>
-    </div>
-    <div class="bk-divider">
-      <div class="bk-divider-line"></div>
-      <span style="color: #c9a84c;">&#9875;&#65038;</span>
-      <div class="bk-divider-line"></div>
-    </div>
+    </section>
   </main>
   <footer class="premium-footer">
     <div class="premium-footer-container">
