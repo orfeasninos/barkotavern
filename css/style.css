@@ -2319,12 +2319,19 @@ html.dark .policy-btn {
 
 /* --- Section h2 em gold shimmer --- */
 .section h2 em {
-    background: linear-gradient(90deg, var(--olive-light) 8%, var(--gold-light) 40%, var(--gold-2) 52%, var(--gold-light) 64%, var(--olive-light) 92%);
-    background-size: 260% auto;
+    background: linear-gradient(90deg,
+        var(--olive-mid) 0%,
+        var(--olive-mid) 18%,
+        var(--gold) 38%,
+        var(--gold-light) 50%,
+        var(--gold) 62%,
+        var(--olive-mid) 82%,
+        var(--olive-mid) 100%);
+    background-size: 320% auto;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: goldShimmer 5s linear infinite
+    animation: goldShimmer 5s ease-in-out infinite alternate
 }
 html.dark .section h2 em {
     background: linear-gradient(90deg, #7ab860 8%, #c0eeaa 40%, #e8ffe8 52%, #c0eeaa 64%, #7ab860 92%);
