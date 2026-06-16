@@ -2322,9 +2322,9 @@ html.dark .policy-btn {
     background: linear-gradient(90deg,
         var(--olive-mid) 0%,
         var(--olive-mid) 18%,
-        var(--gold) 38%,
-        var(--gold-light) 50%,
-        var(--gold) 62%,
+        #a07420 38%,
+        #c9961f 50%,
+        #a07420 62%,
         var(--olive-mid) 82%,
         var(--olive-mid) 100%);
     background-size: 320% auto;
