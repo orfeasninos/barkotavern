@@ -30,7 +30,7 @@
     content="Scopri il menu della Taverna Barko: ricette autentiche di Milos, cibo casalingo e sapori greci ad Adamas, Milos.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://barkotavernmilos.com/it/menu/">
-  <meta property="og:image" content="https://barkotavernmilos.com/assets/images/og-barko-1200x630.jpg">
+  <meta property="og:image" content="https://barkotavernmilos.com/assets/images/og-barko.jpg">
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -71,7 +71,7 @@
       "@id": "https://barkotavernmilos.com/#restaurant",
       "name": "Barko",
       "url": "https://barkotavernmilos.com/it/",
-      "image": "https://barkotavernmilos.com/assets/images/og-barko-1200x630.jpg",
+      "image": "https://barkotavernmilos.com/assets/images/og-barko.jpg",
       "telephone": "+30 22870 22660",
       "servesCuisine": ["Greca", "Mediterranea"],
       "priceRange": "€€",
@@ -121,9 +121,57 @@
       "url": "https://barkotavernmilos.com/it/menu/",
       "isPartOf": { "@id": "https://barkotavernmilos.com/#restaurant" },
       "hasMenuSection": [
-        { "@type": "MenuSection", "name": "Antipasti" },
+        {
+          "@type": "MenuSection",
+          "name": "Antipasti",
+          "hasMenuItem": [
+            {
+              "@type": "MenuItem",
+              "name": "Pitarakia di Milos",
+              "description": "Ripiene con formaggio locale, cipolla ed erbe aromatiche — una ricetta tradizionale altamente consigliata",
+              "image": "https://barkotavernmilos.com/assets/images/pitarakia.webp",
+              "suitableForDiet": "https://schema.org/VegetarianDiet"
+            }
+          ]
+        },
         { "@type": "MenuSection", "name": "Insalate" },
-        { "@type": "MenuSection", "name": "Piatti a Cottura Lenta" },
+        {
+          "@type": "MenuSection",
+          "name": "Piatti a Cottura Lenta",
+          "hasMenuItem": [
+            {
+              "@type": "MenuItem",
+              "name": "Skordolazana di Milos",
+              "description": "Pasta fatta a mano con conserva di pomodoro locale e il tradizionale sugo all'aglio dell'isola",
+              "image": "https://barkotavernmilos.com/assets/images/skordolazana.webp",
+              "suitableForDiet": "https://schema.org/VegetarianDiet"
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Gallo di Milos",
+              "description": "Ricetta tradizionale con gallo locale, pasta fatta a mano e salsa di pomodoro con pomodori locali",
+              "image": "https://barkotavernmilos.com/assets/images/kokoras-lazania-home.webp"
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Agnello al limone",
+              "description": "Piatto autentico di agnello con limone e patate, secondo la ricetta tradizionale di Milos",
+              "image": "https://barkotavernmilos.com/assets/images/arni.webp"
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Stifado di capra",
+              "description": "Autentico stifado di capra, ricetta tradizionale di Milos",
+              "image": "https://barkotavernmilos.com/assets/images/katsiki.webp"
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Coniglio brasato al vino",
+              "description": "Coniglio cotto con vino locale ed erbe aromatiche, una ricetta classica di Milos",
+              "image": "https://barkotavernmilos.com/assets/images/kouneli-home.webp"
+            }
+          ]
+        },
         { "@type": "MenuSection", "name": "Alla Griglia" },
         { "@type": "MenuSection", "name": "Frutti di Mare" },
         { "@type": "MenuSection", "name": "Dolci" },

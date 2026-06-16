@@ -30,7 +30,7 @@
     content="Discover the menu of Barko Tavern: authentic recipes of Milos, home-cooked food and Greek flavours in Adamas, Milos.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://barkotavernmilos.com/menu/">
-  <meta property="og:image" content="https://barkotavernmilos.com/assets/images/og-barko-1200x630.jpg">
+  <meta property="og:image" content="https://barkotavernmilos.com/assets/images/og-barko.jpg">
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -71,7 +71,7 @@
       "@id": "https://barkotavernmilos.com/#restaurant",
       "name": "Barko",
       "url": "https://barkotavernmilos.com/",
-      "image": "https://barkotavernmilos.com/assets/images/og-barko-1200x630.jpg",
+      "image": "https://barkotavernmilos.com/assets/images/og-barko.jpg",
       "telephone": "+30 22870 22660",
       "servesCuisine": ["Greek", "Mediterranean"],
       "priceRange": "€€",
@@ -121,9 +121,57 @@
       "url": "https://barkotavernmilos.com/menu/",
       "isPartOf": { "@id": "https://barkotavernmilos.com/#restaurant" },
       "hasMenuSection": [
-        { "@type": "MenuSection", "name": "Starters" },
+        {
+          "@type": "MenuSection",
+          "name": "Starters",
+          "hasMenuItem": [
+            {
+              "@type": "MenuItem",
+              "name": "Pitarakia of Milos",
+              "description": "Filled with local cheese, onion and herbs — a highly recommended traditional recipe",
+              "image": "https://barkotavernmilos.com/assets/images/pitarakia.webp",
+              "suitableForDiet": "https://schema.org/VegetarianDiet"
+            }
+          ]
+        },
         { "@type": "MenuSection", "name": "Salads" },
-        { "@type": "MenuSection", "name": "Slow-cooked Mains" },
+        {
+          "@type": "MenuSection",
+          "name": "Slow-cooked Mains",
+          "hasMenuItem": [
+            {
+              "@type": "MenuItem",
+              "name": "Skordolazana of Milos",
+              "description": "Handmade pasta with local tomato paste and the island's traditional garlic sauce",
+              "image": "https://barkotavernmilos.com/assets/images/skordolazana.webp",
+              "suitableForDiet": "https://schema.org/VegetarianDiet"
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Rooster of Milos",
+              "description": "Traditional recipe with local rooster, handmade pasta and tomato sauce made from local tomatoes",
+              "image": "https://barkotavernmilos.com/assets/images/kokoras-lazania-home.webp"
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Lemon lamb",
+              "description": "An authentic dish of lamb with lemon and potatoes, following the traditional recipe of Milos",
+              "image": "https://barkotavernmilos.com/assets/images/arni.webp"
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Goat stifado",
+              "description": "An authentic dish of goat stifado, a traditional recipe from Milos",
+              "image": "https://barkotavernmilos.com/assets/images/katsiki.webp"
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Wine-braised rabbit",
+              "description": "Rabbit cooked with local wine and herbs, a classic recipe from Milos",
+              "image": "https://barkotavernmilos.com/assets/images/kouneli-home.webp"
+            }
+          ]
+        },
         { "@type": "MenuSection", "name": "Grilled to Order" },
         { "@type": "MenuSection", "name": "Seafood" },
         { "@type": "MenuSection", "name": "Desserts" },

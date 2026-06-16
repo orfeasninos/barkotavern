@@ -30,7 +30,7 @@
     content="Découvrez le menu de la Taverne Barko : recettes authentiques de Milos, cuisine maison et saveurs grecques à Adamas, Milos.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://barkotavernmilos.com/fr/menu/">
-  <meta property="og:image" content="https://barkotavernmilos.com/assets/images/og-barko-1200x630.jpg">
+  <meta property="og:image" content="https://barkotavernmilos.com/assets/images/og-barko.jpg">
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -71,7 +71,7 @@
       "@id": "https://barkotavernmilos.com/#restaurant",
       "name": "Barko",
       "url": "https://barkotavernmilos.com/fr/",
-      "image": "https://barkotavernmilos.com/assets/images/og-barko-1200x630.jpg",
+      "image": "https://barkotavernmilos.com/assets/images/og-barko.jpg",
       "telephone": "+30 22870 22660",
       "servesCuisine": ["Grecque", "Méditerranéenne"],
       "priceRange": "€€",
@@ -121,9 +121,57 @@
       "url": "https://barkotavernmilos.com/fr/menu/",
       "isPartOf": { "@id": "https://barkotavernmilos.com/#restaurant" },
       "hasMenuSection": [
-        { "@type": "MenuSection", "name": "Entrées" },
+        {
+          "@type": "MenuSection",
+          "name": "Entrées",
+          "hasMenuItem": [
+            {
+              "@type": "MenuItem",
+              "name": "Pitarakia de Milos",
+              "description": "Farcies au fromage local, oignon et herbes aromatiques — une recette traditionnelle vivement recommandée",
+              "image": "https://barkotavernmilos.com/assets/images/pitarakia.webp",
+              "suitableForDiet": "https://schema.org/VegetarianDiet"
+            }
+          ]
+        },
         { "@type": "MenuSection", "name": "Salades" },
-        { "@type": "MenuSection", "name": "Plats Mijotés" },
+        {
+          "@type": "MenuSection",
+          "name": "Plats Mijotés",
+          "hasMenuItem": [
+            {
+              "@type": "MenuItem",
+              "name": "Skordolazana de Milos",
+              "description": "Pâtes maison avec concentré de tomate local et la sauce à l'ail traditionnelle de l'île",
+              "image": "https://barkotavernmilos.com/assets/images/skordolazana.webp",
+              "suitableForDiet": "https://schema.org/VegetarianDiet"
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Coq de Milos",
+              "description": "Recette traditionnelle avec coq local, pâtes maison et sauce tomate aux tomates locales",
+              "image": "https://barkotavernmilos.com/assets/images/kokoras-lazania-home.webp"
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Agneau au citron",
+              "description": "Plat authentique d'agneau au citron et pommes de terre, selon la recette traditionnelle de Milos",
+              "image": "https://barkotavernmilos.com/assets/images/arni.webp"
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Stifado de chèvre",
+              "description": "Authentique stifado de chèvre, recette traditionnelle de Milos",
+              "image": "https://barkotavernmilos.com/assets/images/katsiki.webp"
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Lapin braisé au vin",
+              "description": "Lapin cuit avec vin local et herbes aromatiques, une recette classique de Milos",
+              "image": "https://barkotavernmilos.com/assets/images/kouneli-home.webp"
+            }
+          ]
+        },
         { "@type": "MenuSection", "name": "Grillades" },
         { "@type": "MenuSection", "name": "Fruits de Mer" },
         { "@type": "MenuSection", "name": "Desserts" },

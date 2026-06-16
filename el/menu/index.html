@@ -30,7 +30,7 @@
     content="Ανακαλύψτε το μενού του Barko Tavern: αυθεντικές μηλέικες συνταγές, σπιτικό φαγητό και ελληνικές γεύσεις στον Αδάμαντα Μήλου.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://barkotavernmilos.com/el/menu/">
-  <meta property="og:image" content="https://barkotavernmilos.com/assets/images/og-barko-1200x630.jpg">
+  <meta property="og:image" content="https://barkotavernmilos.com/assets/images/og-barko.jpg">
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -71,7 +71,7 @@
       "@id": "https://barkotavernmilos.com/#restaurant",
       "name": "Μπάρκο",
       "url": "https://barkotavernmilos.com/el/",
-      "image": "https://barkotavernmilos.com/assets/images/og-barko-1200x630.jpg",
+      "image": "https://barkotavernmilos.com/assets/images/og-barko.jpg",
       "telephone": "+30 22870 22660", 
       "servesCuisine": ["Ελληνική","Μεσογειακή"], 
       "priceRange": "€€",
@@ -121,9 +121,57 @@
       "url": "https://barkotavernmilos.com/el/menu/",
       "isPartOf": { "@id": "https://barkotavernmilos.com/#restaurant" },
       "hasMenuSection": [
-        { "@type": "MenuSection", "name": "Ορεκτικά" },
+        {
+          "@type": "MenuSection",
+          "name": "Ορεκτικά",
+          "hasMenuItem": [
+            {
+              "@type": "MenuItem",
+              "name": "Πιτaράκια Μήλου",
+              "description": "Γεμιστά με τοπικό τυρί, κρεμμύδι και μυρωδικά — μια ιδιαίτερα προτεινόμενη παραδοσιακή συνταγή",
+              "image": "https://barkotavernmilos.com/assets/images/pitarakia.webp",
+              "suitableForDiet": "https://schema.org/VegetarianDiet"
+            }
+          ]
+        },
         { "@type": "MenuSection", "name": "Σαλάτες" },
-        { "@type": "MenuSection", "name": "Μαγειρευτά" },
+        {
+          "@type": "MenuSection",
+          "name": "Μαγειρευτά",
+          "hasMenuItem": [
+            {
+              "@type": "MenuItem",
+              "name": "Σκορδολάζανα Μήλου",
+              "description": "Χειροποίητα ζυμαρικά με τοπική ντοματόπαστα και παραδοσιακή σκορδαλιά του νησιού",
+              "image": "https://barkotavernmilos.com/assets/images/skordolazana.webp",
+              "suitableForDiet": "https://schema.org/VegetarianDiet"
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Κόκορας Μήλου",
+              "description": "Παραδοσιακή συνταγή με τοπικό κόκορα, χειροποίητα ζυμαρικά και κόκκινη σάλτσα από ντοπιολάντζα",
+              "image": "https://barkotavernmilos.com/assets/images/kokoras-lazania-home.webp"
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Αρνί λεμονάτο",
+              "description": "Αυθεντικό πιάτο αρνιού με λεμόνι και πατάτες, κατά την παραδοσιακή συνταγή της Μήλου",
+              "image": "https://barkotavernmilos.com/assets/images/arni.webp"
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Κατσίκι στιφάδο",
+              "description": "Αυθεντικό κατσίκι στιφάδο, παραδοσιακή συνταγή της Μήλου",
+              "image": "https://barkotavernmilos.com/assets/images/katsiki.webp"
+            },
+            {
+              "@type": "MenuItem",
+              "name": "Κουνέλι κρασάτο",
+              "description": "Κουνέλι μαγειρεμένο με τοπικό κρασί και μυρωδικά, κλασική συνταγή της Μήλου",
+              "image": "https://barkotavernmilos.com/assets/images/kouneli-home.webp"
+            }
+          ]
+        },
         { "@type": "MenuSection", "name": "Της Ώρας" },
         { "@type": "MenuSection", "name": "Θαλασσινά" },
         { "@type": "MenuSection", "name": "Επιδόρπια" },
