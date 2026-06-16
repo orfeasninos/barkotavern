@@ -2383,27 +2383,12 @@ html.dark .section h2 em {
     100% { transform: scale(1.44); opacity: 0 }
 }
 
-/* --- Divider gold shimmer sweep --- */
-.divider {
-    position: relative
-}
-.divider::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(105deg, transparent 30%, rgba(212, 175, 55, .16) 50%, transparent 70%);
-    animation: divShimmer 6s ease-in-out infinite;
-    pointer-events: none
-}
-@keyframes divShimmer {
-    0%   { transform: translateX(-130%) }
-    100% { transform: translateX(130%) }
-}
+/* divider shimmer is injected as SVG paths via JS (initDividerShimmer) */
 
 /* --- Contact hours badge glow --- */
 @keyframes hoursGlow {
     0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0) }
-    50%       { box-shadow: 0 0 14px 3px rgba(212, 175, 55, .13) }
+    50%       { box-shadow: 0 0 14px 3px rgba(212, 175, 55, .35) }
 }
 .contact-hours {
     animation: hoursGlow 3.5s ease-in-out infinite
@@ -2423,8 +2408,7 @@ html.dark .section h2 em {
 /* --- Reduced motion: disable all new additions --- */
 @media (prefers-reduced-motion: reduce) {
     .btn-outline::after,
-    .cta-btn::before,
-    .divider::after { display: none }
+    .cta-btn::before { display: none }
     .section h2 em,
     html.dark .section h2 em { animation: none !important }
     .section-label::before { transition: none }

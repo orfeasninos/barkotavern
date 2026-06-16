@@ -16,6 +16,7 @@ if (localStorage.getItem("barko_theme") === "dark") document.documentElement.cla
     initCardTilt();
     initMagneticButtons();
     initGalleryReveal();
+    initDividerShimmer();
     const btn = document.getElementById("openCookieSettings");
     if (btn) {
       btn.addEventListener("click", () => {
@@ -379,6 +380,54 @@ if (localStorage.getItem("barko_theme") === "dark") document.documentElement.cla
       btn.addEventListener('mouseleave', () => {
         if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
         btn.style.transform = '';
+      });
+    });
+  }
+
+  function initDividerShimmer() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const NS = 'http://www.w3.org/2000/svg';
+
+    document.querySelectorAll('.divider svg').forEach((svg, i) => {
+      const vb = svg.viewBox.baseVal;
+      const W = vb.width || 1440;
+      const shimW = Math.round(W * 0.42);
+      const id = `_ds${i}`;
+
+      const defs = document.createElementNS(NS, 'defs');
+      const grad = document.createElementNS(NS, 'linearGradient');
+      grad.id = id;
+      grad.setAttribute('x1', '0');
+      grad.setAttribute('y1', '0');
+      grad.setAttribute('x2', shimW);
+      grad.setAttribute('y2', '0');
+      grad.setAttribute('gradientUnits', 'userSpaceOnUse');
+
+      [['0%','rgba(212,175,55,0)'],['50%','rgba(212,175,55,0.11)'],['100%','rgba(212,175,55,0)']].forEach(([offset, color]) => {
+        const stop = document.createElementNS(NS, 'stop');
+        stop.setAttribute('offset', offset);
+        stop.setAttribute('stop-color', color);
+        grad.appendChild(stop);
+      });
+
+      const anim = document.createElementNS(NS, 'animateTransform');
+      anim.setAttribute('attributeName', 'gradientTransform');
+      anim.setAttribute('type', 'translate');
+      anim.setAttribute('from', `${-shimW} 0`);
+      anim.setAttribute('to', `${W + shimW} 0`);
+      anim.setAttribute('dur', `${4.8 + i * 0.9}s`);
+      anim.setAttribute('begin', `${i * 1.6}s`);
+      anim.setAttribute('repeatCount', 'indefinite');
+      grad.appendChild(anim);
+      defs.appendChild(grad);
+      svg.insertBefore(defs, svg.firstChild);
+
+      Array.from(svg.querySelectorAll('path')).forEach(p => {
+        const shim = document.createElementNS(NS, 'path');
+        shim.setAttribute('d', p.getAttribute('d'));
+        shim.setAttribute('fill', `url(#${id})`);
+        shim.style.mixBlendMode = 'screen';
+        svg.appendChild(shim);
       });
     });
   }
