@@ -1,5 +1,12 @@
 const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTeetU-sTKeodCrslGkzITvyC7Ob4ayTf5HdLDqcEEueZfHw4QqzAxbapHBdWq0TYhR6fbvNuL8lqLT/pub?gid=0&single=true&output=csv';
 
+function escapeHTML(str) {
+    if (!str) return '';
+    return String(str).replace(/[&<>'"]/g,
+        tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+    );
+}
+
 const GALLERY_ERRORS = {
     empty:   { el: "Δεν βρέθηκαν φωτογραφίες.", en: "No photos found.", it: "Nessuna foto trovata.", fr: "Aucune photo trouvée." },
     parse:   { el: "Σφάλμα φόρτωσης δεδομένων.", en: "Error loading data.", it: "Errore nel caricamento.", fr: "Erreur de chargement." },
@@ -59,12 +66,13 @@ function renderGallery(data) {
         if (imgUrl !== '' && !seenImages.has(imgUrl)) {
             seenImages.add(imgUrl);
 
-            const name = item[`Name_${currentLang}`] || item.Name_EN || 'Menu Item';
-            const largeImgUrl = item['Image-large'] ? item['Image-large'].trim() : imgUrl;
+            const name = escapeHTML(item[`Name_${currentLang}`] || item.Name_EN || 'Menu Item');
+            const largeImgUrl = escapeHTML(item['Image-large'] ? item['Image-large'].trim() : imgUrl);
+            const safeImgUrl = escapeHTML(imgUrl);
 
             galleryHtml += `
                 <div class="gallery-item">
-                    <img src="${imgUrl}" data-modal-img="${largeImgUrl}" alt="${name}" loading="lazy">
+                    <img src="${safeImgUrl}" data-modal-img="${largeImgUrl}" alt="${name}" loading="lazy">
                 </div>`;
         }
     });
