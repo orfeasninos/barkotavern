@@ -149,6 +149,7 @@
 
 .section {
   padding-block: var(--rs-py);
+  overflow-x: clip;
 }
 
 .history-section,
