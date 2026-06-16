@@ -2178,13 +2178,13 @@ header::after {
 
 /* === DARK MODE === */
 html.dark {
-    --cream: #111a0e;
-    --cream-dark: #1a2214;
-    --cream-white: #111a0e;
-    --warm-white: #111a0e;
-    --text-dark: #e0d8c8;
-    --text-mid: #c8bfb0;
-    --text-muted: #9a9080;
+    --cream: #1a1510;
+    --cream-dark: #211a14;
+    --cream-white: #1a1510;
+    --warm-white: #1a1510;
+    --text-dark: #ede0d0;
+    --text-mid: #c8b8a0;
+    --text-muted: #a09180;
     --stone: #b0a494;
     --shadow-card: 0 2px 12px rgba(0, 0, 0, .28), 0 1px 3px rgba(0, 0, 0, .22);
     --shadow-hover: 0 8px 28px rgba(0, 0, 0, .35), 0 2px 6px rgba(0, 0, 0, .25)
@@ -2193,31 +2193,31 @@ html.dark {
 html.dark .menu-section-head h2,
 html.dark .reviews-head h2,
 html.dark .contact-section > .container > h2,
-html.dark .about-left h2 { color: #98c880 }
+html.dark .about-left h2 { color: #ede0d0 }
 
-html.dark .menu-item-body h3 { color: #98c880 }
+html.dark .menu-item-body h3 { color: #ddd0bc }
 html.dark .menu-item-body p { color: var(--text-muted) }
 
-html.dark .btn-outline { color: #98c880; border-color: #98c880 }
-html.dark .contact-hours { color: #98c880 }
+html.dark .btn-outline { color: #c5703a; border-color: #c5703a }
+html.dark .contact-hours { color: #c5703a }
 html.dark .contact-details h3 { color: var(--text-muted) }
 
 html.dark body,
 html.dark p { color: var(--text-dark) }
 
 html.dark .menu-item {
-    background: #1a2614;
-    border-color: rgba(150, 138, 115, .18)
+    background: #1e1610;
+    border-color: rgba(197, 112, 58, .15)
 }
 
 html.dark .menu-item-body { background: var(--cream-dark) }
 
-html.dark .c-icon { background: #1a2614 }
+html.dark .c-icon { background: #1e1610 }
 
-html.dark .consent-box { background: rgba(17, 26, 14, .97) }
+html.dark .consent-box { background: rgba(20, 16, 11, .97) }
 html.dark .consent-box p { color: var(--text-dark) }
 
-html.dark .dish-modal-content { background: #1e2c18 }
+html.dark .dish-modal-content { background: #241a12 }
 html.dark .dish-modal-content h3 { color: var(--text-dark) }
 html.dark .dish-modal-content p { color: var(--text-mid) }
 html.dark .modal-close { color: var(--text-dark); background: rgba(255,255,255,.06) }
@@ -2225,7 +2225,7 @@ html.dark .modal-close { color: var(--text-dark); background: rgba(255,255,255,.
 html.dark .divider path:last-child { fill: var(--cream) }
 
 html.dark * {
-    scrollbar-color: var(--gold) rgba(17, 26, 14, .8)
+    scrollbar-color: #c5703a rgba(20, 16, 11, .8)
 }
 
 html.dark .sk-ww-google-reviews .sk-post {
@@ -2233,57 +2233,57 @@ html.dark .sk-ww-google-reviews .sk-post {
 }
 
 /* restaurant.css: --rs-ink uses var(--ink) for headings + lead text */
-html.dark { --ink: #c8e8b0 }
+html.dark { --ink: #ede0d0 }
 
 /* menu.css */
-html.dark .menu-items > li { background: #1a2614 }
-html.dark .menu-category > h3 { color: #98c880 }
+html.dark .menu-items > li { background: #1e1610 }
+html.dark .menu-category > h3 { color: #ddd0bc }
 html.dark .menu-category > h3::after { background: var(--cream) }
 
 /* gallery.css */
-html.dark .gallery-item { background: rgba(26, 38, 20, .8) }
+html.dark .gallery-item { background: rgba(30, 22, 14, .8) }
 
 /* reservations.css: form inputs */
 html.dark input,
 html.dark textarea {
-    background: #1a2614;
+    background: #1e1610;
     color: var(--text-dark);
-    border-color: rgba(212, 175, 55, .25)
+    border-color: rgba(197, 112, 58, .25)
 }
 
 html.dark input[type="date"],
 html.dark select#form-time {
-    background-color: #1a2614;
+    background-color: #1e1610;
     color: var(--text-dark);
-    border-color: rgba(212, 175, 55, .25)
+    border-color: rgba(197, 112, 58, .25)
 }
 
 html.dark select#form-time option {
-    background-color: #1a2614;
+    background-color: #1e1610;
     color: var(--text-dark)
 }
 
-html.dark label { color: #98c880 }
-html.dark #form-message { color: #98c880 }
+html.dark label { color: #ddd0bc }
+html.dark #form-message { color: #ddd0bc }
 
 /* policy.css: white cards + headings */
 html.dark .policy-card,
 html.dark .policy-box {
-    background: #1a2614;
-    border-color: rgba(212, 175, 55, .2)
+    background: #1e1610;
+    border-color: rgba(197, 112, 58, .2)
 }
 
 html.dark .policy-card h3,
-html.dark .policy-box h3 { color: #98c880 }
+html.dark .policy-box h3 { color: #ddd0bc }
 
 html.dark .policy-link {
-    background: rgba(26, 38, 20, .7);
-    border-color: rgba(212, 175, 55, .2)
+    background: rgba(30, 22, 14, .7);
+    border-color: rgba(197, 112, 58, .2)
 }
 
 html.dark .policy-btn {
-    background: #1a2614;
-    border-color: rgba(212, 175, 55, .25)
+    background: #1e1610;
+    border-color: rgba(197, 112, 58, .25)
 }
 
 /* --- btn-outline shimmer sweep --- */
@@ -2326,7 +2326,7 @@ html.dark .policy-btn {
     animation: goldShimmer 5s ease-in-out infinite alternate
 }
 html.dark .section h2 em {
-    background: linear-gradient(90deg, #7ab860 8%, #c0eeaa 40%, #e8ffe8 52%, #c0eeaa 64%, #7ab860 92%);
+    background: linear-gradient(90deg, #c5703a 8%, #e0a070 40%, #f5d0b0 52%, #e0a070 64%, #c5703a 92%);
     background-size: 260% auto;
     -webkit-background-clip: text;
     background-clip: text;
