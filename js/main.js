@@ -546,10 +546,11 @@ if (localStorage.getItem("barko_theme") === "dark") document.documentElement.cla
     const indexItem = e.target.closest(".menu-item");
     if (indexItem) {
       const img = indexItem.querySelector("img");
+      if (!img) return;
       const title = indexItem.querySelector("h3");
       const text = indexItem.querySelector("p");
       openModal({
-        src: img?.src,
+        src: img.src,
         title: title?.textContent || "",
         text: text?.textContent || "",
       });

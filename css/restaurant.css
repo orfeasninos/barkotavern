@@ -2,7 +2,7 @@
   --rs-serif:       "Playfair Display", "Didot", "Georgia", serif;
   --rs-sans:        system-ui, -apple-system, "Segoe UI", sans-serif;
   --rs-ink:         var(--ink, #132411);
-  --rs-gold:        var(--ornament-line, #c5a880);
+  --rs-gold:        #c5a880;
   --rs-gold-dim:    rgba(197, 168, 128, 0.18);
   --rs-gold-mid:    rgba(197, 168, 128, 0.48);
   --rs-cream:       var(--cream, #fdfbf4);
