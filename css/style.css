@@ -1520,12 +1520,20 @@ header::after {
 
 .footer-shimmer {
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at center, rgba(212, 175, 55, .05), transparent 70%);
-    animation: 6s linear infinite shimmerOverlay
+    top: 0;
+    left: 0;
+    width: 48%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(212, 175, 55, .06) 35%,
+        rgba(243, 231, 165, .13) 50%,
+        rgba(212, 175, 55, .06) 65%,
+        transparent
+    );
+    transform: skewX(-12deg) translateX(-160%);
+    animation: footerGlint 11s ease-in-out infinite
 }
 
 .footer-credit {
@@ -1541,18 +1549,12 @@ header::after {
     font-weight: 700
 }
 
-@keyframes shimmerOverlay {
-    0% {
-        transform: rotate(0) translate(0, 0)
-    }
-
-    50% {
-        transform: rotate(180deg) translate(20px, 20px)
-    }
-
-    100% {
-        transform: rotate(360deg) translate(0, 0)
-    }
+@keyframes footerGlint {
+    0%   { transform: skewX(-12deg) translateX(-160%); opacity: 0 }
+    6%   { opacity: 1 }
+    36%  { transform: skewX(-12deg) translateX(310%);  opacity: 1 }
+    44%  { transform: skewX(-12deg) translateX(310%);  opacity: 0 }
+    100% { transform: skewX(-12deg) translateX(310%);  opacity: 0 }
 }
 
 .map-icon,
