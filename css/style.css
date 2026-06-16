@@ -1467,7 +1467,9 @@ header::after {
 
 .footer-contact a,
 .footer-links a {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     color: #faf9f6;
     margin-bottom: .6rem;
     text-decoration: none;
@@ -1500,6 +1502,7 @@ header::after {
 .footer-links {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 12px
 }
 
