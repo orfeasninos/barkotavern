@@ -2222,7 +2222,7 @@ html.dark .dish-modal-content h3 { color: var(--text-dark) }
 html.dark .dish-modal-content p { color: var(--text-mid) }
 html.dark .modal-close { color: var(--text-dark); background: rgba(255,255,255,.06) }
 
-html.dark .divider path:last-child { fill: var(--cream) }
+html.dark .divider path { fill: var(--cream) }
 
 html.dark * {
     scrollbar-color: #c5703a rgba(20, 16, 11, .8)
