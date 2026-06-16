@@ -54,7 +54,7 @@ function renderGallery(data) {
     const galleryContainer = document.getElementById('gallery-container');
     if (!galleryContainer) return;
 
-    let currentLang = document.documentElement.lang.toUpperCase() || 'EN';
+    let currentLang = (document.documentElement.lang || 'en').toUpperCase();
     if (currentLang.length > 2) currentLang = 'EN';
 
     const seenImages = new Set();

@@ -71,7 +71,7 @@ ul {
   list-style: none;
 }
 .policy-sidebar ul{
-  list-style:unset;
+  list-style: disc;
 }
 
 .policy-lead {

@@ -112,7 +112,7 @@ const subcategoryTranslations = {
 function renderMenu(data) {
     const menuContainer = document.getElementById('menu-container');
     const sidebarContainer = document.querySelector('.menu-links-list');
-    let currentLang = document.documentElement.lang.toUpperCase() || 'EN';
+    let currentLang = (document.documentElement.lang || 'en').toUpperCase();
     if (currentLang.length > 2) currentLang = 'EN';
 
     const grouped = data.reduce((acc, item) => {
@@ -287,7 +287,9 @@ function initMenuCategoryActive(state) {
 
     menuLinks.forEach((link) => {
         link.addEventListener("click", () => {
-            const targetId = link.getAttribute("href").substring(1);
+            const href = link.getAttribute("href");
+            if (!href) return;
+            const targetId = href.substring(1);
             isClickScrolling = true;
             setActive(targetId);
 
