@@ -491,3 +491,45 @@ button[type="submit"]:active {
   color: var(--olive-mid);
   text-decoration: underline;
 }
+
+/* Form + FAQ side-by-side */
+.bk-form-faq-grid {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: start;
+}
+
+.bk-form-faq-grid #contactForm {
+  max-width: 100%;
+}
+
+.faq-inline {
+  position: sticky;
+  top: calc(var(--header-h-mobile, 92px) + 1.5rem);
+}
+
+.faq-inline h2 {
+  font-family: var(--font-title);
+  font-size: clamp(1.3rem, 2vw, 1.7rem);
+  font-weight: 400;
+  color: var(--olive);
+  margin-bottom: 1.5rem;
+}
+
+.faq-inline .faq-list {
+  max-width: 100%;
+  margin: 0;
+}
+
+html.dark .faq-inline h2,
+html.dark .faq-section h2 { color: #ede0d0 }
+
+@media (max-width: 900px) {
+  .bk-form-faq-grid {
+    grid-template-columns: 1fr;
+  }
+  .faq-inline {
+    position: static;
+  }
+}
