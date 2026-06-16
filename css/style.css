@@ -525,10 +525,10 @@ body.dark .sk-ww-google-reviews {
 
 .section-label {
     display: block;
-    font-size: .62rem;
+    font-size: .7rem;
     font-weight: 600;
-    letter-spacing: .32em;
-    color: var(--gold);
+    letter-spacing: .22em;
+    color: #c5703a;
     margin-bottom: .9rem
 }
 
@@ -2339,7 +2339,7 @@ html.dark .section h2 em {
     display: inline-block;
     width: 0;
     height: 1px;
-    background: var(--gold);
+    background: #c5703a;
     vertical-align: middle;
     margin-right: 0;
     transition: width .44s .28s var(--ease), margin-right .36s .28s var(--ease)
