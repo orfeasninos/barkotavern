@@ -1448,22 +1448,15 @@ header::after {
     box-shadow: var(--gold-glow)
 }
 
-.footer-brand img {
-    width: 130px;
-    margin: 0 auto 1rem;
-    animation: 4s ease-in-out infinite floatLogo
+.footer-brand a {
+    display: block;
+    width: fit-content;
+    margin: 0 auto 1rem
 }
 
-@keyframes floatLogo {
-
-    0%,
-    100% {
-        transform: translateY(0)
-    }
-
-    50% {
-        transform: translateY(-6px)
-    }
+.footer-brand img {
+    width: 130px;
+    display: block
 }
 
 .footer-brand p {
@@ -2423,8 +2416,7 @@ html.dark .section h2 em {
     .card-visible { animation: none !important; opacity: 1 !important; transform: none !important }
     .band-reveal  { animation: none !important; opacity: 1 !important; transform: none !important }
     /* footer */
-    .footer-brand img { animation: none }
-    .footer-shimmer   { animation: none }
+    .footer-shimmer { animation: none }
     /* dish modal */
     .dish-modal-content { animation: none }
 }
