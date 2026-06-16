@@ -14,6 +14,8 @@ if (localStorage.getItem("barko_theme") === "dark") document.documentElement.cla
     initHeroParallax();
     initCustomCursor();
     initCardTilt();
+    initMagneticButtons();
+    initGalleryReveal();
     const btn = document.getElementById("openCookieSettings");
     if (btn) {
       btn.addEventListener("click", () => {
@@ -356,6 +358,56 @@ if (localStorage.getItem("barko_theme") === "dark") document.documentElement.cla
     };
     btn.addEventListener('click', () => apply(!isDark()));
     btn.setAttribute('aria-pressed', String(isDark()));
+  }
+
+  function initMagneticButtons() {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    document.querySelectorAll('.btn-outline').forEach(btn => {
+      let rafId = null, tx = 0, ty = 0;
+      btn.addEventListener('mousemove', (e) => {
+        const r = btn.getBoundingClientRect();
+        tx = (e.clientX - r.left - r.width / 2) * 0.22;
+        ty = (e.clientY - r.top - r.height / 2) * 0.16;
+        if (rafId) return;
+        rafId = requestAnimationFrame(() => {
+          rafId = null;
+          btn.style.transform = `translate(${tx}px, ${ty}px)`;
+        });
+      });
+      btn.addEventListener('mouseleave', () => {
+        if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+        btn.style.transform = '';
+      });
+    });
+  }
+
+  function initGalleryReveal() {
+    const container = document.getElementById('gallery-container');
+    if (!container) return;
+    if (!('IntersectionObserver' in window)) return;
+
+    const revealItems = () => {
+      const items = container.querySelectorAll('.gallery-item:not(.gal-hidden):not(.gal-visible)');
+      if (!items.length) return;
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const item = entry.target;
+          const idx = Array.from(container.children).indexOf(item);
+          setTimeout(() => {
+            item.classList.remove('gal-hidden');
+            item.classList.add('gal-visible');
+          }, Math.min(idx, 18) * 45);
+          io.unobserve(item);
+        });
+      }, { threshold: 0.04, rootMargin: '0px 0px 40px 0px' });
+      items.forEach(item => { item.classList.add('gal-hidden'); io.observe(item); });
+    };
+
+    const mo = new MutationObserver(() => { revealItems(); mo.disconnect(); });
+    mo.observe(container, { childList: true });
   }
 
   function initDishModal() {
