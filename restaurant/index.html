@@ -365,7 +365,7 @@
   </div>
   <script src="/js/main.js" defer></script>
   <script>
-  (() => {
+  window.addEventListener("load", () => {
     const io = new IntersectionObserver(
       entries => entries.forEach(e => {
         if (e.isIntersecting) {
@@ -377,7 +377,7 @@
     );
     document.querySelectorAll(".rs-reveal, .rs-reveal-child")
       .forEach(el => io.observe(el));
-  })();
+  });
 </script>
 </body>
 
