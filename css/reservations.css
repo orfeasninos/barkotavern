@@ -447,6 +447,10 @@ button[type="submit"]:active {
   box-shadow: 0 4px 20px rgba(42, 58, 30, 0.08);
 }
 
+.faq-item[open] > summary {
+  color: var(--gold);
+}
+
 .faq-item summary {
   padding: 1.1rem 1.4rem;
   font-size: 0.97rem;
@@ -485,6 +489,7 @@ button[type="submit"]:active {
   line-height: 1.75;
   color: var(--text-dark);
   margin: 0;
+  text-align: left;
 }
 
 .faq-item > p a {
@@ -524,6 +529,11 @@ button[type="submit"]:active {
 
 html.dark .faq-inline h2,
 html.dark .faq-section h2 { color: #ede0d0 }
+
+html.dark .faq-item summary { color: #ddd0bc }
+html.dark .faq-item[open] summary { color: #c5703a }
+html.dark .faq-item { background: #1e1610; border-color: rgba(197,112,58,.2) }
+html.dark .faq-item summary::after { color: #c5703a }
 
 @media (max-width: 900px) {
   .bk-form-faq-grid {
