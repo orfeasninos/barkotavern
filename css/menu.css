@@ -535,3 +535,11 @@
     top: calc(var(--header-h) - 64px);
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-items > li {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

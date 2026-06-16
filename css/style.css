@@ -2288,12 +2288,6 @@ html.dark .policy-btn {
     border-color: rgba(212, 175, 55, .25)
 }
 
-/* ============================================================
-   GLOBAL WOW EFFECTS
-   All animations use transform/opacity only — no layout cost.
-   Motion-sensitive users: wrapped in prefers-reduced-motion.
-   ============================================================ */
-
 /* --- btn-outline shimmer sweep --- */
 .btn-outline {
     position: relative;
@@ -2422,4 +2416,34 @@ html.dark .section h2 em {
     .contact-hours { animation: none }
     .gallery-item.gal-hidden { opacity: 1; transform: translateZ(0) scale(1) }
     .gallery-item.gal-visible { transition: none }
+    /* section fade-in */
+    .section-hidden { opacity: 1 !important; transform: none !important }
+    .section-visible { transition: none }
+    /* homepage card & band reveals */
+    .card-visible { animation: none !important; opacity: 1 !important; transform: none !important }
+    .band-reveal  { animation: none !important; opacity: 1 !important; transform: none !important }
+    /* footer */
+    .footer-brand img { animation: none }
+    .footer-shimmer   { animation: none }
+    /* dish modal */
+    .dish-modal-content { animation: none }
+}
+
+/* --- Typewriter cursor (#10) --- */
+.tw-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 0.82em;
+    background: var(--gold);
+    vertical-align: text-bottom;
+    margin-left: 1px;
+    animation: twBlink 0.75s steps(1) infinite;
+    transition: opacity 0.6s
+}
+@keyframes twBlink {
+    0%, 100% { opacity: 1 }
+    50%       { opacity: 0 }
+}
+@media (prefers-reduced-motion: reduce) {
+    .tw-cursor { animation: none }
 }
