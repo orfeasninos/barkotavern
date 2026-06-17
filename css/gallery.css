@@ -75,12 +75,6 @@
 }
 
 @media (hover: hover) and (pointer:fine) {
-  .dish-gallery img:hover {
-    transform: translateY(-6px) scale(1.01);
-    filter: saturate(1.12) contrast(1.06);
-    box-shadow: var(--shadow-xl);
-  }
-
   .gallery-item {
     transition: transform 700ms var(--ease-2), box-shadow 700ms var(--ease-2);
   }
