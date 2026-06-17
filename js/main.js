@@ -534,10 +534,10 @@ if (localStorage.getItem("barko_theme") === "dark") document.documentElement.cla
     if (li && !e.target.closest("a")) {
       const img = li.querySelector("img");
       if (!img) return;
-      const title = li.querySelector(".dish");
+      const title = li.querySelector(".dish-name");
       openModal({
         src: img.dataset.modalImg || img.src,
-        title: title?.textContent || "",
+        title: title?.textContent.trim() || "",
         text: "",
       });
       return;
