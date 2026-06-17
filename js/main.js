@@ -550,7 +550,7 @@ if (localStorage.getItem("barko_theme") === "dark") document.documentElement.cla
       const title = indexItem.querySelector("h3");
       const text = indexItem.querySelector("p");
       openModal({
-        src: img.src,
+        src: img.dataset.modalImg || img.src,
         title: title?.textContent || "",
         text: text?.textContent || "",
       });
