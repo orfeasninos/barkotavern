@@ -478,6 +478,10 @@ body.dark .sk-ww-google-reviews {
     overflow: hidden !important
 }
 
+html.dark .sk-post-modal--active p {
+    color:#000 !important
+}
+
 @media (max-width:800px) {
     .reviews-section .container {
         overflow: hidden;
@@ -2224,8 +2228,19 @@ html.dark .modal-close { color: var(--text-dark); background: rgba(255,255,255,.
 
 html.dark .divider path { fill: var(--cream) }
 
+html.dark,
 html.dark * {
-    scrollbar-color: #c5703a rgba(20, 16, 11, .8)
+    scrollbar-color: var(--olive-light) rgba(20, 16, 11, .8)
+}
+
+html.dark::-webkit-scrollbar-thumb,
+html.dark ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--olive-light), var(--olive-mid))
+}
+
+html.dark::-webkit-scrollbar-track,
+html.dark ::-webkit-scrollbar-track {
+    background: rgba(20, 16, 11, .8)
 }
 
 html.dark .sk-ww-google-reviews .sk-post {
