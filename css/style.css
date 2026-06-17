@@ -1,4 +1,4 @@
-.hero::after,
+﻿.hero::after,
 .hero::before {
     z-index: 1;
     pointer-events: none
@@ -1995,7 +1995,7 @@ header::after {
     animation: bandIn 0.7s var(--ease) both
 }
 
-/* === SCROLL PROGRESS BAR === */
+
 #scroll-progress {
     position: fixed;
     top: 0;
@@ -2009,7 +2009,7 @@ header::after {
     pointer-events: none
 }
 
-/* === HERO SHIMMER === */
+
 @keyframes goldShimmer {
     0% {
         background-position: 100% center
@@ -2020,7 +2020,7 @@ header::after {
     }
 }
 
-/* === CTA PULSE RING === */
+
 @keyframes ctaRing {
     0% {
         opacity: 0;
@@ -2037,7 +2037,7 @@ header::after {
     }
 }
 
-/* === DARK BAND GLOW PULSE === */
+
 @keyframes bandPulse {
 
     0%,
@@ -2052,7 +2052,7 @@ header::after {
     }
 }
 
-/* === CARD SPOTLIGHT (driven by JS --sp-x / --sp-y) === */
+
 .menu-item::before {
     content: '';
     position: absolute;
@@ -2069,7 +2069,7 @@ header::after {
     opacity: 1
 }
 
-/* === CUSTOM CURSOR === */
+
 .cursor-dot,
 .cursor-ring {
     position: fixed;
@@ -2114,7 +2114,7 @@ header::after {
     cursor: none !important
 }
 
-/* === THEME TOGGLE BUTTON === */
+
 .theme-toggle {
     all: unset;
     cursor: pointer;
@@ -2180,7 +2180,7 @@ header::after {
 
 .theme-toggle:active { transform: scale(0.92) }
 
-/* === DARK MODE === */
+
 html.dark {
     --cream: #1a1510;
     --cream-dark: #211a14;
@@ -2247,18 +2247,18 @@ html.dark .sk-ww-google-reviews .sk-post {
     background: var(--stone) !important;
 }
 
-/* restaurant.css: --rs-ink uses var(--ink) for headings + lead text */
+
 html.dark { --ink: #ede0d0 }
 
-/* menu.css */
+
 html.dark .menu-items > li { background: #1e1610 }
 html.dark .menu-category > h3 { color: #ddd0bc }
 html.dark .menu-category > h3::after { background: var(--cream) }
 
-/* gallery.css */
+
 html.dark .gallery-item { background: rgba(30, 22, 14, .8) }
 
-/* reservations.css: form inputs */
+
 html.dark input,
 html.dark textarea {
     background: #1e1610;
@@ -2281,7 +2281,7 @@ html.dark select#form-time option {
 html.dark label { color: #ddd0bc }
 html.dark #form-message { color: #ddd0bc }
 
-/* policy.css: white cards + headings */
+
 html.dark .policy-card,
 html.dark .policy-box {
     background: #1e1610;
@@ -2301,7 +2301,7 @@ html.dark .policy-btn {
     border-color: rgba(197, 112, 58, .25)
 }
 
-/* --- btn-outline shimmer sweep --- */
+
 .btn-outline {
     position: relative;
     overflow: hidden
@@ -2324,7 +2324,7 @@ html.dark .policy-btn {
     }
 }
 
-/* --- Section h2 em gold shimmer --- */
+
 .section h2 em {
     background: linear-gradient(90deg,
         var(--olive-mid) 0%,
@@ -2348,7 +2348,7 @@ html.dark .section h2 em {
     color: transparent
 }
 
-/* --- Section label expanding left line --- */
+
 .section-label::before {
     content: '';
     display: inline-block;
@@ -2364,7 +2364,7 @@ html.dark .section h2 em {
     margin-right: 9px
 }
 
-/* --- Menu item hover: shadow lift + image pop + bottom bar --- */
+
 @media (hover: hover) and (pointer: fine) {
     .menu-item:hover {
         box-shadow: 0 14px 42px rgba(42, 58, 30, .17), 0 0 0 1.5px rgba(212, 175, 55, .18);
@@ -2379,7 +2379,7 @@ html.dark .section h2 em {
     }
 }
 
-/* --- Sticky CTA pulse ring --- */
+
 .cta-btn {
     position: relative
 }
@@ -2397,9 +2397,9 @@ html.dark .section h2 em {
     100% { transform: scale(1.44); opacity: 0 }
 }
 
-/* divider shimmer is injected as SVG paths via JS (initDividerShimmer) */
 
-/* --- Contact hours badge glow --- */
+
+
 @keyframes hoursGlow {
     0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0) }
     50%       { box-shadow: 0 0 14px 3px rgba(212, 175, 55, .35) }
@@ -2408,7 +2408,7 @@ html.dark .section h2 em {
     animation: hoursGlow 3.5s ease-in-out infinite
 }
 
-/* --- Gallery stagger reveal --- */
+
 .gallery-item.gal-hidden {
     opacity: 0;
     transform: translateZ(0) scale(.96)
@@ -2419,7 +2419,7 @@ html.dark .section h2 em {
     transition: opacity .55s var(--ease-2), transform .55s var(--ease-2)
 }
 
-/* --- Reduced motion: disable all new additions --- */
+
 @media (prefers-reduced-motion: reduce) {
     .btn-outline::after,
     .cta-btn::before { display: none }
@@ -2429,19 +2429,19 @@ html.dark .section h2 em {
     .contact-hours { animation: none }
     .gallery-item.gal-hidden { opacity: 1; transform: translateZ(0) scale(1) }
     .gallery-item.gal-visible { transition: none }
-    /* section fade-in */
+    
     .section-hidden { opacity: 1 !important; transform: none !important }
     .section-visible { transition: none }
-    /* homepage card & band reveals */
+    
     .card-visible { animation: none !important; opacity: 1 !important; transform: none !important }
     .band-reveal  { animation: none !important; opacity: 1 !important; transform: none !important }
-    /* footer */
+    
     .footer-shimmer { animation: none }
-    /* dish modal */
+    
     .dish-modal-content { animation: none }
 }
 
-/* --- Typewriter cursor (#10) --- */
+
 .tw-cursor {
     display: inline-block;
     width: 2px;

@@ -1,4 +1,4 @@
-/* ─── design tokens ──────────────────────────────────────── */
+﻿
 :root {
   --rs-bg:      #fbf7f0;
   --rs-bg-alt:  #f2ebe0;
@@ -14,7 +14,7 @@
   --rs-px:      clamp(1.5rem, 5vw, 3.5rem);
 }
 
-/* ─── hero ───────────────────────────────────────────────── */
+
 .hero-welcome {
   position: relative;
   min-height: 58dvh;
@@ -91,7 +91,7 @@
   margin: 0;
 }
 
-/* ─── section label ──────────────────────────────────────── */
+
 .rs-label {
   display: block;
   font-family: var(--rs-sans);
@@ -103,14 +103,14 @@
   margin-bottom: 1rem;
 }
 
-/* ─── shared container ───────────────────────────────────── */
+
 .rs-wrap {
   max-width: 1200px;
   margin-inline: auto;
   padding-inline: var(--rs-px);
 }
 
-/* ─── our story ──────────────────────────────────────────── */
+
 .rs-story {
   background: var(--rs-bg);
   padding-block: var(--rs-py);
@@ -143,7 +143,7 @@
 
 .rs-story-text p:last-child { margin-bottom: 0; }
 
-/* staggered photo pair */
+
 .rs-story-photos {
   position: relative;
   height: 520px;
@@ -171,7 +171,7 @@
   box-shadow: 0 12px 36px rgba(28,20,16,.12);
 }
 
-/* ─── atmosphere ─────────────────────────────────────────── */
+
 .rs-atmosphere {
   background: var(--rs-bg);
   padding-block: clamp(3.5rem, 5vw, 6rem);
@@ -194,7 +194,7 @@
   display: block;
 }
 
-/* ─── find us + opening hours ────────────────────────────── */
+
 .rs-info {
   background: var(--rs-bg-alt);
   padding-block: var(--rs-py);
@@ -281,7 +281,7 @@
 
 .rs-hours-note svg { flex-shrink: 0; margin-top: 2px; color: var(--rs-terra); }
 
-/* ─── scroll reveal ──────────────────────────────────────── */
+
 .rs-reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -296,7 +296,7 @@
   transform: none;
 }
 
-/* ─── dark mode ──────────────────────────────────────────── */
+
 html.dark {
   --rs-bg:     #1a1510;
   --rs-bg-alt: #211a14;
@@ -308,7 +308,7 @@ html.dark {
 html.dark .rs-hours-row { background: #221c16; }
 html.dark .rs-hours-note { background: rgba(197,112,58,.08); }
 
-/* ─── responsive ─────────────────────────────────────────── */
+
 @media (max-width: 900px) {
   .rs-story .rs-wrap,
   .rs-info .rs-wrap { grid-template-columns: 1fr; }
@@ -329,7 +329,7 @@ html.dark .rs-hours-note { background: rgba(197,112,58,.08); }
   .rs-atmos-grid img:not(:first-child) { display: none; }
 }
 
-/* ─── keyframes ──────────────────────────────────────────── */
+
 @keyframes rs-heroZoom {
   from { transform: scale(1.02); }
   to   { transform: scale(1.10) translate(-1.2%,-.6%); }

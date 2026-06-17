@@ -1,4 +1,4 @@
-if (localStorage.getItem("barko_theme") === "dark") document.documentElement.classList.add("dark");
+﻿if (localStorage.getItem("barko_theme") === "dark") document.documentElement.classList.add("dark");
 
 (() => {
   "use strict";
@@ -87,8 +87,8 @@ if (localStorage.getItem("barko_theme") === "dark") document.documentElement.cla
       ".header-nav ul > li:not(.nav-controls) > a"
     );
     if (!navLinks.length) return;
-    const normPath = (p) => String(p || "").replace(/\/+$/, ""); // κόβει trailing "/"
-    const path = normPath(location.pathname); // "/el/" -> "/el"
+    const normPath = (p) => String(p || "").replace(/\/+$/, "");
+    const path = normPath(location.pathname);
     navLinks.forEach(link => {
       const href = link.getAttribute("href");
       const linkPage = normPath(href).split("/").pop();
@@ -340,8 +340,8 @@ if (localStorage.getItem("barko_theme") === "dark") document.documentElement.cla
           const W = pendingW, H = pendingH;
           const rawNx = (pendingX - W / 2) / (W / 2);
           const rawNy = (pendingY - H / 2) / (H / 2);
-          // Tilt fades to 0 in the outer 25% so the card is flat at the border —
-          // prevents the perspective-shrunk hit area from triggering mouseleave loops
+
+
           const absMax = Math.max(Math.abs(rawNx), Math.abs(rawNy));
           const edgeT = Math.max(0, (Math.min(1, absMax) - 0.75) / 0.25);
           const scale = 1 - edgeT * edgeT;
@@ -503,7 +503,7 @@ if (localStorage.getItem("barko_theme") === "dark") document.documentElement.cla
   const modalImg = document.getElementById("modalImg");
   const modalTitle = document.getElementById("modalTitle");
   const modalText = document.getElementById("modalText");
-  
+
   if (!modal || !modalImg || !modalTitle || !modalText) return;
 
   const openModal = ({ src, title = "", text = "" }) => {
@@ -513,7 +513,7 @@ if (localStorage.getItem("barko_theme") === "dark") document.documentElement.cla
     modalText.textContent = text || "";
     modalText.style.display = text ? "" : "none";
     modal.classList.add("open");
-    
+
     if (typeof gtag === 'function') {
       gtag('event', 'view_dish', {
         'dish_name': title,
@@ -522,7 +522,7 @@ if (localStorage.getItem("barko_theme") === "dark") document.documentElement.cla
     }
   };
 
-  // Event Listener για το κλείσιμο με το Escape
+
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.classList.contains('open')) {
       modal.classList.remove('open');
@@ -542,7 +542,7 @@ if (localStorage.getItem("barko_theme") === "dark") document.documentElement.cla
       });
       return;
     }
-    
+
     const indexItem = e.target.closest(".menu-item");
     if (indexItem) {
       const img = indexItem.querySelector("img");

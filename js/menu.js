@@ -1,7 +1,7 @@
-const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTeetU-sTKeodCrslGkzITvyC7Ob4ayTf5HdLDqcEEueZfHw4QqzAxbapHBdWq0TYhR6fbvNuL8lqLT/pub?gid=0&single=true&output=csv';
+﻿const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTeetU-sTKeodCrslGkzITvyC7Ob4ayTf5HdLDqcEEueZfHw4QqzAxbapHBdWq0TYhR6fbvNuL8lqLT/pub?gid=0&single=true&output=csv';
 function escapeHTML(str) {
     if (!str) return '';
-    return String(str).replace(/[&<>'"]/g, 
+    return String(str).replace(/[&<>'"]/g,
         tag => ({
             '&': '&amp;',
             '<': '&lt;',
@@ -154,7 +154,7 @@ function renderMenu(data) {
         <h3>${safeTranslatedCategory}</h3>
         <ul class="menu-items">
             ${(() => {
-                let currentSub = ""; 
+                let currentSub = "";
                 return grouped[category].map(item => {
                     let subHeader = "";
                     if (item.Subcategory && item.Subcategory.trim() !== "" && item.Subcategory !== currentSub) {
@@ -166,13 +166,13 @@ function renderMenu(data) {
 
                     const rawName = item[`Name_${currentLang}`] || item.Name_EN || '';
                     const rawDesc = item[`Description_${currentLang}`] || item.Description_EN || '';
-                    
+
                     const name = escapeHTML(rawName);
                     const desc = escapeHTML(rawDesc);
-                    
+
                     const rawImg = item.Image && item.Image.trim() !== '' ? item.Image : '';
                     const rawLargeImg = item['Image-large'] || rawImg;
-                    
+
                     const imgUrl = escapeHTML(rawImg);
                     const largeImgUrl = escapeHTML(rawLargeImg);
 
@@ -257,14 +257,14 @@ function initMenuCategoryActive(state) {
     const updateOnScroll = () => {
         if (isClickScrolling) return;
 
-        // At bottom of page, always activate the last section.
+
         if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 5) {
             setActive(menuSections[menuSections.length - 1].id);
             return;
         }
 
         const targetLine = getTargetLine();
-        // Walk backwards: first section whose top is at or above the target line wins.
+
         let activeId = menuSections[0].id;
         for (let i = menuSections.length - 1; i >= 0; i--) {
             if (menuSections[i].getBoundingClientRect().top <= targetLine) {
@@ -300,8 +300,8 @@ function initMenuCategoryActive(state) {
 
             clearTimeout(clickScrollTimer);
 
-            // scrollend fires when the browser finishes smooth-scrolling.
-            // Fall back to a timeout for browsers that don't support it yet.
+
+
             if ('onscrollend' in window) {
                 window.addEventListener('scrollend', unlock, { once: true });
                 clickScrollTimer = setTimeout(unlock, 1500);
@@ -311,7 +311,7 @@ function initMenuCategoryActive(state) {
         });
     });
 
-    // Defer one frame so getBoundingClientRect() reflects the fully-rendered layout
-    // from renderMenu() before we determine the initial active section.
+
+
     requestAnimationFrame(updateOnScroll);
 }

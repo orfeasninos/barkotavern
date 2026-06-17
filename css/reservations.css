@@ -1,4 +1,4 @@
-.bk-hero {
+﻿.bk-hero {
   background: var(--olive-mid);
   padding: 3rem 2rem 2.5rem;
   text-align: center;
@@ -497,7 +497,7 @@ button[type="submit"]:active {
   text-decoration: underline;
 }
 
-/* Form + FAQ side-by-side */
+
 .bk-form-faq-grid {
   display: grid;
   grid-template-columns: 3fr 2fr;
