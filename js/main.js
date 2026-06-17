@@ -30,6 +30,7 @@ if (_savedTheme === "dark" || (!_savedTheme && window.matchMedia("(prefers-color
     }
     initDishModal();
     initThemeToggle();
+    initScrollTop();
   });
 
   function initConsent() {
@@ -580,4 +581,20 @@ if (_savedTheme === "dark" || (!_savedTheme && window.matchMedia("(prefers-color
     }
   });
 }
+
+  function initScrollTop() {
+    const btn = document.getElementById('scrollTopBtn');
+    if (!btn) return;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const onScroll = () => {
+      btn.classList.toggle('visible', window.scrollY > 400);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
+    });
+  }
 })();
