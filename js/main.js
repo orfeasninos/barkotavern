@@ -1,4 +1,7 @@
-﻿if (localStorage.getItem("barko_theme") === "dark") document.documentElement.classList.add("dark");
+﻿const _savedTheme = localStorage.getItem("barko_theme");
+if (_savedTheme === "dark" || (!_savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+  document.documentElement.classList.add("dark");
+}
 
 (() => {
   "use strict";
@@ -370,6 +373,11 @@
     };
     btn.addEventListener('click', () => apply(!isDark()));
     btn.setAttribute('aria-pressed', String(isDark()));
+
+    const sysDark = window.matchMedia('(prefers-color-scheme: dark)');
+    sysDark.addEventListener('change', (e) => {
+      if (!localStorage.getItem('barko_theme')) apply(e.matches);
+    });
   }
 
   function initMagneticButtons() {
