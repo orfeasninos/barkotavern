@@ -250,9 +250,8 @@
         <span class="rs-label">Nous trouver</span>
         <div class="rs-map-frame">
           <iframe
-            src="https://maps.google.com/maps?q=36.7283479,24.4464016&z=16&output=embed"
+            data-src="https://maps.google.com/maps?q=36.7283479,24.4464016&z=16&output=embed"
             title="Barko Tavern sur Google Maps"
-            loading="lazy"
             referrerpolicy="no-referrer-when-downgrade">
           </iframe>
         </div>
@@ -365,7 +364,7 @@
   </div>
   <script src="/js/main.js" defer></script>
   <script>
-  (() => {
+  window.addEventListener("load", () => {
     const io = new IntersectionObserver(
       entries => entries.forEach(e => {
         if (e.isIntersecting) {
@@ -377,7 +376,18 @@
     );
     document.querySelectorAll(".rs-reveal, .rs-reveal-child")
       .forEach(el => io.observe(el));
-  })();
+
+    const mapFrame = document.querySelector('.rs-map-frame iframe[data-src]');
+    if (mapFrame) {
+      const mapObs = new IntersectionObserver((entries, obs) => {
+        if (entries[0].isIntersecting) {
+          mapFrame.src = mapFrame.dataset.src;
+          obs.disconnect();
+        }
+      }, { rootMargin: '200px' });
+      mapObs.observe(mapFrame);
+    }
+  });
 </script>
 </body>
 

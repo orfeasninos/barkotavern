@@ -413,8 +413,8 @@
         </div>
         <div class="contact-map">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15211.220492110584!2d24.435416034145177!3d36.72820005738358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1498df472dfb6355%3A0x2cd14b966d368b5f!2sBarko%20tavern%20restaurant!5e0!3m2!1sfr!2sgr!4v1779232552278!5m2!1sfr!2sgr"
-            width="600" height="450" style="border:0;" allowfullscreen loading="lazy" title="Où nous trouver"
+            data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15211.220492110584!2d24.435416034145177!3d36.72820005738358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1498df472dfb6355%3A0x2cd14b966d368b5f!2sBarko%20tavern%20restaurant!5e0!3m2!1sfr!2sgr!4v1779232552278!5m2!1sfr!2sgr"
+            width="600" height="450" style="border:0;" allowfullscreen title="Où nous trouver"
             referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
@@ -495,6 +495,7 @@
   </div>
   <script src="/js/main.js" defer></script>
 <script>
+  window.addEventListener("load", function () {
     const scriptURL = 'https://script.google.com/macros/s/AKfycbzz3F2tVj5fiStvyopmd9kLAGxSlBAcaR-53w47S5pDusJ1nE3C1pGp1fF-Iq4ePNNh/exec'
     const form = document.getElementById('contactForm')
     const submitBtn = document.getElementById('submit-btn')
@@ -583,6 +584,18 @@
           console.error('Error!', error.message);
         });
     });
+
+    const mapFrame = document.querySelector('.contact-map iframe[data-src]');
+    if (mapFrame) {
+      const mapObs = new IntersectionObserver((entries, obs) => {
+        if (entries[0].isIntersecting) {
+          mapFrame.src = mapFrame.dataset.src;
+          obs.disconnect();
+        }
+      }, { rootMargin: '200px' });
+      mapObs.observe(mapFrame);
+    }
+  });
   </script>
 </body>
 
