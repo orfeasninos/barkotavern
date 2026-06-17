@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://barkotavernmilos.com/</loc>
     <lastmod>2026-05-22</lastmod>
@@ -106,6 +107,58 @@
     <xhtml:link rel="alternate" hreflang="it" href="https://barkotavernmilos.com/it/menu/" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://barkotavernmilos.com/fr/menu/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://barkotavernmilos.com/menu/" />
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/pitarakia@2x.webp</image:loc><image:title>Pitarakia of Milos – Barko Tavern</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/skordolazana@2x.webp</image:loc><image:title>Skordolazana of Milos – Barko Tavern</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/kokoras-lazania@2x.webp</image:loc><image:title>Rooster with pasta of Milos – Barko Tavern</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/arni@2x.webp</image:loc><image:title>Lemon lamb – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/katsiki@2x.webp</image:loc><image:title>Goat stifado – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/kouneli@2x.webp</image:loc><image:title>Wine-braised rabbit – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/mousakas@2x.webp</image:loc><image:title>Moussaka – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/patates@2x.webp</image:loc><image:title>Fried potatoes – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/revithokeftedes@2x.webp</image:loc><image:title>Chickpea fritters – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/kolokithokeftedes@2x.webp</image:loc><image:title>Zucchini fritters – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/ntolmadakia@2x.webp</image:loc><image:title>Stuffed vine leaves – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/gemista@2x.webp</image:loc><image:title>Stuffed tomatoes and peppers – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/melitzanes@2x.webp</image:loc><image:title>Baked aubergines – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/imam@2x.webp</image:loc><image:title>Imam bayildi (stuffed aubergine) – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/fava@2x.webp</image:loc><image:title>Fava (yellow split pea dip) – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/taramosalata@2x.webp</image:loc><image:title>Taramosalata (fish roe dip) – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/saganaki@2x.webp</image:loc><image:title>Fried cheese saganaki – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/feta@2x.webp</image:loc><image:title>Feta cheese – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/feta-meli@2x.webp</image:loc><image:title>Feta with honey – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/ksinomyzithra@2x.webp</image:loc><image:title>Ksinomyzithra local cheese of Milos – Barko Tavern</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/xwriatikh@2x.webp</image:loc><image:title>Greek village salad – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/nhsiwtikh@2x.webp</image:loc><image:title>Island salad – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/prasini@2x.webp</image:loc><image:title>Green salad – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/aggourontomata@2x.webp</image:loc><image:title>Cucumber tomato salad – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/pantzaria@2x.webp</image:loc><image:title>Beetroot salad – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/xorta@2x.webp</image:loc><image:title>Boiled wild greens – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/elies@2x.webp</image:loc><image:title>Olives – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/ampelofasoula@2x.webp</image:loc><image:title>Green beans – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/souvlaki-kotopoulo@2x.webp</image:loc><image:title>Chicken souvlaki – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/mpiftekia@2x.webp</image:loc><image:title>Greek meatballs – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/mprizola@2x.webp</image:loc><image:title>Pork chop – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/paidakia-500g@2x.webp</image:loc><image:title>Lamb chops 500g – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/paidakia-merida@2x.webp</image:loc><image:title>Lamb chops portion – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/loukaniko@2x.webp</image:loc><image:title>Greek sausage – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/xoirinh-thgania@2x.webp</image:loc><image:title>Fried pork – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/panseta@2x.webp</image:loc><image:title>Pork belly – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/xtapodi@2x.webp</image:loc><image:title>Grilled octopus – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/kalamarakia@2x.webp</image:loc><image:title>Fried calamari – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/garides-saganaki@2x.webp</image:loc><image:title>Shrimp saganaki – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/garidomakaronada@2x.webp</image:loc><image:title>Shrimp pasta – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/soupies@2x.webp</image:loc><image:title>Cuttlefish – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/sardeles@2x.webp</image:loc><image:title>Sardines – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/gauros@2x.webp</image:loc><image:title>Marinated anchovies – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/mpakaliaros@2x.webp</image:loc><image:title>Salted cod – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/makaronia-me-kima@2x.webp</image:loc><image:title>Pasta with minced meat – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/vrasta@2x.webp</image:loc><image:title>Boiled vegetables – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/psomi@2x.webp</image:loc><image:title>Bread – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/pita@2x.webp</image:loc><image:title>Pita bread – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/saligkaria@2x.webp</image:loc><image:title>Snails – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/sokolatopita@2x.webp</image:loc><image:title>Chocolate cake – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/portokalopita@2x.webp</image:loc><image:title>Orange cake – Barko Tavern, Milos</image:title></image:image>
+    <image:image><image:loc>https://barkotavernmilos.com/assets/images/giaourti-koufeto@2x.webp</image:loc><image:title>Yogurt with sweets – Barko Tavern, Milos</image:title></image:image>
   </url>
 
   <url>
