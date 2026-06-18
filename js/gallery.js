@@ -33,14 +33,6 @@ function renderGallery(data) {
     });
 
     galleryContainer.innerHTML = galleryHtml;
-    if (!galleryHtml) showError(getLangError('empty'));
-}
-
-function showError(message) {
-    const galleryContainer = document.getElementById('gallery-container');
-    if (galleryContainer) {
-        galleryContainer.innerHTML = `<p class='error-message'>${message}</p>`;
-    }
 }
 
 renderGallery(MENU_DATA);
