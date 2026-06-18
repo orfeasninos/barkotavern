@@ -8,6 +8,7 @@ function fetchURL(url) {
     return new Promise((resolve, reject) => {
         https.get(url, (res) => {
             if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+                res.resume();
                 fetchURL(res.headers.location).then(resolve).catch(reject);
                 return;
             }
