@@ -168,11 +168,9 @@ function renderMenu(data) {
     if (sidebarContainer) sidebarContainer.innerHTML = sidebarHtml;
 }
 
-setTimeout(() => {
-    renderMenu(MENU_DATA);
-    const state = { mqMobile: window.matchMedia("(max-width: 768px)") };
-    initMenuCategoryActive(state);
-}, 0);
+renderMenu(MENU_DATA);
+const state = { mqMobile: window.matchMedia("(max-width: 768px)") };
+initMenuCategoryActive(state);
 
 
 
