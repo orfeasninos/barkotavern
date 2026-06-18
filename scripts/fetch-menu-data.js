@@ -61,8 +61,8 @@ async function main() {
     const csv = await fetchURL(SHEET_URL);
     const rows = parseCSV(csv);
 
-    if (rows.length < 2) {
-        console.error('No data found in spreadsheet');
+    if (rows.length < 50) {
+        console.error(`Too few rows (${rows.length - 1} items) — aborting to avoid overwriting with incomplete data`);
         process.exit(1);
     }
 
