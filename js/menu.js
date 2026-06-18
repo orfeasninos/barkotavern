@@ -1,5 +1,4 @@
-﻿const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTeetU-sTKeodCrslGkzITvyC7Ob4ayTf5HdLDqcEEueZfHw4QqzAxbapHBdWq0TYhR6fbvNuL8lqLT/pub?gid=0&single=true&output=csv';
-function escapeHTML(str) {
+﻿function escapeHTML(str) {
     if (!str) return '';
     return String(str).replace(/[&<>'"]/g,
         tag => ({
@@ -10,38 +9,6 @@ function escapeHTML(str) {
             '"': '&quot;'
         }[tag] || tag)
     );
-}
-async function loadMenu() {
-    try {
-        const response = await fetch(SHEET_URL);
-        const csvText = await response.text();
-        Papa.parse(csvText, {
-            header: true,
-            skipEmptyLines: true,
-            complete: function (results) {
-                if (results.data.length > 0) {
-                    renderMenu(results.data);
-                    const state = { mqMobile: window.matchMedia("(max-width: 768px)") };
-                    initMenuCategoryActive(state);
-                } else {
-                    console.error("The Sheet is empty or headers don't match.");
-                }
-            },
-            error: function (err) {
-                console.error("Error parsing CSV:", err);
-                const container = document.getElementById('menu-container');
-                const lang = (document.documentElement.lang || 'en').toLowerCase().slice(0, 2);
-                const msg = { el: "Σφάλμα φόρτωσης μενού.", en: "Error loading menu.", it: "Errore nel caricamento del menu.", fr: "Erreur de chargement du menu." };
-                if (container) container.textContent = msg[lang] || msg.en;
-            }
-        });
-    } catch (error) {
-        console.error("Fetch error:", error);
-        const container = document.getElementById('menu-container');
-        const lang = (document.documentElement.lang || 'en').toLowerCase().slice(0, 2);
-        const msg = { el: "Αποτυχία σύνδεσης. Δοκιμάστε να ανανεώσετε τη σελίδα.", en: "Network connection failed. Try refreshing the page.", it: "Connessione di rete fallita. Ricarica la pagina.", fr: "Échec de la connexion réseau. Essayez de recharger la page." };
-        if (container) container.textContent = msg[lang] || msg.en;
-    }
 }
 const categoryImages = {
     "Ορεκτικά": "../../assets/images/patates.webp",
@@ -201,7 +168,9 @@ function renderMenu(data) {
     if (sidebarContainer) sidebarContainer.innerHTML = sidebarHtml;
 }
 
-loadMenu();
+renderMenu(MENU_DATA);
+const state = { mqMobile: window.matchMedia("(max-width: 768px)") };
+initMenuCategoryActive(state);
 
 
 
