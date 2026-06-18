@@ -27,7 +27,7 @@ function renderGallery(data) {
 
             galleryHtml += `
                 <div class="gallery-item">
-                    <img src="${safeImgUrl}" data-modal-img="${largeImgUrl}" alt="${name}" loading="lazy">
+                    <img src="${safeImgUrl}" data-modal-img="${largeImgUrl}" alt="${name}" width="600" height="400" loading="lazy">
                 </div>`;
         }
     });

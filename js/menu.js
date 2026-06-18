@@ -151,7 +151,7 @@ function renderMenu(data) {
                     return `
                         ${subHeader}
                         <li class="${imgUrl ? '' : 'no-image'}">
-                            ${imgUrl ? `<img src="${imgUrl}" data-modal-img="${largeImgUrl}" alt="${name}" loading="lazy">` : ''}
+                            ${imgUrl ? `<img src="${imgUrl}" data-modal-img="${largeImgUrl}" alt="${name}" width="100" height="100" loading="lazy">` : ''}
                             <div class="dish">
                                 <span class="dish-name">${name}${dietBadges ? `<span class="diet-badges">${dietBadges}</span>` : ''}</span>
                                 ${desc ? `<p>${desc}</p>` : ''}
