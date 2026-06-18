@@ -115,7 +115,7 @@ if (_savedTheme === "dark" || (!_savedTheme && window.matchMedia("(prefers-color
         mobileNav.classList.remove("open");
         burger.setAttribute("aria-expanded", "false");
       }
-    }, { passive: true });
+    }, { passive: true, capture: true });
   }
 
   function initLanguageDropdown() {
