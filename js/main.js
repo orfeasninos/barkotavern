@@ -503,8 +503,12 @@ if (_savedTheme === "dark" || (!_savedTheme && window.matchMedia("(prefers-color
       items.forEach(item => { item.classList.add('gal-hidden'); io.observe(item); });
     };
 
-    const mo = new MutationObserver(() => { revealItems(); mo.disconnect(); });
-    mo.observe(container, { childList: true });
+    if (container.children.length > 0) {
+      revealItems();
+    } else {
+      const mo = new MutationObserver(() => { revealItems(); mo.disconnect(); });
+      mo.observe(container, { childList: true });
+    }
   }
 
   function initDishModal() {
