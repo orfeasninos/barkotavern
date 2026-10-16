@@ -5,7 +5,7 @@ const MENU_DATA = [
     "Name_EN": "Bread (per person)",
     "Name_IT": "Pane",
     "Name_FR": "Pain",
-    "Price": "1,3",
+    "Price": "1",
     "Subcategory": "",
     "Image": "https://barkotavernmilos.com/assets/images/psomi.webp",
     "Image-large": "https://barkotavernmilos.com/assets/images/psomi@2x.webp",
@@ -19,7 +19,7 @@ const MENU_DATA = [
     "Name_EN": "Pita bread",
     "Name_IT": "Pita",
     "Name_FR": "Pita",
-    "Price": "1,6",
+    "Price": "1,5",
     "Subcategory": "",
     "Image": "https://barkotavernmilos.com/assets/images/pita.webp",
     "Image-large": "https://barkotavernmilos.com/assets/images/pita@2x.webp",
@@ -197,7 +197,7 @@ const MENU_DATA = [
   },
   {
     "Category": "Ορεκτικά",
-    "Name_EL": "Σαλιγκάρια",
+    "Name_EL": "Σαλιγκάρια με δεντρολίβανο",
     "Name_EN": "Snails",
     "Name_IT": "Lumache",
     "Name_FR": "Escargots",
@@ -407,7 +407,7 @@ const MENU_DATA = [
   },
   {
     "Category": "Μαγειρευτά",
-    "Name_EL": "Κόκορας κοκκινιστός με χειροποίητες χυλοπίτες",
+    "Name_EL": "Κόκορας κρασάτος κοκκινιστός με χειροποίητες χυλοπίτες",
     "Name_EN": "Roasted rooster in red sauce with homemade pasta",
     "Name_IT": "Gallo in salsa rossa con tagliatelle fatte a mano",
     "Name_FR": "Coq au vin avec des nouilles grecques",
@@ -449,7 +449,7 @@ const MENU_DATA = [
   },
   {
     "Category": "Μαγειρευτά",
-    "Name_EL": "Γεμιστά",
+    "Name_EL": "Γεμιστά (ορφανά)",
     "Name_EN": "Gemista (stuffed tomatoes and peppers with rice and herbs)",
     "Name_IT": "Verdure ripiene",
     "Name_FR": "Tomates et poivrons farcis avec du ris",
@@ -589,7 +589,7 @@ const MENU_DATA = [
   },
   {
     "Category": "Της ώρας",
-    "Name_EL": "Πανσέτα ψητή",
+    "Name_EL": "Πανσέτα",
     "Name_EN": "Pork belly grilled",
     "Name_IT": "Pancetta grigliata",
     "Name_FR": "Poitrine de porc",
@@ -603,7 +603,7 @@ const MENU_DATA = [
   },
   {
     "Category": "Της ώρας",
-    "Name_EL": "Λουκάνικο ψητό",
+    "Name_EL": "Λουκάνικο χωριάτικο ψητό",
     "Name_EN": "Grilled sausage",
     "Name_IT": "Salsiccia grigliata",
     "Name_FR": "Saucisse grillée",
@@ -631,7 +631,7 @@ const MENU_DATA = [
   },
   {
     "Category": "Θαλασσινά",
-    "Name_EL": "Χταπόδι ψητό",
+    "Name_EL": "Χταπόδι ψητό ή κρασάτο στην κατσαρόλα",
     "Name_EN": "Grilled octopus",
     "Name_IT": "Polpo alla griglia",
     "Name_FR": "Poulpe grillé",
