@@ -729,7 +729,7 @@ const MENU_DATA = [
   },
   {
     "Category": "Θαλασσινά",
-    "Name_EL": "Σουπιές με το μελάνι τους με ρύζι",
+    "Name_EL": "Σουπιές μαγειρεμένες με το μελάνι τους με ρύζι",
     "Name_EN": "Cuttlefish cooked in ink with rice",
     "Name_IT": "Seppie nel loro nero con riso",
     "Name_FR": "Seiches à l'encre avec du riz",
