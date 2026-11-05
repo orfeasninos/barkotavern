@@ -313,7 +313,7 @@
             <div class="form-row">
               <div class="form-group">
                 <label for="Date">Ημερομηνία</label>
-                <input type="date" id="Date" name="Date" max="2026-10-04" required>
+                <input type="date" id="Date" name="Date" min="2027-05-15" required>
               </div>
               <div class="form-group">
                 <label for="form-time">Ώρα</label>
@@ -581,9 +581,9 @@
         if (reservationDateTime < now) {
           return 'Δεν μπορείτε να επιλέξετε ημερομηνία ή ώρα στο παρελθόν.';
         }
-        const maxSeasonDate = new Date('2026-10-04T23:59:59');
-        if (reservationDateTime > maxSeasonDate) {
-          return 'Η ταβέρνα είναι κλειστή για τη σεζόν μετά τις 4 Οκτωβρίου';
+        const seasonStartDate = new Date('2027-05-15T00:00:00');
+        if (reservationDateTime < seasonStartDate) {
+          return 'Ανοίγουμε ξανά στις 15 Μαΐου 2027. Παρακαλώ επιλέξτε ημερομηνία από τότε και μετά.';
         }
         const hoursInMs = 2 * 60 * 60 * 1000;
         if (reservationDateTime - now < hoursInMs) {

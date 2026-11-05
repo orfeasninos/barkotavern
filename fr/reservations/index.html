@@ -313,7 +313,7 @@
             <div class="form-row">
               <div class="form-group">
                 <label for="Date">Date</label>
-                <input type="date" id="Date" name="Date" max="2026-10-04" required>
+                <input type="date" id="Date" name="Date" min="2027-05-15" required>
               </div>
               <div class="form-group">
                 <label for="form-time">Heure</label>
@@ -582,9 +582,9 @@
         if (reservationDateTime < now) {
           return 'Vous ne pouvez pas sélectionner une date ou une heure dans le passé.';
         }
-        const maxSeasonDate = new Date('2026-10-04T23:59:59');
-        if (reservationDateTime > maxSeasonDate) {
-          return 'Le restaurant est fermé pour la saison après le 4 octobre';
+        const seasonStartDate = new Date('2027-05-15T00:00:00');
+        if (reservationDateTime < seasonStartDate) {
+          return 'Nous rouvrons le 15 mai 2027. Veuillez choisir une date à partir de ce jour.';
         }
         const hoursInMs = 2 * 60 * 60 * 1000;
         if (reservationDateTime - now < hoursInMs) {
