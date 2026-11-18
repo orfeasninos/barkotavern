@@ -5,7 +5,7 @@ const MENU_DATA = [
     "Name_EN": "Bread (per person)",
     "Name_IT": "Pane",
     "Name_FR": "Pain",
-    "Price": "1,2",
+    "Price": "1,3",
     "Subcategory": "",
     "Image": "https://barkotavernmilos.com/assets/images/psomi.webp",
     "Image-large": "https://barkotavernmilos.com/assets/images/psomi@2x.webp",
