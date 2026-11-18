@@ -575,7 +575,7 @@
           return `Η ταβέρνα είναι κλειστή για τη σεζόν μετά τις ${formatDate(dateLimits.close)}.`
         }
         if ((dateLimits.closedDays || []).includes(date)) {
-          return `Είμαστε κλειστά στις ${formatDate(date)}. Παρακαλώ επιλέξτε άλλη ημερομηνία.`
+          return `Δεν δεχόμαστε κρατήσεις στις ${formatDate(date)}. Παρακαλώ επιλέξτε άλλη ημερομηνία.`
         }
         return null
       }

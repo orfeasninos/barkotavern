@@ -576,7 +576,7 @@
           return `La taverna è chiusa per la stagione dopo il ${formatDate(dateLimits.close)}.`
         }
         if ((dateLimits.closedDays || []).includes(date)) {
-          return `Siamo chiusi il ${formatDate(date)}. Si prega di scegliere un'altra data.`
+          return `Non accettiamo prenotazioni il ${formatDate(date)}. Si prega di scegliere un'altra data.`
         }
         return null
       }

@@ -576,7 +576,7 @@
           return `Le restaurant est fermé pour la saison après le ${formatDate(dateLimits.close)}.`
         }
         if ((dateLimits.closedDays || []).includes(date)) {
-          return `Nous sommes fermés le ${formatDate(date)}. Veuillez choisir une autre date.`
+          return `Nous n'acceptons pas de réservations le ${formatDate(date)}. Veuillez choisir une autre date.`
         }
         return null
       }

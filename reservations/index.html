@@ -574,7 +574,7 @@
           return `We are closed for the season after ${formatDate(dateLimits.close)}.`
         }
         if ((dateLimits.closedDays || []).includes(date)) {
-          return `We are closed on ${formatDate(date)}. Please select another date.`
+          return `We are not accepting reservations on ${formatDate(date)}. Please select another date.`
         }
         return null
       }
