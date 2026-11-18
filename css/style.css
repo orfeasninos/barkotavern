@@ -28,13 +28,11 @@
 .mgb-card:active .mgb-cta{transform:scale(.97)}
 @media (max-width:820px){.mgb{padding:3.5rem 1rem 1rem}.mgb-card{flex-direction:column;align-items:flex-start;gap:1.4rem;padding:1.9rem 1.4rem 2.9rem;border-radius:20px}.mgb-title{font-size:clamp(1.8rem,7vw,2.2rem)}.mgb-text{font-size:.98rem}.mgb-cta{width:100%;justify-content:center;white-space:normal;text-align:center}.mgb-sun{width:240px;height:240px;top:-90px;right:-70px}}
 @media (prefers-reduced-motion:reduce){.mgb-w1,.mgb-w2,.mgb-sun{animation:none}.mgb-card,.mgb-card::after,.mgb-cta,.mgb-cta span{transition:none}.mgb-card:hover{transform:none}.mgb-card:hover::after{transform:skewX(-18deg)}}
-.band-dark--mgb{background:linear-gradient(135deg,#0d1f0a 0,#1a2e12 50%,#0f1e0c 100%) top/100% calc(100% - 8.5rem) no-repeat}
+.band-dark--mgb{background:linear-gradient(180deg,#0f1c0c 0,transparent 9rem),linear-gradient(135deg,#0d1f0a 0,#1a2e12 50%,#0f1e0c 100%);background-position:top;background-size:100% 100%;background-repeat:no-repeat}
 .band-dark--mgb .band-inner{padding-bottom:2.25rem}
-.band-dark--mgb .mgb{position:relative;z-index:1;background:none;padding:0 1.25rem 4rem}
-.band-dark--mgb .mgb-card{box-shadow:0 0 0 1px rgba(212,175,55,.24),0 16px 38px rgba(15,28,12,.26),inset 0 1px 0 rgba(255,255,255,.14)}
-@media (hover:hover) and (pointer:fine){.band-dark--mgb .mgb-card:hover{box-shadow:0 0 0 1px rgba(212,175,55,.42),0 22px 46px rgba(15,28,12,.32),inset 0 1px 0 rgba(255,255,255,.16)}}
-.band-dark--mgb+.reviews-section .container{padding-top:.5rem}
+.band-dark--mgb .mgb{position:relative;z-index:1;background:none;padding:0 1.25rem 4.5rem}
+.band-dark--mgb .mgb-card{box-shadow:0 0 0 1px rgba(212,175,55,.24),0 20px 44px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.14)}
+@media (hover:hover) and (pointer:fine){.band-dark--mgb .mgb-card:hover{box-shadow:0 0 0 1px rgba(212,175,55,.42),0 26px 52px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.16)}}
 @media (max-width:900px){.band-dark--mgb .band-inner{padding-bottom:2.25rem}}
-@media (max-width:820px){.band-dark--mgb{background-size:100% calc(100% - 7.5rem)}.band-dark--mgb .mgb{padding:0 1rem 3.5rem}}
-@media (max-width:800px){.band-dark--mgb+.reviews-section .container{padding-top:.5rem}}
+@media (max-width:820px){.band-dark--mgb .mgb{padding:0 1rem 3rem}}
 @media (min-width:821px){.band-dark--mgb .mgb{padding-left:0;padding-right:0}.band-dark--mgb .mgb-card{width:calc(min(92%,1140px) - 4rem)}}
