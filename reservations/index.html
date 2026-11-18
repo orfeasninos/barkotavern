@@ -313,7 +313,7 @@
             <div class="form-row">
               <div class="form-group">
                 <label for="Date">Date</label>
-                <input type="date" id="Date" name="Date" min="2027-05-15" required>
+                <input type="date" id="Date" name="Date" required>
               </div>
               <div class="form-group">
                 <label for="form-time">Time</label>
@@ -525,7 +525,7 @@
     </div>
     <div class="footer-shimmer"></div>
     <div class="footer-credit">
-      Website design &amp; development by <a href="https://milos.guide" target="_blank" rel="noopener">Milos.guide</a>
+      Website design &amp; development by <a href="https://aegeanwebservices.gr/" target="_blank" rel="noopener">Aegean Web Services</a>
     </div>
   </footer>
   <div id="consentBanner" class="consent">
@@ -553,6 +553,7 @@
           stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
       </svg></a>
   </div>
+  <script src="/js/reservation-dates.js" defer></script>
   <script src="/js/main.js" defer></script>
   <script>
     window.addEventListener("load", function () {
@@ -560,6 +561,28 @@
       const form = document.getElementById('contactForm')
       const submitBtn = document.getElementById('submit-btn')
       const formMessage = document.getElementById('form-message')
+      const dateLimits = window.RESERVATION_DATES || {}
+      const dateField = document.getElementById('Date')
+      if (dateLimits.open) dateField.min = dateLimits.open
+      if (dateLimits.close) dateField.max = dateLimits.close
+      const formatDate = iso => iso.split('-').reverse().join('/')
+      function getDateErrorMessage(date) {
+        if (dateLimits.open && date < dateLimits.open) {
+          return `Reservations are available from ${formatDate(dateLimits.open)} onwards.`
+        }
+        if (dateLimits.close && date > dateLimits.close) {
+          return `We are closed for the season after ${formatDate(dateLimits.close)}.`
+        }
+        if ((dateLimits.closedDays || []).includes(date)) {
+          return `We are closed on ${formatDate(date)}. Please select another date.`
+        }
+        return null
+      }
+      dateField.addEventListener('change', () => {
+        const dateError = dateField.value ? getDateErrorMessage(dateField.value) : null
+        formMessage.style.color = '#b32424'
+        formMessage.innerText = dateError || ''
+      })
       function getCustomErrorMessage() {
         const nameInput = document.getElementById('form-name')
         const emailInput = document.getElementById('form-email')
@@ -580,10 +603,8 @@
         if (reservationDateTime < now) {
           return 'You cannot select a date or time in the past.';
         }
-        const seasonStartDate = new Date('2027-05-15T00:00:00');
-        if (reservationDateTime < seasonStartDate) {
-          return 'We reopen on May 15th, 2027. Please select a date from then on.';
-        }
+        const dateError = getDateErrorMessage(dateInput.value);
+        if (dateError) return dateError;
         const hoursInMs = 2 * 60 * 60 * 1000;
         if (reservationDateTime - now < hoursInMs) {
           return 'Online reservations must be made at least 2 hours in advance. For an immediate reservation, please call us.';

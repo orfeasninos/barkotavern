@@ -82,4 +82,8 @@ async function main() {
     console.log(`Saved ${data.length} items to js/menu-data.js`);
 }
 
-main().catch(err => { console.error('Error:', err.message); process.exit(1); });
+if (require.main === module) {
+    main().catch(err => { console.error('Error:', err.message); process.exit(1); });
+}
+
+module.exports = { fetchURL, parseCSV };
